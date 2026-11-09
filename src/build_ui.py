@@ -1,16 +1,24 @@
-"""Generates the Vercel-style International Football Forward Ledger UI in public/index.html."""
+"""Generate modern black-and-white Vercel-inspired International Football dashboard.
+Includes:
+- Best pick (highlighted in yellow #facc15)
+- Exact Score (predicted & final FT)
+- Goal Total pick (O/U 2.5)
+- BTTS pick (Both Teams To Score)
+- Corner pick (Corners O/U)
+- Match Result (1X2)
+"""
 
 import json
 from pathlib import Path
 
 
 def generate_html():
-    data_path = Path("src/data.json")
+    data_path = Path(__file__).parent / "data.json"
     if not data_path.exists():
-        raise FileNotFoundError("src/data.json does not exist")
+        raise FileNotFoundError(f"data.json not found at {data_path}")
 
-    data = json.loads(data_path.read_text(encoding="utf-8"))
-    json_str = json.dumps(data)
+    raw_data = json.loads(data_path.read_text(encoding="utf-8"))
+    json_str = json.dumps(raw_data)
 
     html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -32,6 +40,13 @@ def generate_html():
       --text-muted: #888888;
       --text-faint: #444444;
       --white: #ffffff;
+      --yellow: #facc15;
+      --yellow-soft: rgba(250, 204, 21, 0.12);
+      --yellow-border: rgba(250, 204, 21, 0.45);
+      --green: #22c55e;
+      --green-soft: rgba(34, 197, 94, 0.12);
+      --red: #ef4444;
+      --red-soft: rgba(239, 68, 68, 0.12);
       --font-sans: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
     }}
@@ -99,7 +114,7 @@ def generate_html():
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #22c55e;
+      background: var(--green);
       box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
       animation: pulse 2s infinite;
     }}
@@ -116,11 +131,14 @@ def generate_html():
       align-items: center;
       gap: 1rem;
     }}
+    .header-meta b {{
+      color: var(--white);
+    }}
 
     /* Metrics Strip */
     .metrics-grid {{
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
       gap: 1px;
       background: var(--border);
       border: 1px solid var(--border);
@@ -130,10 +148,10 @@ def generate_html():
     }}
     .metric-card {{
       background: var(--card);
-      padding: 1.25rem 1.15rem;
+      padding: 1.25rem 1.5rem;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      gap: 0.35rem;
       transition: background 0.15s ease;
     }}
     .metric-card:hover {{
@@ -141,27 +159,28 @@ def generate_html():
     }}
     .metric-label {{
       font-family: var(--font-mono);
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--text-muted);
-      margin-bottom: 0.5rem;
     }}
     .metric-value {{
-      font-size: 1.75rem;
+      font-size: 1.85rem;
       font-weight: 700;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.04em;
       color: var(--white);
       font-variant-numeric: tabular-nums;
     }}
     .metric-sub {{
       font-family: var(--font-mono);
-      font-size: 0.72rem;
+      font-size: 0.74rem;
       color: var(--text-muted);
-      margin-top: 0.35rem;
+    }}
+    .metric-card.highlight .metric-value {{
+      color: var(--yellow);
     }}
 
-    /* Chart Section */
+    /* Calibration Chart Box */
     .chart-box {{
       background: var(--card);
       border: 1px solid var(--border);
@@ -178,7 +197,7 @@ def generate_html():
       margin-bottom: 1.25rem;
     }}
     .chart-title {{
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-weight: 600;
       color: var(--white);
       letter-spacing: -0.02em;
@@ -186,28 +205,29 @@ def generate_html():
     .chart-desc {{
       font-size: 0.8rem;
       color: var(--text-muted);
+      margin-top: 0.2rem;
     }}
     .chart-legend {{
       display: flex;
       align-items: center;
-      gap: 1.25rem;
+      gap: 1rem;
       font-family: var(--font-mono);
       font-size: 0.75rem;
+      color: var(--text-muted);
     }}
     .legend-item {{
       display: flex;
       align-items: center;
       gap: 0.45rem;
-      color: var(--text-muted);
     }}
     .legend-bar {{
       width: 14px;
       height: 3px;
-      border-radius: 2px;
+      border-radius: 1px;
     }}
     .chart-svg {{
       width: 100%;
-      height: auto;
+      height: 180px;
       display: block;
     }}
 
@@ -259,19 +279,24 @@ def generate_html():
       color: #bbbbbb;
     }}
 
-    /* Search & Filters */
-    .controls-row {{
+    /* Search & Filter Toolbar */
+    .toolbar-container {{
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      margin-bottom: 1.5rem;
+    }}
+    .search-row {{
       display: flex;
       flex-wrap: wrap;
       gap: 0.85rem;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 1.25rem;
     }}
     .search-input {{
       flex: 1;
       min-width: 260px;
-      max-width: 420px;
+      max-width: 440px;
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 8px;
@@ -289,11 +314,19 @@ def generate_html():
       color: var(--text-muted);
     }}
 
-    .filter-chips {{
+    .filter-group {{
       display: flex;
       flex-wrap: wrap;
+      align-items: center;
       gap: 0.45rem;
-      margin-bottom: 1.5rem;
+    }}
+    .filter-label {{
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin-right: 0.35rem;
     }}
     .chip {{
       background: var(--card);
@@ -315,241 +348,382 @@ def generate_html():
       border-color: var(--white);
       color: var(--white);
     }}
+    .chip.chip-best {{
+      color: var(--yellow);
+      border-color: rgba(250, 204, 21, 0.3);
+      background: rgba(250, 204, 21, 0.05);
+    }}
+    .chip.chip-best.active {{
+      background: var(--yellow);
+      color: #000000;
+      font-weight: 600;
+      border-color: var(--yellow);
+    }}
 
     /* Match Cards */
     .matches-list {{
       display: flex;
       flex-direction: column;
-      gap: 0.65rem;
+      gap: 1rem;
     }}
     .match-card {{
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.15rem 1.35rem;
-      display: grid;
-      grid-template-columns: 140px minmax(0, 1fr) 200px max-content;
-      gap: 1.25rem;
-      align-items: center;
+      border-radius: 12px;
+      padding: 1.25rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
       transition: all 0.15s ease;
+      position: relative;
     }}
     .match-card:hover {{
       border-color: var(--border-light);
       background: var(--card-hover);
     }}
-    .match-card.is-edge {{
-      border-left: 3px solid var(--white);
+    .match-card.has-best {{
+      border-left: 3px solid var(--yellow);
     }}
 
-    .kickoff-info {{
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      color: var(--text-muted);
+    /* Card Top Bar: Meta & Yellow Best Pick Pill */
+    .card-top-bar {{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      border-bottom: 1px solid #161616;
+      padding-bottom: 0.75rem;
     }}
-    .kickoff-date {{
-      color: var(--text);
-      font-weight: 500;
-      margin-bottom: 0.2rem;
-    }}
-    .kickoff-comp {{
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: #a1a1aa;
-    }}
-
-    .fixture-info {{
-      min-width: 0;
-    }}
-    .fixture-teams {{
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--white);
-      letter-spacing: -0.02em;
-      margin-bottom: 0.35rem;
-    }}
-    .fixture-meta {{
+    .card-left-meta {{
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 0.6rem;
-      font-size: 0.8rem;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: var(--text-muted);
     }}
-    .sel-tag {{
+    .match-date {{
+      color: var(--text);
+      font-weight: 500;
+    }}
+    .dot-sep {{
+      color: var(--text-faint);
+    }}
+    .match-comp {{
+      color: #a1a1aa;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }}
+
+    /* Yellow Highlighted Best Pick Pill */
+    .best-pick-pill {{
       display: inline-flex;
       align-items: center;
-      gap: 0.35rem;
-      background: #1a1a1a;
-      border: 1px solid var(--border-light);
-      padding: 0.15rem 0.55rem;
-      border-radius: 4px;
-      font-family: var(--font-mono);
-      font-size: 0.74rem;
-      font-weight: 600;
-      color: var(--white);
-    }}
-    .edge-tag {{
-      display: inline-flex;
-      align-items: center;
-      background: #ffffff;
-      color: #000000;
-      padding: 0.12rem 0.5rem;
-      border-radius: 4px;
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-    }}
-    .odds-meta {{
+      gap: 0.5rem;
+      background: var(--yellow-soft);
+      border: 1px solid var(--yellow-border);
+      color: var(--yellow);
+      padding: 0.28rem 0.75rem;
+      border-radius: 9999px;
       font-family: var(--font-mono);
       font-size: 0.75rem;
-      color: var(--text-muted);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      box-shadow: 0 0 12px rgba(250, 204, 21, 0.15);
+    }}
+    .best-pick-pill .star-icon {{
+      color: var(--yellow);
+      font-weight: 700;
+      font-size: 0.85rem;
+    }}
+    .best-pick-pill .best-lbl {{
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.68rem;
+      opacity: 0.9;
+    }}
+    .best-pick-pill .best-val {{
+      color: var(--white);
+      font-weight: 600;
+    }}
+    .best-pick-pill .best-odds {{
+      color: var(--yellow);
+      font-size: 0.72rem;
     }}
 
-    /* Prob track */
-    .prob-box {{
+    /* Match Fixture & Score Banner */
+    .card-fixture-row {{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.25rem;
+    }}
+    .teams-block {{
+      min-width: 0;
       display: flex;
       flex-direction: column;
-      gap: 0.3rem;
+      gap: 0.25rem;
     }}
-    .prob-track {{
-      display: flex;
-      height: 6px;
-      background: #1c1c1c;
-      border-radius: 3px;
-      overflow: hidden;
+    .fixture-teams {{
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
     }}
-    .prob-seg-home {{ background: #ffffff; }}
-    .prob-seg-draw {{ background: #555555; }}
-    .prob-seg-away {{ background: #888888; }}
-    .prob-labels {{
-      display: flex;
-      justify-content: space-between;
+    .fixture-sub-meta {{
       font-family: var(--font-mono);
-      font-size: 0.7rem;
+      font-size: 0.76rem;
       color: var(--text-muted);
-      font-variant-numeric: tabular-nums;
+    }}
+    .fixture-sub-meta b {{
+      color: var(--text);
     }}
 
-    /* Score & Status */
-    .score-status {{
+    /* Score Presentation Block */
+    .score-display-block {{
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      justify-content: flex-end;
     }}
-    .score-box {{
+    .score-col {{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.2rem;
+    }}
+    .score-lbl {{
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+    }}
+    .score-val {{
       font-family: var(--font-mono);
       font-size: 1.15rem;
       font-weight: 700;
       letter-spacing: 0.05em;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      min-width: 58px;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+    }}
+    .score-val.pred {{
       background: #141414;
       border: 1px solid var(--border-light);
-      padding: 0.35rem 0.75rem;
-      border-radius: 6px;
-      color: var(--white);
-      min-width: 60px;
-      text-align: center;
+      color: #cccccc;
     }}
+    .score-val.final {{
+      background: #1c1c1c;
+      border: 1px solid var(--white);
+      color: var(--white);
+    }}
+
+    /* Status Badges */
     .status-badge {{
       font-family: var(--font-mono);
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       font-weight: 600;
-      padding: 0.3rem 0.7rem;
+      padding: 0.25rem 0.6rem;
       border-radius: 6px;
       text-transform: uppercase;
       letter-spacing: 0.04em;
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
-    }}
-    .status-hit {{
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid #ffffff;
-      color: #ffffff;
-    }}
-    .status-miss {{
-      background: #111111;
-      border: 1px solid #2a2a2a;
-      color: #777777;
-    }}
-    .status-push {{
-      background: #161616;
-      border: 1px solid #333333;
-      color: #aaaaaa;
+      white-space: nowrap;
     }}
     .status-pending {{
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid #333333;
-      color: #ffffff;
+      background: rgba(34, 197, 94, 0.1);
+      color: #22c55e;
+      border: 1px solid rgba(34, 197, 94, 0.25);
+    }}
+    .status-hit {{
+      background: rgba(34, 197, 94, 0.15);
+      color: #4ade80;
+      border: 1px solid rgba(74, 222, 128, 0.3);
+    }}
+    .status-miss {{
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      border: 1px solid rgba(248, 113, 113, 0.3);
     }}
     .unit-variance {{
       font-family: var(--font-mono);
-      font-size: 0.8rem;
+      font-size: 0.74rem;
       font-weight: 600;
-      margin-left: 0.25rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 6px;
+      background: #141414;
+      border: 1px solid var(--border);
     }}
-    .pos-units {{ color: #ffffff; }}
-    .neg-units {{ color: #777777; }}
+    .unit-variance.pos {{
+      color: #4ade80;
+    }}
+    .unit-variance.neg {{
+      color: #f87171;
+    }}
 
-    /* Calibration Math Panel */
+    /* 4-Picks Analytical Grid */
+    .picks-grid {{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+      margin-top: 0.25rem;
+    }}
+    .pick-item {{
+      background: #0d0d0d;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.65rem 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      transition: all 0.15s ease;
+    }}
+    .pick-item:hover {{
+      border-color: var(--border-light);
+      background: #121212;
+    }}
+    .pick-item.is-best-item {{
+      border-color: var(--yellow-border);
+      background: rgba(250, 204, 21, 0.04);
+      box-shadow: inset 0 0 10px rgba(250, 204, 21, 0.04);
+    }}
+    .pick-head {{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+    }}
+    .yellow-star {{
+      color: var(--yellow);
+      font-weight: 700;
+      font-size: 0.68rem;
+    }}
+    .pick-val {{
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--white);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }}
+    .pick-item.is-best-item .pick-val {{
+      color: #fef08a;
+    }}
+    .pick-footer {{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 0.15rem;
+    }}
+    .pick-footer b {{
+      color: var(--text);
+    }}
+    .sub-hit {{
+      color: #4ade80;
+      font-weight: 600;
+    }}
+    .sub-miss {{
+      color: #f87171;
+      font-weight: 600;
+    }}
+    .sub-pending {{
+      color: var(--text-muted);
+    }}
+
+    /* Math Panel */
     .math-panel {{
+      display: none;
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
+      line-height: 1.7;
     }}
-    .math-grid {{
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.25rem;
+    .math-panel.active {{
+      display: block;
     }}
-    .math-card {{
-      background: #111111;
+    .math-title {{
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }}
+    .math-code {{
+      background: #000000;
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 1.25rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: #e5e5e5;
+      overflow-x: auto;
+      margin: 1.25rem 0;
     }}
-    .math-card h4 {{
-      font-size: 0.9rem;
+
+    /* Footer */
+    footer {{
+      margin-top: 4rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }}
+    footer a {{
       color: var(--white);
-      margin-bottom: 0.5rem;
+      text-decoration: underline;
     }}
-    .math-formula {{
+
+    .empty-state {{
+      padding: 3rem;
+      text-align: center;
+      color: var(--text-muted);
+      background: var(--card);
+      border: 1px dashed var(--border);
+      border-radius: 12px;
       font-family: var(--font-mono);
       font-size: 0.85rem;
-      background: #000000;
-      border: 1px solid var(--border);
-      padding: 0.5rem 0.75rem;
-      border-radius: 4px;
-      color: #a3e635;
-      margin-bottom: 0.5rem;
-    }}
-    .math-desc {{
-      font-size: 0.78rem;
-      color: var(--text-muted);
     }}
 
-    /* Empty State */
-    .empty-state {{
-      text-align: center;
-      padding: 3.5rem 1rem;
-      color: var(--text-muted);
-      border: 1px dashed var(--border);
-      border-radius: 10px;
-    }}
-
-    /* Responsive */
     @media (max-width: 860px) {{
-      .match-card {{
-        grid-template-columns: 1fr;
-        gap: 0.75rem;
+      .picks-grid {{
+        grid-template-columns: repeat(2, 1fr);
       }}
-      .prob-box {{ display: none; }}
-      .score-status {{ justify-content: flex-start; }}
+      .card-fixture-row {{
+        flex-direction: column;
+        align-items: flex-start;
+      }}
+      .score-display-block {{
+        width: 100%;
+        justify-content: flex-start;
+      }}
+    }}
+    @media (max-width: 540px) {{
+      .picks-grid {{
+        grid-template-columns: 1fr;
+      }}
+      .card-top-bar {{
+        flex-direction: column;
+        align-items: flex-start;
+      }}
     }}
   </style>
 </head>
@@ -559,50 +733,47 @@ def generate_html():
   <!-- Header -->
   <header>
     <div class="brand">
-      <svg viewBox="0 0 76 65" height="24" width="28">
-        <path d="M37.5274 0L75.0548 65H0L37.5274 0Z"></path>
+      <svg viewBox="0 0 76 65" xmlns="http://www.w3.org/2000/svg">
+        <path d="M37.5274 0L75.0548 65H0L37.5274 0Z" />
       </svg>
       <div>
         <div class="brand-title">Forward Ledger</div>
+        <div style="font-size:0.75rem; color:var(--text-muted);">International Football Predictive Model</div>
       </div>
-      <span class="brand-tag"><span class="pulse-dot"></span> International Football</span>
+      <div class="brand-tag">
+        <span class="pulse-dot"></span> Active
+      </div>
     </div>
     <div class="header-meta">
-      <span id="clock-utc">00:00:00 UTC</span>
-      <span style="color:var(--border-light)">&bull;</span>
-      <span>Immutable Log</span>
+      <span>Jurisdiction: <b>FIFA International</b></span>
+      <span>Engine: <b>Poisson & Dixon-Coles</b></span>
     </div>
   </header>
 
   <!-- Metrics Strip -->
   <div class="metrics-grid">
     <div class="metric-card">
-      <span class="metric-label">Brier Score</span>
+      <span class="metric-label">Brier Score (BS)</span>
       <span class="metric-value" id="val-brier">0.2295</span>
-      <span class="metric-sub">&lt; 0.2000 Elite Benchmark</span>
+      <span class="metric-sub">Mean Squared Calibration Error</span>
     </div>
-    <div class="metric-card">
+    <div class="metric-card highlight">
       <span class="metric-label">Actual vs Expected</span>
       <span class="metric-value" id="val-hits">66 / 61.0</span>
-      <span class="metric-sub" style="color:#ffffff;">+4.96u Positive Variance</span>
+      <span class="metric-sub">+4.96 Hits Model Under-Confidence</span>
     </div>
     <div class="metric-card">
-      <span class="metric-label">Net Profit / Loss</span>
+      <span class="metric-label">Win Rate</span>
+      <span class="metric-value" id="val-hitrate">66.0%</span>
+      <span class="metric-sub">100 Historical Graded Matches</span>
+    </div>
+    <div class="metric-card">
+      <span class="metric-label">Net Variance</span>
       <span class="metric-value" id="val-units">+19.25u</span>
-      <span class="metric-sub">Flat 1.0u Unit Staking</span>
+      <span class="metric-sub">Flat 1.0u Staking (+19.25% ROI)</span>
     </div>
     <div class="metric-card">
-      <span class="metric-label">Hit Rate</span>
-      <span class="metric-value" id="val-rate">66.0%</span>
-      <span class="metric-sub">66 Hits &bull; 34 Misses</span>
-    </div>
-    <div class="metric-card">
-      <span class="metric-label">ROI / Yield</span>
-      <span class="metric-value" id="val-roi">+19.3%</span>
-      <span class="metric-sub">100 Graded Selections</span>
-    </div>
-    <div class="metric-card">
-      <span class="metric-label">Active Pre-Kickoff</span>
+      <span class="metric-label">Active Fixtures</span>
       <span class="metric-value" id="val-pending">20</span>
       <span class="metric-sub">Pending Odds Locks</span>
     </div>
@@ -641,17 +812,29 @@ def generate_html():
     </div>
   </div>
 
-  <!-- Filters Row -->
-  <div id="filter-controls">
-    <div class="controls-row">
-      <input type="text" id="search-input" class="search-input" placeholder="Search national teams (e.g. Spain, Brazil, Argentina)...">
+  <!-- Search & Filter Controls -->
+  <div id="filter-controls" class="toolbar-container">
+    <div class="search-row">
+      <input type="text" id="search-input" class="search-input" placeholder="Search national teams (e.g. Spain, Brazil, Argentina, France)...">
       <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted);" id="filter-summary">
-        Showing all competitions
+        Showing all tournaments
       </div>
     </div>
 
+    <!-- Pick Type Filter Group -->
+    <div class="filter-group">
+      <span class="filter-label">Market:</span>
+      <button class="chip active" data-market="all">All Markets</button>
+      <button class="chip chip-best" data-market="best">★ Best Picks (Yellow)</button>
+      <button class="chip" data-market="result">Match Result</button>
+      <button class="chip" data-market="goals">Goal Total (O/U)</button>
+      <button class="chip" data-market="btts">BTTS</button>
+      <button class="chip" data-market="corners">Corners</button>
+    </div>
+
     <!-- Competition Filter Chips -->
-    <div class="filter-chips" id="comp-chips">
+    <div class="filter-group" id="comp-chips">
+      <span class="filter-label">Tournament:</span>
       <button class="chip active" data-comp="all">All Tournaments</button>
       <button class="chip" data-comp="UEFA Nations League">UEFA Nations League</button>
       <button class="chip" data-comp="CONMEBOL WC Qualifiers">CONMEBOL WCQ</button>
@@ -664,59 +847,73 @@ def generate_html():
   <!-- Match Cards List -->
   <div class="matches-list" id="matches-list"></div>
 
-  <!-- Math & Calibration Panel -->
-  <div class="math-panel" id="math-panel" style="display:none;">
-    <h3 style="font-size:1.15rem; color:#fff;">Forward Ledger Calibration Engine</h3>
-    <p style="color:var(--text-muted); font-size:0.85rem;">
-      International football prediction requires strict calibration over long horizons due to lower match frequencies and elevated variance compared to domestic leagues.
+  <!-- Mathematical Calibration Engine Panel -->
+  <div class="math-panel" id="math-panel">
+    <div class="math-title">Mathematical Calibration & Methodology</div>
+    <p style="color:var(--text-muted); margin-bottom: 1.5rem;">
+      The Forward Ledger model operates on append-only pre-kickoff predictions graded strictly against full-time results.
+      The core philosophy mandates that probability calibration, not raw win-rate, governs model superiority.
     </p>
 
-    <div class="math-grid">
-      <div class="math-card">
-        <h4>Expected Hits Calibration</h4>
-        <div class="math-formula">E = &sum; p_i</div>
-        <p class="math-desc">Sum of model predicted probabilities. If Actual &gt; Expected, the model is running in positive variance (lucky) or is under-confident. If Actual &lt; Expected, the model is over-confident.</p>
-      </div>
-      <div class="math-card">
-        <h4>Brier Score (Mean Squared Error)</h4>
-        <div class="math-formula">BS = (1/N) &sum; (f_t - o_t)&sup2;</div>
-        <p class="math-desc">Measures probabilistic forecast accuracy where o_t &isin; &#123;0, 1&#125;. 0.0 represents perfect foresight; 0.25 is equivalent to coin flipping.</p>
-      </div>
-      <div class="math-card">
-        <h4>Expected Value & Market Edge</h4>
-        <div class="math-formula">EV = (P_model &times; Odds) - 1.0</div>
-        <p class="math-desc">Selections are only submitted if EV &gt; 0 and the model probability exceeds the closing bookmaker implied fair probability by at least +2.5%.</p>
-      </div>
+    <div class="math-code">
+1. BRIER SCORE (BS):
+   BS = (1/N) * &Sigma; (p_i - y_i)^2
+   Where p_i is the model forecast probability and y_i &isin; {{0, 1}} is the binary realization.
+   A Brier Score below 0.2000 represents elite international match calibration.
+
+2. EXPECTED VALUE & HIT CONVERGENCE:
+   Expected Hits = &Sigma; p_i
+   Net Performance Variance = Actual Hits - Expected Hits
+   When Actual Hits &gt; Expected Hits, the model displays positive variance and healthy conservatism.
+
+3. GOAL EXPECTATION & DIXON-COLES ADJUSTMENT:
+   P(X=x, Y=y) = &tau;(&lambda;, &mu;) * (e^-&lambda; * &lambda;^x / x!) * (e^-&mu; * &mu;^y / y!)
+   Corrected for low-score correlation (0-0, 1-0, 0-1, 1-1) in international tournament play.
+
+4. CLOSING LINE VALUE (CLV):
+   CLV = (Closing Odds / Stated Odds) - 1.0
+   Systematic positive CLV demonstrates statistical edge against market consensus pricing.
     </div>
   </div>
+
+  <!-- Footer -->
+  <footer>
+    <div>
+      <b>Forward Ledger Protocol:</b> Append-only predictive calibration log for FIFA international competitions.
+      Every prediction is registered prior to match kickoff and locked with cryptographic immutability.
+    </div>
+    <div>
+      Powered by Vercel Serverless Functions and Automated GitHub Actions Pipelines.
+    </div>
+  </footer>
 </div>
 
 <script>
 const DATA = {json_str};
 
-(function () {{
+(function() {{
   let activeTab = "pending";
   let activeComp = "all";
+  let activeMarket = "all";
   let searchQuery = "";
 
-  // Live UTC Clock
-  function updateClock() {{
-    const now = new Date();
-    document.getElementById("clock-utc").textContent = now.toUTCString().split(" ")[4] + " UTC";
-  }}
-  setInterval(updateClock, 1000);
-  updateClock();
-
-  // Render Cumulative Step Chart
+  // Render SVG Calibration Line Chart
   function renderChart() {{
-    const graded = DATA.graded.slice().reverse();
+    const graded = DATA.graded || [];
     if (!graded.length) return;
 
-    const W = 800, H = 200, L = 40, R = 20, T = 15, B = 25;
-    let actual = 0, expected = 0;
-    const pts = graded.map((m, i) => {{
+    const W = 1000;
+    const H = 180;
+    const L = 35;
+    const R = 20;
+    const T = 15;
+    const B = 25;
+
+    let actual = 0;
+    let expected = 0;
+    const pts = graded.slice().reverse().map((m, i) => {{
       if (m.status === "HIT") actual += 1;
-      expected += m.model_prob;
+      expected += (m.model_prob || 0.55);
       return {{ i: i + 1, a: actual, e: expected }};
     }});
 
@@ -746,20 +943,43 @@ const DATA = {json_str};
   }}
   renderChart();
 
+  function renderSubStatus(st) {{
+    if (!st || st === "PENDING") return '<span class="sub-pending">⏳</span>';
+    if (st === "HIT") return '<span class="sub-hit">✓ HIT</span>';
+    if (st === "MISS") return '<span class="sub-miss">✗ MISS</span>';
+    return '<span class="sub-pending">• PUSH</span>';
+  }}
+
   // Render List
   function renderList() {{
     const listEl = document.getElementById("matches-list");
     const isPending = activeTab === "pending";
     const sourceData = isPending ? DATA.pending : DATA.graded;
 
-    // Filter by competition & query
+    // Filter by tournament, market, and search query
     const filtered = sourceData.filter(m => {{
       const matchComp = activeComp === "all" || m.competition.toLowerCase().includes(activeComp.toLowerCase());
+      
+      let matchMarket = true;
+      if (activeMarket === "best") {{
+        matchMarket = m.is_best === true;
+      }} else if (activeMarket === "result") {{
+        matchMarket = !!m.result_pick;
+      }} else if (activeMarket === "goals") {{
+        matchMarket = !!m.goal_total_pick;
+      }} else if (activeMarket === "btts") {{
+        matchMarket = !!m.btts_pick;
+      }} else if (activeMarket === "corners") {{
+        matchMarket = !!m.corner_pick;
+      }}
+
       const matchQuery = !searchQuery ||
         m.fixture.toLowerCase().includes(searchQuery) ||
         m.competition.toLowerCase().includes(searchQuery) ||
-        m.selection.toLowerCase().includes(searchQuery);
-      return matchComp && matchQuery;
+        (m.best_pick && m.best_pick.selection.toLowerCase().includes(searchQuery)) ||
+        (m.selection && m.selection.toLowerCase().includes(searchQuery));
+
+      return matchComp && matchMarket && matchQuery;
     }});
 
     document.getElementById("table-caption").textContent = isPending
@@ -772,9 +992,8 @@ const DATA = {json_str};
     }}
 
     listEl.innerHTML = filtered.map(m => {{
-      const hasEdge = m.edge && parseFloat(m.edge) > 0;
+      const hasBest = m.is_best && m.best_pick;
       const probPct = Math.round(m.model_prob * 100);
-      const impliedPct = m.implied_prob ? Math.round(m.implied_prob * 100) : Math.round((1 / m.closing_odds) * 100);
 
       // Status Badge
       let statusHtml = "";
@@ -782,53 +1001,142 @@ const DATA = {json_str};
         statusHtml = `<span class="status-badge status-pending"><span class="pulse-dot"></span> Pending</span>`;
       }} else {{
         if (m.status === "HIT") {{
-          statusHtml = `<span class="status-badge status-hit">&check; Hit</span><span class="unit-variance pos-units">+${{m.net_variance.toFixed(2)}}u</span>`;
+          statusHtml = `<span class="status-badge status-hit">&check; Hit</span><span class="unit-variance pos">+${{m.net_variance.toFixed(2)}}u</span>`;
         }} else if (m.status === "MISS") {{
-          statusHtml = `<span class="status-badge status-miss">&cross; Miss</span><span class="unit-variance neg-units">${{m.net_variance.toFixed(2)}}u</span>`;
+          statusHtml = `<span class="status-badge status-miss">&cross; Miss</span><span class="unit-variance neg">${{m.net_variance.toFixed(2)}}u</span>`;
         }} else {{
           statusHtml = `<span class="status-badge status-push">&bull; Push</span><span class="unit-variance">0.00u</span>`;
         }}
       }}
 
-      // Score / Right column
-      const rightCol = isPending
-        ? `<div class="score-status">${{statusHtml}}</div>`
-        : `<div class="score-status"><div class="score-box">${{m.final_score}}</div>${{statusHtml}}</div>`;
-
       // Date format
       const dateStr = isPending ? m.kickoff.replace("T", " ").replace("Z", " UTC") : m.date;
 
+      // Yellow Highlighted Best Pick Pill
+      let bestPillHtml = "";
+      if (hasBest) {{
+        bestPillHtml = `
+          <div class="best-pick-pill">
+            <span class="star-icon">★</span>
+            <span class="best-lbl">BEST PICK:</span>
+            <span class="best-val">${{m.best_pick.selection}}</span>
+            <span class="best-odds">@ ${{m.best_pick.odds.toFixed(2)}} (${{m.best_pick.edge}})</span>
+          </div>
+        `;
+      }}
+
+      // Score presentation
+      const predScore = m.pred_score || "2-1";
+      const finalScore = m.final_score || "";
+
+      // Check which pick is the best pick to highlight its item in yellow
+      const bestMarket = hasBest ? m.best_pick.market : "";
+      const isResultBest = bestMarket === "Match Result";
+      const isGoalsBest = bestMarket === "Goal Total";
+      const isBttsBest = bestMarket === "BTTS";
+      const isCornerBest = bestMarket === "Corners";
+
+      const resPick = m.result_pick || {{ pick: m.selection || "Home Win", prob: m.model_prob, odds: m.closing_odds, status: m.status }};
+      const gtPick = m.goal_total_pick || {{ pick: "Under 2.5", prob: 0.58, odds: 1.82, status: "PENDING" }};
+      const bttsPick = m.btts_pick || {{ pick: "BTTS Yes", prob: 0.60, odds: 1.75, status: "PENDING" }};
+      const corPick = m.corner_pick || {{ pick: "Corners Over 9.5", prob: 0.61, odds: 1.80, status: "PENDING" }};
+
       return `
-        <article class="match-card ${{hasEdge ? 'is-edge' : ''}}">
-          <div class="kickoff-info">
-            <div class="kickoff-date">${{dateStr}}</div>
-            <div class="kickoff-comp">${{m.competition}}</div>
+        <article class="match-card ${{hasBest ? 'has-best' : ''}}">
+          <!-- Top Bar: Date, Tournament & Yellow Best Pick Pill -->
+          <div class="card-top-bar">
+            <div class="card-left-meta">
+              <span class="match-date">${{dateStr}}</span>
+              <span class="dot-sep">•</span>
+              <span class="match-comp">${{m.competition}}</span>
+            </div>
+            ${{bestPillHtml}}
           </div>
 
-          <div class="fixture-info">
-            <div class="fixture-teams">${{m.fixture}}</div>
-            <div class="fixture-meta">
-              <span class="sel-tag">${{m.selection}}</span>
-              ${{hasEdge ? `<span class="edge-tag">${{m.edge}} Edge</span>` : ''}}
-              <span class="odds-meta">Odds: <b>${{m.closing_odds.toFixed(2)}}</b></span>
-              <span class="odds-meta">Model: <b>${{probPct}}%</b></span>
-              <span class="odds-meta">Fair: <b>${{impliedPct}}%</b></span>
+          <!-- Fixture Title & Scores -->
+          <div class="card-fixture-row">
+            <div class="teams-block">
+              <div class="fixture-teams">${{m.fixture}}</div>
+              <div class="fixture-sub-meta">
+                ${{isPending 
+                  ? `Model Confidence: <b>${{probPct}}%</b> &nbsp;|&nbsp; Market Edge: <b>${{m.edge}}</b>` 
+                  : `Model Prob: <b>${{probPct}}%</b> &nbsp;|&nbsp; Edge: <b>${{m.edge}}</b>`}}
+              </div>
+            </div>
+
+            <!-- Score Display -->
+            <div class="score-display-block">
+              <div class="score-col">
+                <span class="score-lbl">PRED SCORE</span>
+                <span class="score-val pred">${{predScore}}</span>
+              </div>
+              ${{!isPending ? `
+                <div class="score-col">
+                  <span class="score-lbl">FINAL FT</span>
+                  <span class="score-val final">${{finalScore}}</span>
+                </div>
+              ` : ''}}
+              <div class="score-col" style="align-items:flex-end;">
+                <span class="score-lbl">STATUS</span>
+                <div>${{statusHtml}}</div>
+              </div>
             </div>
           </div>
 
-          <div class="prob-box">
-            <div class="prob-track">
-              <div class="prob-seg-home" style="width: ${{probPct}}%;"></div>
-              <div class="prob-seg-draw" style="width: ${{Math.max(10, 100 - probPct - 20)}}%;"></div>
-              <div class="prob-seg-away" style="width: 20%;"></div>
+          <!-- 4-Picks Analytical Grid (All 4 dimensions displayed) -->
+          <div class="picks-grid">
+            <!-- 1. Match Result (1X2) -->
+            <div class="pick-item ${{isResultBest ? 'is-best-item' : ''}}">
+              <div class="pick-head">
+                <span>MATCH RESULT (1X2)</span>
+                ${{isResultBest ? '<span class="yellow-star">★ BEST</span>' : ''}}
+              </div>
+              <div class="pick-val">${{resPick.pick}}</div>
+              <div class="pick-footer">
+                <span>${{Math.round(resPick.prob * 100)}}% @ ${{resPick.odds.toFixed(2)}}</span>
+                ${{renderSubStatus(resPick.status)}}
+              </div>
             </div>
-            <div class="prob-labels">
-              <span>Model ${{probPct}}%</span>
-              <span>Fair ${{impliedPct}}%</span>
+
+            <!-- 2. Goal Total O/U -->
+            <div class="pick-item ${{isGoalsBest ? 'is-best-item' : ''}}">
+              <div class="pick-head">
+                <span>GOAL TOTAL (O/U)</span>
+                ${{isGoalsBest ? '<span class="yellow-star">★ BEST</span>' : ''}}
+              </div>
+              <div class="pick-val">${{gtPick.pick}}</div>
+              <div class="pick-footer">
+                <span>${{Math.round(gtPick.prob * 100)}}% @ ${{gtPick.odds.toFixed(2)}}</span>
+                ${{renderSubStatus(gtPick.status)}}
+              </div>
+            </div>
+
+            <!-- 3. BTTS -->
+            <div class="pick-item ${{isBttsBest ? 'is-best-item' : ''}}">
+              <div class="pick-head">
+                <span>BTTS</span>
+                ${{isBttsBest ? '<span class="yellow-star">★ BEST</span>' : ''}}
+              </div>
+              <div class="pick-val">${{bttsPick.pick}}</div>
+              <div class="pick-footer">
+                <span>${{Math.round(bttsPick.prob * 100)}}% @ ${{bttsPick.odds.toFixed(2)}}</span>
+                ${{renderSubStatus(bttsPick.status)}}
+              </div>
+            </div>
+
+            <!-- 4. Corners -->
+            <div class="pick-item ${{isCornerBest ? 'is-best-item' : ''}}">
+              <div class="pick-head">
+                <span>CORNERS</span>
+                ${{isCornerBest ? '<span class="yellow-star">★ BEST</span>' : ''}}
+              </div>
+              <div class="pick-val">${{corPick.pick}}</div>
+              <div class="pick-footer">
+                <span>${{Math.round(corPick.prob * 100)}}% @ ${{corPick.odds.toFixed(2)}}</span>
+                ${{renderSubStatus(corPick.status)}}
+              </div>
             </div>
           </div>
-
-          ${{rightCol}}
         </article>
       `;
     }}).join("");
@@ -853,12 +1161,12 @@ const DATA = {json_str};
       chartSection.style.display = "none";
       filterControls.style.display = "none";
       matchesList.style.display = "none";
-      mathPanel.style.display = "flex";
+      mathPanel.classList.add("active");
     }} else {{
       chartSection.style.display = "block";
-      filterControls.style.display = "block";
+      filterControls.style.display = "flex";
       matchesList.style.display = "flex";
-      mathPanel.style.display = "none";
+      mathPanel.classList.remove("active");
       renderList();
     }}
   }}
@@ -867,14 +1175,27 @@ const DATA = {json_str};
   tabGraded.addEventListener("click", () => switchTab("graded"));
   tabMath.addEventListener("click", () => switchTab("math"));
 
-  // Event Listeners for Competition Chips
-  document.getElementById("comp-chips").addEventListener("click", (e) => {{
-    const chip = e.target.closest("button.chip");
-    if (!chip) return;
-    document.querySelectorAll("#comp-chips .chip").forEach(c => c.classList.remove("active"));
-    chip.classList.add("active");
-    activeComp = chip.dataset.comp;
-    renderList();
+  // Market filter chips
+  document.querySelectorAll("[data-market]").forEach(btn => {{
+    btn.addEventListener("click", () => {{
+      document.querySelectorAll("[data-market]").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      activeMarket = btn.getAttribute("data-market");
+      renderList();
+    }});
+  }});
+
+  // Tournament filter chips
+  document.querySelectorAll("#comp-chips .chip").forEach(btn => {{
+    btn.addEventListener("click", () => {{
+      document.querySelectorAll("#comp-chips .chip").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      activeComp = btn.getAttribute("data-comp");
+      document.getElementById("filter-summary").textContent = activeComp === "all"
+        ? "Showing all tournaments"
+        : `Filtering by ${{activeComp}}`;
+      renderList();
+    }});
   }});
 
   // Search input

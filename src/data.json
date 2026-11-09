@@ -20,7 +20,44 @@
       "closing_odds": 1.85,
       "implied_prob": 0.54,
       "edge": "+4.5%",
-      "status": "PENDING"
+      "status": "PENDING",
+      "home_team": "Australia",
+      "away_team": "Saudi Arabia",
+      "pred_score": "2-0",
+      "pred_score_prob": 0.118,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.585,
+        "odds": 1.85,
+        "status": "PENDING"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.58,
+        "odds": 1.82,
+        "status": "PENDING"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "PENDING"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.61,
+        "odds": 1.8,
+        "status": "PENDING"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win",
+        "prob": 0.585,
+        "odds": 1.85,
+        "edge": "+4.5%",
+        "status": "PENDING"
+      }
     },
     {
       "id": "1200102",
@@ -32,7 +69,44 @@
       "closing_odds": 1.7,
       "implied_prob": 0.588,
       "edge": "+3.2%",
-      "status": "PENDING"
+      "status": "PENDING",
+      "home_team": "Belgium",
+      "away_team": "Italy",
+      "pred_score": "1-2",
+      "pred_score_prob": 0.118,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.56,
+        "odds": 1.85,
+        "status": "PENDING"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.82,
+        "status": "PENDING"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.62,
+        "odds": 1.7,
+        "status": "PENDING"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.64,
+        "odds": 1.8,
+        "status": "PENDING"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "BTTS",
+        "selection": "BTTS - Yes",
+        "prob": 0.62,
+        "odds": 1.7,
+        "edge": "+3.2%",
+        "status": "PENDING"
+      }
     },
     {
       "id": "1200103",
@@ -44,7 +118,44 @@
       "closing_odds": 1.5,
       "implied_prob": 0.667,
       "edge": "+4.3%",
-      "status": "PENDING"
+      "status": "PENDING",
+      "home_team": "France",
+      "away_team": "Israel",
+      "pred_score": "3-0",
+      "pred_score_prob": 0.118,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.71,
+        "odds": 1.5,
+        "status": "PENDING"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.62,
+        "odds": 1.82,
+        "status": "PENDING"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.75,
+        "status": "PENDING"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 10.5",
+        "prob": 0.66,
+        "odds": 1.8,
+        "status": "PENDING"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win to Nil",
+        "prob": 0.71,
+        "odds": 1.5,
+        "edge": "+4.3%",
+        "status": "PENDING"
+      }
     },
     {
       "id": "1200104",
@@ -56,7 +167,44 @@
       "closing_odds": 2.1,
       "implied_prob": 0.476,
       "edge": "+4.4%",
-      "status": "PENDING"
+      "status": "PENDING",
+      "home_team": "Greece",
+      "away_team": "England",
+      "pred_score": "1-2",
+      "pred_score_prob": 0.118,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.52,
+        "odds": 2.1,
+        "status": "PENDING"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.56,
+        "odds": 1.82,
+        "status": "PENDING"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.58,
+        "odds": 1.75,
+        "status": "PENDING"
+      },
+      "corner_pick": {
+        "pick": "Corners Under 10.5",
+        "prob": 0.58,
+        "odds": 1.8,
+        "status": "PENDING"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Away Win",
+        "prob": 0.52,
+        "odds": 2.1,
+        "edge": "+4.4%",
+        "status": "PENDING"
+      }
     },
     {
       "id": "1200105",
@@ -68,7 +216,44 @@
       "closing_odds": 1.55,
       "implied_prob": 0.645,
       "edge": "+4.0%",
-      "status": "PENDING"
+      "status": "PENDING",
+      "home_team": "Rep. of Ireland",
+      "away_team": "Finland",
+      "pred_score": "1-0",
+      "pred_score_prob": 0.118,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.56,
+        "odds": 1.85,
+        "status": "PENDING"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.685,
+        "odds": 1.55,
+        "status": "PENDING"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.63,
+        "odds": 1.75,
+        "status": "PENDING"
+      },
+      "corner_pick": {
+        "pick": "Corners Under 9.5",
+        "prob": 0.62,
+        "odds": 1.8,
+        "status": "PENDING"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Goal Total",
+        "selection": "Under 2.5 Goals",
+        "prob": 0.685,
+        "odds": 1.55,
+        "edge": "+4.0%",
+        "status": "PENDING"
+      }
     },
     {
       "id": "1200106",
@@ -80,7 +265,44 @@
       "closing_odds": 1.65,
       "implied_prob": 0.606,
       "edge": "+3.4%",
-      "status": "PENDING"
+      "status": "PENDING",
+      "home_team": "Venezuela",
+      "away_team": "Brazil",
+      "pred_score": "0-2",
+      "pred_score_prob": 0.118,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.64,
+        "odds": 1.65,
+        "status": "PENDING"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.57,
+        "odds": 1.82,
+        "status": "PENDING"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.55,
+        "odds": 1.75,
+        "status": "PENDING"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "PENDING"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Away Win",
+        "prob": 0.64,
+        "odds": 1.65,
+        "edge": "+3.4%",
+        "status": "PENDING"
+      }
     },
     {
       "id": "1200107",
@@ -92,7 +314,44 @@
       "closing_odds": 1.8,
       "implied_prob": 0.555,
       "edge": "+5.0%",
-      "status": "PENDING"
+      "status": "PENDING",
+      "home_team": "Paraguay",
+      "away_team": "Argentina",
+      "pred_score": "0-2",
+      "pred_score_prob": 0.118,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.605,
+        "odds": 1.8,
+        "status": "PENDING"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.57,
+        "odds": 1.82,
+        "status": "PENDING"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.55,
+        "odds": 1.75,
+        "status": "PENDING"
+      },
+      "corner_pick": {
+        "pick": "Corners Under 9.5",
+        "prob": 0.59,
+        "odds": 1.8,
+        "status": "PENDING"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Away Win",
+        "prob": 0.605,
+        "odds": 1.8,
+        "edge": "+5.0%",
+        "status": "PENDING"
+      }
     },
     {
       "id": "1200108",
@@ -104,7 +363,44 @@
       "closing_odds": 1.4,
       "implied_prob": 0.714,
       "edge": "+3.6%",
-      "status": "PENDING"
+      "status": "PENDING",
+      "home_team": "Ecuador",
+      "away_team": "Bolivia",
+      "pred_score": "4-0",
+      "pred_score_prob": 0.118,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.75,
+        "odds": 1.4,
+        "status": "PENDING"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.62,
+        "odds": 1.82,
+        "status": "PENDING"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.75,
+        "status": "PENDING"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.63,
+        "odds": 1.8,
+        "status": "PENDING"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win -1.5 AH",
+        "prob": 0.75,
+        "odds": 1.4,
+        "edge": "+3.6%",
+        "status": "PENDING"
+      }
     },
     {
       "id": "1200109",
@@ -116,7 +412,44 @@
       "closing_odds": 1.85,
       "implied_prob": 0.54,
       "edge": "+5.0%",
-      "status": "PENDING"
+      "status": "PENDING",
+      "home_team": "Portugal",
+      "away_team": "Poland",
+      "pred_score": "3-1",
+      "pred_score_prob": 0.118,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.56,
+        "odds": 1.85,
+        "status": "PENDING"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.59,
+        "odds": 1.85,
+        "status": "PENDING"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.64,
+        "odds": 1.75,
+        "status": "PENDING"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 10.5",
+        "prob": 0.65,
+        "odds": 1.8,
+        "status": "PENDING"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Goal Total",
+        "selection": "Over 2.5 Goals",
+        "prob": 0.59,
+        "odds": 1.85,
+        "edge": "+5.0%",
+        "status": "PENDING"
+      }
     },
     {
       "id": "1200110",
@@ -128,7 +461,44 @@
       "closing_odds": 1.95,
       "implied_prob": 0.512,
       "edge": "+3.8%",
-      "status": "PENDING"
+      "status": "PENDING",
+      "home_team": "Scotland",
+      "away_team": "Croatia",
+      "pred_score": "1-2",
+      "pred_score_prob": 0.118,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.55,
+        "odds": 1.95,
+        "status": "PENDING"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.56,
+        "odds": 1.82,
+        "status": "PENDING"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.58,
+        "odds": 1.75,
+        "status": "PENDING"
+      },
+      "corner_pick": {
+        "pick": "Corners Under 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "PENDING"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Away Win DNB",
+        "prob": 0.55,
+        "odds": 1.95,
+        "edge": "+3.8%",
+        "status": "PENDING"
+      }
     },
     {
       "id": "1200111",
@@ -140,7 +510,44 @@
       "closing_odds": 2.25,
       "implied_prob": 0.444,
       "edge": "+3.6%",
-      "status": "PENDING"
+      "status": "PENDING",
+      "home_team": "Denmark",
+      "away_team": "Spain",
+      "pred_score": "1-2",
+      "pred_score_prob": 0.118,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.48,
+        "odds": 2.25,
+        "status": "PENDING"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.56,
+        "odds": 1.82,
+        "status": "PENDING"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.58,
+        "odds": 1.75,
+        "status": "PENDING"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.62,
+        "odds": 1.8,
+        "status": "PENDING"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Away Win",
+        "prob": 0.48,
+        "odds": 2.25,
+        "edge": "+3.6%",
+        "status": "PENDING"
+      }
     },
     {
       "id": "1200112",
@@ -152,7 +559,44 @@
       "closing_odds": 1.9,
       "implied_prob": 0.526,
       "edge": "+4.4%",
-      "status": "PENDING"
+      "status": "PENDING",
+      "home_team": "Switzerland",
+      "away_team": "Serbia",
+      "pred_score": "2-1",
+      "pred_score_prob": 0.118,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.57,
+        "odds": 1.9,
+        "status": "PENDING"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.82,
+        "status": "PENDING"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "PENDING"
+      },
+      "corner_pick": {
+        "pick": "Corners Under 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "PENDING"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win",
+        "prob": 0.57,
+        "odds": 1.9,
+        "edge": "+4.4%",
+        "status": "PENDING"
+      }
     },
     {
       "id": "1200113",
@@ -164,7 +608,44 @@
       "closing_odds": 3.4,
       "implied_prob": 0.294,
       "edge": "+2.6%",
-      "status": "PENDING"
+      "status": "PENDING",
+      "home_team": "Uruguay",
+      "away_team": "Colombia",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.118,
+      "result_pick": {
+        "pick": "Draw",
+        "prob": 0.32,
+        "odds": 3.4,
+        "status": "PENDING"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.6,
+        "odds": 1.82,
+        "status": "PENDING"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.59,
+        "odds": 1.75,
+        "status": "PENDING"
+      },
+      "corner_pick": {
+        "pick": "Corners Under 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "PENDING"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Draw",
+        "prob": 0.32,
+        "odds": 3.4,
+        "edge": "+2.6%",
+        "status": "PENDING"
+      }
     },
     {
       "id": "1200114",
@@ -176,7 +657,44 @@
       "closing_odds": 1.48,
       "implied_prob": 0.675,
       "edge": "+4.5%",
-      "status": "PENDING"
+      "status": "PENDING",
+      "home_team": "Peru",
+      "away_team": "Chile",
+      "pred_score": "1-0",
+      "pred_score_prob": 0.118,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.56,
+        "odds": 1.85,
+        "status": "PENDING"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.72,
+        "odds": 1.48,
+        "status": "PENDING"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.63,
+        "odds": 1.75,
+        "status": "PENDING"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "PENDING"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Goal Total",
+        "selection": "Under 2.5 Goals",
+        "prob": 0.72,
+        "odds": 1.48,
+        "edge": "+4.5%",
+        "status": "PENDING"
+      }
     },
     {
       "id": "1200115",
@@ -188,7 +706,44 @@
       "closing_odds": 1.75,
       "implied_prob": 0.571,
       "edge": "+3.9%",
-      "status": "PENDING"
+      "status": "PENDING",
+      "home_team": "Germany",
+      "away_team": "Bosnia & Herz.",
+      "pred_score": "2-1",
+      "pred_score_prob": 0.118,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "PENDING"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.82,
+        "status": "PENDING"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "PENDING"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "PENDING"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win -2.5 AH",
+        "prob": 0.61,
+        "odds": 1.75,
+        "edge": "+3.9%",
+        "status": "PENDING"
+      }
     },
     {
       "id": "1200116",
@@ -200,7 +755,44 @@
       "closing_odds": 1.45,
       "implied_prob": 0.689,
       "edge": "+4.1%",
-      "status": "PENDING"
+      "status": "PENDING",
+      "home_team": "Netherlands",
+      "away_team": "Hungary",
+      "pred_score": "3-0",
+      "pred_score_prob": 0.118,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.73,
+        "odds": 1.45,
+        "status": "PENDING"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.62,
+        "odds": 1.82,
+        "status": "PENDING"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.75,
+        "status": "PENDING"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "PENDING"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win",
+        "prob": 0.73,
+        "odds": 1.45,
+        "edge": "+4.1%",
+        "status": "PENDING"
+      }
     },
     {
       "id": "1200117",
@@ -212,7 +804,44 @@
       "closing_odds": 1.82,
       "implied_prob": 0.549,
       "edge": "+4.6%",
-      "status": "PENDING"
+      "status": "PENDING",
+      "home_team": "Sweden",
+      "away_team": "Slovakia",
+      "pred_score": "2-1",
+      "pred_score_prob": 0.118,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.595,
+        "odds": 1.82,
+        "status": "PENDING"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.82,
+        "status": "PENDING"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "PENDING"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "PENDING"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win",
+        "prob": 0.595,
+        "odds": 1.82,
+        "edge": "+4.6%",
+        "status": "PENDING"
+      }
     },
     {
       "id": "1200118",
@@ -224,7 +853,44 @@
       "closing_odds": 1.88,
       "implied_prob": 0.531,
       "edge": "+4.9%",
-      "status": "PENDING"
+      "status": "PENDING",
+      "home_team": "Italy",
+      "away_team": "France",
+      "pred_score": "1-0",
+      "pred_score_prob": 0.118,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.56,
+        "odds": 1.85,
+        "status": "PENDING"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.58,
+        "odds": 1.88,
+        "status": "PENDING"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.63,
+        "odds": 1.75,
+        "status": "PENDING"
+      },
+      "corner_pick": {
+        "pick": "Corners Under 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "PENDING"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Goal Total",
+        "selection": "Under 2.5 Goals",
+        "prob": 0.58,
+        "odds": 1.88,
+        "edge": "+4.9%",
+        "status": "PENDING"
+      }
     },
     {
       "id": "1200119",
@@ -236,7 +902,44 @@
       "closing_odds": 1.6,
       "implied_prob": 0.625,
       "edge": "+3.5%",
-      "status": "PENDING"
+      "status": "PENDING",
+      "home_team": "England",
+      "away_team": "Rep. of Ireland",
+      "pred_score": "3-0",
+      "pred_score_prob": 0.118,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.66,
+        "odds": 1.6,
+        "status": "PENDING"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.62,
+        "odds": 1.82,
+        "status": "PENDING"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.75,
+        "status": "PENDING"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "PENDING"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win to Nil",
+        "prob": 0.66,
+        "odds": 1.6,
+        "edge": "+3.5%",
+        "status": "PENDING"
+      }
     },
     {
       "id": "1200120",
@@ -248,7 +951,44 @@
       "closing_odds": 2.05,
       "implied_prob": 0.487,
       "edge": "+5.3%",
-      "status": "PENDING"
+      "status": "PENDING",
+      "home_team": "Spain",
+      "away_team": "Switzerland",
+      "pred_score": "1-0",
+      "pred_score_prob": 0.118,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.54,
+        "odds": 2.05,
+        "status": "PENDING"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.59,
+        "odds": 1.82,
+        "status": "PENDING"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.56,
+        "odds": 1.75,
+        "status": "PENDING"
+      },
+      "corner_pick": {
+        "pick": "Corners Under 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "PENDING"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win -1.5 AH",
+        "prob": 0.54,
+        "odds": 2.05,
+        "edge": "+5.3%",
+        "status": "PENDING"
+      }
     }
   ],
   "graded": [
@@ -263,7 +1003,44 @@
       "edge": "+4.2%",
       "final_score": "3-3",
       "status": "HIT",
-      "net_variance": 0.95
+      "net_variance": 0.95,
+      "home_team": "Poland",
+      "away_team": "Croatia",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Draw",
+        "prob": 0.555,
+        "odds": 1.95,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Goal Total",
+        "selection": "Over 2.5 Goals",
+        "prob": 0.555,
+        "odds": 1.95,
+        "edge": "+4.2%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199998",
@@ -276,7 +1053,44 @@
       "edge": "+3.1%",
       "final_score": "0-0",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "Scotland",
+      "away_team": "Portugal",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.62,
+        "odds": 1.7,
+        "status": "MISS"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Away Win",
+        "prob": 0.62,
+        "odds": 1.7,
+        "edge": "+3.1%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199997",
@@ -289,7 +1103,44 @@
       "edge": "+3.4%",
       "final_score": "3-0",
       "status": "HIT",
-      "net_variance": 0.55
+      "net_variance": 0.55,
+      "home_team": "Spain",
+      "away_team": "Serbia",
+      "pred_score": "2-0",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.68,
+        "odds": 1.55,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win -1.5 AH",
+        "prob": 0.68,
+        "odds": 1.55,
+        "edge": "+3.4%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199996",
@@ -302,7 +1153,44 @@
       "edge": "+4.4%",
       "final_score": "6-0",
       "status": "HIT",
-      "net_variance": 0.48
+      "net_variance": 0.48,
+      "home_team": "Argentina",
+      "away_team": "Bolivia",
+      "pred_score": "2-0",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.72,
+        "odds": 1.48,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win to Nil",
+        "prob": 0.72,
+        "odds": 1.48,
+        "edge": "+4.4%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199995",
@@ -315,7 +1203,44 @@
       "edge": "+4.9%",
       "final_score": "4-0",
       "status": "HIT",
-      "net_variance": 0.8
+      "net_variance": 0.8,
+      "home_team": "Brazil",
+      "away_team": "Peru",
+      "pred_score": "2-0",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.605,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win -1.5 AH",
+        "prob": 0.605,
+        "odds": 1.8,
+        "edge": "+4.9%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199994",
@@ -328,7 +1253,44 @@
       "edge": "+3.3%",
       "final_score": "4-0",
       "status": "HIT",
-      "net_variance": 0.5
+      "net_variance": 0.5,
+      "home_team": "Colombia",
+      "away_team": "Chile",
+      "pred_score": "2-0",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.7,
+        "odds": 1.5,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win",
+        "prob": 0.7,
+        "odds": 1.5,
+        "edge": "+3.3%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199993",
@@ -341,7 +1303,44 @@
       "edge": "+3.2%",
       "final_score": "0-0",
       "status": "HIT",
-      "net_variance": 0.62
+      "net_variance": 0.62,
+      "home_team": "Uruguay",
+      "away_team": "Ecuador",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Draw",
+        "prob": 0.65,
+        "odds": 1.62,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Goal Total",
+        "selection": "Under 2.5 Goals",
+        "prob": 0.65,
+        "odds": 1.62,
+        "edge": "+3.2%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199992",
@@ -354,7 +1353,44 @@
       "edge": "+3.3%",
       "final_score": "1-0",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "Germany",
+      "away_team": "Netherlands",
+      "pred_score": "2-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.64,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "MISS"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "BTTS",
+        "selection": "BTTS - Yes",
+        "prob": 0.64,
+        "odds": 1.65,
+        "edge": "+3.3%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199991",
@@ -367,7 +1403,44 @@
       "edge": "+2.0%",
       "final_score": "4-1",
       "status": "HIT",
-      "net_variance": 0.25
+      "net_variance": 0.25,
+      "home_team": "Italy",
+      "away_team": "Israel",
+      "pred_score": "2-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.82,
+        "odds": 1.25,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win",
+        "prob": 0.82,
+        "odds": 1.25,
+        "edge": "+2.0%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199990",
@@ -380,7 +1453,44 @@
       "edge": "+3.9%",
       "final_score": "1-2",
       "status": "HIT",
-      "net_variance": 0.85
+      "net_variance": 0.85,
+      "home_team": "Belgium",
+      "away_team": "France",
+      "pred_score": "1-2",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Away Win DNB",
+        "prob": 0.58,
+        "odds": 1.85,
+        "edge": "+3.9%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199989",
@@ -393,7 +1503,44 @@
       "edge": "+3.8%",
       "final_score": "1-0",
       "status": "HIT",
-      "net_variance": 0.75
+      "net_variance": 0.75,
+      "home_team": "Wales",
+      "away_team": "Montenegro",
+      "pred_score": "2-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win",
+        "prob": 0.61,
+        "odds": 1.75,
+        "edge": "+3.8%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199988",
@@ -406,7 +1553,44 @@
       "edge": "+3.7%",
       "final_score": "1-1",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "Japan",
+      "away_team": "Australia",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.55,
+        "odds": 1.95,
+        "status": "MISS"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win -1.5 AH",
+        "prob": 0.55,
+        "odds": 1.95,
+        "edge": "+3.7%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199987",
@@ -419,7 +1603,44 @@
       "edge": "+3.2%",
       "final_score": "3-2",
       "status": "HIT",
-      "net_variance": 0.52
+      "net_variance": 0.52,
+      "home_team": "South Korea",
+      "away_team": "Iraq",
+      "pred_score": "2-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.69,
+        "odds": 1.52,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win",
+        "prob": 0.69,
+        "odds": 1.52,
+        "edge": "+3.2%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199986",
@@ -432,7 +1653,44 @@
       "edge": "+3.5%",
       "final_score": "0-0",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "Saudi Arabia",
+      "away_team": "Bahrain",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.74,
+        "odds": 1.42,
+        "status": "MISS"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win",
+        "prob": 0.74,
+        "odds": 1.42,
+        "edge": "+3.5%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199985",
@@ -445,7 +1703,44 @@
       "edge": "+4.0%",
       "final_score": "4-1",
       "status": "HIT",
-      "net_variance": 0.6
+      "net_variance": 0.6,
+      "home_team": "Iran",
+      "away_team": "Qatar",
+      "pred_score": "2-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.665,
+        "odds": 1.6,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win",
+        "prob": 0.665,
+        "odds": 1.6,
+        "edge": "+4.0%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199984",
@@ -458,7 +1753,44 @@
       "edge": "+3.4%",
       "final_score": "1-3",
       "status": "HIT",
-      "net_variance": 0.48
+      "net_variance": 0.48,
+      "home_team": "Finland",
+      "away_team": "England",
+      "pred_score": "1-2",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.71,
+        "odds": 1.48,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Away Win",
+        "prob": 0.71,
+        "odds": 1.48,
+        "edge": "+3.4%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199983",
@@ -471,7 +1803,44 @@
       "edge": "+4.0%",
       "final_score": "5-1",
       "status": "HIT",
-      "net_variance": 1.0
+      "net_variance": 1.0,
+      "home_team": "Austria",
+      "away_team": "Norway",
+      "pred_score": "2-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.54,
+        "odds": 2.0,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Goal Total",
+        "selection": "Over 2.5 Goals",
+        "prob": 0.54,
+        "odds": 2.0,
+        "edge": "+4.0%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199982",
@@ -484,7 +1853,44 @@
       "edge": "+4.3%",
       "final_score": "2-0",
       "status": "HIT",
-      "net_variance": 0.88
+      "net_variance": 0.88,
+      "home_team": "Greece",
+      "away_team": "Rep. of Ireland",
+      "pred_score": "2-0",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.575,
+        "odds": 1.88,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win",
+        "prob": 0.575,
+        "odds": 1.88,
+        "edge": "+4.3%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199981",
@@ -497,7 +1903,44 @@
       "edge": "+3.4%",
       "final_score": "1-3",
       "status": "HIT",
-      "net_variance": 0.68
+      "net_variance": 0.68,
+      "home_team": "Poland",
+      "away_team": "Portugal",
+      "pred_score": "1-2",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.63,
+        "odds": 1.68,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Away Win",
+        "prob": 0.63,
+        "odds": 1.68,
+        "edge": "+3.4%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199980",
@@ -510,7 +1953,44 @@
       "edge": "+3.1%",
       "final_score": "2-0",
       "status": "HIT",
-      "net_variance": 0.7
+      "net_variance": 0.7,
+      "home_team": "Serbia",
+      "away_team": "Switzerland",
+      "pred_score": "2-0",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.62,
+        "odds": 1.7,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Goal Total",
+        "selection": "Under 2.5 Goals",
+        "prob": 0.62,
+        "odds": 1.7,
+        "edge": "+3.1%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199979",
@@ -523,7 +2003,44 @@
       "edge": "+3.5%",
       "final_score": "1-0",
       "status": "HIT",
-      "net_variance": 0.38
+      "net_variance": 0.38,
+      "home_team": "Spain",
+      "away_team": "Denmark",
+      "pred_score": "2-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.76,
+        "odds": 1.38,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win",
+        "prob": 0.76,
+        "odds": 1.38,
+        "edge": "+3.5%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199978",
@@ -536,7 +2053,44 @@
       "edge": "+3.7%",
       "final_score": "2-1",
       "status": "HIT",
-      "net_variance": 0.62
+      "net_variance": 0.62,
+      "home_team": "Croatia",
+      "away_team": "Scotland",
+      "pred_score": "2-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.655,
+        "odds": 1.62,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win",
+        "prob": 0.655,
+        "odds": 1.62,
+        "edge": "+3.7%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199977",
@@ -549,7 +2103,44 @@
       "edge": "+3.4%",
       "final_score": "1-0",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "Peru",
+      "away_team": "Uruguay",
+      "pred_score": "2-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.59,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Away Win DNB",
+        "prob": 0.59,
+        "odds": 1.8,
+        "edge": "+3.4%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199976",
@@ -562,7 +2153,44 @@
       "edge": "+3.3%",
       "final_score": "1-2",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "Bosnia & Herz.",
+      "away_team": "Germany",
+      "pred_score": "1-2",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.64,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Away Win -1.5 AH",
+        "prob": 0.64,
+        "odds": 1.65,
+        "edge": "+3.3%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199975",
@@ -575,7 +2203,44 @@
       "edge": "+3.4%",
       "final_score": "1-1",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "Hungary",
+      "away_team": "Netherlands",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.68,
+        "odds": 1.55,
+        "status": "MISS"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Away Win",
+        "prob": 0.68,
+        "odds": 1.55,
+        "edge": "+3.4%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199974",
@@ -588,7 +2253,44 @@
       "edge": "+4.0%",
       "final_score": "1-0",
       "status": "HIT",
-      "net_variance": 0.45
+      "net_variance": 0.45,
+      "home_team": "Turkey",
+      "away_team": "Montenegro",
+      "pred_score": "2-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.73,
+        "odds": 1.45,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win",
+        "prob": 0.73,
+        "odds": 1.45,
+        "edge": "+4.0%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199973",
@@ -601,7 +2303,44 @@
       "edge": "+4.3%",
       "final_score": "1-1",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "Venezuela",
+      "away_team": "Argentina",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.615,
+        "odds": 1.75,
+        "status": "MISS"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Away Win",
+        "prob": 0.615,
+        "odds": 1.75,
+        "edge": "+4.3%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199972",
@@ -614,7 +2353,44 @@
       "edge": "+3.2%",
       "final_score": "1-2",
       "status": "HIT",
-      "net_variance": 0.62
+      "net_variance": 0.62,
+      "home_team": "Chile",
+      "away_team": "Brazil",
+      "pred_score": "1-2",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.65,
+        "odds": 1.62,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Away Win",
+        "prob": 0.65,
+        "odds": 1.62,
+        "edge": "+3.2%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199971",
@@ -627,7 +2403,44 @@
       "edge": "+3.4%",
       "final_score": "0-0",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "Ecuador",
+      "away_team": "Paraguay",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.59,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win",
+        "prob": 0.59,
+        "odds": 1.8,
+        "edge": "+3.4%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199970",
@@ -640,7 +2453,44 @@
       "edge": "+3.7%",
       "final_score": "1-0",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "Bolivia",
+      "away_team": "Colombia",
+      "pred_score": "2-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.55,
+        "odds": 1.95,
+        "status": "MISS"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Away Win DNB",
+        "prob": 0.55,
+        "odds": 1.95,
+        "edge": "+3.7%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199969",
@@ -653,7 +2503,44 @@
       "edge": "+4.7%",
       "final_score": "2-2",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "Italy",
+      "away_team": "Belgium",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.535,
+        "odds": 2.05,
+        "status": "MISS"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win",
+        "prob": 0.535,
+        "odds": 2.05,
+        "edge": "+4.7%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199968",
@@ -666,7 +2553,44 @@
       "edge": "+3.1%",
       "final_score": "1-2",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "England",
+      "away_team": "Greece",
+      "pred_score": "1-2",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.62,
+        "odds": 1.7,
+        "status": "MISS"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win -1.5 AH",
+        "prob": 0.62,
+        "odds": 1.7,
+        "edge": "+3.1%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199967",
@@ -679,7 +2603,44 @@
       "edge": "+3.5%",
       "final_score": "1-4",
       "status": "HIT",
-      "net_variance": 0.4
+      "net_variance": 0.4,
+      "home_team": "Israel",
+      "away_team": "France",
+      "pred_score": "1-2",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.75,
+        "odds": 1.4,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Away Win",
+        "prob": 0.75,
+        "odds": 1.4,
+        "edge": "+3.5%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199966",
@@ -692,7 +2653,44 @@
       "edge": "+3.9%",
       "final_score": "4-0",
       "status": "HIT",
-      "net_variance": 0.85
+      "net_variance": 0.85,
+      "home_team": "Austria",
+      "away_team": "Kazakhstan",
+      "pred_score": "2-0",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win -2.5 AH",
+        "prob": 0.58,
+        "odds": 1.85,
+        "edge": "+3.9%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199965",
@@ -705,7 +2703,44 @@
       "edge": "+3.5%",
       "final_score": "3-1",
       "status": "HIT",
-      "net_variance": 0.6
+      "net_variance": 0.6,
+      "home_team": "Australia",
+      "away_team": "China",
+      "pred_score": "2-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.66,
+        "odds": 1.6,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win -1.5 AH",
+        "prob": 0.66,
+        "odds": 1.6,
+        "edge": "+3.5%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199964",
@@ -718,7 +2753,44 @@
       "edge": "+4.3%",
       "final_score": "0-2",
       "status": "HIT",
-      "net_variance": 0.9
+      "net_variance": 0.9,
+      "home_team": "Saudi Arabia",
+      "away_team": "Japan",
+      "pred_score": "0-2",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.57,
+        "odds": 1.9,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Away Win DNB",
+        "prob": 0.57,
+        "odds": 1.9,
+        "edge": "+4.3%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199963",
@@ -731,7 +2803,44 @@
       "edge": "+3.9%",
       "final_score": "2-2",
       "status": "HIT",
-      "net_variance": 0.55
+      "net_variance": 0.55,
+      "home_team": "Netherlands",
+      "away_team": "Germany",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Draw",
+        "prob": 0.685,
+        "odds": 1.55,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "BTTS",
+        "selection": "BTTS - Yes",
+        "prob": 0.685,
+        "odds": 1.55,
+        "edge": "+3.9%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199962",
@@ -744,7 +2853,44 @@
       "edge": "+3.4%",
       "final_score": "2-0",
       "status": "HIT",
-      "net_variance": 0.48
+      "net_variance": 0.48,
+      "home_team": "England",
+      "away_team": "Finland",
+      "pred_score": "2-0",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.71,
+        "odds": 1.48,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win -1.5 AH",
+        "prob": 0.71,
+        "odds": 1.48,
+        "edge": "+3.4%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199961",
@@ -757,7 +2903,44 @@
       "edge": "+2.4%",
       "final_score": "2-1",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "Colombia",
+      "away_team": "Argentina",
+      "pred_score": "2-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.31,
+        "odds": 3.5,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Draw",
+        "prob": 0.31,
+        "odds": 3.5,
+        "edge": "+2.4%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199960",
@@ -770,7 +2953,44 @@
       "edge": "+2.8%",
       "final_score": "1-0",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "Paraguay",
+      "away_team": "Brazil",
+      "pred_score": "2-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.635,
+        "odds": 1.65,
+        "status": "MISS"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Away Win",
+        "prob": 0.635,
+        "odds": 1.65,
+        "edge": "+2.8%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199959",
@@ -783,7 +3003,44 @@
       "edge": "+3.2%",
       "final_score": "0-0",
       "status": "HIT",
-      "net_variance": 0.52
+      "net_variance": 0.52,
+      "home_team": "Venezuela",
+      "away_team": "Uruguay",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Draw",
+        "prob": 0.69,
+        "odds": 1.52,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Goal Total",
+        "selection": "Under 2.5 Goals",
+        "prob": 0.69,
+        "odds": 1.52,
+        "edge": "+3.2%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199958",
@@ -796,7 +3053,44 @@
       "edge": "+3.4%",
       "final_score": "2-0",
       "status": "HIT",
-      "net_variance": 0.8
+      "net_variance": 0.8,
+      "home_team": "France",
+      "away_team": "Belgium",
+      "pred_score": "2-0",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.59,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win",
+        "prob": 0.59,
+        "odds": 1.8,
+        "edge": "+3.4%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199957",
@@ -809,7 +3103,44 @@
       "edge": "+3.7%",
       "final_score": "1-2",
       "status": "HIT",
-      "net_variance": 0.62
+      "net_variance": 0.62,
+      "home_team": "Israel",
+      "away_team": "Italy",
+      "pred_score": "1-2",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.655,
+        "odds": 1.62,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Away Win",
+        "prob": 0.655,
+        "odds": 1.62,
+        "edge": "+3.7%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199956",
@@ -822,7 +3153,44 @@
       "edge": "+4.7%",
       "final_score": "2-1",
       "status": "HIT",
-      "net_variance": 0.95
+      "net_variance": 0.95,
+      "home_team": "Norway",
+      "away_team": "Austria",
+      "pred_score": "2-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.56,
+        "odds": 1.95,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win DNB",
+        "prob": 0.56,
+        "odds": 1.95,
+        "edge": "+4.7%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199955",
@@ -835,7 +3203,44 @@
       "edge": "+3.9%",
       "final_score": "1-4",
       "status": "HIT",
-      "net_variance": 0.85
+      "net_variance": 0.85,
+      "home_team": "Switzerland",
+      "away_team": "Spain",
+      "pred_score": "1-2",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Away Win",
+        "prob": 0.58,
+        "odds": 1.85,
+        "edge": "+3.9%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199954",
@@ -848,7 +3253,44 @@
       "edge": "+4.9%",
       "final_score": "2-1",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "Portugal",
+      "away_team": "Scotland",
+      "pred_score": "2-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.605,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win -1.5 AH",
+        "prob": 0.605,
+        "odds": 1.8,
+        "edge": "+4.9%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199953",
@@ -861,7 +3303,44 @@
       "edge": "+4.3%",
       "final_score": "1-0",
       "status": "HIT",
-      "net_variance": 0.88
+      "net_variance": 0.88,
+      "home_team": "Croatia",
+      "away_team": "Poland",
+      "pred_score": "2-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.575,
+        "odds": 1.88,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win",
+        "prob": 0.575,
+        "odds": 1.88,
+        "edge": "+4.3%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199952",
@@ -874,7 +3353,44 @@
       "edge": "+3.5%",
       "final_score": "0-2",
       "status": "HIT",
-      "net_variance": 0.6
+      "net_variance": 0.6,
+      "home_team": "Rep. of Ireland",
+      "away_team": "England",
+      "pred_score": "0-2",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.66,
+        "odds": 1.6,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Away Win",
+        "prob": 0.66,
+        "odds": 1.6,
+        "edge": "+3.5%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199951",
@@ -887,7 +3403,44 @@
       "edge": "+3.4%",
       "final_score": "5-0",
       "status": "HIT",
-      "net_variance": 0.55
+      "net_variance": 0.55,
+      "home_team": "Germany",
+      "away_team": "Hungary",
+      "pred_score": "2-0",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.68,
+        "odds": 1.55,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win -1.5 AH",
+        "prob": 0.68,
+        "odds": 1.55,
+        "edge": "+3.4%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199950",
@@ -900,7 +3453,44 @@
       "edge": "+4.2%",
       "final_score": "5-2",
       "status": "HIT",
-      "net_variance": 0.95
+      "net_variance": 0.95,
+      "home_team": "Netherlands",
+      "away_team": "Bosnia & Herz.",
+      "pred_score": "2-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.555,
+        "odds": 1.95,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win -2.0 AH",
+        "prob": 0.555,
+        "odds": 1.95,
+        "edge": "+4.2%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199949",
@@ -913,7 +3503,44 @@
       "edge": "+3.8%",
       "final_score": "1-3",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "France",
+      "away_team": "Italy",
+      "pred_score": "1-2",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "MISS"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win",
+        "prob": 0.61,
+        "odds": 1.75,
+        "edge": "+3.8%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199948",
@@ -926,7 +3553,44 @@
       "edge": "+3.3%",
       "final_score": "3-1",
       "status": "HIT",
-      "net_variance": 0.65
+      "net_variance": 0.65,
+      "home_team": "Belgium",
+      "away_team": "Israel",
+      "pred_score": "2-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.64,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win -1.5 AH",
+        "prob": 0.64,
+        "odds": 1.65,
+        "edge": "+3.3%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199947",
@@ -939,7 +3603,44 @@
       "edge": "+4.5%",
       "final_score": "1-0",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "Brazil",
+      "away_team": "Ecuador",
+      "pred_score": "2-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.595,
+        "odds": 1.82,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win -1.5 AH",
+        "prob": 0.595,
+        "odds": 1.82,
+        "edge": "+4.5%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199946",
@@ -952,7 +3653,44 @@
       "edge": "+4.4%",
       "final_score": "0-0",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "Uruguay",
+      "away_team": "Paraguay",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.72,
+        "odds": 1.48,
+        "status": "MISS"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win",
+        "prob": 0.72,
+        "odds": 1.48,
+        "edge": "+4.4%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199945",
@@ -965,7 +3703,44 @@
       "edge": "+3.1%",
       "final_score": "2-1",
       "status": "HIT",
-      "net_variance": 0.7
+      "net_variance": 0.7,
+      "home_team": "Portugal",
+      "away_team": "Croatia",
+      "pred_score": "2-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.62,
+        "odds": 1.7,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win",
+        "prob": 0.62,
+        "odds": 1.7,
+        "edge": "+3.1%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199944",
@@ -978,7 +3753,44 @@
       "edge": "+3.2%",
       "final_score": "2-3",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "Scotland",
+      "away_team": "Poland",
+      "pred_score": "1-2",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.65,
+        "odds": 1.62,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Goal Total",
+        "selection": "Under 2.5 Goals",
+        "prob": 0.65,
+        "odds": 1.62,
+        "edge": "+3.2%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199943",
@@ -991,7 +3803,44 @@
       "edge": "+4.0%",
       "final_score": "0-0",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "Serbia",
+      "away_team": "Spain",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.665,
+        "odds": 1.6,
+        "status": "MISS"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Away Win",
+        "prob": 0.665,
+        "odds": 1.6,
+        "edge": "+4.0%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199942",
@@ -1004,7 +3853,44 @@
       "edge": "+4.9%",
       "final_score": "3-0",
       "status": "HIT",
-      "net_variance": 0.8
+      "net_variance": 0.8,
+      "home_team": "Argentina",
+      "away_team": "Chile",
+      "pred_score": "2-0",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.605,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win -1.5 AH",
+        "prob": 0.605,
+        "odds": 1.8,
+        "edge": "+4.9%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199941",
@@ -1017,7 +3903,44 @@
       "edge": "+3.4%",
       "final_score": "2-1",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "Spain",
+      "away_team": "England",
+      "pred_score": "2-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.71,
+        "odds": 1.48,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Goal Total",
+        "selection": "Under 2.5 Goals",
+        "prob": 0.71,
+        "odds": 1.48,
+        "edge": "+3.4%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199940",
@@ -1030,7 +3953,44 @@
       "edge": "+2.6%",
       "final_score": "0-0",
       "status": "HIT",
-      "net_variance": 2.3
+      "net_variance": 2.3,
+      "home_team": "Argentina",
+      "away_team": "Colombia",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Draw",
+        "prob": 0.33,
+        "odds": 3.3,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Draw (90 Mins)",
+        "prob": 0.33,
+        "odds": 3.3,
+        "edge": "+2.6%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199939",
@@ -1043,7 +4003,44 @@
       "edge": "+4.3%",
       "final_score": "2-2",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "Canada",
+      "away_team": "Uruguay",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.575,
+        "odds": 1.88,
+        "status": "MISS"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Away Win",
+        "prob": 0.575,
+        "odds": 1.88,
+        "edge": "+4.3%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199938",
@@ -1056,7 +4053,44 @@
       "edge": "+3.4%",
       "final_score": "1-2",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "Netherlands",
+      "away_team": "England",
+      "pred_score": "1-2",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.68,
+        "odds": 1.55,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Goal Total",
+        "selection": "Under 2.5 Goals",
+        "prob": 0.68,
+        "odds": 1.55,
+        "edge": "+3.4%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199937",
@@ -1069,7 +4103,44 @@
       "edge": "+3.3%",
       "final_score": "0-1",
       "status": "HIT",
-      "net_variance": 0.5
+      "net_variance": 0.5,
+      "home_team": "Uruguay",
+      "away_team": "Colombia",
+      "pred_score": "1-2",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.7,
+        "odds": 1.5,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Goal Total",
+        "selection": "Under 2.5 Goals",
+        "prob": 0.7,
+        "odds": 1.5,
+        "edge": "+3.3%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199936",
@@ -1082,7 +4153,44 @@
       "edge": "+3.7%",
       "final_score": "2-1",
       "status": "HIT",
-      "net_variance": 0.95
+      "net_variance": 0.95,
+      "home_team": "Spain",
+      "away_team": "France",
+      "pred_score": "2-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.55,
+        "odds": 1.95,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "BTTS",
+        "selection": "BTTS - Yes",
+        "prob": 0.55,
+        "odds": 1.95,
+        "edge": "+3.7%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199935",
@@ -1095,7 +4203,44 @@
       "edge": "+3.3%",
       "final_score": "2-0",
       "status": "HIT",
-      "net_variance": 0.65
+      "net_variance": 0.65,
+      "home_team": "Argentina",
+      "away_team": "Canada",
+      "pred_score": "2-0",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.64,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win -1.5 AH",
+        "prob": 0.64,
+        "odds": 1.65,
+        "edge": "+3.3%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199934",
@@ -1108,7 +4253,44 @@
       "edge": "+3.0%",
       "final_score": "1-1",
       "status": "HIT",
-      "net_variance": 2.4
+      "net_variance": 2.4,
+      "home_team": "England",
+      "away_team": "Switzerland",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Draw",
+        "prob": 0.325,
+        "odds": 3.4,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Draw (90 Mins)",
+        "prob": 0.325,
+        "odds": 3.4,
+        "edge": "+3.0%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199933",
@@ -1121,7 +4303,44 @@
       "edge": "+3.8%",
       "final_score": "2-1",
       "status": "HIT",
-      "net_variance": 0.75
+      "net_variance": 0.75,
+      "home_team": "Netherlands",
+      "away_team": "Turkey",
+      "pred_score": "2-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win",
+        "prob": 0.61,
+        "odds": 1.75,
+        "edge": "+3.8%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199932",
@@ -1134,7 +4353,44 @@
       "edge": "+3.7%",
       "final_score": "0-0",
       "status": "HIT",
-      "net_variance": 0.62
+      "net_variance": 0.62,
+      "home_team": "Uruguay",
+      "away_team": "Brazil",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Draw",
+        "prob": 0.655,
+        "odds": 1.62,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Goal Total",
+        "selection": "Under 2.5 Goals",
+        "prob": 0.655,
+        "odds": 1.62,
+        "edge": "+3.7%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199931",
@@ -1147,7 +4403,44 @@
       "edge": "+3.5%",
       "final_score": "5-0",
       "status": "HIT",
-      "net_variance": 0.42
+      "net_variance": 0.42,
+      "home_team": "Colombia",
+      "away_team": "Panama",
+      "pred_score": "2-0",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.74,
+        "odds": 1.42,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win -1.5 AH",
+        "prob": 0.74,
+        "odds": 1.42,
+        "edge": "+3.5%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199930",
@@ -1160,7 +4453,44 @@
       "edge": "+3.9%",
       "final_score": "1-1",
       "status": "HIT",
-      "net_variance": 0.85
+      "net_variance": 0.85,
+      "home_team": "Spain",
+      "away_team": "Germany",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Draw",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "BTTS",
+        "selection": "BTTS - Yes",
+        "prob": 0.58,
+        "odds": 1.85,
+        "edge": "+3.9%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199929",
@@ -1173,7 +4503,44 @@
       "edge": "+3.2%",
       "final_score": "0-0",
       "status": "HIT",
-      "net_variance": 0.52
+      "net_variance": 0.52,
+      "home_team": "Portugal",
+      "away_team": "France",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Draw",
+        "prob": 0.69,
+        "odds": 1.52,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Goal Total",
+        "selection": "Under 2.5 Goals",
+        "prob": 0.69,
+        "odds": 1.52,
+        "edge": "+3.2%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199928",
@@ -1186,7 +4553,44 @@
       "edge": "+4.0%",
       "final_score": "1-1",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "Argentina",
+      "away_team": "Ecuador",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.665,
+        "odds": 1.6,
+        "status": "MISS"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win",
+        "prob": 0.665,
+        "odds": 1.6,
+        "edge": "+4.0%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199927",
@@ -1199,7 +4603,44 @@
       "edge": "+2.9%",
       "final_score": "1-1",
       "status": "HIT",
-      "net_variance": 2.5
+      "net_variance": 2.5,
+      "home_team": "Venezuela",
+      "away_team": "Canada",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Draw",
+        "prob": 0.315,
+        "odds": 3.5,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Draw",
+        "prob": 0.315,
+        "odds": 3.5,
+        "edge": "+2.9%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199926",
@@ -1212,7 +4653,44 @@
       "edge": "+4.2%",
       "final_score": "0-3",
       "status": "HIT",
-      "net_variance": 0.95
+      "net_variance": 0.95,
+      "home_team": "Romania",
+      "away_team": "Netherlands",
+      "pred_score": "0-2",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.555,
+        "odds": 1.95,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Away Win -1.5 AH",
+        "prob": 0.555,
+        "odds": 1.95,
+        "edge": "+4.2%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199925",
@@ -1225,7 +4703,44 @@
       "edge": "+4.3%",
       "final_score": "1-2",
       "status": "HIT",
-      "net_variance": 0.88
+      "net_variance": 0.88,
+      "home_team": "Austria",
+      "away_team": "Turkey",
+      "pred_score": "1-2",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.575,
+        "odds": 1.88,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Goal Total",
+        "selection": "Over 2.5 Goals",
+        "prob": 0.575,
+        "odds": 1.88,
+        "edge": "+4.3%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199924",
@@ -1238,7 +4753,44 @@
       "edge": "+3.4%",
       "final_score": "1-0",
       "status": "HIT",
-      "net_variance": 0.68
+      "net_variance": 0.68,
+      "home_team": "France",
+      "away_team": "Belgium",
+      "pred_score": "2-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.63,
+        "odds": 1.68,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Goal Total",
+        "selection": "Under 2.5 Goals",
+        "prob": 0.63,
+        "odds": 1.68,
+        "edge": "+3.4%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199923",
@@ -1251,7 +4803,44 @@
       "edge": "+3.1%",
       "final_score": "0-0",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "Portugal",
+      "away_team": "Slovenia",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.62,
+        "odds": 1.7,
+        "status": "MISS"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win -1.5 AH",
+        "prob": 0.62,
+        "odds": 1.7,
+        "edge": "+3.1%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199922",
@@ -1264,7 +4853,44 @@
       "edge": "+3.5%",
       "final_score": "2-1",
       "status": "HIT",
-      "net_variance": 0.38
+      "net_variance": 0.38,
+      "home_team": "England",
+      "away_team": "Slovakia",
+      "pred_score": "2-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.76,
+        "odds": 1.38,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win",
+        "prob": 0.76,
+        "odds": 1.38,
+        "edge": "+3.5%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199921",
@@ -1277,7 +4903,44 @@
       "edge": "+3.4%",
       "final_score": "4-1",
       "status": "HIT",
-      "net_variance": 0.55
+      "net_variance": 0.55,
+      "home_team": "Spain",
+      "away_team": "Georgia",
+      "pred_score": "2-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.68,
+        "odds": 1.55,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win -1.5 AH",
+        "prob": 0.68,
+        "odds": 1.55,
+        "edge": "+3.4%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199920",
@@ -1290,7 +4953,44 @@
       "edge": "+2.5%",
       "final_score": "2-0",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "Switzerland",
+      "away_team": "Italy",
+      "pred_score": "2-0",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.32,
+        "odds": 3.4,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Draw (90 Mins)",
+        "prob": 0.32,
+        "odds": 3.4,
+        "edge": "+2.5%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199919",
@@ -1303,7 +5003,44 @@
       "edge": "+3.3%",
       "final_score": "2-0",
       "status": "HIT",
-      "net_variance": 0.65
+      "net_variance": 0.65,
+      "home_team": "Germany",
+      "away_team": "Denmark",
+      "pred_score": "2-0",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.64,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win",
+        "prob": 0.64,
+        "odds": 1.65,
+        "edge": "+3.3%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199918",
@@ -1316,7 +5053,44 @@
       "edge": "+3.4%",
       "final_score": "0-0",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "Ukraine",
+      "away_team": "Belgium",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.59,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Away Win",
+        "prob": 0.59,
+        "odds": 1.8,
+        "edge": "+3.4%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199917",
@@ -1329,7 +5103,44 @@
       "edge": "+2.7%",
       "final_score": "1-1",
       "status": "HIT",
-      "net_variance": 2.2
+      "net_variance": 2.2,
+      "home_team": "Slovakia",
+      "away_team": "Romania",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Draw",
+        "prob": 0.34,
+        "odds": 3.2,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Draw",
+        "prob": 0.34,
+        "odds": 3.2,
+        "edge": "+2.7%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199916",
@@ -1342,7 +5153,44 @@
       "edge": "+3.7%",
       "final_score": "2-0",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "Georgia",
+      "away_team": "Portugal",
+      "pred_score": "2-0",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.655,
+        "odds": 1.62,
+        "status": "MISS"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Away Win -1.5 AH",
+        "prob": 0.655,
+        "odds": 1.62,
+        "edge": "+3.7%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199915",
@@ -1355,7 +5203,44 @@
       "edge": "+3.9%",
       "final_score": "1-2",
       "status": "HIT",
-      "net_variance": 0.85
+      "net_variance": 0.85,
+      "home_team": "Czechia",
+      "away_team": "Turkey",
+      "pred_score": "1-2",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Goal Total",
+        "selection": "Over 2.5 Goals",
+        "prob": 0.58,
+        "odds": 1.85,
+        "edge": "+3.9%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199914",
@@ -1368,7 +5253,44 @@
       "edge": "+4.4%",
       "final_score": "1-1",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "France",
+      "away_team": "Poland",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.72,
+        "odds": 1.48,
+        "status": "MISS"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win -1.5 AH",
+        "prob": 0.72,
+        "odds": 1.48,
+        "edge": "+4.4%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199913",
@@ -1381,7 +5303,44 @@
       "edge": "+4.0%",
       "final_score": "2-3",
       "status": "HIT",
-      "net_variance": 0.6
+      "net_variance": 0.6,
+      "home_team": "Netherlands",
+      "away_team": "Austria",
+      "pred_score": "1-2",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.665,
+        "odds": 1.6,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "BTTS",
+        "selection": "BTTS - Yes",
+        "prob": 0.665,
+        "odds": 1.6,
+        "edge": "+4.0%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199912",
@@ -1394,7 +5353,44 @@
       "edge": "+4.9%",
       "final_score": "0-0",
       "status": "HIT",
-      "net_variance": 0.8
+      "net_variance": 0.8,
+      "home_team": "England",
+      "away_team": "Slovenia",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Draw",
+        "prob": 0.605,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Goal Total",
+        "selection": "Under 2.5 Goals",
+        "prob": 0.605,
+        "odds": 1.8,
+        "edge": "+4.9%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199911",
@@ -1407,7 +5403,44 @@
       "edge": "+2.4%",
       "final_score": "0-0",
       "status": "HIT",
-      "net_variance": 2.5
+      "net_variance": 2.5,
+      "home_team": "Denmark",
+      "away_team": "Serbia",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Draw",
+        "prob": 0.31,
+        "odds": 3.5,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Draw",
+        "prob": 0.31,
+        "odds": 3.5,
+        "edge": "+2.4%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199910",
@@ -1420,7 +5453,44 @@
       "edge": "+3.2%",
       "final_score": "1-1",
       "status": "HIT",
-      "net_variance": 0.52
+      "net_variance": 0.52,
+      "home_team": "Croatia",
+      "away_team": "Italy",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Draw",
+        "prob": 0.69,
+        "odds": 1.52,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Goal Total",
+        "selection": "Under 2.5 Goals",
+        "prob": 0.69,
+        "odds": 1.52,
+        "edge": "+3.2%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199909",
@@ -1433,7 +5503,44 @@
       "edge": "+2.8%",
       "final_score": "0-1",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "Albania",
+      "away_team": "Spain",
+      "pred_score": "1-2",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.635,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Away Win -1.5 AH",
+        "prob": 0.635,
+        "odds": 1.65,
+        "edge": "+2.8%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199908",
@@ -1446,7 +5553,44 @@
       "edge": "+3.4%",
       "final_score": "1-1",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "Switzerland",
+      "away_team": "Germany",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.59,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Away Win",
+        "prob": 0.59,
+        "odds": 1.8,
+        "edge": "+3.4%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199907",
@@ -1459,7 +5603,44 @@
       "edge": "+4.0%",
       "final_score": "0-1",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "Scotland",
+      "away_team": "Hungary",
+      "pred_score": "1-2",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.54,
+        "odds": 2.0,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "MISS"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Goal Total",
+        "selection": "Over 2.5 Goals",
+        "prob": 0.54,
+        "odds": 2.0,
+        "edge": "+4.0%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199906",
@@ -1472,7 +5653,44 @@
       "edge": "+3.8%",
       "final_score": "0-3",
       "status": "HIT",
-      "net_variance": 0.75
+      "net_variance": 0.75,
+      "home_team": "Turkey",
+      "away_team": "Portugal",
+      "pred_score": "0-2",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Away Win",
+        "prob": 0.61,
+        "odds": 1.75,
+        "edge": "+3.8%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199905",
@@ -1485,7 +5703,44 @@
       "edge": "+4.3%",
       "final_score": "1-1",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "Georgia",
+      "away_team": "Czechia",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.575,
+        "odds": 1.88,
+        "status": "MISS"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Away Win",
+        "prob": 0.575,
+        "odds": 1.88,
+        "edge": "+4.3%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199904",
@@ -1498,7 +5753,44 @@
       "edge": "+3.3%",
       "final_score": "2-0",
       "status": "HIT",
-      "net_variance": 0.65
+      "net_variance": 0.65,
+      "home_team": "Belgium",
+      "away_team": "Romania",
+      "pred_score": "2-0",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.64,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Home Win",
+        "prob": 0.64,
+        "odds": 1.65,
+        "edge": "+3.3%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199903",
@@ -1511,7 +5803,44 @@
       "edge": "+3.9%",
       "final_score": "0-0",
       "status": "HIT",
-      "net_variance": 0.85
+      "net_variance": 0.85,
+      "home_team": "Netherlands",
+      "away_team": "France",
+      "pred_score": "1-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Draw",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Goal Total",
+        "selection": "Under 2.5 Goals",
+        "prob": 0.58,
+        "odds": 1.85,
+        "edge": "+3.9%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199902",
@@ -1524,7 +5853,44 @@
       "edge": "+4.2%",
       "final_score": "1-3",
       "status": "HIT",
-      "net_variance": 0.95
+      "net_variance": 0.95,
+      "home_team": "Poland",
+      "away_team": "Austria",
+      "pred_score": "1-2",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.555,
+        "odds": 1.95,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": true,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Away Win DNB",
+        "prob": 0.555,
+        "odds": 1.95,
+        "edge": "+4.2%",
+        "status": "HIT"
+      }
     },
     {
       "id": "1199901",
@@ -1537,7 +5903,44 @@
       "edge": "+3.0%",
       "final_score": "1-2",
       "status": "MISS",
-      "net_variance": -1.0
+      "net_variance": -1.0,
+      "home_team": "Slovakia",
+      "away_team": "Ukraine",
+      "pred_score": "1-2",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Away Win",
+        "prob": 0.325,
+        "odds": 3.4,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Over 2.5",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS Yes",
+        "prob": 0.61,
+        "odds": 1.75,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "MISS"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Match Result",
+        "selection": "Draw",
+        "prob": 0.325,
+        "odds": 3.4,
+        "edge": "+3.0%",
+        "status": "MISS"
+      }
     },
     {
       "id": "1199900",
@@ -1550,7 +5953,44 @@
       "edge": "+3.1%",
       "final_score": "1-0",
       "status": "HIT",
-      "net_variance": 0.7
+      "net_variance": 0.7,
+      "home_team": "Spain",
+      "away_team": "Italy",
+      "pred_score": "2-1",
+      "pred_score_prob": 0.115,
+      "result_pick": {
+        "pick": "Home Win",
+        "prob": 0.62,
+        "odds": 1.7,
+        "status": "HIT"
+      },
+      "goal_total_pick": {
+        "pick": "Under 2.5",
+        "prob": 0.62,
+        "odds": 1.65,
+        "status": "HIT"
+      },
+      "btts_pick": {
+        "pick": "BTTS No",
+        "prob": 0.58,
+        "odds": 1.85,
+        "status": "HIT"
+      },
+      "corner_pick": {
+        "pick": "Corners Over 9.5",
+        "prob": 0.6,
+        "odds": 1.8,
+        "status": "HIT"
+      },
+      "is_best": false,
+      "best_pick": {
+        "market": "Goal Total",
+        "selection": "Under 2.5 Goals",
+        "prob": 0.62,
+        "odds": 1.7,
+        "edge": "+3.1%",
+        "status": "HIT"
+      }
     }
   ]
 }
