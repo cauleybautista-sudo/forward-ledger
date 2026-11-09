@@ -1,4 +1,4 @@
-"""Vercel Python entrypoint serving the complete Forward Ledger dashboard."""
+"""Vercel Python entrypoint serving the complete Football Tracker dashboard."""
 
 from pathlib import Path
 
@@ -15,7 +15,7 @@ def app(environ, start_response):
         return [HTML_PATH_PUBLIC.read_bytes()]
     if HTML_PATH_ROOT.exists():
         return [HTML_PATH_ROOT.read_bytes()]
-    return [b"<h1>Forward Ledger Online</h1>"]
+    return [b"<h1>Football Tracker Online</h1>"]
 
 
 handler = app

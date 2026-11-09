@@ -1,4 +1,4 @@
-"""Vercel serverless entrypoint serving the complete Forward Ledger dashboard."""
+"""Vercel serverless entrypoint serving the complete Football Tracker dashboard."""
 
 from http.server import BaseHTTPRequestHandler
 from pathlib import Path
@@ -18,7 +18,7 @@ class handler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(
                 json.dumps({
-                    "system": "Forward Ledger Predictive Model",
+                    "system": "Football Tracker Predictive Model",
                     "status": "online",
                     "endpoints": [
                         "/api/cron/pre-kickoff",
@@ -37,4 +37,4 @@ class handler(BaseHTTPRequestHandler):
         elif HTML_PATH_ROOT.exists():
             self.wfile.write(HTML_PATH_ROOT.read_bytes())
         else:
-            self.wfile.write(b"<h1>Forward Ledger Online</h1>")
+            self.wfile.write(b"<h1>Football Tracker Online</h1>")
