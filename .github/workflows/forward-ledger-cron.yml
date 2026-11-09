@@ -1,0 +1,44 @@
+name: Forward Ledger Automation
+
+on:
+  schedule:
+    # Runs every 15 minutes (Free tier on GitHub Actions)
+    - cron: '*/15 * * * *'
+  workflow_dispatch: # Allows manual trigger from GitHub Actions UI anytime
+
+permissions:
+  contents: write
+
+jobs:
+  run-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests python-dotenv
+
+      - name: Run Ledger Sync & Calibration Check
+        env:
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+          API_FOOTBALL_PROVIDER: ${{ secrets.API_FOOTBALL_PROVIDER || 'direct' }}
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: |
+          python src/verify_apis.py
+          python src/sync_ledger.py
+
+      - name: Commit & Push Ledger Updates
+        run: |
+          git config user.name "Forward Ledger Bot"
+          git config user.email "bot@forwardledger.dev"
+          git add LEDGER.md
+          git diff-index --quiet HEAD || (git commit -m "chore: automated ledger sync [skip ci]" && git push)

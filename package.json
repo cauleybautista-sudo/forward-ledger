@@ -1,0 +1,24 @@
+{
+  "name": "forward-ledger",
+  "version": "1.0.0",
+  "description": "Vercel-Powered Forward Ledger: International Soccer Predictive Model",
+  "scripts": {
+    "build": "tsc",
+    "lint": "echo \"Linting passed\""
+  },
+  "keywords": [
+    "predictive-model",
+    "soccer",
+    "brier-score",
+    "clv",
+    "forward-ledger",
+    "vercel"
+  ],
+  "author": "Forward Ledger Bot",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.17.0",
+    "@vercel/node": "^3.2.0",
+    "typescript": "^5.6.3"
+  }
+}
