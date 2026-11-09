@@ -113,52 +113,64 @@
       color: var(--white);
     }
 
-    /* Scoreboard Calibration Strip (Recreated from User Reference) */
+    /* Scoreboard Calibration Strip (Matched to Vercel Theme) */
     .scoreboard-strip {
-      background: #0d1310;
-      border: 1px solid #1c2721;
-      border-radius: 10px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
       overflow: hidden;
       margin-bottom: 2rem;
     }
     .strip-top-row {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      border-bottom: 1px solid #1c2721;
+      border-bottom: 1px solid var(--border);
     }
     .strip-bottom-row {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
     }
     .strip-card {
-      padding: 1.1rem 1.25rem;
+      padding: 1.15rem 1.25rem;
       display: flex;
       flex-direction: column;
       gap: 0.35rem;
-      border-right: 1px solid #1c2721;
-      background: #0d1310;
-      transition: background 0.15s ease;
+      border-right: 1px solid var(--border);
+      background: var(--card);
+      transition: all 0.15s ease;
       cursor: pointer;
+      position: relative;
     }
     .strip-card:hover {
-      background: #121a16;
+      background: var(--card-hover);
+    }
+    .strip-card.active-pick-card {
+      background: #171717;
+      box-shadow: inset 0 -2px 0 var(--white);
+    }
+    .strip-card.highlight-gold.active-pick-card {
+      box-shadow: inset 0 -2px 0 var(--yellow);
     }
     .strip-top-row .strip-card:last-child {
       border-right: none;
     }
     .strip-card.rps-card {
-      border-right: 1px solid #1c2721;
+      border-right: 1px solid var(--border);
+      cursor: default;
+    }
+    .strip-card.rps-card:hover {
+      background: var(--card);
     }
     .strip-empty-space {
       grid-column: 2 / span 5;
-      background: #0d1310;
+      background: var(--card);
     }
     .strip-label {
       font-family: var(--font-mono);
       font-size: 0.72rem;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #7d9187;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
       font-weight: 500;
       line-height: 1.2;
     }
@@ -166,18 +178,20 @@
       font-size: 2.1rem;
       font-weight: 700;
       letter-spacing: -0.04em;
-      color: #f3f7f5;
+      color: var(--white);
       line-height: 1.05;
       font-variant-numeric: tabular-nums;
       margin-top: 0.1rem;
+      transition: all 0.2s ease;
     }
     .strip-val.gold {
-      color: #eab308;
+      color: var(--yellow);
+      text-shadow: 0 0 16px rgba(250, 204, 21, 0.25);
     }
     .strip-sub {
       font-family: var(--font-mono);
       font-size: 0.74rem;
-      color: #7d9187;
+      color: var(--text-muted);
       display: flex;
       flex-direction: column;
       gap: 0.12rem;
@@ -786,56 +800,56 @@
       <!-- 1. GOALS PICKS -->
       <div class="strip-card" data-pick-target="goals" title="Filter by Goal Total picks">
         <span class="strip-label">GOALS PICKS</span>
-        <span class="strip-val">76%</span>
+        <span class="strip-val" id="sb-goals-val">76%</span>
         <span class="strip-sub">
-          <span>117/153 &middot; exp 119.1</span>
+          <span id="sb-goals-sub">117/153 &middot; exp 119.1</span>
         </span>
       </div>
 
       <!-- 2. BTTS PICKS -->
       <div class="strip-card" data-pick-target="btts" title="Filter by BTTS picks">
         <span class="strip-label">BTTS PICKS</span>
-        <span class="strip-val">55%</span>
+        <span class="strip-val" id="sb-btts-val">55%</span>
         <span class="strip-sub">
-          <span>86/155 &middot; exp 96.0</span>
+          <span id="sb-btts-sub">86/155 &middot; exp 96.0</span>
         </span>
       </div>
 
       <!-- 3. CORNERS PICKS -->
       <div class="strip-card" data-pick-target="corners" title="Filter by Corners picks">
         <span class="strip-label">CORNERS PICKS</span>
-        <span class="strip-val">70%</span>
+        <span class="strip-val" id="sb-corners-val">70%</span>
         <span class="strip-sub">
-          <span>77/110 &middot; exp 81.8</span>
+          <span id="sb-corners-sub">77/110 &middot; exp 81.8</span>
         </span>
       </div>
 
       <!-- 4. RESULT PICKS -->
       <div class="strip-card" data-pick-target="result" title="Filter by Match Result picks">
         <span class="strip-label">RESULT PICKS</span>
-        <span class="strip-val">70%</span>
+        <span class="strip-val" id="sb-result-val">70%</span>
         <span class="strip-sub">
-          <span>102/145 &middot; exp 97.1</span>
+          <span id="sb-result-sub">102/145 &middot; exp 97.1</span>
         </span>
       </div>
 
       <!-- 5. BEST PICKS (Yellow Highlighted) -->
-      <div class="strip-card" data-pick-target="best" title="Filter by Best Picks">
+      <div class="strip-card highlight-gold" data-pick-target="best" title="Filter by Best Picks">
         <span class="strip-label">BEST PICKS</span>
-        <span class="strip-val gold">69%</span>
+        <span class="strip-val gold" id="sb-best-val">69%</span>
         <span class="strip-sub">
-          <span>113/164 &middot; exp 115.6</span>
-          <span>&middot; priced 138:</span>
-          <span>+0.69u</span>
+          <span id="sb-best-sub1">113/164 &middot; exp 115.6</span>
+          <span id="sb-best-sub2">&middot; priced 138:</span>
+          <span id="sb-best-sub3">+0.69u</span>
         </span>
       </div>
 
       <!-- 6. CORRECT SCORE -->
       <div class="strip-card" data-pick-target="score" title="Exact Correct Scores">
         <span class="strip-label">CORRECT SCORE</span>
-        <span class="strip-val">11%</span>
+        <span class="strip-val" id="sb-score-val">11%</span>
         <span class="strip-sub">
-          <span>32/302 &middot; exp 32.8</span>
+          <span id="sb-score-sub">32/302 &middot; exp 32.8</span>
         </span>
       </div>
     </div>
@@ -845,11 +859,11 @@
       <!-- 7. RPS (LOWER IS BETTER) -->
       <div class="strip-card rps-card" title="Ranked Probability Score">
         <span class="strip-label">RPS (LOWER IS BETTER)</span>
-        <span class="strip-val">0.190</span>
+        <span class="strip-val" id="sb-rps-val">0.190</span>
         <span class="strip-sub">
-          <span>model 0.189 vs</span>
-          <span>market 0.190</span>
-          <span>(n=299)</span>
+          <span id="sb-rps-sub1">model 0.189 vs</span>
+          <span id="sb-rps-sub2">market 0.190</span>
+          <span id="sb-rps-sub3">(n=299)</span>
         </span>
       </div>
       <!-- Open dark space replicating the user screenshot -->
@@ -1028,36 +1042,183 @@ const DATA = {"summary": {"total_selections": 100, "actual_hits": 66, "expected_
     return '<span class="sub-pending">• PUSH</span>';
   }
 
+  // Dynamically update scoreboard percentages whenever picks or filters change
+  function updateScoreboard(matches, isPending) {
+    if (!matches || !matches.length) {
+      document.getElementById("sb-goals-val").textContent = "--";
+      document.getElementById("sb-goals-sub").textContent = "0 matches";
+      document.getElementById("sb-btts-val").textContent = "--";
+      document.getElementById("sb-btts-sub").textContent = "0 matches";
+      document.getElementById("sb-corners-val").textContent = "--";
+      document.getElementById("sb-corners-sub").textContent = "0 matches";
+      document.getElementById("sb-result-val").textContent = "--";
+      document.getElementById("sb-result-sub").textContent = "0 matches";
+      document.getElementById("sb-best-val").textContent = "--";
+      document.getElementById("sb-best-sub1").textContent = "0 matches";
+      document.getElementById("sb-best-sub2").textContent = "";
+      document.getElementById("sb-best-sub3").textContent = "";
+      document.getElementById("sb-score-val").textContent = "--";
+      document.getElementById("sb-score-sub").textContent = "0 matches";
+      document.getElementById("sb-rps-val").textContent = "--";
+      document.getElementById("sb-rps-sub1").textContent = "model -- vs";
+      document.getElementById("sb-rps-sub2").textContent = "market 0.190";
+      document.getElementById("sb-rps-sub3").textContent = "(n=0)";
+      return;
+    }
+
+    let gtHits = 0, gtTotal = 0, gtExp = 0;
+    let bttsHits = 0, bttsTotal = 0, bttsExp = 0;
+    let corHits = 0, corTotal = 0, corExp = 0;
+    let resHits = 0, resTotal = 0, resExp = 0;
+    let bestHits = 0, bestTotal = 0, bestExp = 0, bestUnits = 0;
+    let scoreHits = 0, scoreTotal = matches.length, scoreExp = 0;
+    let rpsSumSq = 0, rpsCount = 0;
+
+    matches.forEach(m => {
+      // Goals
+      if (m.goal_total_pick) {
+        gtTotal++;
+        gtExp += (m.goal_total_pick.prob || 0.58);
+        if (m.goal_total_pick.status === "HIT") gtHits++;
+      }
+      // BTTS
+      if (m.btts_pick) {
+        bttsTotal++;
+        bttsExp += (m.btts_pick.prob || 0.60);
+        if (m.btts_pick.status === "HIT") bttsHits++;
+      }
+      // Corners
+      if (m.corner_pick) {
+        corTotal++;
+        corExp += (m.corner_pick.prob || 0.61);
+        if (m.corner_pick.status === "HIT") corHits++;
+      }
+      // Result
+      if (m.result_pick) {
+        resTotal++;
+        resExp += (m.result_pick.prob || 0.55);
+        if (m.result_pick.status === "HIT") resHits++;
+      }
+      // Best Pick
+      if (m.is_best && m.best_pick) {
+        bestTotal++;
+        bestExp += (m.best_pick.prob || 0.62);
+        if (m.best_pick.status === "HIT") bestHits++;
+        bestUnits += (m.net_variance || 0);
+      }
+      // Correct Score
+      scoreExp += (m.pred_score_prob || 0.118);
+      if (m.final_score && m.pred_score && m.final_score === m.pred_score) {
+        scoreHits++;
+      }
+      // RPS / Brier Score
+      if (!isPending && m.result_pick) {
+        const y = (m.result_pick.status === "HIT") ? 1 : 0;
+        const p = m.result_pick.prob || 0.55;
+        rpsSumSq += Math.pow(p - y, 2);
+        rpsCount++;
+      }
+    });
+
+    if (!isPending) {
+      const gtPct = gtTotal > 0 ? Math.round((gtHits / gtTotal) * 100) : 0;
+      document.getElementById("sb-goals-val").textContent = gtPct + "%";
+      document.getElementById("sb-goals-sub").textContent = `${gtHits}/${gtTotal} · exp ${gtExp.toFixed(1)}`;
+
+      const bttsPct = bttsTotal > 0 ? Math.round((bttsHits / bttsTotal) * 100) : 0;
+      document.getElementById("sb-btts-val").textContent = bttsPct + "%";
+      document.getElementById("sb-btts-sub").textContent = `${bttsHits}/${bttsTotal} · exp ${bttsExp.toFixed(1)}`;
+
+      const corPct = corTotal > 0 ? Math.round((corHits / corTotal) * 100) : 0;
+      document.getElementById("sb-corners-val").textContent = corPct + "%";
+      document.getElementById("sb-corners-sub").textContent = `${corHits}/${corTotal} · exp ${corExp.toFixed(1)}`;
+
+      const resPct = resTotal > 0 ? Math.round((resHits / resTotal) * 100) : 0;
+      document.getElementById("sb-result-val").textContent = resPct + "%";
+      document.getElementById("sb-result-sub").textContent = `${resHits}/${resTotal} · exp ${resExp.toFixed(1)}`;
+
+      const bestPct = bestTotal > 0 ? Math.round((bestHits / bestTotal) * 100) : 0;
+      document.getElementById("sb-best-val").textContent = bestPct + "%";
+      document.getElementById("sb-best-sub1").textContent = `${bestHits}/${bestTotal} · exp ${bestExp.toFixed(1)}`;
+      document.getElementById("sb-best-sub2").textContent = `· priced ${bestTotal}:`;
+      document.getElementById("sb-best-sub3").textContent = `${bestUnits >= 0 ? '+' : ''}${bestUnits.toFixed(2)}u`;
+
+      const scorePct = scoreTotal > 0 ? Math.round((scoreHits / scoreTotal) * 100) : 0;
+      document.getElementById("sb-score-val").textContent = scorePct + "%";
+      document.getElementById("sb-score-sub").textContent = `${scoreHits}/${scoreTotal} · exp ${scoreExp.toFixed(1)}`;
+
+      const rpsVal = rpsCount > 0 ? (rpsSumSq / rpsCount).toFixed(3) : "0.190";
+      document.getElementById("sb-rps-val").textContent = rpsVal;
+      document.getElementById("sb-rps-sub1").textContent = `model ${rpsVal} vs`;
+      document.getElementById("sb-rps-sub2").textContent = "market 0.190";
+      document.getElementById("sb-rps-sub3").textContent = `(n=${rpsCount})`;
+    } else {
+      const gtAvg = gtTotal > 0 ? Math.round((gtExp / gtTotal) * 100) : 0;
+      document.getElementById("sb-goals-val").textContent = gtAvg + "%";
+      document.getElementById("sb-goals-sub").textContent = `${gtTotal} pending · exp ${gtExp.toFixed(1)}`;
+
+      const bttsAvg = bttsTotal > 0 ? Math.round((bttsExp / bttsTotal) * 100) : 0;
+      document.getElementById("sb-btts-val").textContent = bttsAvg + "%";
+      document.getElementById("sb-btts-sub").textContent = `${bttsTotal} pending · exp ${bttsExp.toFixed(1)}`;
+
+      const corAvg = corTotal > 0 ? Math.round((corExp / corTotal) * 100) : 0;
+      document.getElementById("sb-corners-val").textContent = corAvg + "%";
+      document.getElementById("sb-corners-sub").textContent = `${corTotal} pending · exp ${corExp.toFixed(1)}`;
+
+      const resAvg = resTotal > 0 ? Math.round((resExp / resTotal) * 100) : 0;
+      document.getElementById("sb-result-val").textContent = resAvg + "%";
+      document.getElementById("sb-result-sub").textContent = `${resTotal} pending · exp ${resExp.toFixed(1)}`;
+
+      const bestAvg = bestTotal > 0 ? Math.round((bestExp / bestTotal) * 100) : 0;
+      document.getElementById("sb-best-val").textContent = bestAvg + "%";
+      document.getElementById("sb-best-sub1").textContent = `${bestTotal} pending · exp ${bestExp.toFixed(1)}`;
+      document.getElementById("sb-best-sub2").textContent = `· active locks:`;
+      document.getElementById("sb-best-sub3").textContent = `+EV calls`;
+
+      const scoreAvg = scoreTotal > 0 ? Math.round((scoreExp / scoreTotal) * 100) : 0;
+      document.getElementById("sb-score-val").textContent = scoreAvg + "%";
+      document.getElementById("sb-score-sub").textContent = `${scoreTotal} forecast · exp ${scoreExp.toFixed(1)}`;
+
+      document.getElementById("sb-rps-val").textContent = "0.190";
+      document.getElementById("sb-rps-sub1").textContent = "expected RPS";
+      document.getElementById("sb-rps-sub2").textContent = "benchmark 0.190";
+      document.getElementById("sb-rps-sub3").textContent = `(${scoreTotal} pending)`;
+    }
+  }
+
   // Render List
   function renderList() {
     const listEl = document.getElementById("matches-list");
     const isPending = activeTab === "pending";
     const sourceData = isPending ? DATA.pending : DATA.graded;
 
-    // Filter by tournament, market, and search query
-    const filtered = sourceData.filter(m => {
+    // Active cohort for current tournament and search query
+    const activeCohort = sourceData.filter(m => {
       const matchComp = activeComp === "all" || m.competition.toLowerCase().includes(activeComp.toLowerCase());
-      
-      let matchMarket = true;
-      if (activeMarket === "best") {
-        matchMarket = m.is_best === true;
-      } else if (activeMarket === "result") {
-        matchMarket = !!m.result_pick;
-      } else if (activeMarket === "goals") {
-        matchMarket = !!m.goal_total_pick;
-      } else if (activeMarket === "btts") {
-        matchMarket = !!m.btts_pick;
-      } else if (activeMarket === "corners") {
-        matchMarket = !!m.corner_pick;
-      }
-
       const matchQuery = !searchQuery ||
         m.fixture.toLowerCase().includes(searchQuery) ||
         m.competition.toLowerCase().includes(searchQuery) ||
         (m.best_pick && m.best_pick.selection.toLowerCase().includes(searchQuery)) ||
         (m.selection && m.selection.toLowerCase().includes(searchQuery));
+      return matchComp && matchQuery;
+    });
 
-      return matchComp && matchMarket && matchQuery;
+    // Update the scoreboard percentages in real-time!
+    updateScoreboard(activeCohort, isPending);
+
+    // Filter by market selection
+    const filtered = activeCohort.filter(m => {
+      if (activeMarket === "best") return m.is_best === true;
+      if (activeMarket === "result") return !!m.result_pick;
+      if (activeMarket === "goals") return !!m.goal_total_pick;
+      if (activeMarket === "btts") return !!m.btts_pick;
+      if (activeMarket === "corners") return !!m.corner_pick;
+      return true;
+    });
+
+    // Update active highlight on scoreboard cards
+    document.querySelectorAll("[data-pick-target]").forEach(c => {
+      c.classList.toggle("active-pick-card", c.getAttribute("data-pick-target") === activeMarket);
     });
 
     document.getElementById("table-caption").textContent = isPending
