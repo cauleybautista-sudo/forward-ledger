@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Football Tracker | International Football Predictive Model</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpolygon points='12,7 16.76,10.45 14.94,16.05 9.06,16.05 7.24,10.45' fill='white' fill-opacity='0.2'/%3E%3Cline x1='12' y1='7' x2='12' y2='2'/%3E%3Cline x1='16.76' y1='10.45' x2='21.51' y2='8.91'/%3E%3Cline x1='14.94' y1='16.05' x2='17.88' y2='20.09'/%3E%3Cline x1='9.06' y1='16.05' x2='6.12' y2='20.09'/%3E%3Cline x1='7.24' y1='10.45' x2='2.49' y2='8.91'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -65,7 +66,8 @@
     .brand svg {
       width: 24px;
       height: 24px;
-      fill: var(--white);
+      flex-shrink: 0;
+      color: var(--white);
     }
     .brand-title {
       font-size: 1.25rem;
@@ -777,8 +779,14 @@
   <!-- Header -->
   <header>
     <div class="brand">
-      <svg viewBox="0 0 76 65" xmlns="http://www.w3.org/2000/svg">
-        <path d="M37.5274 0L75.0548 65H0L37.5274 0Z" />
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" />
+        <polygon points="12,7 16.76,10.45 14.94,16.05 9.06,16.05 7.24,10.45" fill="currentColor" fill-opacity="0.18" />
+        <line x1="12" y1="7" x2="12" y2="2" />
+        <line x1="16.76" y1="10.45" x2="21.51" y2="8.91" />
+        <line x1="14.94" y1="16.05" x2="17.88" y2="20.09" />
+        <line x1="9.06" y1="16.05" x2="6.12" y2="20.09" />
+        <line x1="7.24" y1="10.45" x2="2.49" y2="8.91" />
       </svg>
       <div>
         <div class="brand-title">Football Tracker</div>
