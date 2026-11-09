@@ -2,7 +2,8 @@
 
 from pathlib import Path
 
-HTML_PATH = Path(__file__).parent / "public" / "index.html"
+HTML_PATH_PUBLIC = Path(__file__).parent / "public" / "index.html"
+HTML_PATH_ROOT = Path(__file__).parent / "index.html"
 
 
 def app(environ, start_response):
@@ -10,9 +11,11 @@ def app(environ, start_response):
     headers = [("Content-type", "text/html; charset=utf-8")]
     start_response(status, headers)
 
-    if HTML_PATH.exists():
-        return [HTML_PATH.read_bytes()]
-    return [b"<h1>Forward Ledger</h1>"]
+    if HTML_PATH_PUBLIC.exists():
+        return [HTML_PATH_PUBLIC.read_bytes()]
+    if HTML_PATH_ROOT.exists():
+        return [HTML_PATH_ROOT.read_bytes()]
+    return [b"<h1>Forward Ledger Online</h1>"]
 
 
 handler = app

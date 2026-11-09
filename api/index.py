@@ -4,7 +4,8 @@ from http.server import BaseHTTPRequestHandler
 from pathlib import Path
 import json
 
-HTML_PATH = Path(__file__).parent.parent / "public" / "index.html"
+HTML_PATH_PUBLIC = Path(__file__).parent.parent / "public" / "index.html"
+HTML_PATH_ROOT = Path(__file__).parent.parent / "index.html"
 
 
 class handler(BaseHTTPRequestHandler):
@@ -31,7 +32,9 @@ class handler(BaseHTTPRequestHandler):
         self.send_header("Content-Type", "text/html; charset=utf-8")
         self.end_headers()
 
-        if HTML_PATH.exists():
-            self.wfile.write(HTML_PATH.read_bytes())
+        if HTML_PATH_PUBLIC.exists():
+            self.wfile.write(HTML_PATH_PUBLIC.read_bytes())
+        elif HTML_PATH_ROOT.exists():
+            self.wfile.write(HTML_PATH_ROOT.read_bytes())
         else:
             self.wfile.write(b"<h1>Forward Ledger Online</h1>")
