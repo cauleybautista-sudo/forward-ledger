@@ -113,49 +113,77 @@
       color: var(--white);
     }
 
-    /* Metrics Strip */
-    .metrics-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 12px;
+    /* Scoreboard Calibration Strip (Recreated from User Reference) */
+    .scoreboard-strip {
+      background: #0d1310;
+      border: 1px solid #1c2721;
+      border-radius: 10px;
       overflow: hidden;
       margin-bottom: 2rem;
     }
-    .metric-card {
-      background: var(--card);
-      padding: 1.25rem 1.5rem;
+    .strip-top-row {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      border-bottom: 1px solid #1c2721;
+    }
+    .strip-bottom-row {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+    }
+    .strip-card {
+      padding: 1.1rem 1.25rem;
       display: flex;
       flex-direction: column;
       gap: 0.35rem;
+      border-right: 1px solid #1c2721;
+      background: #0d1310;
       transition: background 0.15s ease;
+      cursor: pointer;
     }
-    .metric-card:hover {
-      background: var(--card-hover);
+    .strip-card:hover {
+      background: #121a16;
     }
-    .metric-label {
+    .strip-top-row .strip-card:last-child {
+      border-right: none;
+    }
+    .strip-card.rps-card {
+      border-right: 1px solid #1c2721;
+    }
+    .strip-empty-space {
+      grid-column: 2 / span 5;
+      background: #0d1310;
+    }
+    .strip-label {
       font-family: var(--font-mono);
       font-size: 0.72rem;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      color: #7d9187;
+      font-weight: 500;
+      line-height: 1.2;
     }
-    .metric-value {
-      font-size: 1.85rem;
+    .strip-val {
+      font-size: 2.1rem;
       font-weight: 700;
       letter-spacing: -0.04em;
-      color: var(--white);
+      color: #f3f7f5;
+      line-height: 1.05;
       font-variant-numeric: tabular-nums;
+      margin-top: 0.1rem;
     }
-    .metric-sub {
+    .strip-val.gold {
+      color: #eab308;
+    }
+    .strip-sub {
       font-family: var(--font-mono);
       font-size: 0.74rem;
-      color: var(--text-muted);
-    }
-    .metric-card.highlight .metric-value {
-      color: var(--yellow);
+      color: #7d9187;
+      display: flex;
+      flex-direction: column;
+      gap: 0.12rem;
+      font-variant-numeric: tabular-nums;
+      margin-top: 0.15rem;
+      line-height: 1.35;
     }
 
     /* Calibration Chart Box */
@@ -681,7 +709,19 @@
       font-size: 0.85rem;
     }
 
-    @media (max-width: 860px) {
+    @media (max-width: 960px) {
+      .strip-top-row {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .strip-top-row .strip-card:nth-child(3) {
+        border-right: none;
+      }
+      .strip-bottom-row {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .strip-empty-space {
+        grid-column: 2 / span 2;
+      }
       .picks-grid {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -694,7 +734,19 @@
         justify-content: flex-start;
       }
     }
-    @media (max-width: 540px) {
+    @media (max-width: 640px) {
+      .strip-top-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .strip-top-row .strip-card:nth-child(2n) {
+        border-right: none;
+      }
+      .strip-bottom-row {
+        grid-template-columns: 1fr;
+      }
+      .strip-empty-space {
+        display: none;
+      }
       .picks-grid {
         grid-template-columns: 1fr;
       }
@@ -728,32 +780,80 @@
     </div>
   </header>
 
-  <!-- Metrics Strip -->
-  <div class="metrics-grid">
-    <div class="metric-card">
-      <span class="metric-label">Brier Score (BS)</span>
-      <span class="metric-value" id="val-brier">0.2295</span>
-      <span class="metric-sub">Mean Squared Calibration Error</span>
+  <!-- Scoreboard Calibration Strip (Recreated from User Reference) -->
+  <div class="scoreboard-strip">
+    <div class="strip-top-row">
+      <!-- 1. GOALS PICKS -->
+      <div class="strip-card" data-pick-target="goals" title="Filter by Goal Total picks">
+        <span class="strip-label">GOALS PICKS</span>
+        <span class="strip-val">76%</span>
+        <span class="strip-sub">
+          <span>117/153 &middot; exp 119.1</span>
+        </span>
+      </div>
+
+      <!-- 2. BTTS PICKS -->
+      <div class="strip-card" data-pick-target="btts" title="Filter by BTTS picks">
+        <span class="strip-label">BTTS PICKS</span>
+        <span class="strip-val">55%</span>
+        <span class="strip-sub">
+          <span>86/155 &middot; exp 96.0</span>
+        </span>
+      </div>
+
+      <!-- 3. CORNERS PICKS -->
+      <div class="strip-card" data-pick-target="corners" title="Filter by Corners picks">
+        <span class="strip-label">CORNERS PICKS</span>
+        <span class="strip-val">70%</span>
+        <span class="strip-sub">
+          <span>77/110 &middot; exp 81.8</span>
+        </span>
+      </div>
+
+      <!-- 4. RESULT PICKS -->
+      <div class="strip-card" data-pick-target="result" title="Filter by Match Result picks">
+        <span class="strip-label">RESULT PICKS</span>
+        <span class="strip-val">70%</span>
+        <span class="strip-sub">
+          <span>102/145 &middot; exp 97.1</span>
+        </span>
+      </div>
+
+      <!-- 5. BEST PICKS (Yellow Highlighted) -->
+      <div class="strip-card" data-pick-target="best" title="Filter by Best Picks">
+        <span class="strip-label">BEST PICKS</span>
+        <span class="strip-val gold">69%</span>
+        <span class="strip-sub">
+          <span>113/164 &middot; exp 115.6</span>
+          <span>&middot; priced 138:</span>
+          <span>+0.69u</span>
+        </span>
+      </div>
+
+      <!-- 6. CORRECT SCORE -->
+      <div class="strip-card" data-pick-target="score" title="Exact Correct Scores">
+        <span class="strip-label">CORRECT SCORE</span>
+        <span class="strip-val">11%</span>
+        <span class="strip-sub">
+          <span>32/302 &middot; exp 32.8</span>
+        </span>
+      </div>
     </div>
-    <div class="metric-card highlight">
-      <span class="metric-label">Actual vs Expected</span>
-      <span class="metric-value" id="val-hits">66 / 61.0</span>
-      <span class="metric-sub">+4.96 Hits Model Under-Confidence</span>
-    </div>
-    <div class="metric-card">
-      <span class="metric-label">Win Rate</span>
-      <span class="metric-value" id="val-hitrate">66.0%</span>
-      <span class="metric-sub">100 Historical Graded Matches</span>
-    </div>
-    <div class="metric-card">
-      <span class="metric-label">Net Variance</span>
-      <span class="metric-value" id="val-units">+19.25u</span>
-      <span class="metric-sub">Flat 1.0u Staking (+19.25% ROI)</span>
-    </div>
-    <div class="metric-card">
-      <span class="metric-label">Active Fixtures</span>
-      <span class="metric-value" id="val-pending">20</span>
-      <span class="metric-sub">Pending Odds Locks</span>
+
+    <!-- Bottom Row -->
+    <div class="strip-bottom-row">
+      <!-- 7. RPS (LOWER IS BETTER) -->
+      <div class="strip-card rps-card" title="Ranked Probability Score">
+        <span class="strip-label">RPS (LOWER IS BETTER)</span>
+        <span class="strip-val">0.190</span>
+        <span class="strip-sub">
+          <span>model 0.189 vs</span>
+          <span>market 0.190</span>
+          <span>(n=299)</span>
+        </span>
+      </div>
+      <!-- Open dark space replicating the user screenshot -->
+      <div class="strip-empty-space"></div>
     </div>
   </div>
 
@@ -1160,6 +1260,20 @@ const DATA = {"summary": {"total_selections": 100, "actual_hits": 66, "expected_
       btn.classList.add("active");
       activeMarket = btn.getAttribute("data-market");
       renderList();
+    });
+  });
+
+  // Scoreboard strip card click-to-filter
+  document.querySelectorAll("[data-pick-target]").forEach(card => {
+    card.addEventListener("click", () => {
+      const target = card.getAttribute("data-pick-target");
+      const targetChip = document.querySelector(`[data-market="${target}"]`);
+      if (targetChip) {
+        document.querySelectorAll("[data-market]").forEach(b => b.classList.remove("active"));
+        targetChip.classList.add("active");
+        activeMarket = target;
+        renderList();
+      }
     });
   });
 
