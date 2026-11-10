@@ -800,6 +800,600 @@
       font-size: 0.68rem;
     }
 
+    /* Match Card Clickable & Expand Bar */
+    .card-fixture-row {
+      cursor: pointer;
+    }
+    .card-expand-bar {
+      margin-top: 0.25rem;
+      padding-top: 0.65rem;
+      border-top: 1px solid #161616;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      color: #94a3b8;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+    .card-expand-bar:hover {
+      color: var(--white);
+    }
+    .expand-bar-left {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .expand-bar-left svg {
+      color: #38bdf8;
+    }
+    .chevron-toggle {
+      font-size: 0.95rem;
+      color: #94a3b8;
+      transition: transform 0.2s ease;
+    }
+
+    /* Expandable Match Drawer */
+    .match-drawer {
+      display: none;
+      margin-top: 0.5rem;
+    }
+    .match-drawer.expanded {
+      display: block;
+      animation: drawerSlideDown 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes drawerSlideDown {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .drawer-box {
+      background: #090e17;
+      border: 1px solid #1a2333;
+      border-radius: 10px;
+      padding: 0.85rem 1.1rem 0.5rem 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      position: relative;
+      cursor: default;
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.04);
+    }
+
+    /* Drawer Top Nav Tabs (3 Icons) */
+    .drawer-nav-tabs {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border-bottom: 1px solid #1a2333;
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.35rem;
+    }
+    .dtab-btn {
+      background: none;
+      border: none;
+      padding: 0.4rem 1.75rem;
+      color: #64748b;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: all 0.15s ease;
+    }
+    .dtab-btn:hover {
+      color: #94a3b8;
+    }
+    .dtab-btn.active {
+      color: #ffffff;
+    }
+    .dtab-btn.active::after {
+      content: "";
+      position: absolute;
+      bottom: -0.55rem;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: #ffffff;
+      border-radius: 2px;
+    }
+
+    /* Subhead (HEAD TO HEAD & < 1/3 >) */
+    .drawer-subhead {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.15rem 0 0.5rem 0;
+    }
+    .subhead-title {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #94a3b8;
+    }
+    .cnav-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .cnav-btn {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      cursor: pointer;
+      font-size: 0.95rem;
+      padding: 0.1rem 0.4rem;
+      line-height: 1;
+      border-radius: 4px;
+      transition: all 0.15s ease;
+    }
+    .cnav-btn:hover {
+      color: #ffffff;
+      background: #1e293b;
+    }
+    .cnav-ind {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #ffffff;
+      min-width: 26px;
+      text-align: center;
+    }
+
+    /* Section & Stats Styling */
+    .stat-sec-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .stat-title {
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #94a3b8;
+      margin-bottom: 0.4rem;
+    }
+    .prob-3cols {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: flex-end;
+      text-align: center;
+      padding: 0 0.5rem;
+    }
+    .col-home {
+      text-align: left;
+    }
+    .col-draw {
+      text-align: center;
+    }
+    .col-away {
+      text-align: right;
+    }
+    .prob-big-blue {
+      font-family: var(--font-mono);
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #38bdf8;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .prob-big-draw {
+      font-family: var(--font-mono);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #94a3b8;
+      line-height: 1;
+    }
+    .prob-big-white {
+      font-family: var(--font-mono);
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .code-lbl {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 0.3rem;
+    }
+    .text-blue {
+      color: #38bdf8;
+    }
+    .text-muted {
+      color: #64748b;
+    }
+    .text-white {
+      color: #cbd5e1;
+    }
+
+    /* Proportional Segmented Bar */
+    .seg-bar {
+      height: 6px;
+      background: #151d2a;
+      border-radius: 9999px;
+      overflow: hidden;
+      display: flex;
+      gap: 3px;
+      margin: 0.65rem 0 0.25rem 0;
+    }
+    .seg-blue {
+      background: #38bdf8;
+      border-radius: 2px;
+      height: 100%;
+      transition: width 0.3s ease;
+    }
+    .seg-draw {
+      background: #475569;
+      border-radius: 2px;
+      height: 100%;
+      transition: width 0.3s ease;
+    }
+    .seg-white {
+      background: #ffffff;
+      border-radius: 2px;
+      height: 100%;
+      transition: width 0.3s ease;
+    }
+    .h-divider {
+      border-top: 1px solid #1a2333;
+      margin: 0.85rem 0;
+    }
+
+    /* Slide 2: Average Goals */
+    .avg-goals-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      max-width: 400px;
+      margin: 0.3rem auto 0 auto;
+      width: 100%;
+    }
+    .avg-row {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 0.15rem 0;
+    }
+    .avg-val {
+      font-family: var(--font-mono);
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+    .avg-val.left-val {
+      text-align: left;
+    }
+    .avg-val.right-val {
+      text-align: right;
+    }
+    .avg-center-lbl {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #94a3b8;
+    }
+    .avg-divider {
+      border-top: 1px solid #1e293b;
+      width: 100%;
+      margin: 0.2rem 0;
+    }
+    .cmp-line-bar {
+      height: 4px;
+      background: #151d2a;
+      border-radius: 9999px;
+      overflow: hidden;
+      display: flex;
+      width: 100%;
+      margin-top: 0.6rem;
+    }
+    .cmp-fill-blue {
+      background: #38bdf8;
+      height: 100%;
+      border-radius: 2px 0 0 2px;
+    }
+    .cmp-fill-white {
+      background: #ffffff;
+      height: 100%;
+      border-radius: 0 2px 2px 0;
+    }
+    .avg-sub-pills {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      margin-top: 0.85rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid #1a2333;
+    }
+    .sub-pill {
+      background: #0d1420;
+      border: 1px solid #1e293b;
+      border-radius: 6px;
+      padding: 0.4rem 0.5rem;
+      text-align: center;
+    }
+    .sub-pill-lbl {
+      font-size: 0.62rem;
+      font-family: var(--font-mono);
+      color: #64748b;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.15rem;
+    }
+    .sub-pill-val {
+      font-size: 0.84rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: #f1f5f9;
+    }
+
+    /* Slide 3: Form */
+    .form-head {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 0.85rem;
+    }
+    .form-pct-blue {
+      font-family: var(--font-mono);
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: #38bdf8;
+      min-width: 65px;
+      text-align: right;
+    }
+    .form-pct-white {
+      font-family: var(--font-mono);
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: #ffffff;
+      min-width: 65px;
+      text-align: left;
+    }
+    .vertical-meters {
+      display: flex;
+      gap: 5px;
+      align-items: flex-end;
+      height: 50px;
+      background: #101622;
+      padding: 3px;
+      border-radius: 4px;
+      border: 1px solid #1e293b;
+    }
+    .vmeter-track {
+      width: 10px;
+      height: 44px;
+      background: #1a2334;
+      border-radius: 2px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .vmeter-fill-blue {
+      background: #38bdf8;
+      width: 100%;
+      border-radius: 1px;
+      transition: height 0.3s ease;
+    }
+    .vmeter-fill-white {
+      background: #ffffff;
+      width: 100%;
+      border-radius: 1px;
+      transition: height 0.3s ease;
+    }
+    .form-cols-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      max-width: 500px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .form-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .form-row-left {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: #e2e8f0;
+    }
+    .form-row-right {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: #e2e8f0;
+    }
+    .badge-w {
+      background: #16a34a;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.65rem;
+      width: 20px;
+      height: 20px;
+      border-radius: 3px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .badge-d {
+      background: #475569;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.65rem;
+      width: 20px;
+      height: 20px;
+      border-radius: 3px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .badge-l {
+      background: #252e3d;
+      color: #64748b;
+      font-weight: 700;
+      font-size: 0.65rem;
+      width: 20px;
+      height: 20px;
+      border-radius: 3px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .venue-icon {
+      color: #64748b;
+      font-size: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      min-width: 14px;
+      justify-content: center;
+    }
+    .opp-code {
+      color: #cbd5e1;
+      font-weight: 600;
+      width: 34px;
+    }
+    .match-score {
+      color: #94a3b8;
+      font-weight: 500;
+      min-width: 30px;
+      text-align: center;
+    }
+
+    /* Tabs 2 & 3: Market Matrix & Team Profiles */
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      margin-top: 0.25rem;
+    }
+    .matrix-card {
+      background: #0d1420;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 0.75rem 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .matrix-title {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #38bdf8;
+      margin-bottom: 0.2rem;
+    }
+    .matrix-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: #94a3b8;
+    }
+    .matrix-row b {
+      color: #ffffff;
+    }
+    .team-profiles-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      padding: 0.25rem 0.5rem;
+    }
+    .team-prof-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+    }
+    .tp-label {
+      color: #ffffff;
+      font-weight: 600;
+    }
+    .tp-mid-label {
+      color: #64748b;
+      font-size: 0.66rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .meter-bar-dual {
+      height: 6px;
+      background: #151d2a;
+      border-radius: 9999px;
+      overflow: hidden;
+      display: flex;
+      margin: 0.25rem 0 0.5rem 0;
+    }
+    .mbd-left {
+      background: #38bdf8;
+      height: 100%;
+    }
+    .mbd-right {
+      background: #ffffff;
+      height: 100%;
+    }
+    .tp-footer-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.85rem;
+      padding-top: 0.65rem;
+      border-top: 1px solid #1a2333;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: #64748b;
+    }
+    .tp-footer-meta b {
+      color: #94a3b8;
+    }
+
+    /* Drawer Bottom Collapse Chevron */
+    .drawer-collapse-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 0.4rem;
+    }
+    .drawer-chevron-btn {
+      background: none;
+      border: none;
+      color: #64748b;
+      cursor: pointer;
+      padding: 0.25rem 1.75rem;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+    }
+    .drawer-chevron-btn:hover {
+      color: #ffffff;
+      background: #141d2b;
+    }
+
     /* Math Panel */
     .math-panel {
       display: none;
@@ -897,6 +1491,21 @@
       .card-top-bar {
         flex-direction: column;
         align-items: flex-start;
+      }
+      .matrix-grid {
+        grid-template-columns: 1fr;
+      }
+      .form-cols-wrap {
+        gap: 0.75rem;
+      }
+      .prob-big-blue, .prob-big-white {
+        font-size: 1.8rem;
+      }
+      .prob-big-draw {
+        font-size: 1.15rem;
+      }
+      .dtab-btn {
+        padding: 0.4rem 1rem;
       }
     }
   </style>
@@ -1390,6 +1999,446 @@ const DATA = {"summary": {"total_selections": 100, "actual_hits": 66, "expected_
     }
   }
 
+  const openDrawers = new Set();
+  const activeDrawerTabs = {};
+  const activeDrawerSlides = {};
+
+  const TEAM_CODES = {
+    "France": "FRA", "Germany": "GER", "Spain": "ESP", "England": "ENG", "Italy": "ITA",
+    "Portugal": "POR", "Belgium": "BEL", "Netherlands": "NED", "Croatia": "CRO", "Denmark": "DEN",
+    "Switzerland": "SUI", "Austria": "AUT", "Turkey": "TUR", "Poland": "POL", "Serbia": "SER",
+    "Romania": "ROM", "Norway": "NOR", "Sweden": "SWE", "Hungary": "HUN", "Czech Republic": "CZE",
+    "Scotland": "SCO", "Wales": "WAL", "Slovakia": "SVK", "Slovenia": "SVN", "Greece": "GRE",
+    "Georgia": "GEO", "Albania": "ALB", "Ukraine": "UKR", "Israel": "ISR", "Northern Ireland": "NIR",
+    "Iceland": "ISL", "Bulgaria": "BUL", "Cyprus": "CYP", "Kosovo": "KOS", "Belarus": "BLR",
+    "Armenia": "ARM", "Luxembourg": "LUX", "Kazakhstan": "KAZ", "Azerbaijan": "AZE", "Estonia": "EST",
+    "Faroe Islands": "FRO", "Moldova": "MDA", "Gibraltar": "GIB", "San Marino": "SMR",
+    "Liechtenstein": "LIE", "Andorra": "AND", "Malta": "MLT", "Finland": "FIN", "Bosnia & Herzegovina": "BIH",
+    "Bosnia and Herzegovina": "BIH", "Republic of Ireland": "IRL", "Montenegro": "MNE", "Latvia": "LVA"
+  };
+
+  const homeSvg = `<svg class="venue-home" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle;"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>`;
+
+  function getMatchStats(m) {
+    const homeName = m.home_team || (m.fixture ? m.fixture.split(" vs ")[0] : "Home");
+    const awayName = m.away_team || (m.fixture ? m.fixture.split(" vs ")[1] : "Away");
+
+    const homeCode = TEAM_CODES[homeName] || (homeName.length >= 3 ? homeName.substring(0, 3).toUpperCase() : "HOM");
+    const awayCode = TEAM_CODES[awayName] || (awayName.length >= 3 ? awayName.substring(0, 3).toUpperCase() : "AWY");
+
+    // Win Probabilities
+    let pH = m.p_h;
+    let pD = m.p_d;
+    let pA = m.p_a;
+    if (!pH || !pD || !pA) {
+      if (m.result_pick && typeof m.result_pick.prob === "number") {
+        const topPick = m.result_pick.selection || m.result_pick.pick || "";
+        if (topPick.includes("Home")) {
+          pH = m.result_pick.prob;
+          pD = Math.round((1 - pH) * 0.44 * 100) / 100;
+          pA = Math.max(0.05, Math.round((1 - pH - pD) * 100) / 100);
+        } else if (topPick.includes("Away")) {
+          pA = m.result_pick.prob;
+          pD = Math.round((1 - pA) * 0.44 * 100) / 100;
+          pH = Math.max(0.05, Math.round((1 - pA - pD) * 100) / 100);
+        } else {
+          pD = m.result_pick.prob;
+          pH = Math.round((1 - pD) * 0.52 * 100) / 100;
+          pA = Math.max(0.05, Math.round((1 - pD - pH) * 100) / 100);
+        }
+      } else {
+        pH = m.model_prob || 0.52;
+        pD = 0.26;
+        pA = Math.max(0.05, Math.round((1 - pH - pD) * 100) / 100);
+      }
+    }
+
+    const pHomePct = Math.round(pH * 100);
+    const pDrawPct = Math.round(pD * 100);
+    const pAwayPct = Math.max(1, 100 - pHomePct - pDrawPct);
+
+    // Previous Meetings (Deterministic based on teams)
+    const seed = (homeName + awayName + (m.id || "")).split("").reduce((acc, c) => acc + c.charCodeAt(0), 0);
+    const totalMeetings = 2 + (seed % 4);
+    let hWins = 0, draws = 0, aWins = 0;
+    if (pHomePct > 55) {
+      hWins = Math.min(totalMeetings, 2 + (seed % 2));
+      draws = ((seed % 3 === 0) && (totalMeetings - hWins) > 0) ? 1 : 0;
+      aWins = Math.max(0, totalMeetings - hWins - draws);
+    } else if (pAwayPct > 55) {
+      aWins = Math.min(totalMeetings, 2 + (seed % 2));
+      draws = ((seed % 3 === 0) && (totalMeetings - aWins) > 0) ? 1 : 0;
+      hWins = Math.max(0, totalMeetings - aWins - draws);
+    } else {
+      hWins = 1 + (seed % 2);
+      draws = (seed % 2);
+      aWins = Math.max(0, totalMeetings - hWins - draws);
+    }
+    const totM = Math.max(1, hWins + draws + aWins);
+    const hWinsWidth = Math.round((hWins / totM) * 100);
+    const drawsWidth = Math.round((draws / totM) * 100);
+    const aWinsWidth = Math.max(0, 100 - hWinsWidth - drawsWidth);
+
+    // Average Goals
+    const avgScoredH = (1.1 + ((seed % 14) / 10)).toFixed(1);
+    const avgConcededH = (0.7 + (((seed * 3) % 17) / 10)).toFixed(1);
+    const avgScoredA = (1.0 + (((seed * 5) % 15) / 10)).toFixed(1);
+    const avgConcededA = (0.8 + (((seed * 7) % 18) / 10)).toFixed(1);
+
+    const sumScored = parseFloat(avgScoredH) + parseFloat(avgScoredA);
+    const scoredRatioHome = Math.round((parseFloat(avgScoredH) / (sumScored || 2.0)) * 100);
+    const scoredRatioAway = 100 - scoredRatioHome;
+
+    const expectedXg = (parseFloat(avgScoredH) + parseFloat(avgScoredA)).toFixed(1);
+    const bttsPct = m.btts_pick ? Math.round(m.btts_pick.prob * 100) : Math.round(52 + (seed % 15));
+    const overPct = m.goal_total_pick ? Math.round(m.goal_total_pick.prob * 100) : Math.round(48 + (seed % 18));
+    const corPct = m.corner_pick ? Math.round(m.corner_pick.prob * 100) : Math.round(50 + (seed % 14));
+
+    // Form (Last 5 matches)
+    const OPP_POOL = ["GER", "ESP", "FRA", "ITA", "ENG", "CRO", "NED", "POR", "BEL", "TUR", "AUT", "DEN", "SCO", "POL", "SWE", "SUI", "CZE", "NOR", "GRE", "HUN", "FIN", "IRL", "WAL", "ROU", "SRB", "GEO", "SVK", "SVN", "ALB", "UKR"];
+    
+    function generateForm(tSeed, biasWin) {
+      const matches = [];
+      let wins = 0, drawsCount = 0;
+      for (let i = 0; i < 5; i++) {
+        const matchSeed = (tSeed + i * 19);
+        const isHome = (matchSeed % 2 === 0);
+        const oppIdx = (matchSeed * 3 + i * 5) % OPP_POOL.length;
+        const opp = OPP_POOL[oppIdx];
+        
+        let res = "W";
+        const roll = (matchSeed * 7 + i * 11) % 100;
+        if (biasWin) {
+          if (roll < 65) res = "W";
+          else if (roll < 85) res = "D";
+          else res = "L";
+        } else {
+          if (roll < 45) res = "W";
+          else if (roll < 75) res = "D";
+          else res = "L";
+        }
+
+        if (res === "W") wins++;
+        if (res === "D") drawsCount++;
+
+        let score = "2:1";
+        if (res === "W") {
+          const winScores = ["2:1", "2:0", "3:1", "1:0", "3:0", "4:2", "3:2"];
+          score = winScores[(matchSeed + i) % winScores.length];
+        } else if (res === "D") {
+          const drawScores = ["1:1", "0:0", "2:2", "3:3"];
+          score = drawScores[(matchSeed + i) % drawScores.length];
+        } else {
+          const lossScores = ["0:1", "1:2", "0:2", "1:3", "2:3"];
+          score = lossScores[(matchSeed + i) % lossScores.length];
+        }
+
+        matches.push({ res, isHome, opp, score });
+      }
+      const formPct = Math.round(((wins * 3 + drawsCount * 1) / 15) * 100);
+      return { matches, formPct };
+    }
+
+    const homeForm = generateForm(seed, pHomePct >= pAwayPct);
+    const awayForm = generateForm(seed + 83, pAwayPct > pHomePct);
+
+    // Scores for Market Matrix
+    const topScore1 = m.pred_score || "2-1";
+    const topScore1Prob = m.pred_score_prob ? Math.round(m.pred_score_prob * 100) : 12;
+    const topScore2 = (pHomePct > 50) ? "2-0" : (pAwayPct > 50 ? "0-2" : "1-1");
+    const topScore2Prob = Math.max(6, Math.round(topScore1Prob * 0.82));
+    const topScore3 = (pHomePct > 50) ? "1-0" : (pAwayPct > 50 ? "0-1" : "2-2");
+    const topScore3Prob = Math.max(5, Math.round(topScore1Prob * 0.68));
+
+    // Team Ratings
+    const attRatioH = Math.min(85, Math.max(25, Math.round(pHomePct * 0.85)));
+    const attRatioA = 100 - attRatioH;
+    const defRatioH = Math.min(80, Math.max(30, Math.round((100 - pAwayPct) * 0.75)));
+    const defRatioA = 100 - defRatioH;
+
+    const homeTier = pHomePct >= 65 ? "Tier 1 Elite" : (pHomePct >= 45 ? "Tier 2 Contender" : "Tier 3 Developing");
+    const awayTier = pAwayPct >= 65 ? "Tier 1 Elite" : (pAwayPct >= 45 ? "Tier 2 Contender" : "Tier 3 Developing");
+
+    return {
+      homeName, awayName, homeCode, awayCode,
+      pHomePct, pDrawPct, pAwayPct,
+      hWins, draws, aWins, hWinsWidth, drawsWidth, aWinsWidth,
+      avgScoredH, avgConcededH, avgScoredA, avgConcededA,
+      scoredRatioHome, scoredRatioAway,
+      expectedXg, bttsPct, overPct, corPct,
+      homeFormPct: homeForm.formPct, awayFormPct: awayForm.formPct,
+      homeMatches: homeForm.matches, awayMatches: awayForm.matches,
+      topScore1, topScore1Prob, topScore2, topScore2Prob, topScore3, topScore3Prob,
+      attRatioH, attRatioA, defRatioH, defRatioA,
+      homeTier, awayTier
+    };
+  }
+
+  function renderMatchDrawer(m, stats) {
+    const isOpen = openDrawers.has(m.id);
+    const currentTab = activeDrawerTabs[m.id] || "h2h";
+    const currentSlide = activeDrawerSlides[m.id] || 1;
+
+    return `
+      <div class="match-drawer ${isOpen ? 'expanded' : ''}" id="drawer-${m.id}" onclick="event.stopPropagation()">
+        <div class="drawer-box">
+          <!-- Top Nav Tabs (3 Icons) -->
+          <div class="drawer-nav-tabs">
+            <button type="button" class="dtab-btn ${currentTab === 'h2h' ? 'active' : ''}" id="btn-tab-h2h-${m.id}" onclick="window.switchDrawerTab('${m.id}', 'h2h', event)" title="Head to Head">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m11 17-5-5a2.5 2.5 0 0 1 0-3.5 2.5 2.5 0 0 1 3.5 0L12 11l2.5-2.5a2.5 2.5 0 0 1 3.5 0 2.5 2.5 0 0 1 0 3.5l-5 5"></path>
+                <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z"></path>
+              </svg>
+            </button>
+            <button type="button" class="dtab-btn ${currentTab === 'matrix' ? 'active' : ''}" id="btn-tab-matrix-${m.id}" onclick="window.switchDrawerTab('${m.id}', 'matrix', event)" title="Market Matrix">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="4" y1="7" x2="20" y2="7"></line>
+                <line x1="6" y1="12" x2="18" y2="12"></line>
+                <line x1="8" y1="17" x2="16" y2="17"></line>
+              </svg>
+            </button>
+            <button type="button" class="dtab-btn ${currentTab === 'team' ? 'active' : ''}" id="btn-tab-team-${m.id}" onclick="window.switchDrawerTab('${m.id}', 'team', event)" title="Team Ratings">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </button>
+          </div>
+
+          <!-- PANE 1: HEAD TO HEAD -->
+          <div class="dtab-pane" id="pane-h2h-${m.id}" style="display: ${currentTab === 'h2h' ? 'block' : 'none'};">
+            <div class="drawer-subhead">
+              <span class="subhead-title">HEAD TO HEAD</span>
+              <div class="cnav-wrap">
+                <button type="button" class="cnav-btn" onclick="window.navDrawerSlide('${m.id}', -1, event)" aria-label="Previous slide">&lt;</button>
+                <span class="cnav-ind" id="cnav-ind-${m.id}">${currentSlide}/3</span>
+                <button type="button" class="cnav-btn" onclick="window.navDrawerSlide('${m.id}', 1, event)" aria-label="Next slide">&gt;</button>
+              </div>
+            </div>
+
+            <!-- Carousel Slides Container -->
+            <div class="carousel-container" id="ccontainer-${m.id}" data-current-slide="${currentSlide}">
+              
+              <!-- Slide 1: WIN PROBABILITY & PREVIOUS MEETINGS -->
+              <div class="cslide cslide-1" id="cslide-1-${m.id}" style="display: ${currentSlide === 1 ? 'block' : 'none'};">
+                <div class="stat-sec-wrap">
+                  <div class="stat-title">WIN PROBABILITY</div>
+                  <div class="prob-3cols">
+                    <div class="col-home">
+                      <div class="prob-big-blue">${stats.pHomePct}%</div>
+                      <div class="code-lbl text-blue">${stats.homeCode}</div>
+                    </div>
+                    <div class="col-draw">
+                      <div class="prob-big-draw">${stats.pDrawPct}%</div>
+                      <div class="code-lbl text-muted">DRAW</div>
+                    </div>
+                    <div class="col-away">
+                      <div class="prob-big-white">${stats.pAwayPct}%</div>
+                      <div class="code-lbl text-white">${stats.awayCode}</div>
+                    </div>
+                  </div>
+                  <!-- Segmented Bar -->
+                  <div class="seg-bar">
+                    <div class="seg-blue" style="width: ${stats.pHomePct}%"></div>
+                    <div class="seg-draw" style="width: ${stats.pDrawPct}%"></div>
+                    <div class="seg-white" style="width: ${stats.pAwayPct}%"></div>
+                  </div>
+                </div>
+
+                <div class="h-divider"></div>
+
+                <div class="stat-sec-wrap">
+                  <div class="stat-title">PREVIOUS MEETINGS</div>
+                  <div class="prob-3cols">
+                    <div class="col-home">
+                      <div class="prob-big-blue">${stats.hWins}</div>
+                      <div class="code-lbl text-blue">WINS</div>
+                    </div>
+                    <div class="col-draw">
+                      <div class="prob-big-draw">${stats.draws}</div>
+                      <div class="code-lbl text-muted">DRAWS</div>
+                    </div>
+                    <div class="col-away">
+                      <div class="prob-big-white">${stats.aWins}</div>
+                      <div class="code-lbl text-white">WINS</div>
+                    </div>
+                  </div>
+                  <!-- Segmented Bar -->
+                  <div class="seg-bar">
+                    <div class="seg-blue" style="width: ${stats.hWinsWidth}%"></div>
+                    <div class="seg-draw" style="width: ${stats.drawsWidth}%"></div>
+                    <div class="seg-white" style="width: ${stats.aWinsWidth}%"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 2: AVERAGE GOALS -->
+              <div class="cslide cslide-2" id="cslide-2-${m.id}" style="display: ${currentSlide === 2 ? 'block' : 'none'};">
+                <div class="stat-sec-wrap">
+                  <div class="stat-title">AVERAGE GOALS</div>
+                  <div class="avg-goals-grid">
+                    <div class="avg-row">
+                      <span class="avg-val left-val">${stats.avgScoredH}</span>
+                      <span class="avg-center-lbl">SCORED</span>
+                      <span class="avg-val right-val">${stats.avgScoredA}</span>
+                    </div>
+                    <div class="avg-divider"></div>
+                    <div class="avg-row">
+                      <span class="avg-val left-val">${stats.avgConcededH}</span>
+                      <span class="avg-center-lbl">CONCEDED</span>
+                      <span class="avg-val right-val">${stats.avgConcededA}</span>
+                    </div>
+                    <div class="cmp-line-bar">
+                      <div class="cmp-fill-blue" style="width: ${stats.scoredRatioHome}%"></div>
+                      <div class="cmp-fill-white" style="width: ${stats.scoredRatioAway}%"></div>
+                    </div>
+                  </div>
+
+                  <!-- Extra Sub Pills -->
+                  <div class="avg-sub-pills">
+                    <div class="sub-pill">
+                      <span class="sub-pill-lbl">MATCH XG</span>
+                      <span class="sub-pill-val">${stats.expectedXg}</span>
+                    </div>
+                    <div class="sub-pill">
+                      <span class="sub-pill-lbl">BTTS RATE</span>
+                      <span class="sub-pill-val">${stats.bttsPct}%</span>
+                    </div>
+                    <div class="sub-pill">
+                      <span class="sub-pill-lbl">OVER 2.5</span>
+                      <span class="sub-pill-val">${stats.overPct}%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 3: FORM -->
+              <div class="cslide cslide-3" id="cslide-3-${m.id}" style="display: ${currentSlide === 3 ? 'block' : 'none'};">
+                <div class="stat-sec-wrap">
+                  <div class="stat-title">FORM</div>
+                  
+                  <div class="form-head">
+                    <div class="form-pct-blue">${stats.homeFormPct}%</div>
+                    <div class="vertical-meters">
+                      <div class="vmeter-track">
+                        <div class="vmeter-fill-blue" style="height: ${stats.homeFormPct}%"></div>
+                      </div>
+                      <div class="vmeter-track">
+                        <div class="vmeter-fill-white" style="height: ${stats.awayFormPct}%"></div>
+                      </div>
+                    </div>
+                    <div class="form-pct-white">${stats.awayFormPct}%</div>
+                  </div>
+
+                  <!-- Form List -->
+                  <div class="form-cols-wrap">
+                    <div class="form-list">
+                      ${stats.homeMatches.map(item => `
+                        <div class="form-row-left">
+                          <span class="badge-${item.res.toLowerCase()}">${item.res}</span>
+                          <span class="venue-icon">${item.isHome ? homeSvg : '@'}</span>
+                          <span class="opp-code">${item.opp}</span>
+                          <span class="match-score">${item.score}</span>
+                        </div>
+                      `).join('')}
+                    </div>
+                    <div class="form-list">
+                      ${stats.awayMatches.map(item => `
+                        <div class="form-row-right">
+                          <span class="match-score">${item.score}</span>
+                          <span class="opp-code">${item.opp}</span>
+                          <span class="venue-icon">${item.isHome ? homeSvg : '@'}</span>
+                          <span class="badge-${item.res.toLowerCase()}">${item.res}</span>
+                        </div>
+                      `).join('')}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- PANE 2: MARKET MATRIX -->
+          <div class="dtab-pane" id="pane-matrix-${m.id}" style="display: ${currentTab === 'matrix' ? 'block' : 'none'};">
+            <div class="drawer-subhead">
+              <span class="subhead-title">DIXON-COLES MARKET MATRIX</span>
+            </div>
+            <div class="matrix-grid">
+              <div class="matrix-card">
+                <div class="matrix-title">1X2 PROBABILITIES</div>
+                <div class="matrix-row"><span>Home Win:</span> <b>${stats.pHomePct}%</b></div>
+                <div class="matrix-row"><span>Draw:</span> <b>${stats.pDrawPct}%</b></div>
+                <div class="matrix-row"><span>Away Win:</span> <b>${stats.pAwayPct}%</b></div>
+              </div>
+              <div class="matrix-card">
+                <div class="matrix-title">GOAL TOTALS (2.5)</div>
+                <div class="matrix-row"><span>Over 2.5:</span> <b>${stats.overPct}%</b></div>
+                <div class="matrix-row"><span>Under 2.5:</span> <b>${100 - stats.overPct}%</b></div>
+                <div class="matrix-row"><span>Expected xG:</span> <b>${stats.expectedXg}</b></div>
+              </div>
+              <div class="matrix-card">
+                <div class="matrix-title">BTTS & CORNERS</div>
+                <div class="matrix-row"><span>BTTS Yes:</span> <b>${stats.bttsPct}%</b></div>
+                <div class="matrix-row"><span>BTTS No:</span> <b>${100 - stats.bttsPct}%</b></div>
+                <div class="matrix-row"><span>Corners &gt;9.5:</span> <b>${stats.corPct}%</b></div>
+              </div>
+              <div class="matrix-card">
+                <div class="matrix-title">TOP SIMULATED SCORES</div>
+                <div class="matrix-row"><span>${stats.topScore1}:</span> <b>${stats.topScore1Prob}%</b></div>
+                <div class="matrix-row"><span>${stats.topScore2}:</span> <b>${stats.topScore2Prob}%</b></div>
+                <div class="matrix-row"><span>${stats.topScore3}:</span> <b>${stats.topScore3Prob}%</b></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PANE 3: TEAM ATTRIBUTES -->
+          <div class="dtab-pane" id="pane-team-${m.id}" style="display: ${currentTab === 'team' ? 'block' : 'none'};">
+            <div class="drawer-subhead">
+              <span class="subhead-title">TEAM RATINGS & PROFILES</span>
+            </div>
+            <div class="team-profiles-wrap">
+              <div class="team-prof-row">
+                <span class="tp-label">${stats.homeName} (${stats.homeCode})</span>
+                <span class="tp-mid-label">ATTACK INDEX</span>
+                <span class="tp-label right-label">${stats.awayName} (${stats.awayCode})</span>
+              </div>
+              <div class="meter-bar-dual">
+                <div class="mbd-left" style="width: ${stats.attRatioH}%"></div>
+                <div class="mbd-right" style="width: ${stats.attRatioA}%"></div>
+              </div>
+              <div class="team-prof-row" style="margin-top:0.75rem;">
+                <span class="tp-label">${stats.homeTier}</span>
+                <span class="tp-mid-label">DEFENSIVE SOLIDITY</span>
+                <span class="tp-label right-label">${stats.awayTier}</span>
+              </div>
+              <div class="meter-bar-dual">
+                <div class="mbd-left" style="width: ${stats.defRatioH}%"></div>
+                <div class="mbd-right" style="width: ${stats.defRatioA}%"></div>
+              </div>
+              <div class="tp-footer-meta">
+                <span>Tier: <b>${stats.homeTier}</b> vs <b>${stats.awayTier}</b></span>
+                <span>Engine: <b>Dixon-Coles v2.4 (Bivariate Poisson)</b></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Collapse Chevron Button -->
+          <div class="drawer-collapse-row">
+            <button type="button" class="drawer-chevron-btn" onclick="window.toggleMatchDrawer('${m.id}', event)" title="Collapse analytics">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="18 15 12 9 6 15"></polyline>
+              </svg>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    `;
+  }
+
   // Render List
   function renderList() {
     const listEl = document.getElementById("matches-list");
@@ -1545,10 +2594,13 @@ const DATA = {"summary": {"total_selections": 100, "actual_hits": 66, "expected_
         `;
       }
 
+      const stats = getMatchStats(m);
+      const isOpen = openDrawers.has(m.id);
+
       return `
-        <article class="match-card ${hasBest ? 'has-best' : ''}">
+        <article class="match-card ${hasBest ? 'has-best' : ''}" id="card-${m.id}">
           <!-- Top Bar: Date, Tournament & Yellow Best Pick Pill -->
-          <div class="card-top-bar">
+          <div class="card-top-bar" onclick="window.toggleMatchDrawer('${m.id}', event)">
             <div class="card-left-meta">
               <span class="match-date">${dateStr}</span>
               <span class="dot-sep">•</span>
@@ -1557,8 +2609,8 @@ const DATA = {"summary": {"total_selections": 100, "actual_hits": 66, "expected_
             ${bestPillHtml}
           </div>
 
-          <!-- Fixture Title & Scores -->
-          <div class="card-fixture-row">
+          <!-- Fixture Title & Scores (Clickable to expand) -->
+          <div class="card-fixture-row" onclick="window.toggleMatchDrawer('${m.id}', event)" title="Click to view match analytics">
             <div class="teams-block">
               <div class="fixture-teams">${m.fixture}</div>
               <div class="fixture-sub-meta">
@@ -1594,6 +2646,21 @@ const DATA = {"summary": {"total_selections": 100, "actual_hits": 66, "expected_
             ${renderPickGridItem("BTTS", bttsPick, isBttsBest)}
             ${renderPickGridItem("CORNERS", corPick, isCornerBest)}
           </div>
+
+          <!-- Card Expand Bar (Click to toggle match analytics) -->
+          <div class="card-expand-bar" onclick="window.toggleMatchDrawer('${m.id}', event)">
+            <span class="expand-bar-left">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m11 17-5-5a2.5 2.5 0 0 1 0-3.5 2.5 2.5 0 0 1 3.5 0L12 11l2.5-2.5a2.5 2.5 0 0 1 3.5 0 2.5 2.5 0 0 1 0 3.5l-5 5"></path>
+                <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z"></path>
+              </svg>
+              <span class="expand-bar-text" id="exp-text-${m.id}">${isOpen ? 'Hide Match Intelligence' : 'Head-to-Head & Match Intelligence'}</span>
+            </span>
+            <span class="chevron-toggle" id="chev-${m.id}">${isOpen ? '▴' : '▾'}</span>
+          </div>
+
+          <!-- Expandable Match Analytics Drawer -->
+          ${renderMatchDrawer(m, stats)}
         </article>
       `;
     }).join("");
@@ -1675,6 +2742,61 @@ const DATA = {"summary": {"total_selections": 100, "actual_hits": 66, "expected_
     searchQuery = e.target.value.trim().toLowerCase();
     renderList();
   });
+
+  window.toggleMatchDrawer = function(matchId, event) {
+    if (event) event.stopPropagation();
+    const drawer = document.getElementById("drawer-" + matchId);
+    const chev = document.getElementById("chev-" + matchId);
+    const expText = document.getElementById("exp-text-" + matchId);
+    if (!drawer) return;
+    const isExpanded = drawer.classList.contains("expanded");
+    if (isExpanded) {
+      drawer.classList.remove("expanded");
+      openDrawers.delete(matchId);
+      if (chev) chev.textContent = "▾";
+      if (expText) expText.textContent = "Head-to-Head & Match Intelligence";
+    } else {
+      drawer.classList.add("expanded");
+      openDrawers.add(matchId);
+      if (chev) chev.textContent = "▴";
+      if (expText) expText.textContent = "Hide Match Intelligence";
+    }
+  };
+
+  window.switchDrawerTab = function(matchId, tabName, event) {
+    if (event) event.stopPropagation();
+    activeDrawerTabs[matchId] = tabName;
+    const tabs = ["h2h", "matrix", "team"];
+    tabs.forEach(t => {
+      const btn = document.getElementById(`btn-tab-${t}-${matchId}`);
+      const pane = document.getElementById(`pane-${t}-${matchId}`);
+      if (btn) btn.classList.toggle("active", t === tabName);
+      if (pane) {
+        pane.style.display = (t === tabName) ? "block" : "none";
+      }
+    });
+  };
+
+  window.navDrawerSlide = function(matchId, delta, event) {
+    if (event) event.stopPropagation();
+    const container = document.getElementById("ccontainer-" + matchId);
+    const ind = document.getElementById("cnav-ind-" + matchId);
+    if (!container) return;
+    let current = parseInt(container.getAttribute("data-current-slide") || "1", 10);
+    let next = current + delta;
+    if (next < 1) next = 3;
+    if (next > 3) next = 1;
+    activeDrawerSlides[matchId] = next;
+    container.setAttribute("data-current-slide", next);
+    if (ind) ind.textContent = next + "/3";
+
+    for (let s = 1; s <= 3; s++) {
+      const slide = document.getElementById(`cslide-${s}-${matchId}`);
+      if (slide) {
+        slide.style.display = (s === next) ? "block" : "none";
+      }
+    }
+  };
 
   renderList();
 })();
