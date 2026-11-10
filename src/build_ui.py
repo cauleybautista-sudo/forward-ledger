@@ -1201,8 +1201,14 @@ def generate_html():
       justify-content: space-between;
       font-family: var(--font-mono);
       font-size: 0.76rem;
-      padding: 0.2rem 0;
+      padding: 0.25rem 0.25rem;
       border-bottom: 1px solid #141416;
+      border-radius: 4px;
+      transition: background 0.15s ease;
+      cursor: pointer;
+    }}
+    .past5-row:hover {{
+      background: rgba(255, 255, 255, 0.03);
     }}
     .past5-row:last-child {{
       border-bottom: none;
@@ -1283,10 +1289,61 @@ def generate_html():
       min-width: 14px;
       justify-content: center;
     }}
+    .opp-code-wrap {{
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }}
     .opp-code {{
       color: #e4e4e7;
       font-weight: 600;
       min-width: 32px;
+      border-bottom: 1px dotted rgba(250, 204, 21, 0.45);
+      transition: all 0.15s ease;
+    }}
+    .opp-code-wrap:hover .opp-code,
+    .opp-code-wrap.active .opp-code,
+    .past5-row:hover .opp-code {{
+      color: var(--yellow);
+      border-bottom-color: var(--yellow);
+    }}
+    .opp-tooltip {{
+      position: absolute;
+      bottom: calc(100% + 7px);
+      left: 0;
+      background: #000000;
+      color: #ffffff;
+      border: 1px solid var(--yellow);
+      border-radius: 5px;
+      padding: 0.22rem 0.6rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(4px);
+      transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s ease;
+      z-index: 100;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.8), 0 0 10px rgba(250, 204, 21, 0.25);
+    }}
+    .opp-tooltip::after {{
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 12px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: var(--yellow) transparent transparent transparent;
+    }}
+    .opp-code-wrap:hover .opp-tooltip,
+    .opp-code-wrap.active .opp-tooltip {{
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
     }}
     .match-score {{
       color: #ffffff;
@@ -1978,6 +2035,20 @@ const DATA = {json_str};
     "Bosnia and Herzegovina": "BIH", "Republic of Ireland": "IRL", "Montenegro": "MNE", "Latvia": "LVA"
   }};
 
+  const CODE_TO_TEAM = {{
+    "GER": "Germany", "ESP": "Spain", "FRA": "France", "ITA": "Italy", "ENG": "England",
+    "CRO": "Croatia", "NED": "Netherlands", "POR": "Portugal", "BEL": "Belgium", "TUR": "Turkey",
+    "AUT": "Austria", "DEN": "Denmark", "SCO": "Scotland", "POL": "Poland", "SWE": "Sweden",
+    "SUI": "Switzerland", "CZE": "Czech Republic", "NOR": "Norway", "GRE": "Greece", "HUN": "Hungary",
+    "FIN": "Finland", "IRL": "Republic of Ireland", "WAL": "Wales", "ROU": "Romania", "SRB": "Serbia",
+    "SER": "Serbia", "GEO": "Georgia", "SVK": "Slovakia", "SVN": "Slovenia", "ALB": "Albania",
+    "UKR": "Ukraine", "ISR": "Israel", "NIR": "Northern Ireland", "ISL": "Iceland", "BUL": "Bulgaria",
+    "CYP": "Cyprus", "KOS": "Kosovo", "BLR": "Belarus", "ARM": "Armenia", "LUX": "Luxembourg",
+    "KAZ": "Kazakhstan", "AZE": "Azerbaijan", "EST": "Estonia", "FRO": "Faroe Islands", "MDA": "Moldova",
+    "GIB": "Gibraltar", "SMR": "San Marino", "LIE": "Liechtenstein", "AND": "Andorra", "MLT": "Malta",
+    "BIH": "Bosnia and Herzegovina", "MNE": "Montenegro", "LVA": "Latvia"
+  }};
+
   const homeSvg = `<svg class="venue-home" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle;"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>`;
 
   function getMatchStats(m) {{
@@ -2088,6 +2159,7 @@ const DATA = {json_str};
         const isHome = (matchSeed % 2 === 0);
         const oppIdx = (matchSeed * 3 + i * 5) % OPP_POOL.length;
         const opp = OPP_POOL[oppIdx];
+        const oppFull = CODE_TO_TEAM[opp] || opp;
         
         let res = "W";
         const roll = (matchSeed * 7 + i * 11) % 100;
@@ -2119,7 +2191,7 @@ const DATA = {json_str};
         const btts = isScoreBtts(score);
         if (btts) bttsHits++;
 
-        matches.push({{ res, isHome, opp, score, btts }});
+        matches.push({{ res, isHome, opp, oppFull, score, btts }});
       }}
       const formPct = Math.round(((wins * 3 + drawsCount * 1) / 15) * 100);
       const bttsRate = Math.round((bttsHits / 5) * 100);
@@ -2375,11 +2447,14 @@ const DATA = {json_str};
                 </div>
                 <div class="past5-matches-list">
                   ${{stats.homeMatches.map(item => `
-                    <div class="past5-row">
+                    <div class="past5-row" onclick="window.toggleOppTooltip(this.querySelector('.opp-code-wrap'), event)">
                       <div class="past5-left">
                         <span class="badge-${{item.res.toLowerCase()}}">${{item.res}}</span>
                         <span class="venue-icon">${{item.isHome ? homeSvg : '@'}}</span>
-                        <span class="opp-code">${{item.opp}}</span>
+                        <span class="opp-code-wrap" onclick="window.toggleOppTooltip(this, event)" title="${{item.oppFull}}">
+                          <span class="opp-code">${{item.opp}}</span>
+                          <span class="opp-tooltip">${{item.oppFull}}</span>
+                        </span>
                       </div>
                       <div class="past5-right">
                         <span class="match-score">${{item.score}}</span>
@@ -2398,11 +2473,14 @@ const DATA = {json_str};
                 </div>
                 <div class="past5-matches-list">
                   ${{stats.awayMatches.map(item => `
-                    <div class="past5-row">
+                    <div class="past5-row" onclick="window.toggleOppTooltip(this.querySelector('.opp-code-wrap'), event)">
                       <div class="past5-left">
                         <span class="badge-${{item.res.toLowerCase()}}">${{item.res}}</span>
                         <span class="venue-icon">${{item.isHome ? homeSvg : '@'}}</span>
-                        <span class="opp-code">${{item.opp}}</span>
+                        <span class="opp-code-wrap" onclick="window.toggleOppTooltip(this, event)" title="${{item.oppFull}}">
+                          <span class="opp-code">${{item.opp}}</span>
+                          <span class="opp-tooltip">${{item.oppFull}}</span>
+                        </span>
                       </div>
                       <div class="past5-right">
                         <span class="match-score">${{item.score}}</span>
@@ -2842,6 +2920,20 @@ const DATA = {json_str};
       }}
     }});
   }};
+
+  window.toggleOppTooltip = function(el, event) {{
+    if (event) event.stopPropagation();
+    if (!el) return;
+    const wasActive = el.classList.contains("active");
+    document.querySelectorAll(".opp-code-wrap.active").forEach(item => item.classList.remove("active"));
+    if (!wasActive) {{
+      el.classList.add("active");
+    }}
+  }};
+
+  document.addEventListener("click", () => {{
+    document.querySelectorAll(".opp-code-wrap.active").forEach(item => item.classList.remove("active"));
+  }});
 
   renderList();
 }})();
