@@ -1279,7 +1279,19 @@ const DATA = {json_str};
       }}
 
       // Date format
-      const dateStr = isPending ? m.kickoff.replace("T", " ").replace("Z", " UTC") : m.date;
+      let dateStr = m.date;
+      if (isPending && m.kickoff) {{
+        try {{
+          const kd = new Date(m.kickoff);
+          const datePart = kd.toLocaleDateString(undefined, {{ weekday: "short", month: "short", day: "numeric" }});
+          const timePart = kd.toLocaleTimeString(undefined, {{ hour: "2-digit", minute: "2-digit", hour12: false }});
+          const utcHours = String(kd.getUTCHours()).padStart(2, "0");
+          const utcMins = String(kd.getUTCMinutes()).padStart(2, "0");
+          dateStr = `${{datePart}} · ${{timePart}} (UTC ${{utcHours}}:${{utcMins}})`;
+        }} catch (e) {{
+          dateStr = m.kickoff.replace("T", " ").replace("Z", " UTC");
+        }}
+      }}
 
       // Yellow Highlighted Best Pick Pill
       let bestPillHtml = "";
