@@ -62,6 +62,25 @@ $$\text{Best Pick Index} = P(\text{Hit}) \times \text{EV}_{\text{edge}}$$
 * **Value Floor:** $\text{EV} = (P_{\text{model}} \times \text{Closing Odds}) - 1.0 \ge +2.5\%$ (Guaranteed positive mathematical edge).
 * **Optimization:** Evaluates all candidate markets for each fixture (Match Result 1X2, Goal Total O/U 2.5, BTTS, Corners) and isolates the option with the highest risk-adjusted compounding growth rate.
 
+### 1.4 Uncertainty Filter & Pass Protocol (No-Pick Formulation)
+
+A hallmark of mathematical rigor in sports forecasting is withholding wagers when outcome entropy is maximal or market edge is non-existent. Forcing a call on high-uncertainty coin flips erodes calibration and incurs avoidable bookmaker vig. The engine issues an official **NO PICK (PASS)** under these deterministic criteria:
+
+1. **Match Result (1X2 Market):**
+   - **Maximum Entropy Floor:** The favorite's win probability $P_{\max} < 44.0\%$.
+   - **Dead-Heat Separation:** The probability delta between the top two outcomes is $\Delta(P_{1\text{st}} - P_{2\text{nd}}) < 5.0\%$.
+   - **Action:** Graded as `NO PICK (PASS)` due to outcome ambiguity.
+2. **Goal Total (Over/Under 2.5 Market):**
+   - **Handicap Parity Band:** When $48.0\% \le P(\text{Over 2.5}) \le 52.0\%$ (within $\pm 2.0\%$ of $50/50$ parity centered on the 2.5 line).
+   - **Action:** Graded as `NO PICK (PASS)`.
+3. **Both Teams To Score (BTTS) & Corners (9.5 Line):**
+   - **Binary Noise Zone:** When $48.0\% \le P(\text{Market}) \le 52.0\%$.
+   - **Action:** Graded as `NO PICK (PASS)`.
+4. **Best Pick Disqualification:**
+   - If no individual market in a fixture simultaneously clears the Confidence Floor ($P \ge 52.0\%$) and the Value Floor ($\text{EV} \ge +2.5\%$), the match is designated with a neutral `NO BEST PICK (PASS)` pill.
+5. **Scoreboard Accounting:**
+   - Passed selections are isolated from active wagers, preventing uncalibrated noise from diluting realized ROI and Brier performance.
+
 ---
 
 ## 2. Pre-Kickoff Active Selections (Vercel Cron Target)

@@ -212,31 +212,58 @@ def sync_live_odds():
         best_under = max(under_odds) if under_odds else 1.85
 
         # 1. Match Result Market Option
-        if model["p_h"] >= model["p_a"] and model["p_h"] >= model["p_d"]:
-            res_prob, res_sel, res_odds = model["p_h"], "Home Win", best_h
-        elif model["p_a"] >= model["p_h"] and model["p_a"] >= model["p_d"]:
-            res_prob, res_sel, res_odds = model["p_a"], "Away Win", best_a
-        else:
-            res_prob, res_sel, res_odds = model["p_d"], "Draw", best_d
+        res_choices = [
+            ("Home Win", model["p_h"], best_h),
+            ("Draw", model["p_d"], best_d),
+            ("Away Win", model["p_a"], best_a)
+        ]
+        res_choices.sort(key=lambda x: x[1], reverse=True)
+        top_sel, top_prob, top_odds = res_choices[0]
+        sec_sel, sec_prob, sec_odds = res_choices[1]
 
-        ev_res = (res_prob * res_odds - 1.0) * 100
-        if ev_res < 3.0 and res_prob >= 0.50:
-            ev_res = 3.5 + (res_prob - 0.50) * 10.0
-            res_odds = round((1.0 + ev_res / 100.0) / res_prob, 2)
+        ev_res = (top_prob * top_odds - 1.0) * 100
+        if ev_res < 3.0 and top_prob >= 0.50:
+            ev_res = 3.5 + (top_prob - 0.50) * 10.0
+            top_odds = round((1.0 + ev_res / 100.0) / top_prob, 2)
         ev_res = round(ev_res, 1)
 
-        result_candidate = {
-            "market": "Match Result",
-            "selection": res_sel,
-            "prob": res_prob,
-            "odds": res_odds,
-            "edge": f"+{ev_res}%",
-            "edge_val": ev_res,
-            "composite_score": round(res_prob * ev_res, 2),
-            "status": "PENDING"
-        }
+        # UNCERTAINTY RULE (1X2):
+        # Pass if:
+        # a) Favorite is under 44.0% (3-way high-entropy chaos)
+        # b) Margin between 1st and 2nd outcome is under 5.0% (dead-heat toss-up)
+        res_is_pass = (top_prob < 0.44) or ((top_prob - sec_prob) < 0.05)
+        if res_is_pass:
+            result_candidate = {
+                "market": "Match Result",
+                "selection": "NO PICK (PASS)",
+                "target_selection": top_sel,
+                "prob": top_prob,
+                "odds": top_odds,
+                "edge": "0.0%",
+                "edge_val": 0.0,
+                "composite_score": 0.0,
+                "is_pass": True,
+                "reason": "High Entropy / Dead-Heat Toss-up",
+                "status": "PENDING"
+            }
+        else:
+            result_candidate = {
+                "market": "Match Result",
+                "selection": top_sel,
+                "prob": top_prob,
+                "odds": top_odds,
+                "edge": f"+{ev_res}%",
+                "edge_val": ev_res,
+                "composite_score": round(top_prob * ev_res, 2),
+                "is_pass": False,
+                "status": "PENDING"
+            }
 
         # 2. Goal Total Market Option
+        # UNCERTAINTY RULE (Goals O/U):
+        # If P(Over) is between 48.0% and 52.0%, it is sitting directly on the 2.5 spread boundary.
+        # It is a 50/50 coin flip -> PASS
+        gt_is_pass = (0.48 <= model["p_over"] <= 0.52)
         if model["p_over"] >= 0.50:
             gt_prob, gt_sel, gt_odds = model["p_over"], "Over 2.5", best_over
         else:
@@ -248,18 +275,37 @@ def sync_live_odds():
             gt_odds = round((1.0 + ev_gt / 100.0) / gt_prob, 2)
         ev_gt = round(ev_gt, 1)
 
-        gt_candidate = {
-            "market": "Goal Total",
-            "selection": gt_sel,
-            "prob": gt_prob,
-            "odds": gt_odds,
-            "edge": f"+{ev_gt}%",
-            "edge_val": ev_gt,
-            "composite_score": round(gt_prob * ev_gt, 2),
-            "status": "PENDING"
-        }
+        if gt_is_pass:
+            gt_candidate = {
+                "market": "Goal Total",
+                "selection": "NO PICK (PASS)",
+                "target_selection": gt_sel,
+                "prob": gt_prob,
+                "odds": gt_odds,
+                "edge": "0.0%",
+                "edge_val": 0.0,
+                "composite_score": 0.0,
+                "is_pass": True,
+                "reason": "Spread Coin-Flip (48%-52%)",
+                "status": "PENDING"
+            }
+        else:
+            gt_candidate = {
+                "market": "Goal Total",
+                "selection": gt_sel,
+                "prob": gt_prob,
+                "odds": gt_odds,
+                "edge": f"+{ev_gt}%",
+                "edge_val": ev_gt,
+                "composite_score": round(gt_prob * ev_gt, 2),
+                "is_pass": False,
+                "status": "PENDING"
+            }
 
         # 3. BTTS Market Option
+        # UNCERTAINTY RULE (BTTS):
+        # If P(BTTS Yes) is between 48.0% and 52.0%, binary parity with zero signal -> PASS
+        btts_is_pass = (0.48 <= model["p_btts_yes"] <= 0.52)
         if model["p_btts_yes"] >= 0.50:
             btts_prob, btts_sel, btts_odds = model["p_btts_yes"], "BTTS Yes", round(best_over * 0.94, 2)
         else:
@@ -271,18 +317,37 @@ def sync_live_odds():
             btts_odds = round((1.0 + ev_btts / 100.0) / btts_prob, 2)
         ev_btts = round(ev_btts, 1)
 
-        btts_candidate = {
-            "market": "BTTS",
-            "selection": btts_sel,
-            "prob": btts_prob,
-            "odds": btts_odds,
-            "edge": f"+{ev_btts}%",
-            "edge_val": ev_btts,
-            "composite_score": round(btts_prob * ev_btts, 2),
-            "status": "PENDING"
-        }
+        if btts_is_pass:
+            btts_candidate = {
+                "market": "BTTS",
+                "selection": "NO PICK (PASS)",
+                "target_selection": btts_sel,
+                "prob": btts_prob,
+                "odds": btts_odds,
+                "edge": "0.0%",
+                "edge_val": 0.0,
+                "composite_score": 0.0,
+                "is_pass": True,
+                "reason": "Binary Coin-Flip Parity (48%-52%)",
+                "status": "PENDING"
+            }
+        else:
+            btts_candidate = {
+                "market": "BTTS",
+                "selection": btts_sel,
+                "prob": btts_prob,
+                "odds": btts_odds,
+                "edge": f"+{ev_btts}%",
+                "edge_val": ev_btts,
+                "composite_score": round(btts_prob * ev_btts, 2),
+                "is_pass": False,
+                "status": "PENDING"
+            }
 
         # 4. Corners Market Option
+        # UNCERTAINTY RULE (Corners):
+        # If P(Corners Over 9.5) is between 48.0% and 52.0% -> PASS
+        cor_is_pass = (0.48 <= model["p_cor_over"] <= 0.52)
         if model["p_cor_over"] >= 0.50:
             cor_prob, cor_sel = model["p_cor_over"], "Corners Over 9.5"
         else:
@@ -291,32 +356,62 @@ def sync_live_odds():
         ev_cor = round(3.0 + (cor_prob - 0.50) * 8.0, 1)
         cor_odds = round((1.0 + ev_cor / 100.0) / cor_prob, 2)
 
-        cor_candidate = {
-            "market": "Corners",
-            "selection": cor_sel,
-            "prob": cor_prob,
-            "odds": cor_odds,
-            "edge": f"+{ev_cor}%",
-            "edge_val": ev_cor,
-            "composite_score": round(cor_prob * ev_cor, 2),
-            "status": "PENDING"
-        }
+        if cor_is_pass:
+            cor_candidate = {
+                "market": "Corners",
+                "selection": "NO PICK (PASS)",
+                "target_selection": cor_sel,
+                "prob": cor_prob,
+                "odds": cor_odds,
+                "edge": "0.0%",
+                "edge_val": 0.0,
+                "composite_score": 0.0,
+                "is_pass": True,
+                "reason": "Handicap Center Line (48%-52%)",
+                "status": "PENDING"
+            }
+        else:
+            cor_candidate = {
+                "market": "Corners",
+                "selection": cor_sel,
+                "prob": cor_prob,
+                "odds": cor_odds,
+                "edge": f"+{ev_cor}%",
+                "edge_val": ev_cor,
+                "composite_score": round(cor_prob * ev_cor, 2),
+                "is_pass": False,
+                "status": "PENDING"
+            }
 
         # DUAL-PARAMETER BEST PICK SELECTION:
-        # 1. Confidence floor: Hit probability P >= 52% (must be statistically favored to hit)
-        # 2. Value floor: EV edge >= +2.5% (guaranteed positive mathematical expectation)
-        # 3. Objective function: Composite Score = Confidence * Value (Edge)
+        # 1. Candidate must NOT be a PASS!
+        # 2. Confidence floor: Hit probability P >= 52% (must be statistically favored to hit)
+        # 3. Value floor: EV edge >= +2.5% (guaranteed positive mathematical expectation)
+        # 4. Objective function: Composite Score = Confidence * Value (Edge)
         all_candidates = [result_candidate, gt_candidate, btts_candidate, cor_candidate]
-        qualifying = [c for c in all_candidates if c["prob"] >= 0.52 and c["edge_val"] >= 2.5]
+        qualifying = [
+            c for c in all_candidates
+            if not c.get("is_pass") and c["prob"] >= 0.52 and c["edge_val"] >= 2.5
+        ]
         qualifying.sort(key=lambda x: x["composite_score"], reverse=True)
 
         if qualifying:
             best_pick_choice = qualifying[0]
             is_best = True
         else:
-            all_candidates.sort(key=lambda x: x["prob"], reverse=True)
-            best_pick_choice = all_candidates[0]
+            # NO QUALIFIED CANDIDATES: THE RIGOROUS MODEL PASSES
             is_best = False
+            best_pick_choice = {
+                "market": "None",
+                "selection": "NO PICK (PASS)",
+                "prob": None,
+                "odds": None,
+                "edge": "0.0%",
+                "composite_score": 0.0,
+                "is_pass": True,
+                "reason": "No market cleared confidence (>=52%) + value (>=+2.5%) hurdle",
+                "status": "PENDING"
+            }
 
         pending_match = {
             "id": match_id,
@@ -324,53 +419,21 @@ def sync_live_odds():
             "competition": "UEFA Nations League",
             "fixture": fixture,
             "selection": best_pick_choice["selection"],
-            "model_prob": best_pick_choice["prob"],
-            "closing_odds": best_pick_choice["odds"],
-            "implied_prob": round(1.0 / best_pick_choice["odds"], 3),
+            "model_prob": best_pick_choice["prob"] if best_pick_choice["prob"] is not None else 0.50,
+            "closing_odds": best_pick_choice["odds"] if best_pick_choice["odds"] is not None else 2.00,
+            "implied_prob": round(1.0 / best_pick_choice["odds"], 3) if best_pick_choice["odds"] is not None else 0.50,
             "edge": best_pick_choice["edge"],
             "status": "PENDING",
             "home_team": home,
             "away_team": away,
             "pred_score": model["pred_score"],
             "pred_score_prob": model["pred_score_prob"],
-            "result_pick": {
-                "pick": result_candidate["selection"],
-                "prob": result_candidate["prob"],
-                "odds": result_candidate["odds"],
-                "edge": result_candidate["edge"],
-                "status": "PENDING"
-            },
-            "goal_total_pick": {
-                "pick": gt_candidate["selection"],
-                "prob": gt_candidate["prob"],
-                "odds": gt_candidate["odds"],
-                "edge": gt_candidate["edge"],
-                "status": "PENDING"
-            },
-            "btts_pick": {
-                "pick": btts_candidate["selection"],
-                "prob": btts_candidate["prob"],
-                "odds": btts_candidate["odds"],
-                "edge": btts_candidate["edge"],
-                "status": "PENDING"
-            },
-            "corner_pick": {
-                "pick": cor_candidate["selection"],
-                "prob": cor_candidate["prob"],
-                "odds": cor_candidate["odds"],
-                "edge": cor_candidate["edge"],
-                "status": "PENDING"
-            },
+            "result_pick": result_candidate,
+            "goal_total_pick": gt_candidate,
+            "btts_pick": btts_candidate,
+            "corner_pick": cor_candidate,
             "is_best": is_best,
-            "best_pick": {
-                "market": best_pick_choice["market"],
-                "selection": best_pick_choice["selection"],
-                "prob": best_pick_choice["prob"],
-                "odds": best_pick_choice["odds"],
-                "edge": best_pick_choice["edge"],
-                "composite_score": best_pick_choice["composite_score"],
-                "status": "PENDING"
-            }
+            "best_pick": best_pick_choice
         }
         pending.append(pending_match)
 

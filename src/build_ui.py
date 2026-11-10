@@ -497,6 +497,38 @@ def generate_html():
       font-size: 0.72rem;
     }}
 
+    /* Neutral Pass / No Best Pick Pill */
+    .pass-pill {{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: #111111;
+      border: 1px solid var(--border-light);
+      color: var(--text-muted);
+      padding: 0.28rem 0.75rem;
+      border-radius: 9999px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }}
+    .pass-pill .pass-icon {{
+      color: #71717a;
+      font-weight: 700;
+      font-size: 0.8rem;
+    }}
+    .pass-pill .pass-lbl {{
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.68rem;
+      color: #a1a1aa;
+      font-weight: 600;
+    }}
+    .pass-pill .pass-reason {{
+      color: #71717a;
+      font-size: 0.72rem;
+    }}
+
     /* Match Fixture & Score Banner */
     .card-fixture-row {{
       display: flex;
@@ -686,6 +718,41 @@ def generate_html():
     }}
     .sub-pending {{
       color: var(--text-muted);
+    }}
+    .sub-pass {{
+      color: #71717a;
+      font-weight: 600;
+      font-size: 0.68rem;
+    }}
+
+    /* Pass / No-Pick Styling in Analytical Grid */
+    .pick-item.is-pass-item {{
+      border-color: #1a1a1a;
+      background: #090909;
+      opacity: 0.72;
+    }}
+    .pick-item.is-pass-item:hover {{
+      opacity: 0.95;
+      border-color: #27272a;
+    }}
+    .pass-tag {{
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      font-weight: 700;
+      color: #71717a;
+      background: #18181b;
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+      border: 1px solid #27272a;
+    }}
+    .pick-val.pass-val {{
+      color: #71717a !important;
+      font-style: italic;
+      font-weight: 500;
+    }}
+    .pass-sub {{
+      color: #52525b;
+      font-size: 0.68rem;
     }}
 
     /* Math Panel */
@@ -1002,6 +1069,13 @@ def generate_html():
    - Confidence Floor: Model Hit Probability P(Hit) &ge; 52.0% (statistically favored to win).
    - Value Floor: Positive Expected Value (EV) &ge; +2.5% over bookmaker consensus pricing.
    By maximizing the product of Confidence and Value, the engine eliminates low-probability underdog traps with deceptive edge while rejecting unbackable chalk favorites with negative expected value.
+
+6. UNCERTAINTY FILTER & PASS PROTOCOL (NO-PICK DISCIPLINE):
+   Quantitative models preserve capital and eliminate random-walk drag by withholding picks when outcome entropy is maximal or expected value is negative. Rather than forcing an arbitrary call on 50/50 noise, the engine issues an official PASS (NO PICK):
+   - Match Result (1X2): PASS when top outcome probability P &lt; 44.0%, or probability delta between 1st and 2nd choices &Delta;(P_1st - P_2nd) &lt; 5.0% (dead-heat toss-up).
+   - Goal Total (2.5 Line): PASS when 48.0% &le; P(Over 2.5) &le; 52.0% (parity coin-flip centered on handicap line).
+   - BTTS & Corners: PASS when probability lands within the symmetric noise band [48.0%, 52.0%].
+   - Best Pick Hurdle: PASS if no market clears both the 52.0% confidence floor and +2.5% EV hurdle. Passed selections do not drag down realized wagers.
     </div>
   </div>
 
@@ -1103,45 +1177,63 @@ const DATA = {json_str};
       return;
     }}
 
-    let gtHits = 0, gtTotal = 0, gtExp = 0;
-    let bttsHits = 0, bttsTotal = 0, bttsExp = 0;
-    let corHits = 0, corTotal = 0, corExp = 0;
-    let resHits = 0, resTotal = 0, resExp = 0;
-    let bestHits = 0, bestTotal = 0, bestExp = 0, bestUnits = 0;
+    let gtHits = 0, gtTotal = 0, gtExp = 0, gtPasses = 0;
+    let bttsHits = 0, bttsTotal = 0, bttsExp = 0, bttsPasses = 0;
+    let corHits = 0, corTotal = 0, corExp = 0, corPasses = 0;
+    let resHits = 0, resTotal = 0, resExp = 0, resPasses = 0;
+    let bestHits = 0, bestTotal = 0, bestExp = 0, bestUnits = 0, bestPasses = 0;
     let scoreHits = 0, scoreTotal = matches.length, scoreExp = 0;
     let rpsSumSq = 0, rpsCount = 0;
 
     matches.forEach(m => {{
       // Goals
       if (m.goal_total_pick) {{
-        gtTotal++;
-        gtExp += (m.goal_total_pick.prob || 0.58);
-        if (m.goal_total_pick.status === "HIT") gtHits++;
+        if (m.goal_total_pick.is_pass || (m.goal_total_pick.pick && m.goal_total_pick.pick.includes("NO PICK"))) {{
+          gtPasses++;
+        }} else {{
+          gtTotal++;
+          gtExp += (m.goal_total_pick.prob || 0.58);
+          if (m.goal_total_pick.status === "HIT") gtHits++;
+        }}
       }}
       // BTTS
       if (m.btts_pick) {{
-        bttsTotal++;
-        bttsExp += (m.btts_pick.prob || 0.60);
-        if (m.btts_pick.status === "HIT") bttsHits++;
+        if (m.btts_pick.is_pass || (m.btts_pick.pick && m.btts_pick.pick.includes("NO PICK"))) {{
+          bttsPasses++;
+        }} else {{
+          bttsTotal++;
+          bttsExp += (m.btts_pick.prob || 0.60);
+          if (m.btts_pick.status === "HIT") bttsHits++;
+        }}
       }}
       // Corners
       if (m.corner_pick) {{
-        corTotal++;
-        corExp += (m.corner_pick.prob || 0.61);
-        if (m.corner_pick.status === "HIT") corHits++;
+        if (m.corner_pick.is_pass || (m.corner_pick.pick && m.corner_pick.pick.includes("NO PICK"))) {{
+          corPasses++;
+        }} else {{
+          corTotal++;
+          corExp += (m.corner_pick.prob || 0.61);
+          if (m.corner_pick.status === "HIT") corHits++;
+        }}
       }}
       // Result
       if (m.result_pick) {{
-        resTotal++;
-        resExp += (m.result_pick.prob || 0.55);
-        if (m.result_pick.status === "HIT") resHits++;
+        if (m.result_pick.is_pass || (m.result_pick.pick && m.result_pick.pick.includes("NO PICK"))) {{
+          resPasses++;
+        }} else {{
+          resTotal++;
+          resExp += (m.result_pick.prob || 0.55);
+          if (m.result_pick.status === "HIT") resHits++;
+        }}
       }}
       // Best Pick
-      if (m.is_best && m.best_pick) {{
+      if (m.is_best && m.best_pick && !m.best_pick.is_pass && !(m.best_pick.selection && m.best_pick.selection.includes("NO PICK"))) {{
         bestTotal++;
         bestExp += (m.best_pick.prob || 0.62);
         if (m.best_pick.status === "HIT") bestHits++;
         bestUnits += (m.net_variance || 0);
+      }} else {{
+        bestPasses++;
       }}
       // Correct Score
       scoreExp += (m.pred_score_prob || 0.118);
@@ -1149,7 +1241,7 @@ const DATA = {json_str};
         scoreHits++;
       }}
       // RPS / Brier Score
-      if (!isPending && m.result_pick) {{
+      if (!isPending && m.result_pick && !m.result_pick.is_pass && !(m.result_pick.pick && m.result_pick.pick.includes("NO PICK"))) {{
         const y = (m.result_pick.status === "HIT") ? 1 : 0;
         const p = m.result_pick.prob || 0.55;
         rpsSumSq += Math.pow(p - y, 2);
@@ -1192,23 +1284,33 @@ const DATA = {json_str};
     }} else {{
       const gtAvg = gtTotal > 0 ? Math.round((gtExp / gtTotal) * 100) : 0;
       document.getElementById("sb-goals-val").textContent = gtAvg + "%";
-      document.getElementById("sb-goals-sub").textContent = `${{gtTotal}} pending · exp ${{gtExp.toFixed(1)}}`;
+      document.getElementById("sb-goals-sub").textContent = gtPasses > 0
+        ? `${{gtTotal}} active (${{gtPasses}} pass) · exp ${{gtExp.toFixed(1)}}`
+        : `${{gtTotal}} pending · exp ${{gtExp.toFixed(1)}}`;
 
       const bttsAvg = bttsTotal > 0 ? Math.round((bttsExp / bttsTotal) * 100) : 0;
       document.getElementById("sb-btts-val").textContent = bttsAvg + "%";
-      document.getElementById("sb-btts-sub").textContent = `${{bttsTotal}} pending · exp ${{bttsExp.toFixed(1)}}`;
+      document.getElementById("sb-btts-sub").textContent = bttsPasses > 0
+        ? `${{bttsTotal}} active (${{bttsPasses}} pass) · exp ${{bttsExp.toFixed(1)}}`
+        : `${{bttsTotal}} pending · exp ${{bttsExp.toFixed(1)}}`;
 
       const corAvg = corTotal > 0 ? Math.round((corExp / corTotal) * 100) : 0;
       document.getElementById("sb-corners-val").textContent = corAvg + "%";
-      document.getElementById("sb-corners-sub").textContent = `${{corTotal}} pending · exp ${{corExp.toFixed(1)}}`;
+      document.getElementById("sb-corners-sub").textContent = corPasses > 0
+        ? `${{corTotal}} active (${{corPasses}} pass) · exp ${{corExp.toFixed(1)}}`
+        : `${{corTotal}} pending · exp ${{corExp.toFixed(1)}}`;
 
       const resAvg = resTotal > 0 ? Math.round((resExp / resTotal) * 100) : 0;
       document.getElementById("sb-result-val").textContent = resAvg + "%";
-      document.getElementById("sb-result-sub").textContent = `${{resTotal}} pending · exp ${{resExp.toFixed(1)}}`;
+      document.getElementById("sb-result-sub").textContent = resPasses > 0
+        ? `${{resTotal}} active (${{resPasses}} pass) · exp ${{resExp.toFixed(1)}}`
+        : `${{resTotal}} pending · exp ${{resExp.toFixed(1)}}`;
 
       const bestAvg = bestTotal > 0 ? Math.round((bestExp / bestTotal) * 100) : 0;
       document.getElementById("sb-best-val").textContent = bestAvg + "%";
-      document.getElementById("sb-best-sub1").textContent = `${{bestTotal}} pending · exp ${{bestExp.toFixed(1)}}`;
+      document.getElementById("sb-best-sub1").textContent = bestPasses > 0
+        ? `${{bestTotal}} locks (${{bestPasses}} pass) · exp ${{bestExp.toFixed(1)}}`
+        : `${{bestTotal}} pending · exp ${{bestExp.toFixed(1)}}`;
       document.getElementById("sb-best-sub2").textContent = `· active locks:`;
       document.getElementById("sb-best-sub3").textContent = `+EV calls`;
 
@@ -1300,9 +1402,9 @@ const DATA = {json_str};
         }}
       }}
 
-      // Yellow Highlighted Best Pick Pill
+      // Yellow Highlighted Best Pick Pill OR Neutral Pass Pill
       let bestPillHtml = "";
-      if (hasBest) {{
+      if (hasBest && !m.best_pick.is_pass && !(m.best_pick.selection && m.best_pick.selection.includes("NO PICK"))) {{
         bestPillHtml = `
           <div class="best-pick-pill">
             <span class="star-icon">★</span>
@@ -1312,6 +1414,14 @@ const DATA = {json_str};
             <span class="best-cv-meta" style="font-size:0.68rem; color:var(--yellow); opacity:0.95; padding-left:0.4rem; border-left:1px solid rgba(250,204,21,0.35);">${{Math.round(m.best_pick.prob * 100)}}% Conf &bull; ${{m.best_pick.edge}} EV</span>
           </div>
         `;
+      }} else {{
+        bestPillHtml = `
+          <div class="pass-pill">
+            <span class="pass-icon">⊘</span>
+            <span class="pass-lbl">PASS:</span>
+            <span class="pass-reason">No Edge / High Uncertainty</span>
+          </div>
+        `;
       }}
 
       // Score presentation
@@ -1319,7 +1429,7 @@ const DATA = {json_str};
       const finalScore = m.final_score || "";
 
       // Check which pick is the best pick to highlight its item in yellow
-      const bestMarket = hasBest ? m.best_pick.market : "";
+      const bestMarket = (hasBest && !m.best_pick.is_pass) ? m.best_pick.market : "";
       const isResultBest = bestMarket === "Match Result";
       const isGoalsBest = bestMarket === "Goal Total";
       const isBttsBest = bestMarket === "BTTS";
@@ -1329,6 +1439,39 @@ const DATA = {json_str};
       const gtPick = m.goal_total_pick || {{ pick: "Under 2.5", prob: 0.58, odds: 1.82, status: "PENDING" }};
       const bttsPick = m.btts_pick || {{ pick: "BTTS Yes", prob: 0.60, odds: 1.75, status: "PENDING" }};
       const corPick = m.corner_pick || {{ pick: "Corners Over 9.5", prob: 0.61, odds: 1.80, status: "PENDING" }};
+
+      function renderPickGridItem(label, pickObj, isBestItem) {{
+        const isPass = pickObj.is_pass || (pickObj.pick && pickObj.pick.includes("NO PICK"));
+        if (isPass) {{
+          const probStr = pickObj.prob ? `${{Math.round(pickObj.prob * 100)}}% Ambiguous` : 'High Entropy';
+          return `
+            <div class="pick-item is-pass-item">
+              <div class="pick-head">
+                <span>${{label}}</span>
+                <span class="pass-tag">PASS</span>
+              </div>
+              <div class="pick-val pass-val">NO PICK</div>
+              <div class="pick-footer">
+                <span class="pass-sub">${{probStr}}</span>
+                <span class="sub-pass">${{pickObj.status === "PENDING" ? "PASS" : "VOID"}}</span>
+              </div>
+            </div>
+          `;
+        }}
+        return `
+          <div class="pick-item ${{isBestItem ? 'is-best-item' : ''}}">
+            <div class="pick-head">
+              <span>${{label}}</span>
+              ${{isBestItem ? '<span class="yellow-star">★ BEST</span>' : ''}}
+            </div>
+            <div class="pick-val">${{pickObj.pick}}</div>
+            <div class="pick-footer">
+              <span>${{Math.round(pickObj.prob * 100)}}% @ ${{pickObj.odds.toFixed(2)}}</span>
+              ${{renderSubStatus(pickObj.status)}}
+            </div>
+          </div>
+        `;
+      }}
 
       return `
         <article class="match-card ${{hasBest ? 'has-best' : ''}}">
@@ -1374,57 +1517,10 @@ const DATA = {json_str};
 
           <!-- 4-Picks Analytical Grid (All 4 dimensions displayed) -->
           <div class="picks-grid">
-            <!-- 1. Match Result (1X2) -->
-            <div class="pick-item ${{isResultBest ? 'is-best-item' : ''}}">
-              <div class="pick-head">
-                <span>MATCH RESULT (1X2)</span>
-                ${{isResultBest ? '<span class="yellow-star">★ BEST</span>' : ''}}
-              </div>
-              <div class="pick-val">${{resPick.pick}}</div>
-              <div class="pick-footer">
-                <span>${{Math.round(resPick.prob * 100)}}% @ ${{resPick.odds.toFixed(2)}}</span>
-                ${{renderSubStatus(resPick.status)}}
-              </div>
-            </div>
-
-            <!-- 2. Goal Total O/U -->
-            <div class="pick-item ${{isGoalsBest ? 'is-best-item' : ''}}">
-              <div class="pick-head">
-                <span>GOAL TOTAL (O/U)</span>
-                ${{isGoalsBest ? '<span class="yellow-star">★ BEST</span>' : ''}}
-              </div>
-              <div class="pick-val">${{gtPick.pick}}</div>
-              <div class="pick-footer">
-                <span>${{Math.round(gtPick.prob * 100)}}% @ ${{gtPick.odds.toFixed(2)}}</span>
-                ${{renderSubStatus(gtPick.status)}}
-              </div>
-            </div>
-
-            <!-- 3. BTTS -->
-            <div class="pick-item ${{isBttsBest ? 'is-best-item' : ''}}">
-              <div class="pick-head">
-                <span>BTTS</span>
-                ${{isBttsBest ? '<span class="yellow-star">★ BEST</span>' : ''}}
-              </div>
-              <div class="pick-val">${{bttsPick.pick}}</div>
-              <div class="pick-footer">
-                <span>${{Math.round(bttsPick.prob * 100)}}% @ ${{bttsPick.odds.toFixed(2)}}</span>
-                ${{renderSubStatus(bttsPick.status)}}
-              </div>
-            </div>
-
-            <!-- 4. Corners -->
-            <div class="pick-item ${{isCornerBest ? 'is-best-item' : ''}}">
-              <div class="pick-head">
-                <span>CORNERS</span>
-                ${{isCornerBest ? '<span class="yellow-star">★ BEST</span>' : ''}}
-              </div>
-              <div class="pick-val">${{corPick.pick}}</div>
-              <div class="pick-footer">
-                <span>${{Math.round(corPick.prob * 100)}}% @ ${{corPick.odds.toFixed(2)}}</span>
-                ${{renderSubStatus(corPick.status)}}
-              </div>
-            </div>
+            ${{renderPickGridItem("MATCH RESULT (1X2)", resPick, isResultBest)}}
+            ${{renderPickGridItem("GOAL TOTAL (O/U)", gtPick, isGoalsBest)}}
+            ${{renderPickGridItem("BTTS", bttsPick, isBttsBest)}}
+            ${{renderPickGridItem("CORNERS", corPick, isCornerBest)}}
           </div>
         </article>
       `;
