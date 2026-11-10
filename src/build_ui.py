@@ -1566,8 +1566,10 @@ def generate_html():
       gap: 0.45rem;
     }}
     .signal-bullet {{
-      font-size: 0.8rem;
-      line-height: 1.2;
+      color: var(--yellow);
+      font-size: 0.95rem;
+      line-height: 1.1;
+      user-select: none;
     }}
     .signal-item b {{
       color: #ffffff;
@@ -2679,15 +2681,15 @@ const DATA = {json_str};
               </div>
               <div class="quant-signals-box">
                 <div class="signal-item">
-                  <span class="signal-bullet">🎯</span>
+                  <span class="signal-bullet">&bull;</span>
                   <span><b>Tactical Matchup:</b> ${{stats.signalTactical}}</span>
                 </div>
                 <div class="signal-item">
-                  <span class="signal-bullet">📊</span>
+                  <span class="signal-bullet">&bull;</span>
                   <span><b>Poisson Peak:</b> ${{stats.signalPoisson}}</span>
                 </div>
                 <div class="signal-item">
-                  <span class="signal-bullet">⚖️</span>
+                  <span class="signal-bullet">&bull;</span>
                   <span><b>Pricing Discrepancy:</b> ${{stats.signalPricing}}</span>
                 </div>
               </div>
@@ -2927,13 +2929,33 @@ const DATA = {json_str};
     // Update the scoreboard percentages in real-time!
     updateScoreboard(activeCohort, isPending);
 
-    // Filter by market selection
+    function hasActiveMarketPick(pickObj) {{
+      if (!pickObj) return false;
+      if (pickObj.is_pass) return false;
+      const val = (pickObj.selection || pickObj.pick || "").toUpperCase();
+      if (!val || val.includes("NO PICK") || val.includes("PASS")) return false;
+      return true;
+    }}
+
+    // Filter by market selection (filters out matches with "NO PICK" for the selected market)
     const filtered = activeCohort.filter(m => {{
-      if (activeMarket === "best") return m.is_best === true;
-      if (activeMarket === "result") return !!m.result_pick;
-      if (activeMarket === "goals") return !!m.goal_total_pick;
-      if (activeMarket === "btts") return !!m.btts_pick;
-      if (activeMarket === "corners") return !!m.corner_pick;
+      if (activeMarket === "best") {{
+        const hasBest = m.is_best && m.best_pick;
+        return hasBest && hasActiveMarketPick(m.best_pick);
+      }}
+      if (activeMarket === "result") {{
+        const p = m.result_pick || {{ pick: m.selection, selection: m.selection, is_pass: false }};
+        return hasActiveMarketPick(p);
+      }}
+      if (activeMarket === "goals") {{
+        return hasActiveMarketPick(m.goal_total_pick);
+      }}
+      if (activeMarket === "btts") {{
+        return hasActiveMarketPick(m.btts_pick);
+      }}
+      if (activeMarket === "corners") {{
+        return hasActiveMarketPick(m.corner_pick);
+      }}
       return true;
     }});
 
@@ -2942,12 +2964,22 @@ const DATA = {json_str};
       c.classList.toggle("active-pick-card", c.getAttribute("data-pick-target") === activeMarket);
     }});
 
+    const marketLabels = {{
+      "all": "international calls",
+      "best": "verified Best Value (+EV) picks",
+      "result": "Match Result (1X2) picks",
+      "goals": "Goal Total (O/U) picks",
+      "btts": "BTTS picks",
+      "corners": "Corners (O/U) picks"
+    }};
+    const mLabel = marketLabels[activeMarket] || "calls";
+
     document.getElementById("table-caption").textContent = isPending
-      ? `Showing ${{filtered.length}} pending international calls`
-      : `Showing ${{filtered.length}} graded historical outcomes`;
+      ? `Showing ${{filtered.length}} pending ${{mLabel}}`
+      : `Showing ${{filtered.length}} graded ${{mLabel}}`;
 
     if (!filtered.length) {{
-      listEl.innerHTML = `<div class="empty-state">No international fixtures found matching your filter criteria.</div>`;
+      listEl.innerHTML = `<div class="empty-state">No international fixtures found with an active pick for this market matching your filter criteria.</div>`;
       return;
     }}
 
@@ -3308,11 +3340,11 @@ const DATA = {json_str};
       ? `${{m.best_pick.selection || m.best_pick.pick}} @ ${{formatOdds(m.best_pick.odds || 1.90)}} (${{Math.round((m.best_pick.prob || 0.55) * 100)}}% Conf)`
       : `Forecast: ${{m.pred_score || "2-1"}}`;
       
-    const shareContent = `⚽ Forward Ledger Quant Model\\n` +
-      `📅 ${{m.fixture}} (${{m.competition}})\\n` +
-      `🎯 Best Pick: ${{pickText}}\\n` +
-      `📊 Pred Score: ${{m.pred_score || "2-1"}}\\n` +
-      `🔒 Verified Immutable Ledger: https://int-soccer26v10.vercel.app`;
+    const shareContent = `FORWARD LEDGER QUANT MODEL\\n` +
+      `Match: ${{m.fixture}} (${{m.competition}})\\n` +
+      `Best Pick: ${{pickText}}\\n` +
+      `Pred Score: ${{m.pred_score || "2-1"}}\\n` +
+      `Verified Immutable Ledger: https://int-soccer26v10.vercel.app`;
 
     if (navigator.clipboard && navigator.clipboard.writeText) {{
       navigator.clipboard.writeText(shareContent).then(() => {{
