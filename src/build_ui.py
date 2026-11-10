@@ -995,6 +995,13 @@ def generate_html():
 4. CLOSING LINE VALUE (CLV):
    CLV = (Closing Odds / Stated Odds) - 1.0
    Systematic positive CLV demonstrates statistical edge against market consensus pricing.
+
+5. DUAL-PARAMETER BEST PICK MATRIX (CONFIDENCE & VALUE):
+   Best Pick Index = P(Hit) * Edge(EV)
+   Where:
+   - Confidence Floor: Model Hit Probability P(Hit) &ge; 52.0% (statistically favored to win).
+   - Value Floor: Positive Expected Value (EV) &ge; +2.5% over bookmaker consensus pricing.
+   By maximizing the product of Confidence and Value, the engine eliminates low-probability underdog traps with deceptive edge while rejecting unbackable chalk favorites with negative expected value.
     </div>
   </div>
 
@@ -1301,7 +1308,8 @@ const DATA = {json_str};
             <span class="star-icon">★</span>
             <span class="best-lbl">BEST PICK:</span>
             <span class="best-val">${{m.best_pick.selection}}</span>
-            <span class="best-odds">@ ${{m.best_pick.odds.toFixed(2)}} (${{m.best_pick.edge}})</span>
+            <span class="best-odds">@ ${{m.best_pick.odds.toFixed(2)}}</span>
+            <span class="best-cv-meta" style="font-size:0.68rem; color:var(--yellow); opacity:0.95; padding-left:0.4rem; border-left:1px solid rgba(250,204,21,0.35);">${{Math.round(m.best_pick.prob * 100)}}% Conf &bull; ${{m.best_pick.edge}} EV</span>
           </div>
         `;
       }}

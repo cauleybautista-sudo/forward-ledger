@@ -53,7 +53,14 @@ International soccer features lower frequencies, higher variance, and unique mot
 2. **Brier Score Thresholds:**
    - **< 0.2000:** Elite international predictive model.
    - **0.2000 - 0.2200:** Profitable, well-calibrated.
-   - **> 0.2300:** Requires model retraining (over-reliant on historical coefficients).
+### 1.3 Dual-Parameter Best Pick Formulation (Confidence & Value Matrix)
+
+A selection earns the **Best Pick** designation by maximizing the composite product of **Confidence (Hit Probability)** and **Value (Expected Value / Edge)**:
+$$\text{Best Pick Index} = P(\text{Hit}) \times \text{EV}_{\text{edge}}$$
+
+* **Confidence Floor:** $P(\text{Hit}) \ge 52.0\%$ (Must be statistically favored to hit).
+* **Value Floor:** $\text{EV} = (P_{\text{model}} \times \text{Closing Odds}) - 1.0 \ge +2.5\%$ (Guaranteed positive mathematical edge).
+* **Optimization:** Evaluates all candidate markets for each fixture (Match Result 1X2, Goal Total O/U 2.5, BTTS, Corners) and isolates the option with the highest risk-adjusted compounding growth rate.
 
 ---
 
