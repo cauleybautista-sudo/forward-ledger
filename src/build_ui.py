@@ -136,6 +136,51 @@ def generate_html():
     .header-meta b {{
       color: var(--white);
     }}
+    .header-right-tools {{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.45rem;
+    }}
+    .odds-format-selector {{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+      background: #09090b;
+      border: 1px solid #27272a;
+      border-radius: 9999px;
+      padding: 0.15rem 0.35rem 0.15rem 0.6rem;
+    }}
+    .odds-format-lbl {{
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      color: #71717a;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-right: 0.15rem;
+    }}
+    .odds-fmt-btn {{
+      background: none;
+      border: none;
+      border-radius: 9999px;
+      color: #a1a1aa;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 0.18rem 0.5rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }}
+    .odds-fmt-btn:hover {{
+      color: #ffffff;
+      background: #18181b;
+    }}
+    .odds-fmt-btn.active {{
+      background: var(--yellow);
+      color: #000000 !important;
+      font-weight: 800;
+      box-shadow: 0 0 8px rgba(250, 204, 21, 0.3);
+    }}
 
     /* Model Performance & Calibration Dashboard (Modern Vercel Card Grid) */
     .calibration-dashboard {{
@@ -594,6 +639,37 @@ def generate_html():
     .pass-pill .pass-reason {{
       color: #71717a;
       font-size: 0.72rem;
+    }}
+    .card-top-right {{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }}
+    .share-pick-btn {{
+      background: #111113;
+      border: 1px solid #27272a;
+      border-radius: 9999px;
+      color: #a1a1aa;
+      padding: 0.28rem 0.65rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.15s ease;
+      user-select: none;
+    }}
+    .share-pick-btn:hover {{
+      background: #18181b;
+      border-color: #3f3f46;
+      color: var(--yellow);
+    }}
+    .share-pick-btn.copied {{
+      background: rgba(34, 197, 94, 0.15);
+      border-color: rgba(34, 197, 94, 0.4);
+      color: #4ade80;
     }}
 
     /* Match Fixture & Score Banner */
@@ -1384,6 +1460,121 @@ def generate_html():
       color: var(--yellow);
     }}
 
+    /* Quantitative Edge Card & Model Signals */
+    .quant-edge-card {{
+      background: #0d0d0f;
+      border: 1px solid #27272a;
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }}
+    .quant-edge-header {{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 0.45rem;
+      border-bottom: 1px solid #1f1f23;
+    }}
+    .qedge-title {{
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      letter-spacing: 0.05em;
+    }}
+    .conviction-badge {{
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 0.15rem 0.5rem;
+      border-radius: 9999px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }}
+    .conviction-badge.high {{
+      background: rgba(250, 204, 21, 0.15);
+      border: 1px solid rgba(250, 204, 21, 0.4);
+      color: var(--yellow);
+    }}
+    .conviction-badge.moderate {{
+      background: #18181b;
+      border: 1px solid #27272a;
+      color: #e4e4e7;
+    }}
+    .conviction-badge.pass {{
+      background: #18181b;
+      border: 1px solid #27272a;
+      color: #71717a;
+    }}
+    .quant-edge-grid {{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+      text-align: center;
+    }}
+    .qedge-col {{
+      background: #111113;
+      border: 1px solid #1f1f23;
+      border-radius: 6px;
+      padding: 0.45rem 0.35rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }}
+    .qedge-lbl {{
+      font-family: var(--font-mono);
+      font-size: 0.58rem;
+      color: #71717a;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }}
+    .qedge-val {{
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #ffffff;
+    }}
+    .qedge-val.gold {{
+      color: var(--yellow);
+    }}
+    .qedge-sub {{
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      color: #a1a1aa;
+    }}
+    .quant-signals-box {{
+      background: #08080a;
+      border: 1px solid #1c1c20;
+      border-radius: 6px;
+      padding: 0.55rem 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      font-size: 0.73rem;
+      color: #d4d4d8;
+      line-height: 1.4;
+    }}
+    .signal-item {{
+      display: flex;
+      align-items: flex-start;
+      gap: 0.45rem;
+    }}
+    .signal-bullet {{
+      font-size: 0.8rem;
+      line-height: 1.2;
+    }}
+    .signal-item b {{
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+    }}
+
     /* Drawer Collapse Button */
     .drawer-collapse-row {{
       display: flex;
@@ -1506,6 +1697,17 @@ def generate_html():
         flex-direction: column;
         align-items: flex-start;
       }}
+      .card-top-right {{
+        width: 100%;
+        justify-content: space-between;
+      }}
+      .header-right-tools {{
+        align-items: flex-start;
+        width: 100%;
+      }}
+      .quant-edge-grid {{
+        grid-template-columns: repeat(2, 1fr);
+      }}
       .matrix-grid {{
         grid-template-columns: 1fr;
       }}
@@ -1551,9 +1753,17 @@ def generate_html():
         <span class="pulse-dot"></span> Active
       </div>
     </div>
-    <div class="header-meta">
-      <span>Jurisdiction: <b>FIFA International</b></span>
-      <span>Engine: <b>Poisson & Dixon-Coles</b></span>
+    <div class="header-right-tools">
+      <div class="odds-format-selector" title="Switch odds format across all markets">
+        <span class="odds-format-lbl">ODDS:</span>
+        <button type="button" class="odds-fmt-btn active" id="btn-fmt-dec" onclick="window.setOddsFormat('dec')">DEC</button>
+        <button type="button" class="odds-fmt-btn" id="btn-fmt-us" onclick="window.setOddsFormat('us')">US</button>
+        <button type="button" class="odds-fmt-btn" id="btn-fmt-frac" onclick="window.setOddsFormat('frac')">FRAC</button>
+      </div>
+      <div class="header-meta">
+        <span>Jurisdiction: <b>FIFA International</b></span>
+        <span>Engine: <b>Poisson &amp; Dixon-Coles</b></span>
+      </div>
     </div>
   </header>
 
@@ -2021,6 +2231,43 @@ const DATA = {json_str};
   const activeDrawerTabs = {{}};
   const activeDrawerSlides = {{}};
 
+  let activeOddsFormat = "dec";
+  try {{
+    const savedFmt = localStorage.getItem("fl_odds_format");
+    if (savedFmt && ["dec", "us", "frac"].includes(savedFmt)) {{
+      activeOddsFormat = savedFmt;
+    }}
+  }} catch (e) {{}}
+
+  function formatOdds(decVal) {{
+    const d = parseFloat(decVal);
+    if (isNaN(d) || d <= 1) return decVal || "--";
+    if (activeOddsFormat === "us") {{
+      return d >= 2.0 ? `+${{Math.round((d - 1) * 100)}}` : `-${{Math.round(100 / (d - 1))}}`;
+    }}
+    if (activeOddsFormat === "frac") {{
+      const val = d - 1;
+      const commonFracs = [
+        [1, 10], [1, 5], [1, 4], [2, 7], [1, 3], [4, 11], [2, 5], [4, 9], [1, 2],
+        [8, 15], [4, 7], [3, 5], [8, 13], [4, 6], [7, 10], [3, 4], [4, 5], [5, 6],
+        [9, 10], [1, 1], [11, 10], [6, 5], [5, 4], [11, 8], [7, 5], [6, 4], [8, 5],
+        [13, 8], [7, 4], [9, 5], [15, 8], [2, 1], [9, 4], [12, 5], [5, 2], [13, 5],
+        [11, 4], [14, 5], [3, 1], [10, 3], [7, 2], [4, 1], [9, 2], [5, 1]
+      ];
+      let best = commonFracs[0];
+      let minDiff = 999;
+      for (const [num, den] of commonFracs) {{
+        const diff = Math.abs((num / den) - val);
+        if (diff < minDiff) {{
+          minDiff = diff;
+          best = [num, den];
+        }}
+      }}
+      return `${{best[0]}}/${{best[1]}}`;
+    }}
+    return d.toFixed(2);
+  }}
+
   const TEAM_CODES = {{
     "France": "FRA", "Germany": "GER", "Spain": "ESP", "England": "ENG", "Italy": "ITA",
     "Portugal": "POR", "Belgium": "BEL", "Netherlands": "NED", "Croatia": "CRO", "Denmark": "DEN",
@@ -2218,6 +2465,47 @@ const DATA = {json_str};
     const homeTier = pHomePct >= 65 ? "Tier 1 Elite" : (pHomePct >= 45 ? "Tier 2 Contender" : "Tier 3 Developing");
     const awayTier = pAwayPct >= 65 ? "Tier 1 Elite" : (pAwayPct >= 45 ? "Tier 2 Contender" : "Tier 3 Developing");
 
+    // Expected Value (+EV) and Kelly Criterion Calculation for 1X2 Market
+    const topPickProb = (m.result_pick && typeof m.result_pick.prob === "number") 
+      ? Math.round(m.result_pick.prob * 100) 
+      : (pHomePct >= pAwayPct ? pHomePct : pAwayPct);
+    const probDec = topPickProb / 100;
+    const fairOddsDec = (1 / probDec);
+    const fairOdds = formatOdds(fairOddsDec);
+    const rawMarketOdds = (m.result_pick && typeof m.result_pick.odds === "number") 
+      ? m.result_pick.odds 
+      : ((m.best_pick && typeof m.best_pick.odds === "number") ? m.best_pick.odds : 1.95);
+    const marketOdds = formatOdds(rawMarketOdds);
+    const impliedProb = Math.round((1 / rawMarketOdds) * 100);
+    const ev = (probDec * rawMarketOdds) - 1;
+    const evPctVal = (ev * 100).toFixed(1);
+    const evPct = (ev >= 0 ? "+" : "") + evPctVal + "%";
+
+    let kellyStake = "0.5u";
+    if (ev > 0 && rawMarketOdds > 1.0) {{
+      const fullKelly = ev / (rawMarketOdds - 1);
+      const halfKelly = fullKelly / 2;
+      const rawUnits = Math.round(halfKelly * 30 * 10) / 10;
+      const finalUnits = Math.min(3.5, Math.max(0.5, rawUnits)).toFixed(1);
+      kellyStake = finalUnits + "u";
+    }}
+
+    let edgeTierLabel = "Moderate Edge";
+    let edgeTierClass = "moderate";
+    if (ev >= 0.08 || topPickProb >= 60) {{
+      edgeTierLabel = "High Conviction";
+      edgeTierClass = "high";
+    }} else if (ev < 0.02 && topPickProb < 48) {{
+      edgeTierLabel = "Low Edge / Pass";
+      edgeTierClass = "pass";
+    }}
+
+    const favoriteTeam = pHomePct >= pAwayPct ? homeName : awayName;
+    const underdogTeam = pHomePct >= pAwayPct ? awayName : homeName;
+    const signalTactical = `${{favoriteTeam}} demonstrates superior attacking efficiency (${{pHomePct >= pAwayPct ? avgScoredH : avgScoredA}} goals/gm) against ${{underdogTeam}}'s defensive structure.`;
+    const signalPoisson = `Bivariate Poisson simulation peaks at ${{topScore1}} (${{topScore1Prob}}% probability density), with secondary distribution weighted toward ${{topScore2}}.`;
+    const signalPricing = `Model projects a ${{topPickProb}}% true probability (${{fairOdds}}) vs bookmaker consensus ${{impliedProb}}%, unlocking a ${{evPct}} expected value margin.`;
+
     return {{
       homeName, awayName, homeCode, awayCode,
       pHomePct, pDrawPct, pAwayPct,
@@ -2233,7 +2521,9 @@ const DATA = {json_str};
       homeMatches: homeForm.matches, awayMatches: awayForm.matches,
       topScore1, topScore1Prob, topScore2, topScore2Prob, topScore3, topScore3Prob,
       attRatioH, attRatioA, defRatioH, defRatioA,
-      homeTier, awayTier
+      homeTier, awayTier,
+      fairOdds, marketOdds, impliedProb, evPct, kellyStake, edgeTierLabel, edgeTierClass,
+      signalTactical, signalPoisson, signalPricing
     }};
   }}
 
@@ -2351,6 +2641,55 @@ const DATA = {json_str};
               <div class="sub-metric-pill">
                 <span class="sub-metric-lbl">2ND SIM SCORE</span>
                 <span class="sub-metric-val">${{stats.topScore2}}</span>
+              </div>
+            </div>
+
+            <!-- Quantitative Edge & Key Model Signals -->
+            <div class="quant-edge-card">
+              <div class="quant-edge-header">
+                <div class="qedge-title">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--yellow);">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                  <span>QUANTITATIVE EDGE &amp; SIGNALS</span>
+                </div>
+                <span class="conviction-badge ${{stats.edgeTierClass}}">${{stats.edgeTierLabel}}</span>
+              </div>
+              <div class="quant-edge-grid">
+                <div class="qedge-col">
+                  <span class="qedge-lbl">Model Fair</span>
+                  <span class="qedge-val gold">${{stats.fairOdds}}</span>
+                  <span class="qedge-sub">True Price</span>
+                </div>
+                <div class="qedge-col">
+                  <span class="qedge-lbl">Market Consensus</span>
+                  <span class="qedge-val">${{stats.marketOdds}}</span>
+                  <span class="qedge-sub">${{stats.impliedProb}}% Implied</span>
+                </div>
+                <div class="qedge-col">
+                  <span class="qedge-lbl">Expected Value</span>
+                  <span class="qedge-val gold">${{stats.evPct}}</span>
+                  <span class="qedge-sub">+EV Edge</span>
+                </div>
+                <div class="qedge-col">
+                  <span class="qedge-lbl">Kelly Stake</span>
+                  <span class="qedge-val">${{stats.kellyStake}}</span>
+                  <span class="qedge-sub">Half-Kelly</span>
+                </div>
+              </div>
+              <div class="quant-signals-box">
+                <div class="signal-item">
+                  <span class="signal-bullet">🎯</span>
+                  <span><b>Tactical Matchup:</b> ${{stats.signalTactical}}</span>
+                </div>
+                <div class="signal-item">
+                  <span class="signal-bullet">📊</span>
+                  <span><b>Poisson Peak:</b> ${{stats.signalPoisson}}</span>
+                </div>
+                <div class="signal-item">
+                  <span class="signal-bullet">⚖️</span>
+                  <span><b>Pricing Discrepancy:</b> ${{stats.signalPricing}}</span>
+                </div>
               </div>
             </div>
           </div>
@@ -2649,7 +2988,7 @@ const DATA = {json_str};
       let bestPillHtml = "";
       const bestChoiceVal = (hasBest && m.best_pick) ? (m.best_pick.selection || m.best_pick.pick || "") : "";
       if (hasBest && !m.best_pick.is_pass && !bestChoiceVal.includes("NO PICK")) {{
-        const bOdds = (m.best_pick.odds && typeof m.best_pick.odds === 'number') ? m.best_pick.odds.toFixed(2) : "1.90";
+        const bOdds = (m.best_pick.odds && typeof m.best_pick.odds === 'number') ? formatOdds(m.best_pick.odds) : formatOdds(1.90);
         const bProb = (m.best_pick.prob && typeof m.best_pick.prob === 'number') ? Math.round(m.best_pick.prob * 100) : 55;
         const bEdge = m.best_pick.edge || "+3.0%";
         bestPillHtml = `
@@ -2707,7 +3046,7 @@ const DATA = {json_str};
           `;
         }}
 
-        const oddsStr = (pickObj && typeof pickObj.odds === 'number') ? pickObj.odds.toFixed(2) : '1.90';
+        const oddsStr = (pickObj && typeof pickObj.odds === 'number') ? formatOdds(pickObj.odds) : formatOdds(1.90);
         const probVal = (pickObj && typeof pickObj.prob === 'number') ? Math.round(pickObj.prob * 100) : 50;
         return `
           <div class="pick-item ${{isBestItem ? 'is-best-item' : ''}}" onclick="window.openDrawerToMarket('${{matchId}}', '${{marketKey}}', event)" title="Click to view ${{label}} analytics" style="cursor: pointer;">
@@ -2736,7 +3075,19 @@ const DATA = {json_str};
               <span class="dot-sep">•</span>
               <span class="match-comp">${{m.competition}}</span>
             </div>
-            ${{bestPillHtml}}
+            <div class="card-top-right">
+              ${{bestPillHtml}}
+              <button type="button" class="share-pick-btn" id="share-btn-${{m.id}}" onclick="window.copyMatchPick('${{m.id}}', event)" title="Copy verifiable forecast and odds to clipboard">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="18" cy="5" r="3"></circle>
+                  <circle cx="6" cy="12" r="3"></circle>
+                  <circle cx="18" cy="19" r="3"></circle>
+                  <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                  <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                </svg>
+                <span>Share</span>
+              </button>
+            </div>
           </div>
 
           <!-- Fixture Title & Scores (Clickable to expand) -->
@@ -2933,6 +3284,58 @@ const DATA = {json_str};
 
   document.addEventListener("click", () => {{
     document.querySelectorAll(".opp-code-wrap.active").forEach(item => item.classList.remove("active"));
+  }});
+
+  window.setOddsFormat = function(fmt) {{
+    if (!["dec", "us", "frac"].includes(fmt)) return;
+    activeOddsFormat = fmt;
+    try {{
+      localStorage.setItem("fl_odds_format", fmt);
+    }} catch (e) {{}}
+    document.querySelectorAll(".odds-fmt-btn").forEach(b => {{
+      b.classList.toggle("active", b.getAttribute("data-fmt") === fmt);
+    }});
+    renderList();
+  }};
+
+  window.copyMatchPick = function(matchId, event) {{
+    if (event) event.stopPropagation();
+    const sourceData = activeTab === "pending" ? DATA.pending : DATA.graded;
+    const m = sourceData.find(item => item.id === matchId);
+    if (!m) return;
+    
+    const pickText = (m.best_pick && (m.best_pick.selection || m.best_pick.pick) && !m.best_pick.is_pass)
+      ? `${{m.best_pick.selection || m.best_pick.pick}} @ ${{formatOdds(m.best_pick.odds || 1.90)}} (${{Math.round((m.best_pick.prob || 0.55) * 100)}}% Conf)`
+      : `Forecast: ${{m.pred_score || "2-1"}}`;
+      
+    const shareContent = `⚽ Forward Ledger Quant Model\\n` +
+      `📅 ${{m.fixture}} (${{m.competition}})\\n` +
+      `🎯 Best Pick: ${{pickText}}\\n` +
+      `📊 Pred Score: ${{m.pred_score || "2-1"}}\\n` +
+      `🔒 Verified Immutable Ledger: https://int-soccer26v10.vercel.app`;
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {{
+      navigator.clipboard.writeText(shareContent).then(() => {{
+        const btn = document.getElementById("share-btn-" + matchId);
+        if (btn) {{
+          btn.classList.add("copied");
+          btn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Copied!</span>`;
+          setTimeout(() => {{
+            btn.classList.remove("copied");
+            btn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg><span>Share</span>`;
+          }}, 2000);
+        }}
+      }}).catch(() => {{
+        window.prompt("Copy forecast to clipboard:", shareContent);
+      }});
+    }} else {{
+      window.prompt("Copy forecast to clipboard:", shareContent);
+    }}
+  }};
+
+  // Initial sync for odds buttons
+  document.querySelectorAll(".odds-fmt-btn").forEach(b => {{
+    b.classList.toggle("active", b.getAttribute("data-fmt") === activeOddsFormat);
   }});
 
   renderList();
