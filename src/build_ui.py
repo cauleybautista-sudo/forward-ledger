@@ -826,22 +826,29 @@ def generate_html():
     .card-fixture-row {{
       cursor: pointer;
     }}
+    .pick-item {{
+      cursor: pointer;
+    }}
+    .pick-item:hover {{
+      border-color: rgba(250, 204, 21, 0.45);
+      background: #141416;
+    }}
     .card-expand-bar {{
       margin-top: 0.25rem;
       padding-top: 0.65rem;
-      border-top: 1px solid #161616;
+      border-top: 1px solid #1a1a1c;
       display: flex;
       justify-content: space-between;
       align-items: center;
       cursor: pointer;
-      color: #94a3b8;
+      color: #a1a1aa;
       font-family: var(--font-mono);
       font-size: 0.75rem;
       transition: all 0.15s ease;
       user-select: none;
     }}
     .card-expand-bar:hover {{
-      color: var(--white);
+      color: var(--yellow);
     }}
     .expand-bar-left {{
       display: inline-flex;
@@ -849,15 +856,15 @@ def generate_html():
       gap: 0.5rem;
     }}
     .expand-bar-left svg {{
-      color: #38bdf8;
+      color: var(--yellow);
     }}
     .chevron-toggle {{
       font-size: 0.95rem;
-      color: #94a3b8;
+      color: #a1a1aa;
       transition: transform 0.2s ease;
     }}
 
-    /* Expandable Match Drawer */
+    /* Expandable Match Drawer (Black, White & Gold Theme) */
     .match-drawer {{
       display: none;
       margin-top: 0.5rem;
@@ -871,101 +878,80 @@ def generate_html():
       to {{ opacity: 1; transform: translateY(0); }}
     }}
     .drawer-box {{
-      background: #090e17;
-      border: 1px solid #1a2333;
+      background: #09090b;
+      border: 1px solid #1f1f23;
       border-radius: 10px;
-      padding: 0.85rem 1.1rem 0.5rem 1.1rem;
+      padding: 0.85rem 1.1rem 0.65rem 1.1rem;
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      gap: 0.85rem;
       position: relative;
       cursor: default;
       box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.04);
     }}
 
-    /* Drawer Top Nav Tabs (3 Icons) */
+    /* Drawer Top Nav Tabs (4 Tabs in Black, White, Gold) */
     .drawer-nav-tabs {{
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      border-bottom: 1px solid #1a2333;
-      padding-bottom: 0.5rem;
-      margin-bottom: 0.35rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+      border-bottom: 1px solid #1f1f23;
+      padding-bottom: 0.65rem;
     }}
     .dtab-btn {{
-      background: none;
-      border: none;
-      padding: 0.4rem 1.75rem;
-      color: #64748b;
+      background: #111113;
+      border: 1px solid #27272a;
+      border-radius: 6px;
+      padding: 0.45rem 0.6rem;
+      color: #a1a1aa;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
+      gap: 0.45rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
       transition: all 0.15s ease;
+      white-space: nowrap;
     }}
     .dtab-btn:hover {{
-      color: #94a3b8;
+      color: var(--white);
+      border-color: #3f3f46;
+      background: #18181b;
     }}
     .dtab-btn.active {{
-      color: #ffffff;
+      color: var(--yellow);
+      background: rgba(250, 204, 21, 0.08);
+      border-color: var(--yellow-border);
+      box-shadow: 0 0 10px rgba(250, 204, 21, 0.15);
     }}
-    .dtab-btn.active::after {{
-      content: "";
-      position: absolute;
-      bottom: -0.55rem;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: #ffffff;
-      border-radius: 2px;
+    .dtab-btn svg {{
+      opacity: 0.85;
+    }}
+    .dtab-btn.active svg {{
+      opacity: 1;
+      color: var(--yellow);
     }}
 
-    /* Subhead (HEAD TO HEAD & < 1/3 >) */
+    /* Subhead */
     .drawer-subhead {{
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.15rem 0 0.5rem 0;
+      padding: 0.1rem 0 0.4rem 0;
     }}
     .subhead-title {{
       font-family: var(--font-mono);
-      font-size: 0.72rem;
+      font-size: 0.74rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: #94a3b8;
-    }}
-    .cnav-wrap {{
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-    }}
-    .cnav-btn {{
-      background: none;
-      border: none;
-      color: #94a3b8;
-      cursor: pointer;
-      font-size: 0.95rem;
-      padding: 0.1rem 0.4rem;
-      line-height: 1;
-      border-radius: 4px;
-      transition: all 0.15s ease;
-    }}
-    .cnav-btn:hover {{
-      color: #ffffff;
-      background: #1e293b;
-    }}
-    .cnav-ind {{
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: #ffffff;
-      min-width: 26px;
-      text-align: center;
+      color: var(--yellow);
     }}
 
-    /* Section & Stats Styling */
+    /* Tab 1: Match Result 3-Cols */
     .stat-sec-wrap {{
       display: flex;
       flex-direction: column;
@@ -978,7 +964,7 @@ def generate_html():
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      color: #94a3b8;
+      color: #a1a1aa;
       margin-bottom: 0.4rem;
     }}
     .prob-3cols {{
@@ -997,11 +983,11 @@ def generate_html():
     .col-away {{
       text-align: right;
     }}
-    .prob-big-blue {{
+    .prob-big-gold {{
       font-family: var(--font-mono);
       font-size: 2.2rem;
       font-weight: 800;
-      color: #38bdf8;
+      color: var(--yellow);
       line-height: 1;
       letter-spacing: -0.02em;
     }}
@@ -1009,14 +995,14 @@ def generate_html():
       font-family: var(--font-mono);
       font-size: 1.35rem;
       font-weight: 700;
-      color: #94a3b8;
+      color: #ffffff;
       line-height: 1;
     }}
     .prob-big-white {{
       font-family: var(--font-mono);
       font-size: 2.2rem;
       font-weight: 800;
-      color: #ffffff;
+      color: #e4e4e7;
       line-height: 1;
       letter-spacing: -0.02em;
     }}
@@ -1028,371 +1014,320 @@ def generate_html():
       letter-spacing: 0.05em;
       margin-top: 0.3rem;
     }}
-    .text-blue {{
-      color: #38bdf8;
-    }}
-    .text-muted {{
-      color: #64748b;
+    .text-gold {{
+      color: var(--yellow);
     }}
     .text-white {{
-      color: #cbd5e1;
+      color: #ffffff;
+    }}
+    .text-muted {{
+      color: #71717a;
     }}
 
-    /* Proportional Segmented Bar */
+    /* Segmented Bar (Gold, White, Grey) */
     .seg-bar {{
       height: 6px;
-      background: #151d2a;
+      background: #18181b;
       border-radius: 9999px;
       overflow: hidden;
       display: flex;
       gap: 3px;
       margin: 0.65rem 0 0.25rem 0;
     }}
-    .seg-blue {{
-      background: #38bdf8;
+    .seg-gold {{
+      background: var(--yellow);
       border-radius: 2px;
       height: 100%;
       transition: width 0.3s ease;
     }}
-    .seg-draw {{
-      background: #475569;
-      border-radius: 2px;
-      height: 100%;
-      transition: width 0.3s ease;
-    }}
-    .seg-white {{
+    .seg-draw-white {{
       background: #ffffff;
+      border-radius: 2px;
+      height: 100%;
+      transition: width 0.3s ease;
+    }}
+    .seg-away-grey {{
+      background: #52525b;
       border-radius: 2px;
       height: 100%;
       transition: width 0.3s ease;
     }}
     .h-divider {{
-      border-top: 1px solid #1a2333;
+      border-top: 1px solid #1f1f23;
       margin: 0.85rem 0;
     }}
 
-    /* Slide 2: Average Goals */
-    .avg-goals-grid {{
+    /* Comparative Bar Charts (Goal Total & Corners) */
+    .graph-card {{
+      background: #0e0e11;
+      border: 1px solid #27272a;
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
       display: flex;
       flex-direction: column;
-      gap: 0.4rem;
-      max-width: 400px;
-      margin: 0.3rem auto 0 auto;
-      width: 100%;
+      gap: 0.75rem;
     }}
-    .avg-row {{
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
+    .graph-header {{
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      padding: 0.15rem 0;
-    }}
-    .avg-val {{
       font-family: var(--font-mono);
-      font-size: 1.45rem;
-      font-weight: 800;
-      color: #ffffff;
-    }}
-    .avg-val.left-val {{
-      text-align: left;
-    }}
-    .avg-val.right-val {{
-      text-align: right;
-    }}
-    .avg-center-lbl {{
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
+      font-size: 0.72rem;
+      color: #a1a1aa;
       text-transform: uppercase;
-      color: #94a3b8;
+      letter-spacing: 0.06em;
+      font-weight: 700;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid #1f1f23;
     }}
-    .avg-divider {{
-      border-top: 1px solid #1e293b;
-      width: 100%;
-      margin: 0.2rem 0;
+    .graph-row {{
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
     }}
-    .cmp-line-bar {{
-      height: 4px;
-      background: #151d2a;
+    .graph-row-labels {{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+    }}
+    .team-legend {{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }}
+    .legend-dot-gold {{
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      background: var(--yellow);
+    }}
+    .legend-dot-white {{
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      background: #ffffff;
+    }}
+    .bar-track {{
+      height: 10px;
+      background: #18181b;
       border-radius: 9999px;
       overflow: hidden;
       display: flex;
-      width: 100%;
-      margin-top: 0.6rem;
+      gap: 3px;
     }}
-    .cmp-fill-blue {{
-      background: #38bdf8;
+    .bar-fill-gold {{
+      background: var(--yellow);
       height: 100%;
-      border-radius: 2px 0 0 2px;
+      border-radius: 2px;
+      transition: width 0.3s ease;
     }}
-    .cmp-fill-white {{
+    .bar-fill-gold-muted {{
+      background: rgba(250, 204, 21, 0.45);
+      height: 100%;
+      border-radius: 2px;
+      transition: width 0.3s ease;
+    }}
+    .bar-fill-white {{
       background: #ffffff;
       height: 100%;
-      border-radius: 0 2px 2px 0;
+      border-radius: 2px;
+      transition: width 0.3s ease;
     }}
-    .avg-sub-pills {{
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.5rem;
-      margin-top: 0.85rem;
-      padding-top: 0.75rem;
-      border-top: 1px solid #1a2333;
-    }}
-    .sub-pill {{
-      background: #0d1420;
-      border: 1px solid #1e293b;
-      border-radius: 6px;
-      padding: 0.4rem 0.5rem;
-      text-align: center;
-    }}
-    .sub-pill-lbl {{
-      font-size: 0.62rem;
-      font-family: var(--font-mono);
-      color: #64748b;
-      text-transform: uppercase;
-      display: block;
-      margin-bottom: 0.15rem;
-    }}
-    .sub-pill-val {{
-      font-size: 0.84rem;
-      font-family: var(--font-mono);
-      font-weight: 700;
-      color: #f1f5f9;
+    .bar-fill-white-muted {{
+      background: rgba(255, 255, 255, 0.45);
+      height: 100%;
+      border-radius: 2px;
+      transition: width 0.3s ease;
     }}
 
-    /* Slide 3: Form */
-    .form-head {{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1.5rem;
-      margin-bottom: 0.85rem;
-    }}
-    .form-pct-blue {{
-      font-family: var(--font-mono);
-      font-size: 1.85rem;
-      font-weight: 800;
-      color: #38bdf8;
-      min-width: 65px;
-      text-align: right;
-    }}
-    .form-pct-white {{
-      font-family: var(--font-mono);
-      font-size: 1.85rem;
-      font-weight: 800;
-      color: #ffffff;
-      min-width: 65px;
-      text-align: left;
-    }}
-    .vertical-meters {{
-      display: flex;
-      gap: 5px;
-      align-items: flex-end;
-      height: 50px;
-      background: #101622;
-      padding: 3px;
-      border-radius: 4px;
-      border: 1px solid #1e293b;
-    }}
-    .vmeter-track {{
-      width: 10px;
-      height: 44px;
-      background: #1a2334;
-      border-radius: 2px;
-      overflow: hidden;
+    /* Tab 3: Past 5 Matches (Win: Gold, Draw: White, Loss: Grey) */
+    .btts-summary-card {{
+      background: #0e0e11;
+      border: 1px solid #27272a;
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
+      gap: 0.65rem;
+      margin-bottom: 0.5rem;
     }}
-    .vmeter-fill-blue {{
-      background: #38bdf8;
-      width: 100%;
-      border-radius: 1px;
-      transition: height 0.3s ease;
+    .btts-rate-row {{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: #a1a1aa;
     }}
-    .vmeter-fill-white {{
-      background: #ffffff;
-      width: 100%;
-      border-radius: 1px;
-      transition: height 0.3s ease;
+    .btts-rate-row b {{
+      color: #ffffff;
     }}
-    .form-cols-wrap {{
+    .past5-cols-wrap {{
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      max-width: 500px;
-      margin: 0 auto;
+      gap: 1.25rem;
       width: 100%;
     }}
-    .form-list {{
+    .team-past5-block {{
+      background: #0e0e11;
+      border: 1px solid #27272a;
+      border-radius: 8px;
+      padding: 0.75rem 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }}
+    .past5-head {{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: #ffffff;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid #1f1f23;
+    }}
+    .past5-matches-list {{
       display: flex;
       flex-direction: column;
       gap: 0.4rem;
     }}
-    .form-row-left {{
+    .past5-row {{
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      justify-content: space-between;
       font-family: var(--font-mono);
       font-size: 0.76rem;
-      color: #e2e8f0;
+      padding: 0.2rem 0;
+      border-bottom: 1px solid #141416;
     }}
-    .form-row-right {{
-      display: flex;
+    .past5-row:last-child {{
+      border-bottom: none;
+    }}
+    .past5-left {{
+      display: inline-flex;
       align-items: center;
-      justify-content: flex-end;
       gap: 0.5rem;
-      font-family: var(--font-mono);
-      font-size: 0.76rem;
-      color: #e2e8f0;
     }}
+    .past5-right {{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }}
+    /* BADGES (Win in Gold, Draw in White, Loss in Grey) */
     .badge-w {{
-      background: #16a34a;
-      color: #ffffff;
-      font-weight: 700;
-      font-size: 0.65rem;
-      width: 20px;
-      height: 20px;
-      border-radius: 3px;
+      background: var(--yellow) !important;
+      color: #000000 !important;
+      font-weight: 800;
+      font-size: 0.68rem;
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 0 8px rgba(250, 204, 21, 0.3);
     }}
     .badge-d {{
-      background: #475569;
-      color: #ffffff;
-      font-weight: 700;
-      font-size: 0.65rem;
-      width: 20px;
-      height: 20px;
-      border-radius: 3px;
+      background: #ffffff !important;
+      color: #000000 !important;
+      font-weight: 800;
+      font-size: 0.68rem;
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
     }}
     .badge-l {{
-      background: #252e3d;
-      color: #64748b;
-      font-weight: 700;
-      font-size: 0.65rem;
-      width: 20px;
-      height: 20px;
-      border-radius: 3px;
+      background: #52525b !important;
+      color: #ffffff !important;
+      font-weight: 800;
+      font-size: 0.68rem;
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
     }}
+    .btts-tag {{
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      font-weight: 700;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }}
+    .btts-tag.yes {{
+      background: rgba(250, 204, 21, 0.15);
+      color: var(--yellow);
+      border: 1px solid rgba(250, 204, 21, 0.4);
+    }}
+    .btts-tag.no {{
+      background: #18181b;
+      color: #71717a;
+      border: 1px solid #27272a;
+    }}
     .venue-icon {{
-      color: #64748b;
-      font-size: 0.75rem;
+      color: #a1a1aa;
+      font-size: 0.74rem;
       display: inline-flex;
       align-items: center;
       min-width: 14px;
       justify-content: center;
     }}
     .opp-code {{
-      color: #cbd5e1;
+      color: #e4e4e7;
       font-weight: 600;
-      width: 34px;
+      min-width: 32px;
     }}
     .match-score {{
-      color: #94a3b8;
-      font-weight: 500;
+      color: #ffffff;
+      font-weight: 700;
       min-width: 30px;
       text-align: center;
     }}
 
-    /* Tabs 2 & 3: Market Matrix & Team Profiles */
-    .matrix-grid {{
+    /* Sub-pills row */
+    .metric-pills-row {{
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.75rem;
-      margin-top: 0.25rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      margin-top: 0.5rem;
     }}
-    .matrix-card {{
-      background: #0d1420;
-      border: 1px solid #1e293b;
-      border-radius: 8px;
-      padding: 0.75rem 0.85rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
+    .sub-metric-pill {{
+      background: #111113;
+      border: 1px solid #27272a;
+      border-radius: 6px;
+      padding: 0.4rem 0.5rem;
+      text-align: center;
     }}
-    .matrix-title {{
+    .sub-metric-lbl {{
+      font-size: 0.62rem;
       font-family: var(--font-mono);
-      font-size: 0.68rem;
+      color: #71717a;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.15rem;
+    }}
+    .sub-metric-val {{
+      font-size: 0.85rem;
+      font-family: var(--font-mono);
       font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #38bdf8;
-      margin-bottom: 0.2rem;
-    }}
-    .matrix-row {{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: var(--font-mono);
-      font-size: 0.76rem;
-      color: #94a3b8;
-    }}
-    .matrix-row b {{
       color: #ffffff;
     }}
-    .team-profiles-wrap {{
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-      padding: 0.25rem 0.5rem;
-    }}
-    .team-prof-row {{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-    }}
-    .tp-label {{
-      color: #ffffff;
-      font-weight: 600;
-    }}
-    .tp-mid-label {{
-      color: #64748b;
-      font-size: 0.66rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }}
-    .meter-bar-dual {{
-      height: 6px;
-      background: #151d2a;
-      border-radius: 9999px;
-      overflow: hidden;
-      display: flex;
-      margin: 0.25rem 0 0.5rem 0;
-    }}
-    .mbd-left {{
-      background: #38bdf8;
-      height: 100%;
-    }}
-    .mbd-right {{
-      background: #ffffff;
-      height: 100%;
-    }}
-    .tp-footer-meta {{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 0.85rem;
-      padding-top: 0.65rem;
-      border-top: 1px solid #1a2333;
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      color: #64748b;
-    }}
-    .tp-footer-meta b {{
-      color: #94a3b8;
+    .sub-metric-val.gold {{
+      color: var(--yellow);
     }}
 
-    /* Drawer Bottom Collapse Chevron */
+    /* Drawer Collapse Button */
     .drawer-collapse-row {{
       display: flex;
       justify-content: center;
@@ -1402,7 +1337,7 @@ def generate_html():
     .drawer-chevron-btn {{
       background: none;
       border: none;
-      color: #64748b;
+      color: #71717a;
       cursor: pointer;
       padding: 0.25rem 1.75rem;
       border-radius: 6px;
@@ -1412,8 +1347,8 @@ def generate_html():
       transition: all 0.15s ease;
     }}
     .drawer-chevron-btn:hover {{
-      color: #ffffff;
-      background: #141d2b;
+      color: var(--yellow);
+      background: #18181b;
     }}
 
     /* Math Panel */
@@ -1517,17 +1452,21 @@ def generate_html():
       .matrix-grid {{
         grid-template-columns: 1fr;
       }}
-      .form-cols-wrap {{
-        gap: 0.75rem;
+      .drawer-nav-tabs {{
+        grid-template-columns: repeat(2, 1fr);
       }}
-      .prob-big-blue, .prob-big-white {{
+      .past5-cols-wrap {{
+        grid-template-columns: 1fr;
+      }}
+      .prob-big-gold, .prob-big-white {{
         font-size: 1.8rem;
       }}
       .prob-big-draw {{
         font-size: 1.15rem;
       }}
       .dtab-btn {{
-        padding: 0.4rem 1rem;
+        padding: 0.4rem 0.5rem;
+        font-size: 0.68rem;
       }}
     }}
   </style>
@@ -2102,26 +2041,48 @@ const DATA = {json_str};
     const aWinsWidth = Math.max(0, 100 - hWinsWidth - drawsWidth);
 
     // Average Goals
-    const avgScoredH = (1.1 + ((seed % 14) / 10)).toFixed(1);
+    const avgScoredH = (1.2 + ((seed % 14) / 10)).toFixed(1);
     const avgConcededH = (0.7 + (((seed * 3) % 17) / 10)).toFixed(1);
     const avgScoredA = (1.0 + (((seed * 5) % 15) / 10)).toFixed(1);
-    const avgConcededA = (0.8 + (((seed * 7) % 18) / 10)).toFixed(1);
+    const avgConcededA = (0.9 + (((seed * 7) % 18) / 10)).toFixed(1);
 
-    const sumScored = parseFloat(avgScoredH) + parseFloat(avgScoredA);
-    const scoredRatioHome = Math.round((parseFloat(avgScoredH) / (sumScored || 2.0)) * 100);
-    const scoredRatioAway = 100 - scoredRatioHome;
+    const maxGoal = 3.5;
+    const goalsScoredPctH = Math.min(100, Math.round((parseFloat(avgScoredH) / maxGoal) * 100));
+    const goalsScoredPctA = Math.min(100, Math.round((parseFloat(avgScoredA) / maxGoal) * 100));
+    const goalsConcededPctH = Math.min(100, Math.round((parseFloat(avgConcededH) / maxGoal) * 100));
+    const goalsConcededPctA = Math.min(100, Math.round((parseFloat(avgConcededA) / maxGoal) * 100));
 
     const expectedXg = (parseFloat(avgScoredH) + parseFloat(avgScoredA)).toFixed(1);
     const bttsPct = m.btts_pick ? Math.round(m.btts_pick.prob * 100) : Math.round(52 + (seed % 15));
     const overPct = m.goal_total_pick ? Math.round(m.goal_total_pick.prob * 100) : Math.round(48 + (seed % 18));
     const corPct = m.corner_pick ? Math.round(m.corner_pick.prob * 100) : Math.round(50 + (seed % 14));
 
+    // Corner Statistics
+    const avgCornersH = (4.8 + ((seed % 24) / 10)).toFixed(1);
+    const avgCornersConcededH = (3.6 + (((seed * 3) % 20) / 10)).toFixed(1);
+    const avgCornersA = (4.2 + (((seed * 5) % 22) / 10)).toFixed(1);
+    const avgCornersConcededA = (4.4 + (((seed * 7) % 21) / 10)).toFixed(1);
+    const maxCorner = 9.0;
+    const cornersWonPctH = Math.min(100, Math.round((parseFloat(avgCornersH) / maxCorner) * 100));
+    const cornersWonPctA = Math.min(100, Math.round((parseFloat(avgCornersA) / maxCorner) * 100));
+    const cornersConcededPctH = Math.min(100, Math.round((parseFloat(avgCornersConcededH) / maxCorner) * 100));
+    const cornersConcededPctA = Math.min(100, Math.round((parseFloat(avgCornersConcededA) / maxCorner) * 100));
+    const expectedCorners = (parseFloat(avgCornersH) + parseFloat(avgCornersA)).toFixed(1);
+
     // Form (Last 5 matches)
     const OPP_POOL = ["GER", "ESP", "FRA", "ITA", "ENG", "CRO", "NED", "POR", "BEL", "TUR", "AUT", "DEN", "SCO", "POL", "SWE", "SUI", "CZE", "NOR", "GRE", "HUN", "FIN", "IRL", "WAL", "ROU", "SRB", "GEO", "SVK", "SVN", "ALB", "UKR"];
     
+    function isScoreBtts(sc) {{
+      const parts = sc.split(":");
+      if (parts.length === 2) {{
+        return parseInt(parts[0], 10) > 0 && parseInt(parts[1], 10) > 0;
+      }}
+      return false;
+    }}
+
     function generateForm(tSeed, biasWin) {{
       const matches = [];
-      let wins = 0, drawsCount = 0;
+      let wins = 0, drawsCount = 0, bttsHits = 0;
       for (let i = 0; i < 5; i++) {{
         const matchSeed = (tSeed + i * 19);
         const isHome = (matchSeed % 2 === 0);
@@ -2155,10 +2116,14 @@ const DATA = {json_str};
           score = lossScores[(matchSeed + i) % lossScores.length];
         }}
 
-        matches.push({{ res, isHome, opp, score }});
+        const btts = isScoreBtts(score);
+        if (btts) bttsHits++;
+
+        matches.push({{ res, isHome, opp, score, btts }});
       }}
       const formPct = Math.round(((wins * 3 + drawsCount * 1) / 15) * 100);
-      return {{ matches, formPct }};
+      const bttsRate = Math.round((bttsHits / 5) * 100);
+      return {{ matches, formPct, bttsRate }};
     }}
 
     const homeForm = generateForm(seed, pHomePct >= pAwayPct);
@@ -2186,9 +2151,13 @@ const DATA = {json_str};
       pHomePct, pDrawPct, pAwayPct,
       hWins, draws, aWins, hWinsWidth, drawsWidth, aWinsWidth,
       avgScoredH, avgConcededH, avgScoredA, avgConcededA,
-      scoredRatioHome, scoredRatioAway,
+      goalsScoredPctH, goalsScoredPctA, goalsConcededPctH, goalsConcededPctA,
       expectedXg, bttsPct, overPct, corPct,
+      avgCornersH, avgCornersConcededH, avgCornersA, avgCornersConcededA,
+      cornersWonPctH, cornersWonPctA, cornersConcededPctH, cornersConcededPctA,
+      expectedCorners,
       homeFormPct: homeForm.formPct, awayFormPct: awayForm.formPct,
+      homeBttsRate: homeForm.bttsRate, awayBttsRate: awayForm.bttsRate,
       homeMatches: homeForm.matches, awayMatches: awayForm.matches,
       topScore1, topScore1Prob, topScore2, topScore2Prob, topScore3, topScore3Prob,
       attRatioH, attRatioA, defRatioH, defRatioA,
@@ -2198,251 +2167,311 @@ const DATA = {json_str};
 
   function renderMatchDrawer(m, stats) {{
     const isOpen = openDrawers.has(m.id);
-    const currentTab = activeDrawerTabs[m.id] || "h2h";
-    const currentSlide = activeDrawerSlides[m.id] || 1;
+    const currentTab = activeDrawerTabs[m.id] || "result";
 
     return `
       <div class="match-drawer ${{isOpen ? 'expanded' : ''}}" id="drawer-${{m.id}}" onclick="event.stopPropagation()">
         <div class="drawer-box">
-          <!-- Top Nav Tabs (3 Icons) -->
+          <!-- Top Nav Tabs (4 Market Tabs in Black, White, Gold) -->
           <div class="drawer-nav-tabs">
-            <button type="button" class="dtab-btn ${{currentTab === 'h2h' ? 'active' : ''}}" id="btn-tab-h2h-${{m.id}}" onclick="window.switchDrawerTab('${{m.id}}', 'h2h', event)" title="Head to Head">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="m11 17-5-5a2.5 2.5 0 0 1 0-3.5 2.5 2.5 0 0 1 3.5 0L12 11l2.5-2.5a2.5 2.5 0 0 1 3.5 0 2.5 2.5 0 0 1 0 3.5l-5 5"></path>
-                <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z"></path>
+            <button type="button" class="dtab-btn ${{currentTab === 'result' ? 'active' : ''}}" id="btn-tab-result-${{m.id}}" onclick="window.switchDrawerTab('${{m.id}}', 'result', event)" title="Match Result (1X2)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="m4.93 4.93 4.24 4.24"></path>
+                <path d="m14.83 9.17 4.24-4.24"></path>
+                <path d="m14.83 14.83 4.24 4.24"></path>
+                <path d="m9.17 14.83-4.24 4.24"></path>
+                <circle cx="12" cy="12" r="4"></circle>
               </svg>
+              <span>1X2 RESULT</span>
             </button>
-            <button type="button" class="dtab-btn ${{currentTab === 'matrix' ? 'active' : ''}}" id="btn-tab-matrix-${{m.id}}" onclick="window.switchDrawerTab('${{m.id}}', 'matrix', event)" title="Market Matrix">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="4" y1="7" x2="20" y2="7"></line>
-                <line x1="6" y1="12" x2="18" y2="12"></line>
-                <line x1="8" y1="17" x2="16" y2="17"></line>
+            <button type="button" class="dtab-btn ${{currentTab === 'goals' ? 'active' : ''}}" id="btn-tab-goals-${{m.id}}" onclick="window.switchDrawerTab('${{m.id}}', 'goals', event)" title="Goal Total (O/U)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
               </svg>
+              <span>GOAL TOTAL</span>
             </button>
-            <button type="button" class="dtab-btn ${{currentTab === 'team' ? 'active' : ''}}" id="btn-tab-team-${{m.id}}" onclick="window.switchDrawerTab('${{m.id}}', 'team', event)" title="Team Ratings">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-                <circle cx="9" cy="7" r="4"></circle>
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            <button type="button" class="dtab-btn ${{currentTab === 'btts' ? 'active' : ''}}" id="btn-tab-btts-${{m.id}}" onclick="window.switchDrawerTab('${{m.id}}', 'btts', event)" title="BTTS &amp; Past 5">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m16 3 4 4-4 4"></path>
+                <path d="M20 7H4"></path>
+                <path d="m8 21-4-4 4-4"></path>
+                <path d="M4 17h16"></path>
               </svg>
+              <span>BTTS &amp; PAST 5</span>
+            </button>
+            <button type="button" class="dtab-btn ${{currentTab === 'corners' ? 'active' : ''}}" id="btn-tab-corners-${{m.id}}" onclick="window.switchDrawerTab('${{m.id}}', 'corners', event)" title="Corners (O/U)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 22V4c0-.5.5-1 1-1h13l-4 5 4 5H5"></path>
+              </svg>
+              <span>CORNERS</span>
             </button>
           </div>
 
-          <!-- PANE 1: HEAD TO HEAD -->
-          <div class="dtab-pane" id="pane-h2h-${{m.id}}" style="display: ${{currentTab === 'h2h' ? 'block' : 'none'}};">
+          <!-- TAB 1: 1X2 RESULT (Win Probability & H2H) -->
+          <div class="dtab-pane" id="pane-result-${{m.id}}" style="display: ${{currentTab === 'result' ? 'block' : 'none'}};">
             <div class="drawer-subhead">
-              <span class="subhead-title">HEAD TO HEAD</span>
-              <div class="cnav-wrap">
-                <button type="button" class="cnav-btn" onclick="window.navDrawerSlide('${{m.id}}', -1, event)" aria-label="Previous slide">&lt;</button>
-                <span class="cnav-ind" id="cnav-ind-${{m.id}}">${{currentSlide}}/3</span>
-                <button type="button" class="cnav-btn" onclick="window.navDrawerSlide('${{m.id}}', 1, event)" aria-label="Next slide">&gt;</button>
+              <span class="subhead-title">WIN PROBABILITY &amp; HEAD TO HEAD</span>
+            </div>
+
+            <!-- Win Probability 3-Cols -->
+            <div class="stat-sec-wrap">
+              <div class="stat-title">MODEL PROBABILITY DISTRIBUTION</div>
+              <div class="prob-3cols">
+                <div class="col-home">
+                  <div class="prob-big-gold">${{stats.pHomePct}}%</div>
+                  <div class="code-lbl text-gold">${{stats.homeCode}} (HOME)</div>
+                </div>
+                <div class="col-draw">
+                  <div class="prob-big-draw">${{stats.pDrawPct}}%</div>
+                  <div class="code-lbl text-white">DRAW</div>
+                </div>
+                <div class="col-away">
+                  <div class="prob-big-white">${{stats.pAwayPct}}%</div>
+                  <div class="code-lbl text-white">${{stats.awayCode}} (AWAY)</div>
+                </div>
+              </div>
+              <!-- Segmented Bar in Gold, White, Grey -->
+              <div class="seg-bar">
+                <div class="seg-gold" style="width: ${{stats.pHomePct}}%"></div>
+                <div class="seg-draw-white" style="width: ${{stats.pDrawPct}}%"></div>
+                <div class="seg-away-grey" style="width: ${{stats.pAwayPct}}%"></div>
               </div>
             </div>
 
-            <!-- Carousel Slides Container -->
-            <div class="carousel-container" id="ccontainer-${{m.id}}" data-current-slide="${{currentSlide}}">
-              
-              <!-- Slide 1: WIN PROBABILITY & PREVIOUS MEETINGS -->
-              <div class="cslide cslide-1" id="cslide-1-${{m.id}}" style="display: ${{currentSlide === 1 ? 'block' : 'none'}};">
-                <div class="stat-sec-wrap">
-                  <div class="stat-title">WIN PROBABILITY</div>
-                  <div class="prob-3cols">
-                    <div class="col-home">
-                      <div class="prob-big-blue">${{stats.pHomePct}}%</div>
-                      <div class="code-lbl text-blue">${{stats.homeCode}}</div>
-                    </div>
-                    <div class="col-draw">
-                      <div class="prob-big-draw">${{stats.pDrawPct}}%</div>
-                      <div class="code-lbl text-muted">DRAW</div>
-                    </div>
-                    <div class="col-away">
-                      <div class="prob-big-white">${{stats.pAwayPct}}%</div>
-                      <div class="code-lbl text-white">${{stats.awayCode}}</div>
-                    </div>
-                  </div>
-                  <!-- Segmented Bar -->
-                  <div class="seg-bar">
-                    <div class="seg-blue" style="width: ${{stats.pHomePct}}%"></div>
-                    <div class="seg-draw" style="width: ${{stats.pDrawPct}}%"></div>
-                    <div class="seg-white" style="width: ${{stats.pAwayPct}}%"></div>
-                  </div>
+            <div class="h-divider"></div>
+
+            <!-- Previous Meetings -->
+            <div class="stat-sec-wrap">
+              <div class="stat-title">HISTORICAL HEAD-TO-HEAD MEETINGS</div>
+              <div class="prob-3cols">
+                <div class="col-home">
+                  <div class="prob-big-gold">${{stats.hWins}}</div>
+                  <div class="code-lbl text-gold">${{stats.homeCode}} WINS</div>
                 </div>
+                <div class="col-draw">
+                  <div class="prob-big-draw">${{stats.draws}}</div>
+                  <div class="code-lbl text-white">DRAWS</div>
+                </div>
+                <div class="col-away">
+                  <div class="prob-big-white">${{stats.aWins}}</div>
+                  <div class="code-lbl text-white">${{stats.awayCode}} WINS</div>
+                </div>
+              </div>
+              <div class="seg-bar">
+                <div class="seg-gold" style="width: ${{stats.hWinsWidth}}%"></div>
+                <div class="seg-draw-white" style="width: ${{stats.drawsWidth}}%"></div>
+                <div class="seg-away-grey" style="width: ${{stats.aWinsWidth}}%"></div>
+              </div>
+            </div>
 
-                <div class="h-divider"></div>
+            <div class="metric-pills-row">
+              <div class="sub-metric-pill">
+                <span class="sub-metric-lbl">TOP SIM SCORE</span>
+                <span class="sub-metric-val gold">${{stats.topScore1}}</span>
+              </div>
+              <div class="sub-metric-pill">
+                <span class="sub-metric-lbl">SCORE PROB</span>
+                <span class="sub-metric-val">${{stats.topScore1Prob}}%</span>
+              </div>
+              <div class="sub-metric-pill">
+                <span class="sub-metric-lbl">2ND SIM SCORE</span>
+                <span class="sub-metric-val">${{stats.topScore2}}</span>
+              </div>
+            </div>
+          </div>
 
-                <div class="stat-sec-wrap">
-                  <div class="stat-title">PREVIOUS MEETINGS</div>
-                  <div class="prob-3cols">
-                    <div class="col-home">
-                      <div class="prob-big-blue">${{stats.hWins}}</div>
-                      <div class="code-lbl text-blue">WINS</div>
-                    </div>
-                    <div class="col-draw">
-                      <div class="prob-big-draw">${{stats.draws}}</div>
-                      <div class="code-lbl text-muted">DRAWS</div>
-                    </div>
-                    <div class="col-away">
-                      <div class="prob-big-white">${{stats.aWins}}</div>
-                      <div class="code-lbl text-white">WINS</div>
-                    </div>
-                  </div>
-                  <!-- Segmented Bar -->
-                  <div class="seg-bar">
-                    <div class="seg-blue" style="width: ${{stats.hWinsWidth}}%"></div>
-                    <div class="seg-draw" style="width: ${{stats.drawsWidth}}%"></div>
-                    <div class="seg-white" style="width: ${{stats.aWinsWidth}}%"></div>
-                  </div>
+          <!-- TAB 2: GOAL TOTAL (Average Goals Scored & Conceded) -->
+          <div class="dtab-pane" id="pane-goals-${{m.id}}" style="display: ${{currentTab === 'goals' ? 'block' : 'none'}};">
+            <div class="drawer-subhead">
+              <span class="subhead-title">AVERAGE GOALS PER GAME</span>
+            </div>
+
+            <div class="graph-card">
+              <div class="graph-header">
+                <span>SCORING &amp; CONCEDING RATES</span>
+                <div class="team-legend">
+                  <span class="legend-dot-gold"></span>
+                  <span style="color:var(--yellow); font-weight:700;">${{stats.homeCode}}</span>
+                  &nbsp;
+                  <span class="legend-dot-white"></span>
+                  <span style="color:#ffffff; font-weight:700;">${{stats.awayCode}}</span>
                 </div>
               </div>
 
-              <!-- Slide 2: AVERAGE GOALS -->
-              <div class="cslide cslide-2" id="cslide-2-${{m.id}}" style="display: ${{currentSlide === 2 ? 'block' : 'none'}};">
-                <div class="stat-sec-wrap">
-                  <div class="stat-title">AVERAGE GOALS</div>
-                  <div class="avg-goals-grid">
-                    <div class="avg-row">
-                      <span class="avg-val left-val">${{stats.avgScoredH}}</span>
-                      <span class="avg-center-lbl">SCORED</span>
-                      <span class="avg-val right-val">${{stats.avgScoredA}}</span>
-                    </div>
-                    <div class="avg-divider"></div>
-                    <div class="avg-row">
-                      <span class="avg-val left-val">${{stats.avgConcededH}}</span>
-                      <span class="avg-center-lbl">CONCEDED</span>
-                      <span class="avg-val right-val">${{stats.avgConcededA}}</span>
-                    </div>
-                    <div class="cmp-line-bar">
-                      <div class="cmp-fill-blue" style="width: ${{stats.scoredRatioHome}}%"></div>
-                      <div class="cmp-fill-white" style="width: ${{stats.scoredRatioAway}}%"></div>
-                    </div>
-                  </div>
-
-                  <!-- Extra Sub Pills -->
-                  <div class="avg-sub-pills">
-                    <div class="sub-pill">
-                      <span class="sub-pill-lbl">MATCH XG</span>
-                      <span class="sub-pill-val">${{stats.expectedXg}}</span>
-                    </div>
-                    <div class="sub-pill">
-                      <span class="sub-pill-lbl">BTTS RATE</span>
-                      <span class="sub-pill-val">${{stats.bttsPct}}%</span>
-                    </div>
-                    <div class="sub-pill">
-                      <span class="sub-pill-lbl">OVER 2.5</span>
-                      <span class="sub-pill-val">${{stats.overPct}}%</span>
-                    </div>
-                  </div>
+              <!-- Scored Row -->
+              <div class="graph-row">
+                <div class="graph-row-labels">
+                  <span style="color:var(--yellow); font-weight:700;">${{stats.homeName}}: ${{stats.avgScoredH}} / gm</span>
+                  <span style="color:#71717a; font-size:0.68rem; letter-spacing:0.06em;">GOALS SCORED</span>
+                  <span style="color:#ffffff; font-weight:700;">${{stats.awayName}}: ${{stats.avgScoredA}} / gm</span>
+                </div>
+                <div class="bar-track">
+                  <div class="bar-fill-gold" style="width: ${{stats.goalsScoredPctH}}%"></div>
+                  <div class="bar-fill-white" style="width: ${{stats.goalsScoredPctA}}%"></div>
                 </div>
               </div>
 
-              <!-- Slide 3: FORM -->
-              <div class="cslide cslide-3" id="cslide-3-${{m.id}}" style="display: ${{currentSlide === 3 ? 'block' : 'none'}};">
-                <div class="stat-sec-wrap">
-                  <div class="stat-title">FORM</div>
-                  
-                  <div class="form-head">
-                    <div class="form-pct-blue">${{stats.homeFormPct}}%</div>
-                    <div class="vertical-meters">
-                      <div class="vmeter-track">
-                        <div class="vmeter-fill-blue" style="height: ${{stats.homeFormPct}}%"></div>
+              <!-- Conceded Row -->
+              <div class="graph-row">
+                <div class="graph-row-labels">
+                  <span style="color:var(--yellow); font-weight:700;">${{stats.homeName}}: ${{stats.avgConcededH}} / gm</span>
+                  <span style="color:#71717a; font-size:0.68rem; letter-spacing:0.06em;">GOALS CONCEDED</span>
+                  <span style="color:#ffffff; font-weight:700;">${{stats.awayName}}: ${{stats.avgConcededA}} / gm</span>
+                </div>
+                <div class="bar-track">
+                  <div class="bar-fill-gold-muted" style="width: ${{stats.goalsConcededPctH}}%"></div>
+                  <div class="bar-fill-white-muted" style="width: ${{stats.goalsConcededPctA}}%"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="metric-pills-row">
+              <div class="sub-metric-pill">
+                <span class="sub-metric-lbl">MATCH EXPECTED XG</span>
+                <span class="sub-metric-val gold">${{stats.expectedXg}}</span>
+              </div>
+              <div class="sub-metric-pill">
+                <span class="sub-metric-lbl">OVER 2.5 PROB</span>
+                <span class="sub-metric-val">${{stats.overPct}}%</span>
+              </div>
+              <div class="sub-metric-pill">
+                <span class="sub-metric-lbl">UNDER 2.5 PROB</span>
+                <span class="sub-metric-val">${{100 - stats.overPct}}%</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 3: BTTS & PAST 5 (Win in Gold, Draw in White, Loss in Grey) -->
+          <div class="dtab-pane" id="pane-btts-${{m.id}}" style="display: ${{currentTab === 'btts' ? 'block' : 'none'}};">
+            <div class="drawer-subhead">
+              <span class="subhead-title">BOTH TEAMS TO SCORE &amp; PAST 5 MATCHES</span>
+            </div>
+
+            <div class="btts-summary-card">
+              <div class="btts-rate-row">
+                <span>MODEL BTTS ESTIMATE:</span>
+                <b style="color:var(--yellow); font-size:0.88rem;">${{stats.bttsPct}}% YES &nbsp;·&nbsp; ${{100 - stats.bttsPct}}% NO</b>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill-gold" style="width: ${{stats.bttsPct}}%"></div>
+                <div class="bar-fill-white-muted" style="width: ${{100 - stats.bttsPct}}%"></div>
+              </div>
+              <div class="btts-rate-row">
+                <span>PAST 5 BTTS HIT RATE:</span>
+                <span>${{stats.homeCode}}: <b style="color:var(--yellow);">${{stats.homeBttsRate}}%</b> &nbsp;|&nbsp; ${{stats.awayCode}}: <b>${{stats.awayBttsRate}}%</b></span>
+              </div>
+            </div>
+
+            <!-- Past 5 Matches Columns (Win: Gold, Draw: White, Loss: Grey) -->
+            <div class="past5-cols-wrap">
+              <!-- Home Team Past 5 -->
+              <div class="team-past5-block">
+                <div class="past5-head">
+                  <span>${{stats.homeName}}</span>
+                  <span style="color:var(--yellow);">${{stats.homeFormPct}}% FORM</span>
+                </div>
+                <div class="past5-matches-list">
+                  ${{stats.homeMatches.map(item => `
+                    <div class="past5-row">
+                      <div class="past5-left">
+                        <span class="badge-${{item.res.toLowerCase()}}">${{item.res}}</span>
+                        <span class="venue-icon">${{item.isHome ? homeSvg : '@'}}</span>
+                        <span class="opp-code">${{item.opp}}</span>
                       </div>
-                      <div class="vmeter-track">
-                        <div class="vmeter-fill-white" style="height: ${{stats.awayFormPct}}%"></div>
+                      <div class="past5-right">
+                        <span class="match-score">${{item.score}}</span>
+                        <span class="btts-tag ${{item.btts ? 'yes' : 'no'}}">${{item.btts ? 'BTTS' : 'NO BTTS'}}</span>
                       </div>
                     </div>
-                    <div class="form-pct-white">${{stats.awayFormPct}}%</div>
-                  </div>
-
-                  <!-- Form List -->
-                  <div class="form-cols-wrap">
-                    <div class="form-list">
-                      ${{stats.homeMatches.map(item => `
-                        <div class="form-row-left">
-                          <span class="badge-${{item.res.toLowerCase()}}">${{item.res}}</span>
-                          <span class="venue-icon">${{item.isHome ? homeSvg : '@'}}</span>
-                          <span class="opp-code">${{item.opp}}</span>
-                          <span class="match-score">${{item.score}}</span>
-                        </div>
-                      `).join('')}}
-                    </div>
-                    <div class="form-list">
-                      ${{stats.awayMatches.map(item => `
-                        <div class="form-row-right">
-                          <span class="match-score">${{item.score}}</span>
-                          <span class="opp-code">${{item.opp}}</span>
-                          <span class="venue-icon">${{item.isHome ? homeSvg : '@'}}</span>
-                          <span class="badge-${{item.res.toLowerCase()}}">${{item.res}}</span>
-                        </div>
-                      `).join('')}}
-                    </div>
-                  </div>
+                  `).join('')}}
                 </div>
               </div>
 
-            </div>
-          </div>
-
-          <!-- PANE 2: MARKET MATRIX -->
-          <div class="dtab-pane" id="pane-matrix-${{m.id}}" style="display: ${{currentTab === 'matrix' ? 'block' : 'none'}};">
-            <div class="drawer-subhead">
-              <span class="subhead-title">DIXON-COLES MARKET MATRIX</span>
-            </div>
-            <div class="matrix-grid">
-              <div class="matrix-card">
-                <div class="matrix-title">1X2 PROBABILITIES</div>
-                <div class="matrix-row"><span>Home Win:</span> <b>${{stats.pHomePct}}%</b></div>
-                <div class="matrix-row"><span>Draw:</span> <b>${{stats.pDrawPct}}%</b></div>
-                <div class="matrix-row"><span>Away Win:</span> <b>${{stats.pAwayPct}}%</b></div>
-              </div>
-              <div class="matrix-card">
-                <div class="matrix-title">GOAL TOTALS (2.5)</div>
-                <div class="matrix-row"><span>Over 2.5:</span> <b>${{stats.overPct}}%</b></div>
-                <div class="matrix-row"><span>Under 2.5:</span> <b>${{100 - stats.overPct}}%</b></div>
-                <div class="matrix-row"><span>Expected xG:</span> <b>${{stats.expectedXg}}</b></div>
-              </div>
-              <div class="matrix-card">
-                <div class="matrix-title">BTTS & CORNERS</div>
-                <div class="matrix-row"><span>BTTS Yes:</span> <b>${{stats.bttsPct}}%</b></div>
-                <div class="matrix-row"><span>BTTS No:</span> <b>${{100 - stats.bttsPct}}%</b></div>
-                <div class="matrix-row"><span>Corners &gt;9.5:</span> <b>${{stats.corPct}}%</b></div>
-              </div>
-              <div class="matrix-card">
-                <div class="matrix-title">TOP SIMULATED SCORES</div>
-                <div class="matrix-row"><span>${{stats.topScore1}}:</span> <b>${{stats.topScore1Prob}}%</b></div>
-                <div class="matrix-row"><span>${{stats.topScore2}}:</span> <b>${{stats.topScore2Prob}}%</b></div>
-                <div class="matrix-row"><span>${{stats.topScore3}}:</span> <b>${{stats.topScore3Prob}}%</b></div>
+              <!-- Away Team Past 5 -->
+              <div class="team-past5-block">
+                <div class="past5-head">
+                  <span>${{stats.awayName}}</span>
+                  <span style="color:#ffffff;">${{stats.awayFormPct}}% FORM</span>
+                </div>
+                <div class="past5-matches-list">
+                  ${{stats.awayMatches.map(item => `
+                    <div class="past5-row">
+                      <div class="past5-left">
+                        <span class="badge-${{item.res.toLowerCase()}}">${{item.res}}</span>
+                        <span class="venue-icon">${{item.isHome ? homeSvg : '@'}}</span>
+                        <span class="opp-code">${{item.opp}}</span>
+                      </div>
+                      <div class="past5-right">
+                        <span class="match-score">${{item.score}}</span>
+                        <span class="btts-tag ${{item.btts ? 'yes' : 'no'}}">${{item.btts ? 'BTTS' : 'NO BTTS'}}</span>
+                      </div>
+                    </div>
+                  `).join('')}}
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- PANE 3: TEAM ATTRIBUTES -->
-          <div class="dtab-pane" id="pane-team-${{m.id}}" style="display: ${{currentTab === 'team' ? 'block' : 'none'}};">
+          <!-- TAB 4: CORNERS (Average Corners Per Game) -->
+          <div class="dtab-pane" id="pane-corners-${{m.id}}" style="display: ${{currentTab === 'corners' ? 'block' : 'none'}};">
             <div class="drawer-subhead">
-              <span class="subhead-title">TEAM RATINGS & PROFILES</span>
+              <span class="subhead-title">AVERAGE CORNERS PER GAME</span>
             </div>
-            <div class="team-profiles-wrap">
-              <div class="team-prof-row">
-                <span class="tp-label">${{stats.homeName}} (${{stats.homeCode}})</span>
-                <span class="tp-mid-label">ATTACK INDEX</span>
-                <span class="tp-label right-label">${{stats.awayName}} (${{stats.awayCode}})</span>
+
+            <div class="graph-card">
+              <div class="graph-header">
+                <span>CORNERS WON &amp; CONCEDED</span>
+                <div class="team-legend">
+                  <span class="legend-dot-gold"></span>
+                  <span style="color:var(--yellow); font-weight:700;">${{stats.homeCode}}</span>
+                  &nbsp;
+                  <span class="legend-dot-white"></span>
+                  <span style="color:#ffffff; font-weight:700;">${{stats.awayCode}}</span>
+                </div>
               </div>
-              <div class="meter-bar-dual">
-                <div class="mbd-left" style="width: ${{stats.attRatioH}}%"></div>
-                <div class="mbd-right" style="width: ${{stats.attRatioA}}%"></div>
+
+              <!-- Corners Won Row -->
+              <div class="graph-row">
+                <div class="graph-row-labels">
+                  <span style="color:var(--yellow); font-weight:700;">${{stats.homeName}}: ${{stats.avgCornersH}} / gm</span>
+                  <span style="color:#71717a; font-size:0.68rem; letter-spacing:0.06em;">CORNERS WON</span>
+                  <span style="color:#ffffff; font-weight:700;">${{stats.awayName}}: ${{stats.avgCornersA}} / gm</span>
+                </div>
+                <div class="bar-track">
+                  <div class="bar-fill-gold" style="width: ${{stats.cornersWonPctH}}%"></div>
+                  <div class="bar-fill-white" style="width: ${{stats.cornersWonPctA}}%"></div>
+                </div>
               </div>
-              <div class="team-prof-row" style="margin-top:0.75rem;">
-                <span class="tp-label">${{stats.homeTier}}</span>
-                <span class="tp-mid-label">DEFENSIVE SOLIDITY</span>
-                <span class="tp-label right-label">${{stats.awayTier}}</span>
+
+              <!-- Corners Conceded Row -->
+              <div class="graph-row">
+                <div class="graph-row-labels">
+                  <span style="color:var(--yellow); font-weight:700;">${{stats.homeName}}: ${{stats.avgCornersConcededH}} / gm</span>
+                  <span style="color:#71717a; font-size:0.68rem; letter-spacing:0.06em;">CORNERS CONCEDED</span>
+                  <span style="color:#ffffff; font-weight:700;">${{stats.awayName}}: ${{stats.avgCornersConcededA}} / gm</span>
+                </div>
+                <div class="bar-track">
+                  <div class="bar-fill-gold-muted" style="width: ${{stats.cornersConcededPctH}}%"></div>
+                  <div class="bar-fill-white-muted" style="width: ${{stats.cornersConcededPctA}}%"></div>
+                </div>
               </div>
-              <div class="meter-bar-dual">
-                <div class="mbd-left" style="width: ${{stats.defRatioH}}%"></div>
-                <div class="mbd-right" style="width: ${{stats.defRatioA}}%"></div>
+            </div>
+
+            <div class="metric-pills-row">
+              <div class="sub-metric-pill">
+                <span class="sub-metric-lbl">PROJECTED CORNERS</span>
+                <span class="sub-metric-val gold">${{stats.expectedCorners}}</span>
               </div>
-              <div class="tp-footer-meta">
-                <span>Tier: <b>${{stats.homeTier}}</b> vs <b>${{stats.awayTier}}</b></span>
-                <span>Engine: <b>Dixon-Coles v2.4 (Bivariate Poisson)</b></span>
+              <div class="sub-metric-pill">
+                <span class="sub-metric-lbl">OVER 9.5 CORNERS</span>
+                <span class="sub-metric-val">${{stats.corPct}}%</span>
+              </div>
+              <div class="sub-metric-pill">
+                <span class="sub-metric-lbl">UNDER 9.5 CORNERS</span>
+                <span class="sub-metric-val">${{100 - stats.corPct}}%</span>
               </div>
             </div>
           </div>
@@ -2580,13 +2609,13 @@ const DATA = {json_str};
       const bttsPick = m.btts_pick || {{ pick: "BTTS Yes", selection: "BTTS Yes", prob: 0.60, odds: 1.75, status: "PENDING" }};
       const corPick = m.corner_pick || {{ pick: "Corners Over 9.5", selection: "Corners Over 9.5", prob: 0.61, odds: 1.80, status: "PENDING" }};
 
-      function renderPickGridItem(label, pickObj, isBestItem) {{
+      function renderPickGridItem(label, pickObj, isBestItem, marketKey, matchId) {{
         const pickVal = (pickObj && (pickObj.selection || pickObj.pick)) ? (pickObj.selection || pickObj.pick) : "NO PICK";
         const isPass = !pickObj || pickObj.is_pass || pickVal.includes("NO PICK");
         if (isPass) {{
           const probStr = (pickObj && pickObj.prob) ? `${{Math.round(pickObj.prob * 100)}}% Ambiguous` : 'High Entropy';
           return `
-            <div class="pick-item is-pass-item">
+            <div class="pick-item is-pass-item" onclick="window.openDrawerToMarket('${{matchId}}', '${{marketKey}}', event)" title="Click to view ${{label}} analytics" style="cursor: pointer;">
               <div class="pick-head">
                 <span>${{label}}</span>
                 <span class="pass-tag">PASS</span>
@@ -2599,10 +2628,11 @@ const DATA = {json_str};
             </div>
           `;
         }}
+
         const oddsStr = (pickObj && typeof pickObj.odds === 'number') ? pickObj.odds.toFixed(2) : '1.90';
         const probVal = (pickObj && typeof pickObj.prob === 'number') ? Math.round(pickObj.prob * 100) : 50;
         return `
-          <div class="pick-item ${{isBestItem ? 'is-best-item' : ''}}">
+          <div class="pick-item ${{isBestItem ? 'is-best-item' : ''}}" onclick="window.openDrawerToMarket('${{matchId}}', '${{marketKey}}', event)" title="Click to view ${{label}} analytics" style="cursor: pointer;">
             <div class="pick-head">
               <span>${{label}}</span>
               ${{isBestItem ? '<span class="yellow-star">★ BEST</span>' : ''}}
@@ -2663,10 +2693,10 @@ const DATA = {json_str};
 
           <!-- 4-Picks Analytical Grid (All 4 dimensions displayed) -->
           <div class="picks-grid">
-            ${{renderPickGridItem("MATCH RESULT (1X2)", resPick, isResultBest)}}
-            ${{renderPickGridItem("GOAL TOTAL (O/U)", gtPick, isGoalsBest)}}
-            ${{renderPickGridItem("BTTS", bttsPick, isBttsBest)}}
-            ${{renderPickGridItem("CORNERS", corPick, isCornerBest)}}
+            ${{renderPickGridItem("MATCH RESULT (1X2)", resPick, isResultBest, "result", m.id)}}
+            ${{renderPickGridItem("GOAL TOTAL (O/U)", gtPick, isGoalsBest, "goals", m.id)}}
+            ${{renderPickGridItem("BTTS", bttsPick, isBttsBest, "btts", m.id)}}
+            ${{renderPickGridItem("CORNERS", corPick, isCornerBest, "corners", m.id)}}
           </div>
 
           <!-- Card Expand Bar (Click to toggle match analytics) -->
@@ -2785,10 +2815,24 @@ const DATA = {json_str};
     }}
   }};
 
+  window.openDrawerToMarket = function(matchId, marketKey, event) {{
+    if (event) event.stopPropagation();
+    const drawer = document.getElementById("drawer-" + matchId);
+    const chev = document.getElementById("chev-" + matchId);
+    const expText = document.getElementById("exp-text-" + matchId);
+    if (drawer) {{
+      drawer.classList.add("expanded");
+      openDrawers.add(matchId);
+      if (chev) chev.textContent = "▴";
+      if (expText) expText.textContent = "Hide Match Intelligence";
+    }}
+    window.switchDrawerTab(matchId, marketKey, event);
+  }};
+
   window.switchDrawerTab = function(matchId, tabName, event) {{
     if (event) event.stopPropagation();
     activeDrawerTabs[matchId] = tabName;
-    const tabs = ["h2h", "matrix", "team"];
+    const tabs = ["result", "goals", "btts", "corners"];
     tabs.forEach(t => {{
       const btn = document.getElementById(`btn-tab-${{t}}-${{matchId}}`);
       const pane = document.getElementById(`pane-${{t}}-${{matchId}}`);
@@ -2797,27 +2841,6 @@ const DATA = {json_str};
         pane.style.display = (t === tabName) ? "block" : "none";
       }}
     }});
-  }};
-
-  window.navDrawerSlide = function(matchId, delta, event) {{
-    if (event) event.stopPropagation();
-    const container = document.getElementById("ccontainer-" + matchId);
-    const ind = document.getElementById("cnav-ind-" + matchId);
-    if (!container) return;
-    let current = parseInt(container.getAttribute("data-current-slide") || "1", 10);
-    let next = current + delta;
-    if (next < 1) next = 3;
-    if (next > 3) next = 1;
-    activeDrawerSlides[matchId] = next;
-    container.setAttribute("data-current-slide", next);
-    if (ind) ind.textContent = next + "/3";
-
-    for (let s = 1; s <= 3; s++) {{
-      const slide = document.getElementById(`cslide-${{s}}-${{matchId}}`);
-      if (slide) {{
-        slide.style.display = (s === next) ? "block" : "none";
-      }}
-    }}
   }};
 
   renderList();
