@@ -29,6 +29,7 @@
       "pred_score_prob": 0.138,
       "result_pick": {
         "market": "Match Result",
+        "pick": "Home Win",
         "selection": "Home Win",
         "prob": 0.443,
         "odds": 2.46,
@@ -40,6 +41,7 @@
       },
       "goal_total_pick": {
         "market": "Goal Total",
+        "pick": "Under 2.5",
         "selection": "Under 2.5",
         "prob": 0.581,
         "odds": 1.81,
@@ -51,6 +53,7 @@
       },
       "btts_pick": {
         "market": "BTTS",
+        "pick": "BTTS No",
         "selection": "BTTS No",
         "prob": 0.521,
         "odds": 1.98,
@@ -62,6 +65,7 @@
       },
       "corner_pick": {
         "market": "Corners",
+        "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "Corners Over 9.5",
         "prob": 0.501,
@@ -76,6 +80,7 @@
       "is_best": true,
       "best_pick": {
         "market": "Goal Total",
+        "pick": "Under 2.5",
         "selection": "Under 2.5",
         "prob": 0.581,
         "odds": 1.81,
@@ -103,6 +108,7 @@
       "pred_score_prob": 0.088,
       "result_pick": {
         "market": "Match Result",
+        "pick": "Away Win",
         "selection": "Away Win",
         "prob": 0.593,
         "odds": 1.92,
@@ -114,6 +120,7 @@
       },
       "goal_total_pick": {
         "market": "Goal Total",
+        "pick": "Over 2.5",
         "selection": "Over 2.5",
         "prob": 0.736,
         "odds": 1.49,
@@ -125,6 +132,7 @@
       },
       "btts_pick": {
         "market": "BTTS",
+        "pick": "BTTS Yes",
         "selection": "BTTS Yes",
         "prob": 0.69,
         "odds": 1.52,
@@ -136,6 +144,7 @@
       },
       "corner_pick": {
         "market": "Corners",
+        "pick": "Corners Over 9.5",
         "selection": "Corners Over 9.5",
         "prob": 0.599,
         "odds": 1.73,
@@ -148,6 +157,7 @@
       "is_best": true,
       "best_pick": {
         "market": "Match Result",
+        "pick": "Away Win",
         "selection": "Away Win",
         "prob": 0.593,
         "odds": 1.92,
@@ -175,6 +185,7 @@
       "pred_score_prob": 0.137,
       "result_pick": {
         "market": "Match Result",
+        "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "Home Win",
         "prob": 0.428,
@@ -188,6 +199,7 @@
       },
       "goal_total_pick": {
         "market": "Goal Total",
+        "pick": "Under 2.5",
         "selection": "Under 2.5",
         "prob": 0.547,
         "odds": 1.9,
@@ -199,6 +211,7 @@
       },
       "btts_pick": {
         "market": "BTTS",
+        "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "BTTS Yes",
         "prob": 0.509,
@@ -212,6 +225,7 @@
       },
       "corner_pick": {
         "market": "Corners",
+        "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "Corners Over 9.5",
         "prob": 0.51,
@@ -226,6 +240,7 @@
       "is_best": true,
       "best_pick": {
         "market": "Goal Total",
+        "pick": "Under 2.5",
         "selection": "Under 2.5",
         "prob": 0.547,
         "odds": 1.9,
@@ -253,6 +268,7 @@
       "pred_score_prob": 0.192,
       "result_pick": {
         "market": "Match Result",
+        "pick": "Away Win",
         "selection": "Away Win",
         "prob": 0.684,
         "odds": 1.54,
@@ -264,6 +280,7 @@
       },
       "goal_total_pick": {
         "market": "Goal Total",
+        "pick": "Under 2.5",
         "selection": "Under 2.5",
         "prob": 0.633,
         "odds": 2.32,
@@ -275,6 +292,7 @@
       },
       "btts_pick": {
         "market": "BTTS",
+        "pick": "BTTS No",
         "selection": "BTTS No",
         "prob": 0.701,
         "odds": 2.2,
@@ -286,6 +304,7 @@
       },
       "corner_pick": {
         "market": "Corners",
+        "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "Corners Under 9.5",
         "prob": 0.511,
@@ -300,6 +319,7 @@
       "is_best": true,
       "best_pick": {
         "market": "BTTS",
+        "pick": "BTTS No",
         "selection": "BTTS No",
         "prob": 0.701,
         "odds": 2.2,
@@ -327,6 +347,7 @@
       "pred_score_prob": 0.112,
       "result_pick": {
         "market": "Match Result",
+        "pick": "Home Win",
         "selection": "Home Win",
         "prob": 0.723,
         "odds": 1.46,
@@ -338,6 +359,7 @@
       },
       "goal_total_pick": {
         "market": "Goal Total",
+        "pick": "Over 2.5",
         "selection": "Over 2.5",
         "prob": 0.635,
         "odds": 1.65,
@@ -349,6 +371,7 @@
       },
       "btts_pick": {
         "market": "BTTS",
+        "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "BTTS Yes",
         "prob": 0.513,
@@ -362,6 +385,7 @@
       },
       "corner_pick": {
         "market": "Corners",
+        "pick": "Corners Over 9.5",
         "selection": "Corners Over 9.5",
         "prob": 0.564,
         "odds": 1.84,
@@ -374,6 +398,7 @@
       "is_best": true,
       "best_pick": {
         "market": "Match Result",
+        "pick": "Home Win",
         "selection": "Home Win",
         "prob": 0.723,
         "odds": 1.46,
@@ -401,6 +426,7 @@
       "pred_score_prob": 0.118,
       "result_pick": {
         "market": "Match Result",
+        "pick": "Away Win",
         "selection": "Away Win",
         "prob": 0.745,
         "odds": 1.42,
@@ -412,6 +438,7 @@
       },
       "goal_total_pick": {
         "market": "Goal Total",
+        "pick": "Over 2.5",
         "selection": "Over 2.5",
         "prob": 0.634,
         "odds": 1.65,
@@ -423,6 +450,7 @@
       },
       "btts_pick": {
         "market": "BTTS",
+        "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "BTTS No",
         "prob": 0.494,
@@ -436,6 +464,7 @@
       },
       "corner_pick": {
         "market": "Corners",
+        "pick": "Corners Over 9.5",
         "selection": "Corners Over 9.5",
         "prob": 0.564,
         "odds": 1.84,
@@ -448,6 +477,7 @@
       "is_best": true,
       "best_pick": {
         "market": "Match Result",
+        "pick": "Away Win",
         "selection": "Away Win",
         "prob": 0.745,
         "odds": 1.42,
@@ -475,6 +505,7 @@
       "pred_score_prob": 0.125,
       "result_pick": {
         "market": "Match Result",
+        "pick": "Away Win",
         "selection": "Away Win",
         "prob": 0.491,
         "odds": 1.81,
@@ -486,6 +517,7 @@
       },
       "goal_total_pick": {
         "market": "Goal Total",
+        "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "Over 2.5",
         "prob": 0.517,
@@ -499,6 +531,7 @@
       },
       "btts_pick": {
         "market": "BTTS",
+        "pick": "BTTS Yes",
         "selection": "BTTS Yes",
         "prob": 0.547,
         "odds": 1.9,
@@ -510,6 +543,7 @@
       },
       "corner_pick": {
         "market": "Corners",
+        "pick": "Corners Over 9.5",
         "selection": "Corners Over 9.5",
         "prob": 0.526,
         "odds": 1.96,
@@ -522,6 +556,7 @@
       "is_best": true,
       "best_pick": {
         "market": "BTTS",
+        "pick": "BTTS Yes",
         "selection": "BTTS Yes",
         "prob": 0.547,
         "odds": 1.9,
@@ -549,6 +584,7 @@
       "pred_score_prob": 0.135,
       "result_pick": {
         "market": "Match Result",
+        "pick": "Home Win",
         "selection": "Home Win",
         "prob": 0.474,
         "odds": 1.36,
@@ -560,6 +596,7 @@
       },
       "goal_total_pick": {
         "market": "Goal Total",
+        "pick": "Under 2.5",
         "selection": "Under 2.5",
         "prob": 0.572,
         "odds": 2.08,
@@ -571,6 +608,7 @@
       },
       "btts_pick": {
         "market": "BTTS",
+        "pick": "BTTS No",
         "selection": "BTTS No",
         "prob": 0.522,
         "odds": 1.98,
@@ -582,6 +620,7 @@
       },
       "corner_pick": {
         "market": "Corners",
+        "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "Corners Over 9.5",
         "prob": 0.503,
@@ -596,6 +635,7 @@
       "is_best": true,
       "best_pick": {
         "market": "Goal Total",
+        "pick": "Under 2.5",
         "selection": "Under 2.5",
         "prob": 0.572,
         "odds": 2.08,
@@ -623,6 +663,7 @@
       "pred_score_prob": 0.145,
       "result_pick": {
         "market": "Match Result",
+        "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "Away Win",
         "prob": 0.362,
@@ -636,6 +677,7 @@
       },
       "goal_total_pick": {
         "market": "Goal Total",
+        "pick": "Under 2.5",
         "selection": "Under 2.5",
         "prob": 0.644,
         "odds": 1.62,
@@ -647,6 +689,7 @@
       },
       "btts_pick": {
         "market": "BTTS",
+        "pick": "BTTS No",
         "selection": "BTTS No",
         "prob": 0.562,
         "odds": 1.85,
@@ -658,6 +701,7 @@
       },
       "corner_pick": {
         "market": "Corners",
+        "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "Corners Under 9.5",
         "prob": 0.514,
@@ -672,6 +716,7 @@
       "is_best": true,
       "best_pick": {
         "market": "Goal Total",
+        "pick": "Under 2.5",
         "selection": "Under 2.5",
         "prob": 0.644,
         "odds": 1.62,
@@ -699,6 +744,7 @@
       "pred_score_prob": 0.201,
       "result_pick": {
         "market": "Match Result",
+        "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "Home Win",
         "prob": 0.397,
@@ -712,6 +758,7 @@
       },
       "goal_total_pick": {
         "market": "Goal Total",
+        "pick": "Under 2.5",
         "selection": "Under 2.5",
         "prob": 0.768,
         "odds": 1.35,
@@ -723,6 +770,7 @@
       },
       "btts_pick": {
         "market": "BTTS",
+        "pick": "BTTS No",
         "selection": "BTTS No",
         "prob": 0.681,
         "odds": 1.54,
@@ -734,6 +782,7 @@
       },
       "corner_pick": {
         "market": "Corners",
+        "pick": "Corners Under 9.5",
         "selection": "Corners Under 9.5",
         "prob": 0.544,
         "odds": 1.9,
@@ -746,6 +795,7 @@
       "is_best": true,
       "best_pick": {
         "market": "BTTS",
+        "pick": "BTTS No",
         "selection": "BTTS No",
         "prob": 0.681,
         "odds": 1.54,
@@ -773,6 +823,7 @@
       "pred_score_prob": 0.18,
       "result_pick": {
         "market": "Match Result",
+        "pick": "Away Win",
         "selection": "Away Win",
         "prob": 0.548,
         "odds": 1.9,
@@ -784,6 +835,7 @@
       },
       "goal_total_pick": {
         "market": "Goal Total",
+        "pick": "Under 2.5",
         "selection": "Under 2.5",
         "prob": 0.68,
         "odds": 1.75,
@@ -795,6 +847,7 @@
       },
       "btts_pick": {
         "market": "BTTS",
+        "pick": "BTTS No",
         "selection": "BTTS No",
         "prob": 0.65,
         "odds": 1.66,
@@ -806,6 +859,7 @@
       },
       "corner_pick": {
         "market": "Corners",
+        "pick": "Corners Under 9.5",
         "selection": "Corners Under 9.5",
         "prob": 0.523,
         "odds": 1.97,
@@ -818,6 +872,7 @@
       "is_best": true,
       "best_pick": {
         "market": "Goal Total",
+        "pick": "Under 2.5",
         "selection": "Under 2.5",
         "prob": 0.68,
         "odds": 1.75,
@@ -845,6 +900,7 @@
       "pred_score_prob": 0.127,
       "result_pick": {
         "market": "Match Result",
+        "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "Away Win",
         "prob": 0.381,
@@ -858,6 +914,7 @@
       },
       "goal_total_pick": {
         "market": "Goal Total",
+        "pick": "Over 2.5",
         "selection": "Over 2.5",
         "prob": 0.538,
         "odds": 2.13,
@@ -869,6 +926,7 @@
       },
       "btts_pick": {
         "market": "BTTS",
+        "pick": "BTTS Yes",
         "selection": "BTTS Yes",
         "prob": 0.582,
         "odds": 2.0,
@@ -880,6 +938,7 @@
       },
       "corner_pick": {
         "market": "Corners",
+        "pick": "Corners Over 9.5",
         "selection": "Corners Over 9.5",
         "prob": 0.532,
         "odds": 1.94,
@@ -892,6 +951,7 @@
       "is_best": true,
       "best_pick": {
         "market": "BTTS",
+        "pick": "BTTS Yes",
         "selection": "BTTS Yes",
         "prob": 0.582,
         "odds": 2.0,
@@ -919,6 +979,7 @@
       "pred_score_prob": 0.139,
       "result_pick": {
         "market": "Match Result",
+        "pick": "Home Win",
         "selection": "Home Win",
         "prob": 0.453,
         "odds": 2.24,
@@ -930,6 +991,7 @@
       },
       "goal_total_pick": {
         "market": "Goal Total",
+        "pick": "Under 2.5",
         "selection": "Under 2.5",
         "prob": 0.604,
         "odds": 1.73,
@@ -941,6 +1003,7 @@
       },
       "btts_pick": {
         "market": "BTTS",
+        "pick": "BTTS No",
         "selection": "BTTS No",
         "prob": 0.543,
         "odds": 1.91,
@@ -952,6 +1015,7 @@
       },
       "corner_pick": {
         "market": "Corners",
+        "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "Corners Under 9.5",
         "prob": 0.504,
@@ -966,6 +1030,7 @@
       "is_best": true,
       "best_pick": {
         "market": "Goal Total",
+        "pick": "Under 2.5",
         "selection": "Under 2.5",
         "prob": 0.604,
         "odds": 1.73,
@@ -993,6 +1058,7 @@
       "pred_score_prob": 0.118,
       "result_pick": {
         "market": "Match Result",
+        "pick": "Home Win",
         "selection": "Home Win",
         "prob": 0.593,
         "odds": 1.76,
@@ -1004,6 +1070,7 @@
       },
       "goal_total_pick": {
         "market": "Goal Total",
+        "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "Under 2.5",
         "prob": 0.503,
@@ -1017,6 +1084,7 @@
       },
       "btts_pick": {
         "market": "BTTS",
+        "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "BTTS No",
         "prob": 0.512,
@@ -1030,6 +1098,7 @@
       },
       "corner_pick": {
         "market": "Corners",
+        "pick": "Corners Over 9.5",
         "selection": "Corners Over 9.5",
         "prob": 0.521,
         "odds": 1.98,
@@ -1042,6 +1111,7 @@
       "is_best": true,
       "best_pick": {
         "market": "Match Result",
+        "pick": "Home Win",
         "selection": "Home Win",
         "prob": 0.593,
         "odds": 1.76,
@@ -1069,6 +1139,7 @@
       "pred_score_prob": 0.092,
       "result_pick": {
         "market": "Match Result",
+        "pick": "Away Win",
         "selection": "Away Win",
         "prob": 0.704,
         "odds": 1.5,
@@ -1080,6 +1151,7 @@
       },
       "goal_total_pick": {
         "market": "Goal Total",
+        "pick": "Over 2.5",
         "selection": "Over 2.5",
         "prob": 0.686,
         "odds": 1.53,
@@ -1091,6 +1163,7 @@
       },
       "btts_pick": {
         "market": "BTTS",
+        "pick": "BTTS Yes",
         "selection": "BTTS Yes",
         "prob": 0.577,
         "odds": 1.8,
@@ -1102,6 +1175,7 @@
       },
       "corner_pick": {
         "market": "Corners",
+        "pick": "Corners Over 9.5",
         "selection": "Corners Over 9.5",
         "prob": 0.582,
         "odds": 1.78,
@@ -1114,6 +1188,7 @@
       "is_best": true,
       "best_pick": {
         "market": "Match Result",
+        "pick": "Away Win",
         "selection": "Away Win",
         "prob": 0.704,
         "odds": 1.5,
@@ -1141,6 +1216,7 @@
       "pred_score_prob": 0.108,
       "result_pick": {
         "market": "Match Result",
+        "pick": "Home Win",
         "selection": "Home Win",
         "prob": 0.657,
         "odds": 1.6,
@@ -1152,6 +1228,7 @@
       },
       "goal_total_pick": {
         "market": "Goal Total",
+        "pick": "Over 2.5",
         "selection": "Over 2.5",
         "prob": 0.597,
         "odds": 1.74,
@@ -1163,6 +1240,7 @@
       },
       "btts_pick": {
         "market": "BTTS",
+        "pick": "BTTS Yes",
         "selection": "BTTS Yes",
         "prob": 0.533,
         "odds": 1.94,
@@ -1174,6 +1252,7 @@
       },
       "corner_pick": {
         "market": "Corners",
+        "pick": "Corners Over 9.5",
         "selection": "Corners Over 9.5",
         "prob": 0.55,
         "odds": 1.88,
@@ -1186,6 +1265,7 @@
       "is_best": true,
       "best_pick": {
         "market": "Match Result",
+        "pick": "Home Win",
         "selection": "Home Win",
         "prob": 0.657,
         "odds": 1.6,
@@ -1213,6 +1293,7 @@
       "pred_score_prob": 0.127,
       "result_pick": {
         "market": "Match Result",
+        "pick": "Home Win",
         "selection": "Home Win",
         "prob": 0.467,
         "odds": 1.22,
@@ -1224,6 +1305,7 @@
       },
       "goal_total_pick": {
         "market": "Goal Total",
+        "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "Over 2.5",
         "prob": 0.517,
@@ -1237,6 +1319,7 @@
       },
       "btts_pick": {
         "market": "BTTS",
+        "pick": "BTTS Yes",
         "selection": "BTTS Yes",
         "prob": 0.554,
         "odds": 1.87,
@@ -1248,6 +1331,7 @@
       },
       "corner_pick": {
         "market": "Corners",
+        "pick": "Corners Over 9.5",
         "selection": "Corners Over 9.5",
         "prob": 0.526,
         "odds": 1.96,
@@ -1260,6 +1344,7 @@
       "is_best": true,
       "best_pick": {
         "market": "BTTS",
+        "pick": "BTTS Yes",
         "selection": "BTTS Yes",
         "prob": 0.554,
         "odds": 1.87,
@@ -1287,6 +1372,7 @@
       "pred_score_prob": 0.134,
       "result_pick": {
         "market": "Match Result",
+        "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "Away Win",
         "prob": 0.411,
@@ -1300,6 +1386,7 @@
       },
       "goal_total_pick": {
         "market": "Goal Total",
+        "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "Under 2.5",
         "prob": 0.515,
@@ -1313,6 +1400,7 @@
       },
       "btts_pick": {
         "market": "BTTS",
+        "pick": "BTTS Yes",
         "selection": "BTTS Yes",
         "prob": 0.538,
         "odds": 1.99,
@@ -1324,6 +1412,7 @@
       },
       "corner_pick": {
         "market": "Corners",
+        "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "Corners Over 9.5",
         "prob": 0.518,
@@ -1338,6 +1427,7 @@
       "is_best": true,
       "best_pick": {
         "market": "BTTS",
+        "pick": "BTTS Yes",
         "selection": "BTTS Yes",
         "prob": 0.538,
         "odds": 1.99,
@@ -1365,6 +1455,7 @@
       "pred_score_prob": 0.11,
       "result_pick": {
         "market": "Match Result",
+        "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "Home Win",
         "prob": 0.421,
@@ -1378,6 +1469,7 @@
       },
       "goal_total_pick": {
         "market": "Goal Total",
+        "pick": "Over 2.5",
         "selection": "Over 2.5",
         "prob": 0.629,
         "odds": 1.92,
@@ -1389,6 +1481,7 @@
       },
       "btts_pick": {
         "market": "BTTS",
+        "pick": "BTTS Yes",
         "selection": "BTTS Yes",
         "prob": 0.65,
         "odds": 1.8,
@@ -1400,6 +1493,7 @@
       },
       "corner_pick": {
         "market": "Corners",
+        "pick": "Corners Over 9.5",
         "selection": "Corners Over 9.5",
         "prob": 0.558,
         "odds": 1.85,
@@ -1412,6 +1506,7 @@
       "is_best": true,
       "best_pick": {
         "market": "Goal Total",
+        "pick": "Over 2.5",
         "selection": "Over 2.5",
         "prob": 0.629,
         "odds": 1.92,
@@ -1439,6 +1534,7 @@
       "pred_score_prob": 0.119,
       "result_pick": {
         "market": "Match Result",
+        "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "Away Win",
         "prob": 0.37,
@@ -1452,6 +1548,7 @@
       },
       "goal_total_pick": {
         "market": "Goal Total",
+        "pick": "Over 2.5",
         "selection": "Over 2.5",
         "prob": 0.583,
         "odds": 2.65,
@@ -1463,6 +1560,7 @@
       },
       "btts_pick": {
         "market": "BTTS",
+        "pick": "BTTS Yes",
         "selection": "BTTS Yes",
         "prob": 0.618,
         "odds": 2.49,
@@ -1474,6 +1572,7 @@
       },
       "corner_pick": {
         "market": "Corners",
+        "pick": "Corners Over 9.5",
         "selection": "Corners Over 9.5",
         "prob": 0.544,
         "odds": 1.9,
@@ -1486,6 +1585,7 @@
       "is_best": true,
       "best_pick": {
         "market": "BTTS",
+        "pick": "BTTS Yes",
         "selection": "BTTS Yes",
         "prob": 0.618,
         "odds": 2.49,
@@ -1513,6 +1613,7 @@
       "pred_score_prob": 0.103,
       "result_pick": {
         "market": "Match Result",
+        "pick": "Home Win",
         "selection": "Home Win",
         "prob": 0.558,
         "odds": 1.87,
@@ -1524,6 +1625,7 @@
       },
       "goal_total_pick": {
         "market": "Goal Total",
+        "pick": "Over 2.5",
         "selection": "Over 2.5",
         "prob": 0.627,
         "odds": 1.67,
@@ -1535,6 +1637,7 @@
       },
       "btts_pick": {
         "market": "BTTS",
+        "pick": "BTTS Yes",
         "selection": "BTTS Yes",
         "prob": 0.614,
         "odds": 1.7,
@@ -1546,6 +1649,7 @@
       },
       "corner_pick": {
         "market": "Corners",
+        "pick": "Corners Over 9.5",
         "selection": "Corners Over 9.5",
         "prob": 0.558,
         "odds": 1.85,
@@ -1558,6 +1662,7 @@
       "is_best": true,
       "best_pick": {
         "market": "Goal Total",
+        "pick": "Over 2.5",
         "selection": "Over 2.5",
         "prob": 0.627,
         "odds": 1.67,
@@ -1585,6 +1690,7 @@
       "pred_score_prob": 0.116,
       "result_pick": {
         "market": "Match Result",
+        "pick": "Home Win",
         "selection": "Home Win",
         "prob": 0.549,
         "odds": 1.89,
@@ -1596,6 +1702,7 @@
       },
       "goal_total_pick": {
         "market": "Goal Total",
+        "pick": "Over 2.5",
         "selection": "Over 2.5",
         "prob": 0.544,
         "odds": 1.91,
@@ -1607,6 +1714,7 @@
       },
       "btts_pick": {
         "market": "BTTS",
+        "pick": "BTTS Yes",
         "selection": "BTTS Yes",
         "prob": 0.548,
         "odds": 1.89,
@@ -1618,6 +1726,7 @@
       },
       "corner_pick": {
         "market": "Corners",
+        "pick": "Corners Over 9.5",
         "selection": "Corners Over 9.5",
         "prob": 0.534,
         "odds": 1.93,
@@ -1630,6 +1739,7 @@
       "is_best": true,
       "best_pick": {
         "market": "Match Result",
+        "pick": "Home Win",
         "selection": "Home Win",
         "prob": 0.549,
         "odds": 1.89,
@@ -1657,6 +1767,7 @@
       "pred_score_prob": 0.097,
       "result_pick": {
         "market": "Match Result",
+        "pick": "Home Win",
         "selection": "Home Win",
         "prob": 0.615,
         "odds": 1.7,
@@ -1668,6 +1779,7 @@
       },
       "goal_total_pick": {
         "market": "Goal Total",
+        "pick": "Over 2.5",
         "selection": "Over 2.5",
         "prob": 0.658,
         "odds": 1.63,
@@ -1679,6 +1791,7 @@
       },
       "btts_pick": {
         "market": "BTTS",
+        "pick": "BTTS Yes",
         "selection": "BTTS Yes",
         "prob": 0.614,
         "odds": 1.7,
@@ -1690,6 +1803,7 @@
       },
       "corner_pick": {
         "market": "Corners",
+        "pick": "Corners Over 9.5",
         "selection": "Corners Over 9.5",
         "prob": 0.569,
         "odds": 1.82,
@@ -1702,6 +1816,7 @@
       "is_best": true,
       "best_pick": {
         "market": "Goal Total",
+        "pick": "Over 2.5",
         "selection": "Over 2.5",
         "prob": 0.658,
         "odds": 1.63,
@@ -1729,6 +1844,7 @@
       "pred_score_prob": 0.105,
       "result_pick": {
         "market": "Match Result",
+        "pick": "Home Win",
         "selection": "Home Win",
         "prob": 0.658,
         "odds": 1.6,
@@ -1740,6 +1856,7 @@
       },
       "goal_total_pick": {
         "market": "Goal Total",
+        "pick": "Over 2.5",
         "selection": "Over 2.5",
         "prob": 0.609,
         "odds": 1.71,
@@ -1751,6 +1868,7 @@
       },
       "btts_pick": {
         "market": "BTTS",
+        "pick": "BTTS Yes",
         "selection": "BTTS Yes",
         "prob": 0.544,
         "odds": 1.91,
@@ -1762,6 +1880,7 @@
       },
       "corner_pick": {
         "market": "Corners",
+        "pick": "Corners Over 9.5",
         "selection": "Corners Over 9.5",
         "prob": 0.554,
         "odds": 1.87,
@@ -1774,6 +1893,7 @@
       "is_best": true,
       "best_pick": {
         "market": "Match Result",
+        "pick": "Home Win",
         "selection": "Home Win",
         "prob": 0.658,
         "odds": 1.6,
@@ -1801,6 +1921,7 @@
       "pred_score_prob": 0.129,
       "result_pick": {
         "market": "Match Result",
+        "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "Away Win",
         "prob": 0.42,
@@ -1814,6 +1935,7 @@
       },
       "goal_total_pick": {
         "market": "Goal Total",
+        "pick": "Over 2.5",
         "selection": "Over 2.5",
         "prob": 0.522,
         "odds": 2.41,
@@ -1825,6 +1947,7 @@
       },
       "btts_pick": {
         "market": "BTTS",
+        "pick": "BTTS Yes",
         "selection": "BTTS Yes",
         "prob": 0.567,
         "odds": 2.27,
@@ -1836,6 +1959,7 @@
       },
       "corner_pick": {
         "market": "Corners",
+        "pick": "Corners Over 9.5",
         "selection": "Corners Over 9.5",
         "prob": 0.528,
         "odds": 1.95,
@@ -1848,6 +1972,7 @@
       "is_best": true,
       "best_pick": {
         "market": "BTTS",
+        "pick": "BTTS Yes",
         "selection": "BTTS Yes",
         "prob": 0.567,
         "odds": 2.27,
@@ -1875,6 +2000,7 @@
       "pred_score_prob": 0.115,
       "result_pick": {
         "market": "Match Result",
+        "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "Home Win",
         "prob": 0.42,
@@ -1888,6 +2014,7 @@
       },
       "goal_total_pick": {
         "market": "Goal Total",
+        "pick": "Over 2.5",
         "selection": "Over 2.5",
         "prob": 0.601,
         "odds": 1.8,
@@ -1899,6 +2026,7 @@
       },
       "btts_pick": {
         "market": "BTTS",
+        "pick": "BTTS Yes",
         "selection": "BTTS Yes",
         "prob": 0.628,
         "odds": 1.69,
@@ -1910,6 +2038,7 @@
       },
       "corner_pick": {
         "market": "Corners",
+        "pick": "Corners Over 9.5",
         "selection": "Corners Over 9.5",
         "prob": 0.55,
         "odds": 1.88,
@@ -1922,6 +2051,7 @@
       "is_best": true,
       "best_pick": {
         "market": "Goal Total",
+        "pick": "Over 2.5",
         "selection": "Over 2.5",
         "prob": 0.601,
         "odds": 1.8,
@@ -1949,6 +2079,7 @@
       "pred_score_prob": 0.119,
       "result_pick": {
         "market": "Match Result",
+        "pick": "Home Win",
         "selection": "Home Win",
         "prob": 0.446,
         "odds": 2.15,
@@ -1960,6 +2091,7 @@
       },
       "goal_total_pick": {
         "market": "Goal Total",
+        "pick": "Over 2.5",
         "selection": "Over 2.5",
         "prob": 0.578,
         "odds": 1.83,
@@ -1971,6 +2103,7 @@
       },
       "btts_pick": {
         "market": "BTTS",
+        "pick": "BTTS Yes",
         "selection": "BTTS Yes",
         "prob": 0.607,
         "odds": 1.72,
@@ -1982,6 +2115,7 @@
       },
       "corner_pick": {
         "market": "Corners",
+        "pick": "Corners Over 9.5",
         "selection": "Corners Over 9.5",
         "prob": 0.543,
         "odds": 1.9,
@@ -1994,6 +2128,7 @@
       "is_best": true,
       "best_pick": {
         "market": "Goal Total",
+        "pick": "Over 2.5",
         "selection": "Over 2.5",
         "prob": 0.578,
         "odds": 1.83,
@@ -2021,6 +2156,7 @@
       "pred_score_prob": 0.117,
       "result_pick": {
         "market": "Match Result",
+        "pick": "Home Win",
         "selection": "Home Win",
         "prob": 0.462,
         "odds": 1.43,
@@ -2032,6 +2168,7 @@
       },
       "goal_total_pick": {
         "market": "Goal Total",
+        "pick": "Over 2.5",
         "selection": "Over 2.5",
         "prob": 0.583,
         "odds": 1.78,
@@ -2043,6 +2180,7 @@
       },
       "btts_pick": {
         "market": "BTTS",
+        "pick": "BTTS Yes",
         "selection": "BTTS Yes",
         "prob": 0.607,
         "odds": 1.72,
@@ -2054,6 +2192,7 @@
       },
       "corner_pick": {
         "market": "Corners",
+        "pick": "Corners Over 9.5",
         "selection": "Corners Over 9.5",
         "prob": 0.544,
         "odds": 1.9,
@@ -2066,6 +2205,7 @@
       "is_best": true,
       "best_pick": {
         "market": "BTTS",
+        "pick": "BTTS Yes",
         "selection": "BTTS Yes",
         "prob": 0.607,
         "odds": 1.72,
@@ -2093,6 +2233,7 @@
       "pred_score_prob": 0.131,
       "result_pick": {
         "market": "Match Result",
+        "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "Home Win",
         "prob": 0.428,
@@ -2106,6 +2247,7 @@
       },
       "goal_total_pick": {
         "market": "Goal Total",
+        "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "Over 2.5",
         "prob": 0.506,
@@ -2119,6 +2261,7 @@
       },
       "btts_pick": {
         "market": "BTTS",
+        "pick": "BTTS Yes",
         "selection": "BTTS Yes",
         "prob": 0.553,
         "odds": 1.88,
@@ -2130,6 +2273,7 @@
       },
       "corner_pick": {
         "market": "Corners",
+        "pick": "Corners Over 9.5",
         "selection": "Corners Over 9.5",
         "prob": 0.523,
         "odds": 1.97,
@@ -2142,6 +2286,7 @@
       "is_best": true,
       "best_pick": {
         "market": "BTTS",
+        "pick": "BTTS Yes",
         "selection": "BTTS Yes",
         "prob": 0.553,
         "odds": 1.88,
@@ -2169,6 +2314,7 @@
       "pred_score_prob": 0.086,
       "result_pick": {
         "market": "Match Result",
+        "pick": "Home Win",
         "selection": "Home Win",
         "prob": 0.742,
         "odds": 1.43,
@@ -2180,6 +2326,7 @@
       },
       "goal_total_pick": {
         "market": "Goal Total",
+        "pick": "Over 2.5",
         "selection": "Over 2.5",
         "prob": 0.722,
         "odds": 1.95,
@@ -2191,6 +2338,7 @@
       },
       "btts_pick": {
         "market": "BTTS",
+        "pick": "BTTS Yes",
         "selection": "BTTS Yes",
         "prob": 0.572,
         "odds": 1.83,
@@ -2202,6 +2350,7 @@
       },
       "corner_pick": {
         "market": "Corners",
+        "pick": "Corners Over 9.5",
         "selection": "Corners Over 9.5",
         "prob": 0.6,
         "odds": 1.73,
@@ -2214,6 +2363,7 @@
       "is_best": true,
       "best_pick": {
         "market": "Goal Total",
+        "pick": "Over 2.5",
         "selection": "Over 2.5",
         "prob": 0.722,
         "odds": 1.95,

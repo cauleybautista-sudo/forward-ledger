@@ -1269,7 +1269,8 @@ const DATA = {json_str};
     matches.forEach(m => {{
       // Goals
       if (m.goal_total_pick) {{
-        if (m.goal_total_pick.is_pass || (m.goal_total_pick.pick && m.goal_total_pick.pick.includes("NO PICK"))) {{
+        const gtVal = m.goal_total_pick.selection || m.goal_total_pick.pick || "";
+        if (m.goal_total_pick.is_pass || gtVal.includes("NO PICK")) {{
           gtPasses++;
         }} else {{
           gtTotal++;
@@ -1279,7 +1280,8 @@ const DATA = {json_str};
       }}
       // BTTS
       if (m.btts_pick) {{
-        if (m.btts_pick.is_pass || (m.btts_pick.pick && m.btts_pick.pick.includes("NO PICK"))) {{
+        const bttsVal = m.btts_pick.selection || m.btts_pick.pick || "";
+        if (m.btts_pick.is_pass || bttsVal.includes("NO PICK")) {{
           bttsPasses++;
         }} else {{
           bttsTotal++;
@@ -1289,7 +1291,8 @@ const DATA = {json_str};
       }}
       // Corners
       if (m.corner_pick) {{
-        if (m.corner_pick.is_pass || (m.corner_pick.pick && m.corner_pick.pick.includes("NO PICK"))) {{
+        const corVal = m.corner_pick.selection || m.corner_pick.pick || "";
+        if (m.corner_pick.is_pass || corVal.includes("NO PICK")) {{
           corPasses++;
         }} else {{
           corTotal++;
@@ -1299,7 +1302,8 @@ const DATA = {json_str};
       }}
       // Result
       if (m.result_pick) {{
-        if (m.result_pick.is_pass || (m.result_pick.pick && m.result_pick.pick.includes("NO PICK"))) {{
+        const resVal = m.result_pick.selection || m.result_pick.pick || "";
+        if (m.result_pick.is_pass || resVal.includes("NO PICK")) {{
           resPasses++;
         }} else {{
           resTotal++;
@@ -1308,7 +1312,8 @@ const DATA = {json_str};
         }}
       }}
       // Best Pick
-      if (m.is_best && m.best_pick && !m.best_pick.is_pass && !(m.best_pick.selection && m.best_pick.selection.includes("NO PICK"))) {{
+      const bestVal = m.best_pick ? (m.best_pick.selection || m.best_pick.pick || "") : "";
+      if (m.is_best && m.best_pick && !m.best_pick.is_pass && !bestVal.includes("NO PICK")) {{
         bestTotal++;
         bestExp += (m.best_pick.prob || 0.62);
         if (m.best_pick.status === "HIT") bestHits++;
@@ -1322,7 +1327,8 @@ const DATA = {json_str};
         scoreHits++;
       }}
       // RPS / Brier Score
-      if (!isPending && m.result_pick && !m.result_pick.is_pass && !(m.result_pick.pick && m.result_pick.pick.includes("NO PICK"))) {{
+      const resValCheck = m.result_pick ? (m.result_pick.selection || m.result_pick.pick || "") : "";
+      if (!isPending && m.result_pick && !m.result_pick.is_pass && !resValCheck.includes("NO PICK")) {{
         const y = (m.result_pick.status === "HIT") ? 1 : 0;
         const p = m.result_pick.prob || 0.55;
         rpsSumSq += Math.pow(p - y, 2);
@@ -1418,8 +1424,8 @@ const DATA = {json_str};
       const matchQuery = !searchQuery ||
         m.fixture.toLowerCase().includes(searchQuery) ||
         m.competition.toLowerCase().includes(searchQuery) ||
-        (m.best_pick && m.best_pick.selection.toLowerCase().includes(searchQuery)) ||
-        (m.selection && m.selection.toLowerCase().includes(searchQuery));
+        (m.best_pick && (m.best_pick.selection || m.best_pick.pick || "").toLowerCase().includes(searchQuery)) ||
+        ((m.selection || m.pick || "").toLowerCase().includes(searchQuery));
       return matchComp && matchQuery;
     }});
 
@@ -1485,14 +1491,18 @@ const DATA = {json_str};
 
       // Yellow Highlighted Best Pick Pill OR Neutral Pass Pill
       let bestPillHtml = "";
-      if (hasBest && !m.best_pick.is_pass && !(m.best_pick.selection && m.best_pick.selection.includes("NO PICK"))) {{
+      const bestChoiceVal = (hasBest && m.best_pick) ? (m.best_pick.selection || m.best_pick.pick || "") : "";
+      if (hasBest && !m.best_pick.is_pass && !bestChoiceVal.includes("NO PICK")) {{
+        const bOdds = (m.best_pick.odds && typeof m.best_pick.odds === 'number') ? m.best_pick.odds.toFixed(2) : "1.90";
+        const bProb = (m.best_pick.prob && typeof m.best_pick.prob === 'number') ? Math.round(m.best_pick.prob * 100) : 55;
+        const bEdge = m.best_pick.edge || "+3.0%";
         bestPillHtml = `
           <div class="best-pick-pill">
             <span class="star-icon">★</span>
             <span class="best-lbl">BEST PICK:</span>
-            <span class="best-val">${{m.best_pick.selection}}</span>
-            <span class="best-odds">@ ${{m.best_pick.odds.toFixed(2)}}</span>
-            <span class="best-cv-meta" style="font-size:0.68rem; color:var(--yellow); opacity:0.95; padding-left:0.4rem; border-left:1px solid rgba(250,204,21,0.35);">${{Math.round(m.best_pick.prob * 100)}}% Conf &bull; ${{m.best_pick.edge}} EV</span>
+            <span class="best-val">${{bestChoiceVal}}</span>
+            <span class="best-odds">@ ${{bOdds}}</span>
+            <span class="best-cv-meta" style="font-size:0.68rem; color:var(--yellow); opacity:0.95; padding-left:0.4rem; border-left:1px solid rgba(250,204,21,0.35);">${{bProb}}% Conf &bull; ${{bEdge}} EV</span>
           </div>
         `;
       }} else {{
@@ -1516,15 +1526,16 @@ const DATA = {json_str};
       const isBttsBest = bestMarket === "BTTS";
       const isCornerBest = bestMarket === "Corners";
 
-      const resPick = m.result_pick || {{ pick: m.selection || "Home Win", prob: m.model_prob, odds: m.closing_odds, status: m.status }};
-      const gtPick = m.goal_total_pick || {{ pick: "Under 2.5", prob: 0.58, odds: 1.82, status: "PENDING" }};
-      const bttsPick = m.btts_pick || {{ pick: "BTTS Yes", prob: 0.60, odds: 1.75, status: "PENDING" }};
-      const corPick = m.corner_pick || {{ pick: "Corners Over 9.5", prob: 0.61, odds: 1.80, status: "PENDING" }};
+      const resPick = m.result_pick || {{ pick: m.selection || "Home Win", selection: m.selection || "Home Win", prob: m.model_prob, odds: m.closing_odds, status: m.status }};
+      const gtPick = m.goal_total_pick || {{ pick: "Under 2.5", selection: "Under 2.5", prob: 0.58, odds: 1.82, status: "PENDING" }};
+      const bttsPick = m.btts_pick || {{ pick: "BTTS Yes", selection: "BTTS Yes", prob: 0.60, odds: 1.75, status: "PENDING" }};
+      const corPick = m.corner_pick || {{ pick: "Corners Over 9.5", selection: "Corners Over 9.5", prob: 0.61, odds: 1.80, status: "PENDING" }};
 
       function renderPickGridItem(label, pickObj, isBestItem) {{
-        const isPass = pickObj.is_pass || (pickObj.pick && pickObj.pick.includes("NO PICK"));
+        const pickVal = (pickObj && (pickObj.selection || pickObj.pick)) ? (pickObj.selection || pickObj.pick) : "NO PICK";
+        const isPass = !pickObj || pickObj.is_pass || pickVal.includes("NO PICK");
         if (isPass) {{
-          const probStr = pickObj.prob ? `${{Math.round(pickObj.prob * 100)}}% Ambiguous` : 'High Entropy';
+          const probStr = (pickObj && pickObj.prob) ? `${{Math.round(pickObj.prob * 100)}}% Ambiguous` : 'High Entropy';
           return `
             <div class="pick-item is-pass-item">
               <div class="pick-head">
@@ -1534,21 +1545,23 @@ const DATA = {json_str};
               <div class="pick-val pass-val">NO PICK</div>
               <div class="pick-footer">
                 <span class="pass-sub">${{probStr}}</span>
-                <span class="sub-pass">${{pickObj.status === "PENDING" ? "PASS" : "VOID"}}</span>
+                <span class="sub-pass">${{(pickObj && pickObj.status === "PENDING") ? "PASS" : "VOID"}}</span>
               </div>
             </div>
           `;
         }}
+        const oddsStr = (pickObj && typeof pickObj.odds === 'number') ? pickObj.odds.toFixed(2) : '1.90';
+        const probVal = (pickObj && typeof pickObj.prob === 'number') ? Math.round(pickObj.prob * 100) : 50;
         return `
           <div class="pick-item ${{isBestItem ? 'is-best-item' : ''}}">
             <div class="pick-head">
               <span>${{label}}</span>
               ${{isBestItem ? '<span class="yellow-star">★ BEST</span>' : ''}}
             </div>
-            <div class="pick-val">${{pickObj.pick}}</div>
+            <div class="pick-val">${{pickVal}}</div>
             <div class="pick-footer">
-              <span>${{Math.round(pickObj.prob * 100)}}% @ ${{pickObj.odds.toFixed(2)}}</span>
-              ${{renderSubStatus(pickObj.status)}}
+              <span>${{probVal}}% @ ${{oddsStr}}</span>
+              ${{renderSubStatus(pickObj ? pickObj.status : "PENDING")}}
             </div>
           </div>
         `;

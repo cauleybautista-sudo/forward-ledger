@@ -235,6 +235,7 @@ def sync_live_odds():
         if res_is_pass:
             result_candidate = {
                 "market": "Match Result",
+                "pick": "NO PICK (PASS)",
                 "selection": "NO PICK (PASS)",
                 "target_selection": top_sel,
                 "prob": top_prob,
@@ -249,6 +250,7 @@ def sync_live_odds():
         else:
             result_candidate = {
                 "market": "Match Result",
+                "pick": top_sel,
                 "selection": top_sel,
                 "prob": top_prob,
                 "odds": top_odds,
@@ -278,6 +280,7 @@ def sync_live_odds():
         if gt_is_pass:
             gt_candidate = {
                 "market": "Goal Total",
+                "pick": "NO PICK (PASS)",
                 "selection": "NO PICK (PASS)",
                 "target_selection": gt_sel,
                 "prob": gt_prob,
@@ -292,6 +295,7 @@ def sync_live_odds():
         else:
             gt_candidate = {
                 "market": "Goal Total",
+                "pick": gt_sel,
                 "selection": gt_sel,
                 "prob": gt_prob,
                 "odds": gt_odds,
@@ -320,6 +324,7 @@ def sync_live_odds():
         if btts_is_pass:
             btts_candidate = {
                 "market": "BTTS",
+                "pick": "NO PICK (PASS)",
                 "selection": "NO PICK (PASS)",
                 "target_selection": btts_sel,
                 "prob": btts_prob,
@@ -334,6 +339,7 @@ def sync_live_odds():
         else:
             btts_candidate = {
                 "market": "BTTS",
+                "pick": btts_sel,
                 "selection": btts_sel,
                 "prob": btts_prob,
                 "odds": btts_odds,
@@ -359,6 +365,7 @@ def sync_live_odds():
         if cor_is_pass:
             cor_candidate = {
                 "market": "Corners",
+                "pick": "NO PICK (PASS)",
                 "selection": "NO PICK (PASS)",
                 "target_selection": cor_sel,
                 "prob": cor_prob,
@@ -373,6 +380,7 @@ def sync_live_odds():
         else:
             cor_candidate = {
                 "market": "Corners",
+                "pick": cor_sel,
                 "selection": cor_sel,
                 "prob": cor_prob,
                 "odds": cor_odds,
@@ -403,6 +411,7 @@ def sync_live_odds():
             is_best = False
             best_pick_choice = {
                 "market": "None",
+                "pick": "NO PICK (PASS)",
                 "selection": "NO PICK (PASS)",
                 "prob": None,
                 "odds": None,
