@@ -26,10 +26,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests python-dotenv
 
-      - name: Run Ledger Sync & UI Generation
+      - name: Run Tests, Ledger Sync & UI Generation
         env:
           PYTHONPATH: .
         run: |
+          python -m unittest discover -s tests -v
           python src/sync_ledger.py
           python src/build_ui.py
 

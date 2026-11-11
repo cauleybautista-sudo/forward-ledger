@@ -2338,33 +2338,39 @@ const DATA = {json_str};
     const pDrawPct = Math.round(pD * 100);
     const pAwayPct = Math.max(1, 100 - pHomePct - pDrawPct);
 
-    // Previous Meetings (Deterministic based on teams)
+    // Previous Meetings (Use real historical international H2H when available, fallback deterministically)
     const seed = (homeName + awayName + (m.id || "")).split("").reduce((acc, c) => acc + c.charCodeAt(0), 0);
-    const totalMeetings = 2 + (seed % 4);
     let hWins = 0, draws = 0, aWins = 0;
-    if (pHomePct > 55) {{
-      hWins = Math.min(totalMeetings, 2 + (seed % 2));
-      draws = ((seed % 3 === 0) && (totalMeetings - hWins) > 0) ? 1 : 0;
-      aWins = Math.max(0, totalMeetings - hWins - draws);
-    }} else if (pAwayPct > 55) {{
-      aWins = Math.min(totalMeetings, 2 + (seed % 2));
-      draws = ((seed % 3 === 0) && (totalMeetings - aWins) > 0) ? 1 : 0;
-      hWins = Math.max(0, totalMeetings - aWins - draws);
+    if (m.real_h2h && typeof m.real_h2h.total === "number" && m.real_h2h.total > 0) {{
+      hWins = m.real_h2h.hWins || 0;
+      draws = m.real_h2h.draws || 0;
+      aWins = m.real_h2h.aWins || 0;
     }} else {{
-      hWins = 1 + (seed % 2);
-      draws = (seed % 2);
-      aWins = Math.max(0, totalMeetings - hWins - draws);
+      const totalMeetings = 2 + (seed % 4);
+      if (pHomePct > 55) {{
+        hWins = Math.min(totalMeetings, 2 + (seed % 2));
+        draws = ((seed % 3 === 0) && (totalMeetings - hWins) > 0) ? 1 : 0;
+        aWins = Math.max(0, totalMeetings - hWins - draws);
+      }} else if (pAwayPct > 55) {{
+        aWins = Math.min(totalMeetings, 2 + (seed % 2));
+        draws = ((seed % 3 === 0) && (totalMeetings - aWins) > 0) ? 1 : 0;
+        hWins = Math.max(0, totalMeetings - aWins - draws);
+      }} else {{
+        hWins = 1 + (seed % 2);
+        draws = (seed % 2);
+        aWins = Math.max(0, totalMeetings - hWins - draws);
+      }}
     }}
     const totM = Math.max(1, hWins + draws + aWins);
     const hWinsWidth = Math.round((hWins / totM) * 100);
     const drawsWidth = Math.round((draws / totM) * 100);
     const aWinsWidth = Math.max(0, 100 - hWinsWidth - drawsWidth);
 
-    // Average Goals
-    const avgScoredH = (1.2 + ((seed % 14) / 10)).toFixed(1);
-    const avgConcededH = (0.7 + (((seed * 3) % 17) / 10)).toFixed(1);
-    const avgScoredA = (1.0 + (((seed * 5) % 15) / 10)).toFixed(1);
-    const avgConcededA = (0.9 + (((seed * 7) % 18) / 10)).toFixed(1);
+    // Average Goals (Real rolling shrunk goals per game when available)
+    const avgScoredH = m.real_goal_stats ? Number(m.real_goal_stats.avgScoredH).toFixed(1) : (1.2 + ((seed % 14) / 10)).toFixed(1);
+    const avgConcededH = m.real_goal_stats ? Number(m.real_goal_stats.avgConcededH).toFixed(1) : (0.7 + (((seed * 3) % 17) / 10)).toFixed(1);
+    const avgScoredA = m.real_goal_stats ? Number(m.real_goal_stats.avgScoredA).toFixed(1) : (1.0 + (((seed * 5) % 15) / 10)).toFixed(1);
+    const avgConcededA = m.real_goal_stats ? Number(m.real_goal_stats.avgConcededA).toFixed(1) : (0.9 + (((seed * 7) % 18) / 10)).toFixed(1);
 
     const maxGoal = 3.5;
     const goalsScoredPctH = Math.min(100, Math.round((parseFloat(avgScoredH) / maxGoal) * 100));
@@ -2372,24 +2378,28 @@ const DATA = {json_str};
     const goalsConcededPctH = Math.min(100, Math.round((parseFloat(avgConcededH) / maxGoal) * 100));
     const goalsConcededPctA = Math.min(100, Math.round((parseFloat(avgConcededA) / maxGoal) * 100));
 
-    const expectedXg = (parseFloat(avgScoredH) + parseFloat(avgScoredA)).toFixed(1);
-    const bttsPct = m.btts_pick ? Math.round(m.btts_pick.prob * 100) : Math.round(52 + (seed % 15));
-    const overPct = m.goal_total_pick ? Math.round(m.goal_total_pick.prob * 100) : Math.round(48 + (seed % 18));
-    const corPct = m.corner_pick ? Math.round(m.corner_pick.prob * 100) : Math.round(50 + (seed % 14));
+    const expectedXg = m.real_goal_stats
+      ? Number(m.real_goal_stats.expectedXg).toFixed(1)
+      : (parseFloat(avgScoredH) + parseFloat(avgScoredA)).toFixed(1);
+    const bttsPct = m.btts_pick ? Math.round((m.btts_pick.selection && m.btts_pick.selection.includes("No") ? (1 - m.btts_pick.prob) : m.btts_pick.prob) * 100) : Math.round(52 + (seed % 15));
+    const overPct = m.goal_total_pick ? Math.round((m.goal_total_pick.selection && m.goal_total_pick.selection.includes("Under") ? (1 - m.goal_total_pick.prob) : m.goal_total_pick.prob) * 100) : Math.round(48 + (seed % 18));
+    const corPct = m.corner_pick ? Math.round((m.corner_pick.selection && m.corner_pick.selection.includes("Under") ? (1 - m.corner_pick.prob) : m.corner_pick.prob) * 100) : Math.round(50 + (seed % 14));
 
-    // Corner Statistics
-    const avgCornersH = (4.8 + ((seed % 24) / 10)).toFixed(1);
-    const avgCornersConcededH = (3.6 + (((seed * 3) % 20) / 10)).toFixed(1);
-    const avgCornersA = (4.2 + (((seed * 5) % 22) / 10)).toFixed(1);
-    const avgCornersConcededA = (4.4 + (((seed * 7) % 21) / 10)).toFixed(1);
+    // Corner Statistics (Real ESPN boxscore corners with Negative Binomial expectation when available)
+    const avgCornersH = m.real_corner_stats ? Number(m.real_corner_stats.avgCornersH).toFixed(1) : (4.8 + ((seed % 24) / 10)).toFixed(1);
+    const avgCornersConcededH = m.real_corner_stats ? Number(m.real_corner_stats.avgCornersConcededH).toFixed(1) : (3.6 + (((seed * 3) % 20) / 10)).toFixed(1);
+    const avgCornersA = m.real_corner_stats ? Number(m.real_corner_stats.avgCornersA).toFixed(1) : (4.2 + (((seed * 5) % 22) / 10)).toFixed(1);
+    const avgCornersConcededA = m.real_corner_stats ? Number(m.real_corner_stats.avgCornersConcededA).toFixed(1) : (4.4 + (((seed * 7) % 21) / 10)).toFixed(1);
     const maxCorner = 9.0;
     const cornersWonPctH = Math.min(100, Math.round((parseFloat(avgCornersH) / maxCorner) * 100));
     const cornersWonPctA = Math.min(100, Math.round((parseFloat(avgCornersA) / maxCorner) * 100));
     const cornersConcededPctH = Math.min(100, Math.round((parseFloat(avgCornersConcededH) / maxCorner) * 100));
     const cornersConcededPctA = Math.min(100, Math.round((parseFloat(avgCornersConcededA) / maxCorner) * 100));
-    const expectedCorners = (parseFloat(avgCornersH) + parseFloat(avgCornersA)).toFixed(1);
+    const expectedCorners = m.real_corner_stats
+      ? Number(m.real_corner_stats.expectedCorners).toFixed(1)
+      : (parseFloat(avgCornersH) + parseFloat(avgCornersA)).toFixed(1);
 
-    // Form (Last 5 matches)
+    // Form (Real Last 5 matches from ESPN / international DB when available)
     const OPP_POOL = ["GER", "ESP", "FRA", "ITA", "ENG", "CRO", "NED", "POR", "BEL", "TUR", "AUT", "DEN", "SCO", "POL", "SWE", "SUI", "CZE", "NOR", "GRE", "HUN", "FIN", "IRL", "WAL", "ROU", "SRB", "GEO", "SVK", "SVN", "ALB", "UKR"];
     
     function isScoreBtts(sc) {{
@@ -2398,6 +2408,21 @@ const DATA = {json_str};
         return parseInt(parts[0], 10) > 0 && parseInt(parts[1], 10) > 0;
       }}
       return false;
+    }}
+
+    function summarizeRealForm(matchesList) {{
+      let wins = 0, drawsCount = 0, bttsHits = 0;
+      matchesList.forEach(item => {{
+        if (item.res === "W") wins++;
+        else if (item.res === "D") drawsCount++;
+        if (item.btts) bttsHits++;
+      }});
+      const cnt = Math.max(1, matchesList.length);
+      return {{
+        matches: matchesList,
+        formPct: Math.round(((wins * 3 + drawsCount * 1) / (cnt * 3)) * 100),
+        bttsRate: Math.round((bttsHits / cnt) * 100)
+      }};
     }}
 
     function generateForm(tSeed, biasWin) {{
@@ -2447,14 +2472,18 @@ const DATA = {json_str};
       return {{ matches, formPct, bttsRate }};
     }}
 
-    const homeForm = generateForm(seed, pHomePct >= pAwayPct);
-    const awayForm = generateForm(seed + 83, pAwayPct > pHomePct);
+    const homeForm = (m.real_home_form && m.real_home_form.length > 0)
+      ? summarizeRealForm(m.real_home_form)
+      : generateForm(seed, pHomePct >= pAwayPct);
+    const awayForm = (m.real_away_form && m.real_away_form.length > 0)
+      ? summarizeRealForm(m.real_away_form)
+      : generateForm(seed + 83, pAwayPct > pHomePct);
 
     // Scores for Market Matrix
     const topScore1 = m.pred_score || "2-1";
     const topScore1Prob = m.pred_score_prob ? Math.round(m.pred_score_prob * 100) : 12;
-    const topScore2 = (pHomePct > 50) ? "2-0" : (pAwayPct > 50 ? "0-2" : "1-1");
-    const topScore2Prob = Math.max(6, Math.round(topScore1Prob * 0.82));
+    const topScore2 = m.sec_score || ((pHomePct > 50) ? "2-0" : (pAwayPct > 50 ? "0-2" : "1-1"));
+    const topScore2Prob = m.sec_score_prob ? Math.round(m.sec_score_prob * 100) : Math.max(6, Math.round(topScore1Prob * 0.82));
     const topScore3 = (pHomePct > 50) ? "1-0" : (pAwayPct > 50 ? "0-1" : "2-2");
     const topScore3Prob = Math.max(5, Math.round(topScore1Prob * 0.68));
 
@@ -2472,19 +2501,19 @@ const DATA = {json_str};
       ? Math.round(m.result_pick.prob * 100) 
       : (pHomePct >= pAwayPct ? pHomePct : pAwayPct);
     const probDec = topPickProb / 100;
-    const fairOddsDec = (1 / probDec);
+    const fairOddsDec = (1 / Math.max(0.01, probDec));
     const fairOdds = formatOdds(fairOddsDec);
     const rawMarketOdds = (m.result_pick && typeof m.result_pick.odds === "number") 
       ? m.result_pick.odds 
-      : ((m.best_pick && typeof m.best_pick.odds === "number") ? m.best_pick.odds : 1.95);
+      : ((m.best_pick && typeof m.best_pick.odds === "number") ? m.best_pick.odds : fairOddsDec);
     const marketOdds = formatOdds(rawMarketOdds);
-    const impliedProb = Math.round((1 / rawMarketOdds) * 100);
+    const impliedProb = Math.round((1 / Math.max(1.01, rawMarketOdds)) * 100);
     const ev = (probDec * rawMarketOdds) - 1;
     const evPctVal = (ev * 100).toFixed(1);
     const evPct = (ev >= 0 ? "+" : "") + evPctVal + "%";
 
-    let kellyStake = "0.5u";
-    if (ev > 0 && rawMarketOdds > 1.0) {{
+    let kellyStake = "0.0u";
+    if (ev >= 0.01 && rawMarketOdds > 1.0 && !(m.result_pick && m.result_pick.is_pass)) {{
       const fullKelly = ev / (rawMarketOdds - 1);
       const halfKelly = fullKelly / 2;
       const rawUnits = Math.round(halfKelly * 30 * 10) / 10;
@@ -2494,19 +2523,28 @@ const DATA = {json_str};
 
     let edgeTierLabel = "Moderate Edge";
     let edgeTierClass = "moderate";
-    if (ev >= 0.08 || topPickProb >= 60) {{
+    if (m.result_pick && m.result_pick.is_pass) {{
+      edgeTierLabel = "High Entropy / Pass";
+      edgeTierClass = "pass";
+    }} else if (ev >= 0.04 && topPickProb >= 55) {{
       edgeTierLabel = "High Conviction";
       edgeTierClass = "high";
-    }} else if (ev < 0.02 && topPickProb < 48) {{
-      edgeTierLabel = "Low Edge / Pass";
+    }} else if (ev < 0.015) {{
+      edgeTierLabel = "Thin Margin / Hold";
       edgeTierClass = "pass";
     }}
 
     const favoriteTeam = pHomePct >= pAwayPct ? homeName : awayName;
     const underdogTeam = pHomePct >= pAwayPct ? awayName : homeName;
-    const signalTactical = `${{favoriteTeam}} demonstrates superior attacking efficiency (${{pHomePct >= pAwayPct ? avgScoredH : avgScoredA}} goals/gm) against ${{underdogTeam}}'s defensive structure.`;
-    const signalPoisson = `Bivariate Poisson simulation peaks at ${{topScore1}} (${{topScore1Prob}}% probability density), with secondary distribution weighted toward ${{topScore2}}.`;
-    const signalPricing = `Model projects a ${{topPickProb}}% true probability (${{fairOdds}}) vs bookmaker consensus ${{impliedProb}}%, unlocking a ${{evPct}} expected value margin.`;
+    const anchorNote = (m.market_anchor && m.market_anchor.lam_final)
+      ? ` (anchored xG ${{m.market_anchor.lam_final}} vs ${{m.market_anchor.mu_final}})`
+      : "";
+    const weatherNote = (m.market_anchor && m.market_anchor.weather && m.market_anchor.weather.city)
+      ? ` Kickoff in ${{m.market_anchor.weather.city}}: ${{m.market_anchor.weather.temp_c}}°C, wind ${{m.market_anchor.weather.wind_kmh}} km/h.`
+      : "";
+    const signalTactical = `${{favoriteTeam}} leads attacking tempo (${{pHomePct >= pAwayPct ? avgScoredH : avgScoredA}} vs ${{avgScoredA}} rolling goals/gm) against ${{underdogTeam}}${{anchorNote}}.${{weatherNote}}`;
+    const signalPoisson = `Market-anchored Dixon-Coles matrix peaks at ${{topScore1}} (${{topScore1Prob}}% density), followed by ${{topScore2}}.`;
+    const signalPricing = `Shrunk model estimates ${{topPickProb}}% (${{fairOdds}}) vs bookmaker quote ${{impliedProb}}% implied (${{marketOdds}}), yielding ${{evPct}} EV.`;
 
     return {{
       homeName, awayName, homeCode, awayCode,
@@ -3023,13 +3061,14 @@ const DATA = {json_str};
         const bOdds = (m.best_pick.odds && typeof m.best_pick.odds === 'number') ? formatOdds(m.best_pick.odds) : formatOdds(1.90);
         const bProb = (m.best_pick.prob && typeof m.best_pick.prob === 'number') ? Math.round(m.best_pick.prob * 100) : 55;
         const bEdge = m.best_pick.edge || "+3.0%";
+        const bEdgeLabel = (bEdge === "Fair Price") ? "Fair Model" : `${{bEdge}} EV`;
         bestPillHtml = `
           <div class="best-pick-pill">
             <span class="star-icon">★</span>
             <span class="best-lbl">BEST PICK:</span>
             <span class="best-val">${{bestChoiceVal}}</span>
             <span class="best-odds">@ ${{bOdds}}</span>
-            <span class="best-cv-meta" style="font-size:0.68rem; color:var(--yellow); opacity:0.95; padding-left:0.4rem; border-left:1px solid rgba(250,204,21,0.35);">${{bProb}}% Conf &bull; ${{bEdge}} EV</span>
+            <span class="best-cv-meta" style="font-size:0.68rem; color:var(--yellow); opacity:0.95; padding-left:0.4rem; border-left:1px solid rgba(250,204,21,0.35);">${{bProb}}% Conf &bull; ${{bEdgeLabel}}</span>
           </div>
         `;
       }} else {{
@@ -3080,6 +3119,7 @@ const DATA = {json_str};
 
         const oddsStr = (pickObj && typeof pickObj.odds === 'number') ? formatOdds(pickObj.odds) : formatOdds(1.90);
         const probVal = (pickObj && typeof pickObj.prob === 'number') ? Math.round(pickObj.prob * 100) : 50;
+        const oddsTag = (pickObj && pickObj.quoted_market === false) ? `Fair ${{oddsStr}}` : `@ ${{oddsStr}}`;
         return `
           <div class="pick-item ${{isBestItem ? 'is-best-item' : ''}}" onclick="window.openDrawerToMarket('${{matchId}}', '${{marketKey}}', event)" title="Click to view ${{label}} analytics" style="cursor: pointer;">
             <div class="pick-head">
@@ -3088,7 +3128,7 @@ const DATA = {json_str};
             </div>
             <div class="pick-val">${{pickVal}}</div>
             <div class="pick-footer">
-              <span>${{probVal}}% @ ${{oddsStr}}</span>
+              <span>${{probVal}}% ${{oddsTag}}</span>
               ${{renderSubStatus(pickObj ? pickObj.status : "PENDING")}}
             </div>
           </div>
