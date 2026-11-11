@@ -10,7 +10,7 @@ import requests
 from dotenv import load_dotenv
 
 # Ensure UTF-8 output on Windows terminal
-if sys.stdout.encoding.lower() != 'utf-8':
+if sys.stdout and getattr(sys.stdout, 'encoding', None) and sys.stdout.encoding.lower() != 'utf-8':
     try:
         sys.stdout.reconfigure(encoding='utf-8')
     except Exception:
