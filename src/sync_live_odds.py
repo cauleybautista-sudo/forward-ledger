@@ -36,6 +36,8 @@ from src.intl_data import (
     CACHE_DIR,
     extract_espn_odds_from_summary,
     extract_espn_team_intelligence,
+    fetch_apifootball_fixtures_by_date,
+    fetch_apifootball_odds_and_lineups,
     fetch_espn_scoreboard,
     fetch_kickoff_weather,
     get_real_h2h,
@@ -46,6 +48,7 @@ from src.intl_data import (
     _cached_espn_get,
     ESPN_BASE,
 )
+from src.v2_ledger import grade_finished_v2_matches, record_pre_kickoff_snapshots
 
 load_dotenv()
 
@@ -191,6 +194,18 @@ def invert_market_lambdas(
     return round(best_lam, 3), round(best_mu, 3)
 
 
+def invert_corners_mu(mkt_p_cor_over: float, line: float = 9.5) -> float:
+    """Inverts devigged market Over probability into Negative Binomial expected total corners (Var = 2*mu)."""
+    lo, hi = 5.5, 16.5
+    for _ in range(18):
+        mid = 0.5 * (lo + hi)
+        if neg_binom_over_prob(mid, 2.0 * mid, line) < mkt_p_cor_over:
+            lo = mid
+        else:
+            hi = mid
+    return round(0.5 * (lo + hi), 2)
+
+
 def _fetch_odds_api_cached(odds_key: str, force_refresh: bool = False) -> List[Dict[str, Any]]:
     """Fetches UEFA Nations League odds with 4-hour local cache to preserve free-tier credits."""
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
@@ -263,12 +278,43 @@ def _build_espn_index(dates: List[str]) -> Dict[Tuple[str, str], Dict[str, Any]]
     return index
 
 
-def sync_live_odds(force_odds: bool = False):
-    odds_key = os.getenv("ODDS_API_KEY", "").strip()
-    events = _fetch_odds_api_cached(odds_key, force_refresh=force_odds)
+def _has_active_window(data: Dict[str, Any]) -> Tuple[bool, bool]:
+    """Returns (in_lineup_revision_window, has_due_settlements) for cheap cron runs."""
+    now = datetime.now(timezone.utc)
+    rev_due = False
+    settle_due = False
+    for m in data.get("pending", []):
+        k_str = m.get("kickoff")
+        if not k_str:
+            continue
+        try:
+            k_dt = datetime.fromisoformat(k_str.replace("Z", "+00:00"))
+        except ValueError:
+            continue
+        mins_left = (k_dt - now).total_seconds() / 60.0
+        if -3.0 <= mins_left <= 95.0:
+            rev_due = True
+        if mins_left <= -125.0:
+            settle_due = True
+    return rev_due, settle_due
 
+
+def sync_live_odds(force_odds: bool = False, window_check: bool = False):
     data_path = Path(__file__).parent / "data.json"
     data = json.loads(data_path.read_text(encoding="utf-8"))
+
+    if window_check:
+        rev_due, settle_due = _has_active_window(data)
+        if not rev_due and not settle_due:
+            graded_now = grade_finished_v2_matches()
+            print(f"Window check: no imminent lineups/kickoffs (-3..95m). Settled {graded_now} V2 matches. 0 API calls spent.")
+            return
+
+    odds_key = os.getenv("ODDS_API_KEY", "").strip()
+    af_key = os.getenv("API_FOOTBALL_KEY", "").strip()
+    af_prov = os.getenv("API_FOOTBALL_PROVIDER", "direct").strip()
+
+    events = _fetch_odds_api_cached(odds_key, force_refresh=force_odds)
 
     # If Odds API returned empty (e.g. offline/rate limit), preserve existing pending list teams/kickoffs
     if not events:
@@ -298,6 +344,19 @@ def sync_live_odds(force_odds: bool = False):
     dates_set = sorted({str(ev.get("commence_time", ""))[:10].replace("-", "") for ev in events if ev.get("commence_time")})
     espn_index = _build_espn_index(dates_set)
 
+    # Collect API-Football fixture IDs only for dates within 48h (preserves 100/day free budget)
+    now_utc = datetime.now(timezone.utc)
+    af_index: Dict[Tuple[str, str], Dict[str, Any]] = {}
+    if af_key and af_key != "your_api_football_key_here":
+        near_dates = sorted({
+            str(ev.get("commence_time", ""))[:10]
+            for ev in events
+            if ev.get("commence_time")
+            and -1.0 <= (datetime.fromisoformat(str(ev["commence_time"]).replace("Z", "+00:00")) - now_utc).total_seconds() / 3600.0 <= 48.0
+        })
+        for dt_iso in near_dates:
+            af_index.update(fetch_apifootball_fixtures_by_date(dt_iso, af_key, af_prov))
+
     pending: List[Dict[str, Any]] = []
 
     for ev in events:
@@ -310,6 +369,13 @@ def sync_live_odds(force_odds: bool = False):
         fixture = f"{home} vs {away}"
         competition = "UEFA Nations League"
 
+        mins_to_ko = 9999.0
+        if kickoff:
+            try:
+                mins_to_ko = (datetime.fromisoformat(str(kickoff).replace("Z", "+00:00")) - now_utc).total_seconds() / 60.0
+            except ValueError:
+                pass
+
         espn_meta = espn_index.get((home, away), {})
         espn_summary = None
         espn_odds = {}
@@ -317,10 +383,11 @@ def sync_live_odds(force_odds: bool = False):
         weather = {}
 
         if espn_meta.get("espn_id"):
+            cache_ttl = 10.0 if -3.0 <= mins_to_ko <= 95.0 else 45.0
             espn_summary = _cached_espn_get(
                 f"{ESPN_BASE}/uefa.nations/summary?event={espn_meta['espn_id']}",
                 f"sum_unl_{espn_meta['espn_id']}",
-                max_age_minutes=45.0,
+                max_age_minutes=cache_ttl,
             )
             if espn_summary:
                 espn_odds = extract_espn_odds_from_summary(espn_summary)
@@ -331,6 +398,17 @@ def sync_live_odds(force_odds: bool = False):
                     espn_meta.get("venue_country", ""),
                     kickoff or "",
                 )
+
+        # Fetch quoted BTTS, quoted Corners O/U 9.5, and T-75m lineups/injuries via API-Football
+        af_meta = af_index.get((home, away), {})
+        af_data: Dict[str, Any] = {}
+        if af_meta.get("fixture_id") and af_key:
+            af_data = fetch_apifootball_odds_and_lineups(
+                af_meta["fixture_id"],
+                af_key,
+                af_prov,
+                include_lineups=(-3.0 <= mins_to_ko <= 75.0),
+            )
 
         # Track whether both teams exist in our empirical 266-team database (no silent unknown drops)
         r_h = team_ratings.get(home)
@@ -576,11 +654,30 @@ def sync_live_odds(force_odds: bool = False):
                 "status": "PENDING",
             }
 
-        # --- Market 3: BTTS Yes/No (derived coherently from anchored Dixon-Coles matrix; unquoted by Odds API feed) ---
+        # --- Market 3: BTTS Yes/No (Anchored Dixon-Coles + Real API-Football Bet365/Multi-Book Quotes) ---
+        btts_yes_list = af_data.get("btts_yes_odds") or []
+        btts_no_list = af_data.get("btts_no_odds") or []
+        has_real_btts = bool(btts_yes_list and btts_no_list)
+        if has_real_btts:
+            med_by, med_bn = _median(btts_yes_list), _median(btts_no_list)
+            mkt_btts_yes = multiplicative_devig([med_by, med_bn])[0]
+            p_btts_yes = round(0.70 * p_btts_yes + 0.30 * mkt_btts_yes, 3)
+            p_btts_no = round(1.0 - p_btts_yes, 3)
+
         btts_is_pass = (0.48 <= p_btts_yes <= 0.52)
         btts_prob = p_btts_yes if p_btts_yes >= 0.50 else p_btts_no
         btts_sel = "BTTS Yes" if p_btts_yes >= 0.50 else "BTTS No"
-        btts_fair_odds = round(1.0 / max(0.05, btts_prob), 2)
+
+        if has_real_btts:
+            btts_odds = max(btts_yes_list) if p_btts_yes >= 0.50 else max(btts_no_list)
+            ev_btts = round((btts_prob * btts_odds - 1.0) * 100.0, 1)
+            btts_edge_str = f"{'+' if ev_btts >= 0 else ''}{ev_btts}%"
+            btts_comp = round(btts_prob * max(0.5, ev_btts), 2)
+        else:
+            btts_odds = round(1.0 / max(0.05, btts_prob), 2)
+            ev_btts = 0.0
+            btts_edge_str = "Fair Price"
+            btts_comp = 0.0
 
         btts_candidate = {
             "market": "BTTS",
@@ -588,17 +685,17 @@ def sync_live_odds(force_odds: bool = False):
             "selection": "NO PICK (PASS)" if btts_is_pass else btts_sel,
             "target_selection": btts_sel if btts_is_pass else None,
             "prob": btts_prob,
-            "odds": btts_fair_odds,
-            "edge": "Fair Price" if not btts_is_pass else "0.0%",
-            "edge_val": 0.0,
-            "composite_score": 0.0,
+            "odds": round(btts_odds, 2),
+            "edge": "0.0%" if btts_is_pass and not has_real_btts else btts_edge_str,
+            "edge_val": ev_btts,
+            "composite_score": 0.0 if btts_is_pass else btts_comp,
             "is_pass": btts_is_pass,
-            "quoted_market": False,
+            "quoted_market": has_real_btts,
             "reason": "Binary Coin-Flip Parity (48%-52%)" if btts_is_pass else None,
             "status": "PENDING",
         }
 
-        # --- Market 4: Corners O/U 9.5 (Empirical Bayes Shrunk ESPN Boxscore + Over-Dispersed Negative Binomial) ---
+        # --- Market 4: Corners O/U 9.5 (Empirical Bayes ESPN Corners + Market Anchor + Negative Binomial) ---
         h_cw = espn_intel.get("home_corners_won") or []
         h_cc = espn_intel.get("home_corners_conc") or []
         a_cw = espn_intel.get("away_corners_won") or []
@@ -610,20 +707,41 @@ def sync_live_odds(force_odds: bool = False):
         avg_cw_a = empirical_bayes_mean(sum(a_cw), len(a_cw), prior_c, 4.0)
         avg_cc_a = empirical_bayes_mean(sum(a_cc), len(a_cc), prior_c, 4.0)
 
-        # Expected corners combines shrunk home/away attack corners won + opponent conceded + mild xG tempo factor
         exp_h_corners = 0.5 * (avg_cw_h + avg_cc_a) * (0.90 + 0.075 * lam_final)
         exp_a_corners = 0.5 * (avg_cw_a + avg_cc_h) * (0.90 + 0.075 * mu_final)
-        exp_total_corners = round(max(6.0, min(14.5, exp_h_corners + exp_a_corners)), 2)
+        mu_stat_corners = max(6.0, min(14.5, exp_h_corners + exp_a_corners))
+
+        cor_ov_list = af_data.get("corners_over95_odds") or []
+        cor_un_list = af_data.get("corners_under95_odds") or []
+        has_real_corners = bool(cor_ov_list and cor_un_list)
+
+        if has_real_corners:
+            med_cov, med_cun = _median(cor_ov_list), _median(cor_un_list)
+            mkt_cor_over_p = multiplicative_devig([med_cov, med_cun])[0]
+            mu_mkt_corners = invert_corners_mu(mkt_cor_over_p, line=9.5)
+            exp_total_corners = round(0.50 * mu_stat_corners + 0.50 * mu_mkt_corners, 2)
+        else:
+            exp_total_corners = round(mu_stat_corners, 2)
 
         # Negative Binomial tail with empirical football over-dispersion (variance = 2.0 * mean)
         p_cor_over_raw = neg_binom_over_prob(exp_total_corners, variance=2.0 * exp_total_corners, line=9.5)
-        p_cor_over = round(apply_shrinkage(p_cor_over_raw, prior_mean=0.50, weight=0.90), 3)
+        p_cor_over = round(apply_shrinkage(p_cor_over_raw, prior_mean=0.50, weight=0.92), 3)
         p_cor_under = round(1.0 - p_cor_over, 3)
 
         cor_is_pass = (0.48 <= p_cor_over <= 0.52)
         cor_prob = p_cor_over if p_cor_over >= 0.50 else p_cor_under
         cor_sel = "Corners Over 9.5" if p_cor_over >= 0.50 else "Corners Under 9.5"
-        cor_fair_odds = round(1.0 / max(0.05, cor_prob), 2)
+
+        if has_real_corners:
+            cor_odds = max(cor_ov_list) if p_cor_over >= 0.50 else max(cor_un_list)
+            ev_cor = round((cor_prob * cor_odds - 1.0) * 100.0, 1)
+            cor_edge_str = f"{'+' if ev_cor >= 0 else ''}{ev_cor}%"
+            cor_comp = round(cor_prob * max(0.5, ev_cor), 2)
+        else:
+            cor_odds = round(1.0 / max(0.05, cor_prob), 2)
+            ev_cor = 0.0
+            cor_edge_str = "Fair Price"
+            cor_comp = 0.0
 
         cor_candidate = {
             "market": "Corners",
@@ -631,20 +749,20 @@ def sync_live_odds(force_odds: bool = False):
             "selection": "NO PICK (PASS)" if cor_is_pass else cor_sel,
             "target_selection": cor_sel if cor_is_pass else None,
             "prob": cor_prob,
-            "odds": cor_fair_odds,
-            "edge": "Fair Price" if not cor_is_pass else "0.0%",
-            "edge_val": 0.0,
-            "composite_score": 0.0,
+            "odds": round(cor_odds, 2),
+            "edge": "0.0%" if cor_is_pass and not has_real_corners else cor_edge_str,
+            "edge_val": ev_cor,
+            "composite_score": 0.0 if cor_is_pass else cor_comp,
             "is_pass": cor_is_pass,
-            "quoted_market": False,
+            "quoted_market": has_real_corners,
             "reason": "Handicap Center Line (48%-52%)" if cor_is_pass else None,
             "status": "PENDING",
         }
 
         # --- Best Pick Alpha Selection ---
-        # Qualifies ONLY from quoted real-odds markets clearing prob >= 50% and genuine +EV >= +1.5%,
-        # or high-confidence >= 60% anchored pick with non-negative EV >= -1.0%.
-        quoted_candidates = [result_candidate, gt_candidate]
+        # Evaluates all quoted markets clearing confidence >= 48% & genuine +EV >= +1.5%
+        # OR high-conviction >= 62% with EV >= -1.0%.
+        quoted_candidates = [result_candidate, gt_candidate, btts_candidate, cor_candidate]
         qualifying = [
             c for c in quoted_candidates
             if not c.get("is_pass")
@@ -660,8 +778,7 @@ def sync_live_odds(force_odds: bool = False):
             best_pick_choice = qualifying[0]
             is_best = True
         else:
-            # High-conviction directional fallback ONLY if confidence >= 58% across all 4 anchored markets
-            all_active = [c for c in (result_candidate, gt_candidate, btts_candidate, cor_candidate) if not c.get("is_pass")]
+            all_active = [c for c in quoted_candidates if not c.get("is_pass")]
             all_active.sort(key=lambda x: x["prob"], reverse=True)
             if all_active and all_active[0]["prob"] >= 0.58:
                 best_pick_choice = all_active[0]
@@ -730,6 +847,8 @@ def sync_live_odds(force_odds: bool = False):
         avg_gf_h, avg_ga_h = _real_goal_avgs(home_matches, lam_stat)
         avg_gf_a, avg_ga_a = _real_goal_avgs(away_matches, mu_stat)
 
+        starters_ready = bool(espn_intel.get("starters_announced") or af_data.get("starters_announced"))
+
         pending_match = {
             "id": match_id,
             "kickoff": kickoff,
@@ -757,7 +876,6 @@ def sync_live_odds(force_odds: bool = False):
             "is_best": is_best,
             "best_pick": best_pick_choice,
             "unmapped_team": unmapped_team,
-            # Authentic empirical metadata for UI drawers
             "real_h2h": real_h2h,
             "real_home_form": home_matches,
             "real_away_form": away_matches,
@@ -776,8 +894,11 @@ def sync_live_odds(force_odds: bool = False):
                 "expectedCorners": round(exp_total_corners, 1),
                 "sampleH": len(h_cw),
                 "sampleA": len(a_cw),
+                "quotedCorners": has_real_corners,
             },
             "market_anchor": {
+                "espn_id": espn_meta.get("espn_id"),
+                "af_fixture_id": af_meta.get("fixture_id"),
                 "lam_stat": round(lam_stat, 2),
                 "mu_stat": round(mu_stat, 2),
                 "lam_mkt": round(lam_mkt, 2),
@@ -789,7 +910,8 @@ def sync_live_odds(force_odds: bool = False):
                 "mkt_p_a": round(mkt_probs_1x2[2], 3) if mkt_probs_1x2 else None,
                 "open_odds_h": espn_odds.get("h_open"),
                 "close_odds_h": espn_odds.get("h_close"),
-                "starters_announced": espn_intel.get("starters_announced", False),
+                "starters_announced": starters_ready,
+                "injuries": af_data.get("injuries", []),
                 "weather": weather,
             },
         }
@@ -810,14 +932,23 @@ def sync_live_odds(force_odds: bool = False):
         data["summary"]["generated_at"] = events[0].get("commence_time")
 
     data_path.write_text(json.dumps(data, indent=2), encoding="utf-8")
+
+    # Lock pre-kickoff immutable V2 snapshot & auto-settle finished fixtures
+    snap_cnt = record_pre_kickoff_snapshots(
+        pending,
+        revision_reason="window_revision" if window_check else "sync",
+    )
+    graded_v2_cnt = grade_finished_v2_matches()
+
     best_count = sum(1 for m in pending if m["is_best"])
     pass_count = sum(1 for m in pending if not m["is_best"])
     print(
         f"Saved calibrated {data_path} ({len(pending)} pending: {best_count} Best/Qualified, {pass_count} Pass). "
-        f"Sanity Gate PASSED."
+        f"V2 snapshots updated: {snap_cnt} | Newly settled: {graded_v2_cnt} | Sanity Gate PASSED."
     )
 
 
 if __name__ == "__main__":
     force = "--force-odds" in sys.argv
-    sync_live_odds(force_odds=force)
+    win_chk = "--window-check" in sys.argv
+    sync_live_odds(force_odds=force, window_check=win_chk)

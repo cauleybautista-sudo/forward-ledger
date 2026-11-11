@@ -2539,12 +2539,20 @@ const DATA = {json_str};
     const anchorNote = (m.market_anchor && m.market_anchor.lam_final)
       ? ` (anchored xG ${{m.market_anchor.lam_final}} vs ${{m.market_anchor.mu_final}})`
       : "";
+    const lineupNote = (m.market_anchor && m.market_anchor.starters_announced)
+      ? " Starting XIs confirmed."
+      : "";
     const weatherNote = (m.market_anchor && m.market_anchor.weather && m.market_anchor.weather.city)
       ? ` Kickoff in ${{m.market_anchor.weather.city}}: ${{m.market_anchor.weather.temp_c}}°C, wind ${{m.market_anchor.weather.wind_kmh}} km/h.`
       : "";
-    const signalTactical = `${{favoriteTeam}} leads attacking tempo (${{pHomePct >= pAwayPct ? avgScoredH : avgScoredA}} vs ${{avgScoredA}} rolling goals/gm) against ${{underdogTeam}}${{anchorNote}}.${{weatherNote}}`;
+    const favScored = pHomePct >= pAwayPct ? avgScoredH : avgScoredA;
+    const dogScored = pHomePct >= pAwayPct ? avgScoredA : avgScoredH;
+    const signalTactical = `${{favoriteTeam}} leads attacking tempo (${{favScored}} vs ${{dogScored}} rolling goals/gm) against ${{underdogTeam}}${{anchorNote}}.${{lineupNote}}${{weatherNote}}`;
     const signalPoisson = `Market-anchored Dixon-Coles matrix peaks at ${{topScore1}} (${{topScore1Prob}}% density), followed by ${{topScore2}}.`;
-    const signalPricing = `Shrunk model estimates ${{topPickProb}}% (${{fairOdds}}) vs bookmaker quote ${{impliedProb}}% implied (${{marketOdds}}), yielding ${{evPct}} EV.`;
+    const isQuoted1x2 = !(m.result_pick && m.result_pick.quoted_market === false);
+    const signalPricing = isQuoted1x2
+      ? `Model estimates ${{topPickProb}}% (${{fairOdds}}) vs bookmaker quote ${{impliedProb}}% implied (${{marketOdds}}), yielding ${{evPct}} EV.`
+      : `Model fair pricing estimates ${{topPickProb}}% (${{fairOdds}}) pre-market formation.`;
 
     return {{
       homeName, awayName, homeCode, awayCode,

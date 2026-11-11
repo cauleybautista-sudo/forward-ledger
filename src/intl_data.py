@@ -626,3 +626,183 @@ def fetch_kickoff_weather(city: str, country: str, kickoff_iso: str) -> Dict[str
         return out
     except Exception:
         return {}
+
+
+APIFOOTBALL_CACHE_DIR = CACHE_DIR / "apifootball"
+
+
+def _af_daily_calls_used() -> int:
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    entry = get_api_budget(f"api_football_{today}")
+    return int(entry.get("calls", 0))
+
+
+def _af_get(path: str, params: Dict[str, Any], api_key: str, provider: str = "direct", cache_name: str = "", max_age_minutes: float = 180.0) -> Optional[Dict[str, Any]]:
+    """Polite, cached API-Football GET client with hard 85/day safety cap (free tier 100/day)."""
+    APIFOOTBALL_CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    cache_file = APIFOOTBALL_CACHE_DIR / f"{cache_name}.json" if cache_name else None
+    if cache_file and cache_file.exists():
+        age_mins = (time.time() - cache_file.stat().st_mtime) / 60.0
+        if age_mins < max_age_minutes:
+            try:
+                cached = json.loads(cache_file.read_text(encoding="utf-8"))
+                if cached:
+                    return cached
+            except Exception:
+                pass
+
+    if not api_key or api_key == "your_api_football_key_here" or _af_daily_calls_used() >= 85:
+        if cache_file and cache_file.exists():
+            try:
+                return json.loads(cache_file.read_text(encoding="utf-8"))
+            except Exception:
+                pass
+        return None
+
+    is_direct = provider.lower().strip() == "direct"
+    base = "https://v3.football.api-sports.io" if is_direct else "https://api-football-v1.p.rapidapi.com/v3"
+    headers = (
+        {"x-apisports-key": api_key}
+        if is_direct
+        else {"X-RapidAPI-Key": api_key, "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com"}
+    )
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    try:
+        time.sleep(0.15)
+        resp = requests.get(f"{base}{path}", headers=headers, params=params, timeout=12)
+        update_api_budget(f"api_football_{today}", used_delta=1)
+        if resp.status_code == 200:
+            payload = resp.json()
+            if payload and not payload.get("errors") and payload.get("response") is not None:
+                if cache_file and len(payload.get("response", [])) > 0:
+                    cache_file.write_text(json.dumps(payload), encoding="utf-8")
+                return payload
+    except Exception:
+        pass
+
+    if cache_file and cache_file.exists():
+        try:
+            return json.loads(cache_file.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+    return None
+
+
+def fetch_apifootball_fixtures_by_date(
+    date_yyyy_mm_dd: str,
+    api_key: str,
+    provider: str = "direct",
+) -> Dict[Tuple[str, str], Dict[str, Any]]:
+    """Maps normalized (home, away) -> API-Football fixture_id and FT score if completed."""
+    payload = _af_get(
+        "/fixtures",
+        {"date": date_yyyy_mm_dd},
+        api_key=api_key,
+        provider=provider,
+        cache_name=f"af_fix_{date_yyyy_mm_dd}",
+        max_age_minutes=240.0,
+    )
+    out: Dict[Tuple[str, str], Dict[str, Any]] = {}
+    if not payload:
+        return out
+    for item in payload.get("response", []):
+        teams = item.get("teams", {})
+        h = normalize_team_name(teams.get("home", {}).get("name", ""))
+        a = normalize_team_name(teams.get("away", {}).get("name", ""))
+        fx = item.get("fixture", {})
+        goals = item.get("goals", {})
+        if h and a and fx.get("id"):
+            out[(h, a)] = {
+                "fixture_id": fx["id"],
+                "status_short": fx.get("status", {}).get("short", ""),
+                "home_goals": goals.get("home"),
+                "away_goals": goals.get("away"),
+            }
+    return out
+
+
+def fetch_apifootball_odds_and_lineups(
+    fixture_id: int,
+    api_key: str,
+    provider: str = "direct",
+    include_lineups: bool = False,
+) -> Dict[str, Any]:
+    """Fetches real quoted BTTS & Corners O/U 9.5 bookmaker odds plus T-60m lineups/injuries."""
+    out: Dict[str, Any] = {
+        "btts_yes_odds": [],
+        "btts_no_odds": [],
+        "corners_over95_odds": [],
+        "corners_under95_odds": [],
+        "starters_announced": False,
+        "home_starters": [],
+        "away_starters": [],
+        "injuries": [],
+    }
+    if not fixture_id or not api_key:
+        return out
+
+    odds_payload = _af_get(
+        "/odds",
+        {"fixture": fixture_id},
+        api_key=api_key,
+        provider=provider,
+        cache_name=f"af_odds_{fixture_id}",
+        max_age_minutes=180.0,
+    )
+    if odds_payload and odds_payload.get("response"):
+        bms = odds_payload["response"][0].get("bookmakers", [])
+        for bm in bms:
+            for bet in bm.get("bets", []):
+                bname = str(bet.get("name", ""))
+                vals = bet.get("values", [])
+                if bname == "Both Teams Score":
+                    vy = next((float(v["odd"]) for v in vals if str(v.get("value")) == "Yes"), None)
+                    vn = next((float(v["odd"]) for v in vals if str(v.get("value")) == "No"), None)
+                    if vy and vn and min(vy, vn) > 1.01 and 0.98 <= (1.0 / vy + 1.0 / vn) <= 1.15:
+                        out["btts_yes_odds"].append(vy)
+                        out["btts_no_odds"].append(vn)
+                elif bname == "Corners Over Under":
+                    ov95 = next((float(v["odd"]) for v in vals if str(v.get("value")) == "Over 9.5"), None)
+                    un95 = next((float(v["odd"]) for v in vals if str(v.get("value")) == "Under 9.5"), None)
+                    if ov95 and un95 and min(ov95, un95) > 1.01 and 0.98 <= (1.0 / ov95 + 1.0 / un95) <= 1.15:
+                        out["corners_over95_odds"].append(ov95)
+                        out["corners_under95_odds"].append(un95)
+
+    if include_lineups:
+        lu_payload = _af_get(
+            "/fixtures/lineups",
+            {"fixture": fixture_id},
+            api_key=api_key,
+            provider=provider,
+            cache_name=f"af_lu_{fixture_id}",
+            max_age_minutes=15.0,
+        )
+        if lu_payload and len(lu_payload.get("response", [])) >= 2:
+            lu0, lu1 = lu_payload["response"][0], lu_payload["response"][1]
+            s0 = [p.get("player", {}).get("name") for p in lu0.get("startXI", []) if p.get("player")]
+            s1 = [p.get("player", {}).get("name") for p in lu1.get("startXI", []) if p.get("player")]
+            if len(s0) >= 11 and len(s1) >= 11:
+                out["starters_announced"] = True
+                out["home_starters"] = s0
+                out["away_starters"] = s1
+
+        inj_payload = _af_get(
+            "/injuries",
+            {"fixture": fixture_id},
+            api_key=api_key,
+            provider=provider,
+            cache_name=f"af_inj_{fixture_id}",
+            max_age_minutes=60.0,
+        )
+        if inj_payload and inj_payload.get("response"):
+            out["injuries"] = [
+                {
+                    "player": i.get("player", {}).get("name"),
+                    "team": normalize_team_name(i.get("team", {}).get("name", "")),
+                    "reason": i.get("player", {}).get("reason", "Out"),
+                }
+                for i in inj_payload["response"][:8]
+            ]
+
+    return out
+

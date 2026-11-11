@@ -132,6 +132,26 @@ def parse_and_evaluate_ledger(ledger_path: Path):
         except Exception as exc:
             print(f"Could not evaluate extended data.json diagnostics: {exc}")
 
+    try:
+        from src.v2_ledger import get_v2_summary, grade_finished_v2_matches
+        newly_settled = grade_finished_v2_matches()
+        v2 = get_v2_summary()
+        print(
+            f"\n V2 IMMUTABLE FORWARD LEDGER: Locked={v2['locked_count']} | "
+            f"Settled={v2['graded_count']} (+{newly_settled} now) | Revisions={v2['revisions_count']}"
+            + (f" | 1X2 RPS={v2['avg_rps']:.4f}" if v2.get("avg_rps") is not None else "")
+        )
+        if v2["graded_count"] > 0:
+            for lbl, cal in v2["per_market"].items():
+                if cal["n"] > 0:
+                    print(
+                        f"   V2 {lbl:<16} N={cal['n']:<3} | Brier {cal['brier']:.4f} | "
+                        f"SD {cal['forecast_sd']:.1f}pp | Pred {cal['forecast_mean']:.1f}% vs Hit {cal['actual_rate']:.1f}%"
+                    )
+        print("=" * 62)
+    except Exception as exc:
+        print(f"V2 ledger check skipped: {exc}")
+
 
 if __name__ == '__main__':
     ledger_file = root_dir / 'LEDGER.md'

@@ -11,7 +11,8 @@ from src.calibration import (
     sanity_gate,
 )
 from src.intl_data import american_to_decimal, normalize_team_name
-from src.sync_live_odds import evaluate_dixon_coles_grid, invert_market_lambdas
+from src.sync_live_odds import evaluate_dixon_coles_grid, invert_corners_mu, invert_market_lambdas
+from src.v2_ledger import _grade_pick
 
 
 class TestInternationalModel(unittest.TestCase):
@@ -75,6 +76,53 @@ class TestInternationalModel(unittest.TestCase):
     def test_empirical_bayes_and_shrinkage(self):
         self.assertLess(empirical_bayes_mean(8.0, 1, 4.75, 4.0), 6.0)
         self.assertLess(apply_shrinkage(0.90, 0.50, 0.90), 0.90)
+
+    def test_invert_corners_mu_consistency(self):
+        for target_p in (0.35, 0.50, 0.65):
+            mu = invert_corners_mu(target_p, line=9.5)
+            recovered = neg_binom_over_prob(mu, 2.0 * mu, 9.5)
+            self.assertAlmostEqual(recovered, target_p, delta=0.01)
+
+    def test_v2_ledger_grade_pick(self):
+        # Result market
+        self.assertEqual(
+            _grade_pick({"selection": "Home Win"}, True, "result")["status"], "HIT"
+        )
+        self.assertEqual(
+            _grade_pick({"selection": "Away Win"}, False, "result")["status"], "MISS"
+        )
+        # Goals Over/Under market
+        self.assertEqual(
+            _grade_pick({"selection": "Over 2.5 Goals"}, True, "goals")["status"], "HIT"
+        )
+        self.assertEqual(
+            _grade_pick({"selection": "Under 2.5 Goals"}, True, "goals")["status"], "MISS"
+        )
+        # BTTS market
+        self.assertEqual(
+            _grade_pick({"selection": "BTTS Yes"}, True, "btts")["status"], "HIT"
+        )
+        self.assertEqual(
+            _grade_pick({"selection": "BTTS No"}, True, "btts")["status"], "MISS"
+        )
+        # Corners market
+        self.assertEqual(
+            _grade_pick({"selection": "Over 9.5 Corners"}, True, "corners")["status"],
+            "HIT",
+        )
+        self.assertEqual(
+            _grade_pick({"selection": "Under 9.5 Corners"}, False, "corners")["status"],
+            "HIT",
+        )
+        # VOID cases: is_pass=True or NO PICK
+        self.assertEqual(
+            _grade_pick({"selection": "Over 9.5 Corners", "is_pass": True}, True, "corners")["status"],
+            "VOID",
+        )
+        self.assertEqual(
+            _grade_pick({"pick": "NO PICK"}, False, "btts")["status"],
+            "VOID",
+        )
 
 
 if __name__ == "__main__":
