@@ -1,10 +1,10 @@
 name: Calico Football Tracker Automation
 
 on:
+  schedule:
+    # Runs twice daily at 00:00 and 12:00 UTC (aligned with pre-kickoff and grading cycles)
+    - cron: '0 0,12 * * *'
   workflow_dispatch: # Allows manual trigger from GitHub Actions UI anytime
-  # Scheduled cron disabled to prevent email failure notifications
-  # schedule:
-  #   - cron: '0 12 * * *'
 
 permissions:
   contents: write
@@ -26,19 +26,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests python-dotenv
 
-      - name: Run Ledger Sync & Calibration Check
+      - name: Run Ledger Sync & UI Generation
         env:
-          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
-          API_FOOTBALL_PROVIDER: ${{ secrets.API_FOOTBALL_PROVIDER }}
-          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
-          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          PYTHONPATH: .
         run: |
-          python src/verify_apis.py || true
-          python src/sync_ledger.py || true
+          python src/sync_ledger.py
+          python src/build_ui.py
 
       - name: Commit & Push Ledger Updates
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add LEDGER.md
+          git add LEDGER.md public/index.html index.html
           git diff-index --quiet HEAD || (git commit -m "chore: automated ledger sync [skip ci]" && git push) || true

@@ -7,7 +7,16 @@ formulas, and verifies data integrity.
 import sys
 import re
 from pathlib import Path
-from src.calibration import evaluate_summary_metrics
+
+# Ensure project root is in sys.path
+root_dir = Path(__file__).resolve().parent.parent
+if str(root_dir) not in sys.path:
+    sys.path.insert(0, str(root_dir))
+
+try:
+    from src.calibration import evaluate_summary_metrics
+except ModuleNotFoundError:
+    from calibration import evaluate_summary_metrics
 
 if sys.stdout and getattr(sys.stdout, 'encoding', None) and sys.stdout.encoding.lower() != 'utf-8':
     try:
