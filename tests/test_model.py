@@ -11,7 +11,13 @@ from src.calibration import (
     sanity_gate,
 )
 from src.intl_data import american_to_decimal, normalize_team_name
-from src.sync_live_odds import evaluate_dixon_coles_grid, invert_corners_mu, invert_market_lambdas
+from src.sync_live_odds import (
+    evaluate_dixon_coles_grid,
+    invert_corners_mu,
+    invert_market_lambdas,
+    resolve_cross_market_contradictions,
+    select_coherent_scores,
+)
 from src.v2_ledger import _grade_pick
 
 
@@ -123,6 +129,51 @@ class TestInternationalModel(unittest.TestCase):
             _grade_pick({"pick": "NO PICK"}, False, "btts")["status"],
             "VOID",
         )
+
+    def test_coherent_score_selection_matches_active_picks(self):
+        # Case where global mode (2-0 or 1-1) disagrees with Over 2.5 + Home Win + BTTS Yes
+        model = evaluate_dixon_coles_grid(2.05, 1.05, rho=-0.08)
+        rp = {"selection": "Home Win", "prob": 0.60, "is_pass": False}
+        gp = {"selection": "Over 2.5", "prob": 0.62, "is_pass": False}
+        bp = {"selection": "BTTS Yes", "prob": 0.56, "is_pass": False}
+        top_sc, _, sec_sc, _ = select_coherent_scores(model["scores"], rp, gp, bp)
+        self.assertGreater(top_sc[0], top_sc[1])
+        self.assertGreaterEqual(top_sc[0] + top_sc[1], 3)
+        self.assertTrue(top_sc[0] > 0 and top_sc[1] > 0)
+        self.assertNotEqual(top_sc, sec_sc)
+
+    def test_cross_market_contradiction_resolver_passes_weakest_leg(self):
+        model = evaluate_dixon_coles_grid(1.35, 0.90, rho=-0.08)
+        # Impossible trio: Home Win (0.58) + Under 2.5 (0.57) + BTTS Yes (0.53)
+        rp = {"selection": "Home Win", "prob": 0.58, "is_pass": False}
+        gp = {"selection": "Under 2.5", "prob": 0.57, "is_pass": False}
+        bp = {"selection": "BTTS Yes", "prob": 0.53, "is_pass": False}
+        resolve_cross_market_contradictions(model["scores"], rp, gp, bp)
+        self.assertFalse(rp["is_pass"])
+        self.assertFalse(gp["is_pass"])
+        self.assertTrue(bp["is_pass"])
+        self.assertEqual(bp["selection"], "NO PICK (PASS)")
+
+    def test_sanity_gate_rejects_pick_contradictions(self):
+        bad_slate = [
+            {
+                "id": "bad-1",
+                "fixture": "England vs Croatia",
+                "p_h": 0.76,
+                "p_d": 0.15,
+                "p_a": 0.09,
+                "pred_score": "2-0",
+                "result_pick": {"selection": "Home Win", "prob": 0.76, "is_pass": False},
+                "goal_total_pick": {"selection": "Over 2.5", "prob": 0.65, "is_pass": False},
+                "btts_pick": {"selection": "NO PICK (PASS)", "prob": 0.50, "is_pass": True},
+                "corner_pick": {"selection": "Corners Under 9.5", "prob": 0.54, "is_pass": False},
+                "real_goal_stats": {"expectedXg": 2.9},
+                "real_corner_stats": {"expectedCorners": 9.8},
+            }
+        ]
+        issues = sanity_gate(bad_slate)
+        self.assertTrue(any("pred_score 2-0 contradicts Over 2.5" in msg for msg in issues))
+        self.assertTrue(any("expectedCorners 9.8 contradicts Corners Under 9.5" in msg for msg in issues))
 
 
 if __name__ == "__main__":

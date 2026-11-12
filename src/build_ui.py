@@ -2547,8 +2547,11 @@ const DATA = {json_str};
       : "";
     const favScored = pHomePct >= pAwayPct ? avgScoredH : avgScoredA;
     const dogScored = pHomePct >= pAwayPct ? avgScoredA : avgScoredH;
-    const signalTactical = `${{favoriteTeam}} leads attacking tempo (${{favScored}} vs ${{dogScored}} rolling goals/gm) against ${{underdogTeam}}${{anchorNote}}.${{lineupNote}}${{weatherNote}}`;
-    const signalPoisson = `Market-anchored Dixon-Coles matrix peaks at ${{topScore1}} (${{topScore1Prob}}% density), followed by ${{topScore2}}.`;
+    const tempoPhrase = parseFloat(favScored) >= parseFloat(dogScored)
+      ? `${{favoriteTeam}} leads attacking tempo (${{favScored}} vs ${{dogScored}} rolling goals/gm) against ${{underdogTeam}}${{anchorNote}}.`
+      : `${{favoriteTeam}} holds the stronger overall projection against ${{underdogTeam}} despite lower recent output (${{favScored}} vs ${{dogScored}} rolling goals/gm)${{anchorNote}}.`;
+    const signalTactical = `${{tempoPhrase}}${{lineupNote}}${{weatherNote}}`;
+    const signalPoisson = `Coherent Dixon-Coles projection centers on ${{topScore1}} (${{topScore1Prob}}% exact density), followed by ${{topScore2}}.`;
     const isQuoted1x2 = !(m.result_pick && m.result_pick.quoted_market === false);
     const signalPricing = isQuoted1x2
       ? `Model estimates ${{topPickProb}}% (${{fairOdds}}) vs bookmaker quote ${{impliedProb}}% implied (${{marketOdds}}), yielding ${{evPct}} EV.`

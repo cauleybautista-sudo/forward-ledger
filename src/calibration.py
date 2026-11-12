@@ -236,6 +236,54 @@ def sanity_gate(pending_matches: List[Dict[str, Any]], strict_teams: bool = Fals
                 if not pick.get("is_pass"):
                     by_market[label].append(prob)
 
+        res_pick = m.get("result_pick") or {}
+        gt_pick = m.get("goal_total_pick") or {}
+        btts_pick = m.get("btts_pick") or {}
+        cor_pick = m.get("corner_pick") or {}
+
+        # Verify 1X2 active pick matches highest probability outcome
+        if (
+            not res_pick.get("is_pass")
+            and res_pick.get("selection") in ("Home Win", "Draw", "Away Win")
+            and p_h is not None and p_d is not None and p_a is not None
+        ):
+            top_1x2 = max([("Home Win", p_h), ("Draw", p_d), ("Away Win", p_a)], key=lambda x: x[1])[0]
+            if res_pick["selection"] != top_1x2:
+                reasons.append(f"{m.get('fixture')}: Result pick {res_pick['selection']} contradicts top 1X2 outcome {top_1x2}")
+
+        # Verify predicted exact score aligns with all active directional picks
+        pred_score = m.get("pred_score")
+        if pred_score and "-" in str(pred_score):
+            try:
+                hg, ag = map(int, str(pred_score).split("-", 1))
+                tot_g = hg + ag
+                sc_res = "Home Win" if hg > ag else ("Away Win" if ag > hg else "Draw")
+                sc_gt = "Over 2.5" if tot_g >= 3 else "Under 2.5"
+                sc_btts = "BTTS Yes" if (hg > 0 and ag > 0) else "BTTS No"
+
+                if not res_pick.get("is_pass") and res_pick.get("selection") in ("Home Win", "Draw", "Away Win"):
+                    if res_pick["selection"] != sc_res:
+                        reasons.append(f"{m.get('fixture')}: pred_score {pred_score} contradicts {res_pick['selection']}")
+                if not gt_pick.get("is_pass") and gt_pick.get("selection") in ("Over 2.5", "Under 2.5"):
+                    if gt_pick["selection"] != sc_gt:
+                        reasons.append(f"{m.get('fixture')}: pred_score {pred_score} contradicts {gt_pick['selection']}")
+                if not btts_pick.get("is_pass") and btts_pick.get("selection") in ("BTTS Yes", "BTTS No"):
+                    if btts_pick["selection"] != sc_btts:
+                        reasons.append(f"{m.get('fixture')}: pred_score {pred_score} contradicts {btts_pick['selection']}")
+            except ValueError:
+                reasons.append(f"{m.get('fixture')}: invalid pred_score '{pred_score}'")
+
+        # Verify expected mean sits on the same side of the line as active O/U picks
+        xg_tot = (m.get("real_goal_stats") or {}).get("expectedXg")
+        if xg_tot is not None and not gt_pick.get("is_pass") and gt_pick.get("selection"):
+            if (gt_pick["selection"] == "Over 2.5" and xg_tot < 2.5) or (gt_pick["selection"] == "Under 2.5" and xg_tot > 2.5):
+                reasons.append(f"{m.get('fixture')}: expectedXg {xg_tot} contradicts {gt_pick['selection']}")
+
+        exp_cor = (m.get("real_corner_stats") or {}).get("expectedCorners")
+        if exp_cor is not None and not cor_pick.get("is_pass") and cor_pick.get("selection"):
+            if (cor_pick["selection"] == "Corners Over 9.5" and exp_cor < 9.5) or (cor_pick["selection"] == "Corners Under 9.5" and exp_cor > 9.5):
+                reasons.append(f"{m.get('fixture')}: expectedCorners {exp_cor} contradicts {cor_pick['selection']}")
+
     for label, ps in by_market.items():
         if len(ps) >= 3:
             sd = statistics.pstdev(ps)

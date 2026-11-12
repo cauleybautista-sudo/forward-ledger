@@ -100,7 +100,8 @@ def evaluate_dixon_coles_grid(lam: float, mu: float, rho: float = -0.08) -> Dict
     p_ov /= total_mass
     p_btts /= total_mass
 
-    ranked_scores = sorted(scores.items(), key=lambda item: item[1], reverse=True)
+    norm_scores = {k: v / total_mass for k, v in scores.items()}
+    ranked_scores = sorted(norm_scores.items(), key=lambda item: item[1], reverse=True)
     top_sc, top_p = ranked_scores[0]
     sec_sc, sec_p = ranked_scores[1]
 
@@ -113,10 +114,119 @@ def evaluate_dixon_coles_grid(lam: float, mu: float, rho: float = -0.08) -> Dict
         "p_btts_yes": p_btts,
         "p_btts_no": 1.0 - p_btts,
         "pred_score": f"{top_sc[0]}-{top_sc[1]}",
-        "pred_score_prob": top_p / total_mass,
+        "pred_score_prob": top_p,
         "sec_score": f"{sec_sc[0]}-{sec_sc[1]}",
-        "sec_score_prob": sec_p / total_mass,
+        "sec_score_prob": sec_p,
+        "scores": norm_scores,
     }
+
+
+def _score_matches_constraints(
+    x: int,
+    y: int,
+    res_sel: Optional[str] = None,
+    gt_sel: Optional[str] = None,
+    btts_sel: Optional[str] = None,
+) -> bool:
+    """Returns True if an exact scoreline (x, y) satisfies all active directional constraints."""
+    if res_sel == "Home Win" and not (x > y):
+        return False
+    if res_sel == "Draw" and not (x == y):
+        return False
+    if res_sel == "Away Win" and not (x < y):
+        return False
+    if gt_sel == "Over 2.5" and (x + y < 3):
+        return False
+    if gt_sel == "Under 2.5" and (x + y > 2):
+        return False
+    if btts_sel == "BTTS Yes" and not (x > 0 and y > 0):
+        return False
+    if btts_sel == "BTTS No" and not (x == 0 or y == 0):
+        return False
+    return True
+
+
+def _pass_pick(pick_obj: Dict[str, Any], reason: str) -> None:
+    """Converts a directional pick in-place into a clean PASS preserving diagnostic metadata."""
+    sel = pick_obj.get("selection")
+    if sel and "NO PICK" not in str(sel):
+        pick_obj["target_selection"] = sel
+    pick_obj["pick"] = "NO PICK (PASS)"
+    pick_obj["selection"] = "NO PICK (PASS)"
+    pick_obj["composite_score"] = 0.0
+    pick_obj["is_pass"] = True
+    pick_obj["reason"] = reason
+
+
+def resolve_cross_market_contradictions(
+    scores: Dict[Tuple[int, int], float],
+    result_pick: Dict[str, Any],
+    goal_pick: Dict[str, Any],
+    btts_pick: Dict[str, Any],
+) -> None:
+    """Ensures active (1X2, Goal Total, BTTS) picks have >=1 mathematically valid exact scoreline.
+
+    If active picks form an impossible regime (e.g. Home Win + Under 2.5 + BTTS Yes, or
+    Draw + Over 2.5 + BTTS No), passes the lowest-conviction active leg until coherent.
+    """
+    while True:
+        res_sel = None if result_pick.get("is_pass") else result_pick.get("selection")
+        gt_sel = None if goal_pick.get("is_pass") else goal_pick.get("selection")
+        btts_sel = None if btts_pick.get("is_pass") else btts_pick.get("selection")
+
+        has_valid = any(
+            _score_matches_constraints(x, y, res_sel, gt_sel, btts_sel)
+            for (x, y) in scores
+        )
+        if has_valid:
+            return
+
+        # Compare excess confidence above each market's coin-flip/uniform baseline (0.50 for binary, 1/3 for 1X2)
+        active_legs: List[Tuple[float, Dict[str, Any]]] = []
+        if not goal_pick.get("is_pass") and goal_pick.get("prob") is not None:
+            active_legs.append((float(goal_pick["prob"]) - 0.50, goal_pick))
+        if not btts_pick.get("is_pass") and btts_pick.get("prob") is not None:
+            active_legs.append((float(btts_pick["prob"]) - 0.50, btts_pick))
+        if not result_pick.get("is_pass") and result_pick.get("prob") is not None:
+            active_legs.append((float(result_pick["prob"]) - (1.0 / 3.0), result_pick))
+
+        if not active_legs:
+            return
+        active_legs.sort(key=lambda item: item[0])
+        _pass_pick(active_legs[0][1], "Cross-Market Coherence Pass (No Valid Exact Score)")
+
+
+def select_coherent_scores(
+    scores: Dict[Tuple[int, int], float],
+    result_pick: Dict[str, Any],
+    goal_pick: Dict[str, Any],
+    btts_pick: Dict[str, Any],
+) -> Tuple[Tuple[int, int], float, Tuple[int, int], float]:
+    """Selects primary & secondary predicted exact scores consistent with active model picks."""
+    res_sel = None if result_pick.get("is_pass") else result_pick.get("selection")
+    gt_sel = None if goal_pick.get("is_pass") else goal_pick.get("selection")
+    btts_sel = None if btts_pick.get("is_pass") else btts_pick.get("selection")
+
+    ranked_all = sorted(scores.items(), key=lambda item: item[1], reverse=True)
+    coherent = [
+        (sc, p) for sc, p in ranked_all
+        if _score_matches_constraints(sc[0], sc[1], res_sel, gt_sel, btts_sel)
+    ]
+    if not coherent:
+        coherent = ranked_all
+
+    top_sc, top_p = coherent[0]
+    if len(coherent) >= 2:
+        sec_sc, sec_p = coherent[1]
+    else:
+        # E.g. unique cell like 1-1 for Draw + Under 2.5 + BTTS Yes -> pick next best Result+Total fallback
+        fallback = [
+            (sc, p) for sc, p in ranked_all
+            if sc != top_sc and _score_matches_constraints(sc[0], sc[1], res_sel, gt_sel, None)
+        ] or [item for item in ranked_all if item[0] != top_sc]
+        sec_sc, sec_p = fallback[0] if fallback else (top_sc, top_p)
+
+    return top_sc, top_p, sec_sc, sec_p
 
 
 def _fast_1x2_ov(lam: float, mu: float, total_line: float = 2.5) -> Tuple[float, float, float, float]:
@@ -559,24 +669,14 @@ def sync_live_odds(force_odds: bool = False, window_check: bool = False):
             ("Draw", p_d, best_d, mkt_probs_1x2[1] if mkt_probs_1x2 else None),
             ("Away Win", p_a, best_a, mkt_probs_1x2[2] if mkt_probs_1x2 else None),
         ]
-        # Prefer best +EV candidate if quoted odds exist, otherwise rank by confidence
-        if has_real_h2h:
-            ev_ranked = sorted(
-                res_choices,
-                key=lambda x: ((x[1] * x[2] - 1.0) if (x[2] and x[1] >= 0.44) else -99.0, x[1]),
-                reverse=True,
-            )
-            top_sel, top_prob, top_odds, top_mkt_p = ev_ranked[0]
-            sec_prob = sorted([c[1] for c in res_choices], reverse=True)[1]
-            # If top EV outcome isn't highest prob, keep uncertainty check strictly calibrated
-            highest_prob = max(c[1] for c in res_choices)
-            res_is_pass = (top_prob < 0.44) or (top_prob == highest_prob and (highest_prob - sec_prob) < 0.045)
-        else:
-            res_choices.sort(key=lambda x: x[1], reverse=True)
-            top_sel, top_prob, top_odds, top_mkt_p = res_choices[0]
-            sec_prob = res_choices[1][1]
+        # Rank strictly by model confidence (highest probability outcome) so 1X2 pick never contradicts probabilities
+        res_choices.sort(key=lambda x: x[1], reverse=True)
+        top_sel, top_prob, top_odds, top_mkt_p = res_choices[0]
+        sec_prob = res_choices[1][1]
+        if not has_real_h2h or top_odds is None:
             top_odds = round(1.0 / max(0.05, top_prob), 2)
-            res_is_pass = (top_prob < 0.44) or ((top_prob - sec_prob) < 0.05)
+        min_gap = 0.045 if has_real_h2h else 0.05
+        res_is_pass = (top_prob < 0.44) or ((top_prob - sec_prob) < min_gap)
 
         ev_res = round((top_prob * top_odds - 1.0) * 100.0, 1) if (top_odds and has_real_h2h) else 0.0
         if res_is_pass:
@@ -616,7 +716,10 @@ def sync_live_odds(force_odds: bool = False, window_check: bool = False):
         else:
             gt_prob, gt_sel, gt_odds = p_under, "Under 2.5", best_un
 
-        gt_is_pass = (0.48 <= p_over <= 0.52)
+        exp_xg_total = round(lam_final + mu_final, 2)
+        gt_mean_conflict = (gt_sel == "Over 2.5" and exp_xg_total < 2.5) or (gt_sel == "Under 2.5" and exp_xg_total > 2.5)
+        gt_is_pass = (0.48 <= p_over <= 0.52) or gt_mean_conflict
+        gt_pass_reason = "Poisson Mean/Line Skew Parity" if gt_mean_conflict else "Spread Coin-Flip (48%-52%)"
         if not has_real_totals or gt_odds is None:
             gt_odds = round(1.0 / max(0.05, gt_prob), 2)
             ev_gt = 0.0
@@ -636,7 +739,7 @@ def sync_live_odds(force_odds: bool = False, window_check: bool = False):
                 "composite_score": 0.0,
                 "is_pass": True,
                 "quoted_market": has_real_totals,
-                "reason": "Spread Coin-Flip (48%-52%)",
+                "reason": gt_pass_reason,
                 "status": "PENDING",
             }
         else:
@@ -728,9 +831,14 @@ def sync_live_odds(force_odds: bool = False, window_check: bool = False):
         p_cor_over = round(apply_shrinkage(p_cor_over_raw, prior_mean=0.50, weight=0.92), 3)
         p_cor_under = round(1.0 - p_cor_over, 3)
 
-        cor_is_pass = (0.48 <= p_cor_over <= 0.52)
         cor_prob = p_cor_over if p_cor_over >= 0.50 else p_cor_under
         cor_sel = "Corners Over 9.5" if p_cor_over >= 0.50 else "Corners Under 9.5"
+        exp_cor_disp = round(exp_total_corners, 1)
+        cor_mean_conflict = (cor_sel == "Corners Over 9.5" and exp_cor_disp < 9.5) or (
+            cor_sel == "Corners Under 9.5" and exp_cor_disp > 9.5
+        )
+        cor_is_pass = (0.48 <= p_cor_over <= 0.52) or cor_mean_conflict
+        cor_pass_reason = "NegBin Mean/Line Skew Parity" if cor_mean_conflict else "Handicap Center Line (48%-52%)"
 
         if has_real_corners:
             cor_odds = max(cor_ov_list) if p_cor_over >= 0.50 else max(cor_un_list)
@@ -755,9 +863,17 @@ def sync_live_odds(force_odds: bool = False, window_check: bool = False):
             "composite_score": 0.0 if cor_is_pass else cor_comp,
             "is_pass": cor_is_pass,
             "quoted_market": has_real_corners,
-            "reason": "Handicap Center Line (48%-52%)" if cor_is_pass else None,
+            "reason": cor_pass_reason if cor_is_pass else None,
             "status": "PENDING",
         }
+
+        # --- Cross-Market Coherence & Coherent Exact Score Selection ---
+        # Guarantees (Result, Goal Total, BTTS) never form a mutually impossible trio and
+        # locks pred_score / sec_score to the highest-density scorelines inside the active regime.
+        resolve_cross_market_contradictions(model["scores"], result_candidate, gt_candidate, btts_candidate)
+        top_sc, top_sc_p, sec_sc, sec_sc_p = select_coherent_scores(
+            model["scores"], result_candidate, gt_candidate, btts_candidate
+        )
 
         # --- Best Pick Alpha Selection ---
         # Evaluates all quoted markets clearing confidence >= 48% & genuine +EV >= +1.5%
@@ -865,10 +981,10 @@ def sync_live_odds(force_odds: bool = False, window_check: bool = False):
             "p_h": p_h,
             "p_d": p_d,
             "p_a": p_a,
-            "pred_score": model["pred_score"],
-            "pred_score_prob": round(model["pred_score_prob"], 3),
-            "sec_score": model["sec_score"],
-            "sec_score_prob": round(model["sec_score_prob"], 3),
+            "pred_score": f"{top_sc[0]}-{top_sc[1]}",
+            "pred_score_prob": round(top_sc_p, 3),
+            "sec_score": f"{sec_sc[0]}-{sec_sc[1]}",
+            "sec_score_prob": round(sec_sc_p, 3),
             "result_pick": result_candidate,
             "goal_total_pick": gt_candidate,
             "btts_pick": btts_candidate,
