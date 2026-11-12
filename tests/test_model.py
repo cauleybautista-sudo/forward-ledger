@@ -10,7 +10,8 @@ from src.calibration import (
     neg_binom_over_prob,
     sanity_gate,
 )
-from src.intl_data import american_to_decimal, normalize_team_name
+from src.intl_data import american_to_decimal, load_historical_intel, normalize_team_name
+from src.ml_engine import extract_match_features, predict_match_lambdas_ml, train_ml_model
 from src.sync_live_odds import (
     evaluate_dixon_coles_grid,
     invert_corners_mu,
@@ -136,11 +137,15 @@ class TestInternationalModel(unittest.TestCase):
         rp = {"selection": "Home Win", "prob": 0.60, "is_pass": False}
         gp = {"selection": "Over 2.5", "prob": 0.62, "is_pass": False}
         bp = {"selection": "BTTS Yes", "prob": 0.56, "is_pass": False}
-        top_sc, _, sec_sc, _ = select_coherent_scores(model["scores"], rp, gp, bp)
+        top_sc, top_p, sec_sc, sec_p, thi_sc, thi_p = select_coherent_scores(model["scores"], rp, gp, bp)
         self.assertGreater(top_sc[0], top_sc[1])
         self.assertGreaterEqual(top_sc[0] + top_sc[1], 3)
         self.assertTrue(top_sc[0] > 0 and top_sc[1] > 0)
         self.assertNotEqual(top_sc, sec_sc)
+        self.assertGreater(top_p, 0.0)
+        self.assertLessEqual(top_p, 1.0)
+        self.assertGreater(sec_p, 0.0)
+        self.assertGreater(thi_p, 0.0)
 
     def test_cross_market_contradiction_resolver_passes_weakest_leg(self):
         model = evaluate_dixon_coles_grid(1.35, 0.90, rho=-0.08)
@@ -174,6 +179,42 @@ class TestInternationalModel(unittest.TestCase):
         issues = sanity_gate(bad_slate)
         self.assertTrue(any("pred_score 2-0 contradicts Over 2.5" in msg for msg in issues))
         self.assertTrue(any("expectedCorners 9.8 contradicts Corners Under 9.5" in msg for msg in issues))
+
+    def test_ml_engine_feature_extraction_and_prediction(self):
+        intel = load_historical_intel()
+        feats, base_lam, base_mu = extract_match_features("England", "Croatia", "UEFA Nations League", intel)
+        self.assertEqual(len(feats), 18)
+        self.assertGreater(base_lam, 0.5)
+        self.assertGreater(base_mu, 0.2)
+
+        model_payload = train_ml_model(force_retrain=False)
+        self.assertIn("gb_home", model_payload)
+        self.assertIn("gb_away", model_payload)
+        self.assertGreater(model_payload["mse_reduction_pct"], 5.0)
+
+        lam_ml, mu_ml, meta = predict_match_lambdas_ml(
+            "England", "Croatia", "UEFA Nations League", intel, model_payload=model_payload
+        )
+        self.assertGreater(lam_ml, 0.20)
+        self.assertGreater(mu_ml, 0.20)
+        self.assertTrue(meta["ml_active"])
+
+    def test_correct_score_confidence_percentage(self):
+        dc = evaluate_dixon_coles_grid(1.85, 0.95, rho=-0.08)
+        scores = dc["scores"]
+        total_p = sum(scores.values())
+        self.assertAlmostEqual(total_p, 1.0, places=4)
+
+        rp = {"selection": "Home Win", "prob": 0.60, "is_pass": False}
+        gp = {"selection": "Over 2.5", "prob": 0.58, "is_pass": False}
+        bp = {"selection": "BTTS Yes", "prob": 0.54, "is_pass": False}
+
+        top_sc, top_p, sec_sc, sec_p, thi_sc, thi_p = select_coherent_scores(scores, rp, gp, bp)
+        top_pct = round(top_p * 100.0, 1)
+        self.assertGreaterEqual(top_pct, 1.0)
+        self.assertLessEqual(top_pct, 50.0)
+        self.assertGreaterEqual(top_p, sec_p)
+        self.assertGreaterEqual(sec_p, thi_p)
 
 
 if __name__ == "__main__":

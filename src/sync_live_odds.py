@@ -49,6 +49,7 @@ from src.intl_data import (
     ESPN_BASE,
 )
 from src.v2_ledger import grade_finished_v2_matches, record_pre_kickoff_snapshots
+from src.ml_engine import predict_match_lambdas_ml, train_ml_model
 
 load_dotenv()
 
@@ -201,8 +202,8 @@ def select_coherent_scores(
     result_pick: Dict[str, Any],
     goal_pick: Dict[str, Any],
     btts_pick: Dict[str, Any],
-) -> Tuple[Tuple[int, int], float, Tuple[int, int], float]:
-    """Selects primary & secondary predicted exact scores consistent with active model picks."""
+) -> Tuple[Tuple[int, int], float, Tuple[int, int], float, Tuple[int, int], float]:
+    """Selects top 3 predicted exact scores consistent with active model picks."""
     res_sel = None if result_pick.get("is_pass") else result_pick.get("selection")
     gt_sel = None if goal_pick.get("is_pass") else goal_pick.get("selection")
     btts_sel = None if btts_pick.get("is_pass") else btts_pick.get("selection")
@@ -216,17 +217,16 @@ def select_coherent_scores(
         coherent = ranked_all
 
     top_sc, top_p = coherent[0]
-    if len(coherent) >= 2:
-        sec_sc, sec_p = coherent[1]
-    else:
-        # E.g. unique cell like 1-1 for Draw + Under 2.5 + BTTS Yes -> pick next best Result+Total fallback
-        fallback = [
-            (sc, p) for sc, p in ranked_all
-            if sc != top_sc and _score_matches_constraints(sc[0], sc[1], res_sel, gt_sel, None)
-        ] or [item for item in ranked_all if item[0] != top_sc]
-        sec_sc, sec_p = fallback[0] if fallback else (top_sc, top_p)
+    sec_sc, sec_p = coherent[1] if len(coherent) >= 2 else (top_sc, top_p)
+    thi_sc, thi_p = coherent[2] if len(coherent) >= 3 else (sec_sc, sec_p)
 
-    return top_sc, top_p, sec_sc, sec_p
+    if sec_sc == top_sc and len(ranked_all) > 1:
+        fallback = [s for s in ranked_all if s[0] != top_sc]
+        if fallback:
+            sec_sc, sec_p = fallback[0]
+            thi_sc, thi_p = fallback[1] if len(fallback) > 1 else (sec_sc, sec_p)
+
+    return top_sc, top_p, sec_sc, sec_p, thi_sc, thi_p
 
 
 def _fast_1x2_ov(lam: float, mu: float, total_line: float = 2.5) -> Tuple[float, float, float, float]:
@@ -450,6 +450,13 @@ def sync_live_odds(force_odds: bool = False, window_check: bool = False):
     global_gpg = hist_intel["global_gpg"]
     home_ratio = hist_intel["home_ratio"]
 
+    # Initialize / load Machine Learning expected goals model (GBDT Residual Poisson)
+    ml_model_payload = None
+    try:
+        ml_model_payload = train_ml_model(force_retrain=False)
+    except Exception as e:
+        print(f"Warning: ML model load fallback to baseline: {e}")
+
     # Collect unique upcoming UTC dates for free ESPN enrichment
     dates_set = sorted({str(ev.get("commence_time", ""))[:10].replace("-", "") for ev in events if ev.get("commence_time")})
     espn_index = _build_espn_index(dates_set)
@@ -538,8 +545,18 @@ def sync_live_odds(force_odds: bool = False, window_check: bool = False):
             if (weather.get("precip_mm") or 0.0) >= 3.0 or (weather.get("wind_kmh") or 0.0) >= 32.0:
                 weather_mult = 0.94
 
-        lam_stat = max(0.25, base_gpg * att_h * def_a * ha_h * weather_mult)
-        mu_stat = max(0.20, base_gpg * att_a * def_h * ha_a * weather_mult)
+        # Machine Learning Expected Goals (GBDT Poisson residual model with momentum & log-differential features)
+        lam_ml, mu_ml, ml_meta = predict_match_lambdas_ml(
+            home,
+            away,
+            competition,
+            hist_intel,
+            neutral=neutral_site,
+            weather_mult=weather_mult,
+            model_payload=ml_model_payload,
+        )
+        lam_stat = lam_ml
+        mu_stat = mu_ml
 
         # Collect bookmaker prices with strict per-bookmaker overround sanity validation
         h_odds, d_odds, a_odds = [], [], []
@@ -871,7 +888,7 @@ def sync_live_odds(force_odds: bool = False, window_check: bool = False):
         # Guarantees (Result, Goal Total, BTTS) never form a mutually impossible trio and
         # locks pred_score / sec_score to the highest-density scorelines inside the active regime.
         resolve_cross_market_contradictions(model["scores"], result_candidate, gt_candidate, btts_candidate)
-        top_sc, top_sc_p, sec_sc, sec_sc_p = select_coherent_scores(
+        top_sc, top_sc_p, sec_sc, sec_sc_p, thi_sc, thi_sc_p = select_coherent_scores(
             model["scores"], result_candidate, gt_candidate, btts_candidate
         )
 
@@ -983,8 +1000,13 @@ def sync_live_odds(force_odds: bool = False, window_check: bool = False):
             "p_a": p_a,
             "pred_score": f"{top_sc[0]}-{top_sc[1]}",
             "pred_score_prob": round(top_sc_p, 3),
+            "pred_score_pct": round(top_sc_p * 100.0, 1),
             "sec_score": f"{sec_sc[0]}-{sec_sc[1]}",
             "sec_score_prob": round(sec_sc_p, 3),
+            "sec_score_pct": round(sec_sc_p * 100.0, 1),
+            "thi_score": f"{thi_sc[0]}-{thi_sc[1]}",
+            "thi_score_prob": round(thi_sc_p, 3),
+            "thi_score_pct": round(thi_sc_p * 100.0, 1),
             "result_pick": result_candidate,
             "goal_total_pick": gt_candidate,
             "btts_pick": btts_candidate,
@@ -1015,6 +1037,7 @@ def sync_live_odds(force_odds: bool = False, window_check: bool = False):
             "market_anchor": {
                 "espn_id": espn_meta.get("espn_id"),
                 "af_fixture_id": af_meta.get("fixture_id"),
+                "ml_engine": ml_meta,
                 "lam_stat": round(lam_stat, 2),
                 "mu_stat": round(mu_stat, 2),
                 "lam_mkt": round(lam_mkt, 2),
