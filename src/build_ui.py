@@ -18,6 +18,54 @@ def generate_html():
         raise FileNotFoundError(f"data.json not found at {data_path}")
 
     raw_data = json.loads(data_path.read_text(encoding="utf-8"))
+
+    # Integrate newly settled forward ledger (v2) matches into UI view
+    v2_path = Path(__file__).parent / "v2_ledger.json"
+    if v2_path.exists():
+        try:
+            v2_data = json.loads(v2_path.read_text(encoding="utf-8"))
+            v2_graded = v2_data.get("graded", [])
+            if v2_graded:
+                v2_graded_ids = {g["id"] for g in v2_graded}
+                # Remove finished fixtures from pending list
+                raw_data["pending"] = [m for m in raw_data.get("pending", []) if m.get("id") not in v2_graded_ids]
+                raw_data["summary"]["pending"] = len(raw_data["pending"])
+
+                # Format and prepend v2 graded fixtures to the front of graded array
+                v2_ui_graded = []
+                for vg in reversed(v2_graded):
+                    bp = vg.get("best_pick") or {}
+                    sel = bp.get("selection") or (vg.get("result_pick") or {}).get("selection") or "NO PICK (PASS)"
+                    prob = bp.get("prob") or (vg.get("result_pick") or {}).get("prob") or 0.50
+                    odds = bp.get("odds") or (vg.get("result_pick") or {}).get("odds") or 1.90
+                    edge = bp.get("edge") or "0.0%"
+                    v2_ui_graded.append({
+                        "id": vg["id"],
+                        "date": vg["date"],
+                        "competition": vg["competition"],
+                        "fixture": vg["fixture"],
+                        "selection": sel,
+                        "model_prob": prob,
+                        "closing_odds": odds,
+                        "edge": edge,
+                        "final_score": vg["final_score"],
+                        "status": vg.get("status", "VOID"),
+                        "net_variance": vg.get("net_variance", 0.0),
+                        "home_team": vg["home_team"],
+                        "away_team": vg["away_team"],
+                        "pred_score": vg["pred_score"],
+                        "pred_score_prob": (vg.get("result_pick") or {}).get("prob", 0.12),
+                        "result_pick": vg.get("result_pick"),
+                        "goal_total_pick": vg.get("goal_total_pick"),
+                        "btts_pick": vg.get("btts_pick"),
+                        "corner_pick": vg.get("corner_pick"),
+                        "is_best": vg.get("is_best", False),
+                        "best_pick": bp,
+                    })
+                raw_data["graded"] = v2_ui_graded + raw_data.get("graded", [])
+        except Exception as e:
+            print(f"Notice: v2 integration in build_ui skipped: {e}")
+
     json_str = json.dumps(raw_data)
 
     html = f"""<!DOCTYPE html>
