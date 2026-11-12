@@ -13,6 +13,7 @@ Applies validated quantitative modeling methods to International Football:
 import json
 import math
 import os
+import re
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -136,10 +137,13 @@ def _score_matches_constraints(
         return False
     if res_sel == "Away Win" and not (x < y):
         return False
-    if gt_sel == "Over 2.5" and (x + y < 3):
-        return False
-    if gt_sel == "Under 2.5" and (x + y > 2):
-        return False
+    if gt_sel:
+        m_l = re.search(r"(\d+(?:\.\d+)?)", gt_sel)
+        line = float(m_l.group(1)) if m_l else 2.5
+        if gt_sel.startswith("Over") and (x + y <= line):
+            return False
+        if gt_sel.startswith("Under") and (x + y >= line):
+            return False
     if btts_sel == "BTTS Yes" and not (x > 0 and y > 0):
         return False
     if btts_sel == "BTTS No" and not (x == 0 or y == 0):
@@ -727,52 +731,109 @@ def sync_live_odds(force_odds: bool = False, window_check: bool = False):
                 "status": "PENDING",
             }
 
-        # --- Market 2: Goal Total (O/U 2.5) ---
-        if p_over >= 0.50:
-            gt_prob, gt_sel, gt_odds = p_over, "Over 2.5", best_ov
-        else:
-            gt_prob, gt_sel, gt_odds = p_under, "Under 2.5", best_un
-
+        # --- Market 2: Goal Total (Adaptive Dynamic Totals O/U 1.5, 2.5, 3.5, etc.) ---
         exp_xg_total = round(lam_final + mu_final, 2)
-        gt_mean_conflict = (gt_sel == "Over 2.5" and exp_xg_total < 2.5) or (gt_sel == "Under 2.5" and exp_xg_total > 2.5)
-        gt_is_pass = (0.48 <= p_over <= 0.52) or gt_mean_conflict
-        gt_pass_reason = "Poisson Mean/Line Skew Parity" if gt_mean_conflict else "Spread Coin-Flip (48%-52%)"
-        if not has_real_totals or gt_odds is None:
-            gt_odds = round(1.0 / max(0.05, gt_prob), 2)
-            ev_gt = 0.0
-        else:
-            ev_gt = round((gt_prob * gt_odds - 1.0) * 100.0, 1)
 
-        if gt_is_pass:
-            gt_candidate = {
+        def _evaluate_gt_candidate(target_line: float) -> Dict[str, Any]:
+            p_ov_raw = sum(p for (x, y), p in model["scores"].items() if (x + y) > target_line)
+            p_ov_l = round(apply_shrinkage(p_ov_raw, prior_mean=0.50, weight=0.92), 3)
+            p_un_l = round(1.0 - p_ov_l, 3)
+
+            q_ovs = totals_by_point.get(target_line, {}).get("Over", [])
+            q_uns = totals_by_point.get(target_line, {}).get("Under", [])
+            has_q = bool(q_ovs and q_uns)
+            b_ov = max(q_ovs) if q_ovs else None
+            b_un = max(q_uns) if q_uns else None
+
+            if p_ov_l >= 0.50:
+                p_cand = p_ov_l
+                s_cand = f"Over {target_line}"
+                o_cand = b_ov
+            else:
+                p_cand = p_un_l
+                s_cand = f"Under {target_line}"
+                o_cand = b_un
+
+            mean_conflict = (s_cand.startswith("Over") and exp_xg_total < target_line) or (
+                s_cand.startswith("Under") and exp_xg_total > target_line
+            )
+            coin_flip = (0.48 <= p_ov_l <= 0.52)
+            is_pass = coin_flip or mean_conflict
+            pass_reason = "Poisson Mean/Line Skew Parity" if mean_conflict else "Spread Coin-Flip (48%-52%)"
+
+            if not has_q or o_cand is None:
+                o_cand = round(1.0 / max(0.05, p_cand), 2)
+                ev = 0.0
+                edge_s = "Fair Price"
+                comp = 0.0
+            else:
+                ev = round((p_cand * o_cand - 1.0) * 100.0, 1)
+                edge_s = f"{'+' if ev >= 0 else ''}{ev}%"
+                comp = round(p_cand * ev, 2) if (not is_pass and ev > 0) else 0.0
+
+            return {
                 "market": "Goal Total",
-                "pick": "NO PICK (PASS)",
-                "selection": "NO PICK (PASS)",
-                "target_selection": gt_sel,
-                "prob": gt_prob,
-                "odds": round(gt_odds, 2),
-                "edge": f"{'+' if ev_gt >= 0 else ''}{ev_gt}%",
-                "edge_val": ev_gt,
-                "composite_score": 0.0,
-                "is_pass": True,
-                "quoted_market": has_real_totals,
-                "reason": gt_pass_reason,
+                "line": target_line,
+                "pick": "NO PICK (PASS)" if is_pass else s_cand,
+                "selection": "NO PICK (PASS)" if is_pass else s_cand,
+                "target_selection": s_cand if is_pass else None,
+                "prob": p_cand,
+                "odds": round(o_cand, 2),
+                "edge": "0.0%" if (is_pass and not has_q) else edge_s,
+                "edge_val": ev,
+                "composite_score": comp,
+                "is_pass": is_pass,
+                "quoted_market": has_q,
+                "reason": pass_reason if is_pass else None,
                 "status": "PENDING",
             }
-        else:
-            gt_candidate = {
-                "market": "Goal Total",
-                "pick": gt_sel,
-                "selection": gt_sel,
-                "prob": gt_prob,
-                "odds": round(gt_odds, 2),
-                "edge": f"{'+' if ev_gt >= 0 else ''}{ev_gt}%",
-                "edge_val": ev_gt,
-                "composite_score": round(gt_prob * max(0.5, ev_gt), 2),
-                "is_pass": False,
-                "quoted_market": has_real_totals,
-                "status": "PENDING",
-            }
+
+        # Evaluate 2.5 anchor line first
+        gt_candidate = _evaluate_gt_candidate(2.5)
+
+        # Explore candidate totals lines (bounded to standard match totals 1.5 to 4.5)
+        candidate_gt_lines = sorted(set([1.5, 2.5, 3.5] + [pt for pt in totals_by_point.keys() if 1.5 <= pt <= 4.5]))
+        qualifying_alts = []
+
+        for alt_line in candidate_gt_lines:
+            if abs(alt_line - 2.5) < 1e-4:
+                continue
+            alt_cand = _evaluate_gt_candidate(alt_line)
+            if alt_cand["is_pass"]:
+                continue
+
+            sel_s = alt_cand["selection"]
+            is_over = sel_s.startswith("Over")
+            fits_projection = False
+            if is_over:
+                if alt_line > 2.5:
+                    fits_projection = (exp_xg_total >= alt_line - 0.20)
+                else:  # e.g. Over 1.5 / Over 2.0
+                    fits_projection = (exp_xg_total >= 2.05 and alt_cand["prob"] >= 0.65)
+            else:
+                if alt_line < 2.5:
+                    fits_projection = (exp_xg_total <= alt_line + 0.20)
+                else:  # e.g. Under 3.0 / Under 3.5
+                    fits_projection = (exp_xg_total <= 3.10 and alt_cand["prob"] >= 0.60)
+
+            if not fits_projection:
+                continue
+
+            # "If and only if you project a much better total, that still has good value"
+            # Require genuine quoted market with backable odds (>= 1.45) and real edge (>= +1.5%)
+            if not alt_cand["quoted_market"] or alt_cand["odds"] < 1.45 or alt_cand["edge_val"] < 1.5:
+                continue
+
+            if gt_candidate["is_pass"]:
+                qualifying_alts.append((alt_cand["composite_score"], alt_cand["prob"], alt_cand))
+            else:
+                anchor_comp = gt_candidate["composite_score"]
+                if anchor_comp <= 0.0 or alt_cand["composite_score"] >= anchor_comp * 1.10:
+                    qualifying_alts.append((alt_cand["composite_score"], alt_cand["prob"], alt_cand))
+
+        if qualifying_alts:
+            qualifying_alts.sort(key=lambda x: (x[0], x[1]), reverse=True)
+            gt_candidate = qualifying_alts[0][2]
 
         # --- Market 3: BTTS Yes/No (Anchored Dixon-Coles + Real API-Football Bet365/Multi-Book Quotes) ---
         btts_yes_list = af_data.get("btts_yes_odds") or []
@@ -831,58 +892,139 @@ def sync_live_odds(force_odds: bool = False, window_check: bool = False):
         exp_a_corners = 0.5 * (avg_cw_a + avg_cc_h) * (0.90 + 0.075 * mu_final)
         mu_stat_corners = max(6.0, min(14.5, exp_h_corners + exp_a_corners))
 
+        cor_by_line: Dict[float, Dict[str, List[float]]] = dict(af_data.get("corners_by_line") or {})
         cor_ov_list = af_data.get("corners_over95_odds") or []
         cor_un_list = af_data.get("corners_under95_odds") or []
-        has_real_corners = bool(cor_ov_list and cor_un_list)
+        if cor_ov_list and cor_un_list and 9.5 not in cor_by_line:
+            cor_by_line[9.5] = {"Over": cor_ov_list, "Under": cor_un_list}
 
-        if has_real_corners:
-            med_cov, med_cun = _median(cor_ov_list), _median(cor_un_list)
+        # Market-anchor expected total corners (prefer 9.5 if quoted)
+        has_real_corners = False
+        anchor_cor_line = 9.5
+        if 9.5 in cor_by_line and cor_by_line[9.5].get("Over") and cor_by_line[9.5].get("Under"):
+            med_cov = _median(cor_by_line[9.5]["Over"])
+            med_cun = _median(cor_by_line[9.5]["Under"])
             mkt_cor_over_p = multiplicative_devig([med_cov, med_cun])[0]
             mu_mkt_corners = invert_corners_mu(mkt_cor_over_p, line=9.5)
             exp_total_corners = round(0.50 * mu_stat_corners + 0.50 * mu_mkt_corners, 2)
+            has_real_corners = True
+        elif cor_by_line:
+            best_cor_anchor = max(cor_by_line.keys(), key=lambda pt: len(cor_by_line[pt].get("Over", [])))
+            ovs = cor_by_line[best_cor_anchor].get("Over", [])
+            uns = cor_by_line[best_cor_anchor].get("Under", [])
+            if ovs and uns:
+                anchor_cor_line = best_cor_anchor
+                med_cov, med_cun = _median(ovs), _median(uns)
+                mkt_cor_over_p = multiplicative_devig([med_cov, med_cun])[0]
+                mu_mkt_corners = invert_corners_mu(mkt_cor_over_p, line=anchor_cor_line)
+                exp_total_corners = round(0.50 * mu_stat_corners + 0.50 * mu_mkt_corners, 2)
+                has_real_corners = True
+            else:
+                exp_total_corners = round(mu_stat_corners, 2)
         else:
             exp_total_corners = round(mu_stat_corners, 2)
 
-        # Negative Binomial tail with empirical football over-dispersion (variance = 2.0 * mean)
-        p_cor_over_raw = neg_binom_over_prob(exp_total_corners, variance=2.0 * exp_total_corners, line=9.5)
-        p_cor_over = round(apply_shrinkage(p_cor_over_raw, prior_mean=0.50, weight=0.92), 3)
-        p_cor_under = round(1.0 - p_cor_over, 3)
+        def _evaluate_cor_candidate(target_line: float) -> Dict[str, Any]:
+            p_cor_over_raw = neg_binom_over_prob(exp_total_corners, variance=2.0 * exp_total_corners, line=target_line)
+            p_cor_over = round(apply_shrinkage(p_cor_over_raw, prior_mean=0.50, weight=0.92), 3)
+            p_cor_under = round(1.0 - p_cor_over, 3)
 
-        cor_prob = p_cor_over if p_cor_over >= 0.50 else p_cor_under
-        cor_sel = "Corners Over 9.5" if p_cor_over >= 0.50 else "Corners Under 9.5"
-        exp_cor_disp = round(exp_total_corners, 1)
-        cor_mean_conflict = (cor_sel == "Corners Over 9.5" and exp_cor_disp < 9.5) or (
-            cor_sel == "Corners Under 9.5" and exp_cor_disp > 9.5
-        )
-        cor_is_pass = (0.48 <= p_cor_over <= 0.52) or cor_mean_conflict
-        cor_pass_reason = "NegBin Mean/Line Skew Parity" if cor_mean_conflict else "Handicap Center Line (48%-52%)"
+            q_ovs = cor_by_line.get(target_line, {}).get("Over", [])
+            q_uns = cor_by_line.get(target_line, {}).get("Under", [])
+            has_q = bool(q_ovs and q_uns)
+            b_ov = max(q_ovs) if q_ovs else None
+            b_un = max(q_uns) if q_uns else None
 
-        if has_real_corners:
-            cor_odds = max(cor_ov_list) if p_cor_over >= 0.50 else max(cor_un_list)
-            ev_cor = round((cor_prob * cor_odds - 1.0) * 100.0, 1)
-            cor_edge_str = f"{'+' if ev_cor >= 0 else ''}{ev_cor}%"
-            cor_comp = round(cor_prob * max(0.5, ev_cor), 2)
-        else:
-            cor_odds = round(1.0 / max(0.05, cor_prob), 2)
-            ev_cor = 0.0
-            cor_edge_str = "Fair Price"
-            cor_comp = 0.0
+            if p_cor_over >= 0.50:
+                p_cand = p_cor_over
+                s_cand = f"Corners Over {target_line}"
+                o_cand = b_ov
+            else:
+                p_cand = p_cor_under
+                s_cand = f"Corners Under {target_line}"
+                o_cand = b_un
 
-        cor_candidate = {
-            "market": "Corners",
-            "pick": "NO PICK (PASS)" if cor_is_pass else cor_sel,
-            "selection": "NO PICK (PASS)" if cor_is_pass else cor_sel,
-            "target_selection": cor_sel if cor_is_pass else None,
-            "prob": cor_prob,
-            "odds": round(cor_odds, 2),
-            "edge": "0.0%" if cor_is_pass and not has_real_corners else cor_edge_str,
-            "edge_val": ev_cor,
-            "composite_score": 0.0 if cor_is_pass else cor_comp,
-            "is_pass": cor_is_pass,
-            "quoted_market": has_real_corners,
-            "reason": cor_pass_reason if cor_is_pass else None,
-            "status": "PENDING",
-        }
+            exp_cor_disp = round(exp_total_corners, 1)
+            mean_conflict = (s_cand == f"Corners Over {target_line}" and exp_cor_disp < target_line) or (
+                s_cand == f"Corners Under {target_line}" and exp_cor_disp > target_line
+            )
+            coin_flip = (0.48 <= p_cor_over <= 0.52)
+            is_pass = coin_flip or mean_conflict
+            pass_reason = "NegBin Mean/Line Skew Parity" if mean_conflict else "Handicap Center Line (48%-52%)"
+
+            if not has_q or o_cand is None:
+                o_cand = round(1.0 / max(0.05, p_cand), 2)
+                ev = 0.0
+                edge_s = "Fair Price"
+                comp = 0.0
+            else:
+                ev = round((p_cand * o_cand - 1.0) * 100.0, 1)
+                edge_s = f"{'+' if ev >= 0 else ''}{ev}%"
+                comp = round(p_cand * ev, 2) if (not is_pass and ev > 0) else 0.0
+
+            return {
+                "market": "Corners",
+                "line": target_line,
+                "pick": "NO PICK (PASS)" if is_pass else s_cand,
+                "selection": "NO PICK (PASS)" if is_pass else s_cand,
+                "target_selection": s_cand if is_pass else None,
+                "prob": p_cand,
+                "odds": round(o_cand, 2),
+                "edge": "0.0%" if (is_pass and not has_q) else edge_s,
+                "edge_val": ev,
+                "composite_score": comp,
+                "is_pass": is_pass,
+                "quoted_market": has_q,
+                "reason": pass_reason if is_pass else None,
+                "status": "PENDING",
+            }
+
+        # Evaluate 9.5 anchor line first
+        cor_candidate = _evaluate_cor_candidate(9.5)
+
+        # Explore candidate corner lines (bounded to standard match corners 7.0 to 13.0)
+        candidate_cor_lines = sorted(set([8.5, 9.5, 10.5] + [pt for pt in cor_by_line.keys() if 7.0 <= pt <= 13.0]))
+        qualifying_cor_alts = []
+
+        for alt_line in candidate_cor_lines:
+            if abs(alt_line - 9.5) < 1e-4:
+                continue
+            alt_cand = _evaluate_cor_candidate(alt_line)
+            if alt_cand["is_pass"]:
+                continue
+
+            sel_s = alt_cand["selection"]
+            is_over = "Over" in sel_s
+            fits_projection = False
+            if is_over:
+                if alt_line > 9.5:
+                    fits_projection = (exp_total_corners >= alt_line - 0.30)
+                else:  # e.g. Over 8.5
+                    fits_projection = (exp_total_corners >= 9.60 and alt_cand["prob"] >= 0.64)
+            else:
+                if alt_line < 9.5:
+                    fits_projection = (exp_total_corners <= alt_line + 0.30)
+                else:  # e.g. Under 10.5
+                    fits_projection = (exp_total_corners <= 9.40 and alt_cand["prob"] >= 0.64)
+
+            if not fits_projection:
+                continue
+
+            # "If and only if you project a much better total, that still has good value"
+            # Require genuine quoted market with backable odds (>= 1.45) and real edge (>= +1.5%)
+            if not alt_cand["quoted_market"] or alt_cand["odds"] < 1.45 or alt_cand["edge_val"] < 1.5:
+                continue
+
+            if cor_candidate["is_pass"]:
+                qualifying_cor_alts.append((alt_cand["composite_score"], alt_cand["prob"], alt_cand))
+            else:
+                anchor_comp = cor_candidate["composite_score"]
+                if anchor_comp <= 0.0 or alt_cand["composite_score"] >= anchor_comp * 1.10:
+                    qualifying_cor_alts.append((alt_cand["composite_score"], alt_cand["prob"], alt_cand))
+
+        if qualifying_cor_alts:
+            qualifying_cor_alts.sort(key=lambda x: (x[0], x[1]), reverse=True)
+            cor_candidate = qualifying_cor_alts[0][2]
 
         # --- Cross-Market Coherence & Coherent Exact Score Selection ---
         # Guarantees (Result, Goal Total, BTTS) never form a mutually impossible trio and

@@ -216,6 +216,73 @@ class TestInternationalModel(unittest.TestCase):
         self.assertGreaterEqual(top_p, sec_p)
         self.assertGreaterEqual(sec_p, thi_p)
 
+    def test_dynamic_adaptive_lines(self):
+        # Dynamic Goal lines grading
+        self.assertEqual(
+            _grade_pick({"selection": "Over 1.5 Goals", "line": 1.5}, True, "goals")["status"], "HIT"
+        )
+        self.assertEqual(
+            _grade_pick({"selection": "Under 3.5 Goals", "line": 3.5}, False, "goals")["status"], "HIT"
+        )
+        self.assertEqual(
+            _grade_pick({"selection": "Over 3.5 Goals", "line": 3.5}, False, "goals")["status"], "MISS"
+        )
+        # Dynamic Corner lines grading
+        self.assertEqual(
+            _grade_pick({"selection": "Corners Over 8.5", "line": 8.5}, True, "corners")["status"], "HIT"
+        )
+        self.assertEqual(
+            _grade_pick({"selection": "Corners Under 10.5", "line": 10.5}, False, "corners")["status"], "HIT"
+        )
+
+        # Dynamic sanity gate validation: non-2.5 and non-9.5 lines
+        valid_dynamic_slate = [
+            {
+                "id": "dyn-1",
+                "fixture": "Spain vs France",
+                "p_h": 0.55,
+                "p_d": 0.25,
+                "p_a": 0.20,
+                "pred_score": "3-1",
+                "result_pick": {"selection": "Home Win", "prob": 0.55, "is_pass": False},
+                "goal_total_pick": {"selection": "Over 3.5", "line": 3.5, "prob": 0.62, "is_pass": False},
+                "btts_pick": {"selection": "BTTS Yes", "prob": 0.60, "is_pass": False},
+                "corner_pick": {"selection": "Corners Over 10.5", "line": 10.5, "prob": 0.58, "is_pass": False},
+                "real_goal_stats": {"expectedXg": 3.6},
+                "real_corner_stats": {"expectedCorners": 11.2},
+            },
+            {
+                "id": "dyn-2",
+                "fixture": "Wales vs Finland",
+                "p_h": 0.45,
+                "p_d": 0.35,
+                "p_a": 0.20,
+                "pred_score": "1-0",
+                "result_pick": {"selection": "Home Win", "prob": 0.45, "is_pass": False},
+                "goal_total_pick": {"selection": "Under 1.5", "line": 1.5, "prob": 0.59, "is_pass": False},
+                "btts_pick": {"selection": "BTTS No", "prob": 0.65, "is_pass": False},
+                "corner_pick": {"selection": "Corners Under 8.5", "line": 8.5, "prob": 0.61, "is_pass": False},
+                "real_goal_stats": {"expectedXg": 1.4},
+                "real_corner_stats": {"expectedCorners": 8.0},
+            },
+            {
+                "id": "dyn-3",
+                "fixture": "Germany vs Italy",
+                "p_h": 0.50,
+                "p_d": 0.28,
+                "p_a": 0.22,
+                "pred_score": "2-0",
+                "result_pick": {"selection": "Home Win", "prob": 0.50, "is_pass": False},
+                "goal_total_pick": {"selection": "Under 2.5", "line": 2.5, "prob": 0.58, "is_pass": False},
+                "btts_pick": {"selection": "BTTS No", "prob": 0.55, "is_pass": False},
+                "corner_pick": {"selection": "Corners Under 9.5", "line": 9.5, "prob": 0.54, "is_pass": False},
+                "real_goal_stats": {"expectedXg": 2.2},
+                "real_corner_stats": {"expectedCorners": 9.1},
+            },
+        ]
+        issues = sanity_gate(valid_dynamic_slate)
+        self.assertEqual(issues, [])
+
 
 if __name__ == "__main__":
     unittest.main()

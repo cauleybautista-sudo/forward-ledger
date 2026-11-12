@@ -2410,6 +2410,16 @@ const DATA = {json_str};
     const expectedXg = m.real_goal_stats
       ? Number(m.real_goal_stats.expectedXg).toFixed(1)
       : (parseFloat(avgScoredH) + parseFloat(avgScoredA)).toFixed(1);
+    const gtLine = (m.goal_total_pick && m.goal_total_pick.line != null)
+      ? Number(m.goal_total_pick.line).toFixed(1)
+      : (m.goal_total_pick && m.goal_total_pick.selection && m.goal_total_pick.selection.split(" ").length >= 2 && !m.goal_total_pick.selection.includes("NO PICK"))
+      ? m.goal_total_pick.selection.split(" ")[1]
+      : "2.5";
+    const corLine = (m.corner_pick && m.corner_pick.line != null)
+      ? Number(m.corner_pick.line).toFixed(1)
+      : (m.corner_pick && m.corner_pick.selection && m.corner_pick.selection.split(" ").length >= 3 && !m.corner_pick.selection.includes("NO PICK"))
+      ? m.corner_pick.selection.split(" ")[2]
+      : "9.5";
     const bttsPct = m.btts_pick ? Math.round((m.btts_pick.selection && m.btts_pick.selection.includes("No") ? (1 - m.btts_pick.prob) : m.btts_pick.prob) * 100) : Math.round(52 + (seed % 15));
     const overPct = m.goal_total_pick ? Math.round((m.goal_total_pick.selection && m.goal_total_pick.selection.includes("Under") ? (1 - m.goal_total_pick.prob) : m.goal_total_pick.prob) * 100) : Math.round(48 + (seed % 18));
     const corPct = m.corner_pick ? Math.round((m.corner_pick.selection && m.corner_pick.selection.includes("Under") ? (1 - m.corner_pick.prob) : m.corner_pick.prob) * 100) : Math.round(50 + (seed % 14));
@@ -2593,7 +2603,7 @@ const DATA = {json_str};
       hWins, draws, aWins, hWinsWidth, drawsWidth, aWinsWidth,
       avgScoredH, avgConcededH, avgScoredA, avgConcededA,
       goalsScoredPctH, goalsScoredPctA, goalsConcededPctH, goalsConcededPctA,
-      expectedXg, bttsPct, overPct, corPct,
+      expectedXg, gtLine, bttsPct, overPct, corPct, corLine,
       avgCornersH, avgCornersConcededH, avgCornersA, avgCornersConcededA,
       cornersWonPctH, cornersWonPctA, cornersConcededPctH, cornersConcededPctA,
       expectedCorners,
@@ -2837,11 +2847,11 @@ const DATA = {json_str};
                 <span class="sub-metric-val gold">${{stats.expectedXg}}</span>
               </div>
               <div class="sub-metric-pill">
-                <span class="sub-metric-lbl">OVER 2.5 PROB</span>
+                <span class="sub-metric-lbl">OVER ${{stats.gtLine}} PROB</span>
                 <span class="sub-metric-val">${{stats.overPct}}%</span>
               </div>
               <div class="sub-metric-pill">
-                <span class="sub-metric-lbl">UNDER 2.5 PROB</span>
+                <span class="sub-metric-lbl">UNDER ${{stats.gtLine}} PROB</span>
                 <span class="sub-metric-val">${{100 - stats.overPct}}%</span>
               </div>
             </div>
@@ -2975,11 +2985,11 @@ const DATA = {json_str};
                 <span class="sub-metric-val gold">${{stats.expectedCorners}}</span>
               </div>
               <div class="sub-metric-pill">
-                <span class="sub-metric-lbl">OVER 9.5 CORNERS</span>
+                <span class="sub-metric-lbl">OVER ${{stats.corLine}} CORNERS</span>
                 <span class="sub-metric-val">${{stats.corPct}}%</span>
               </div>
               <div class="sub-metric-pill">
-                <span class="sub-metric-lbl">UNDER 9.5 CORNERS</span>
+                <span class="sub-metric-lbl">UNDER ${{stats.corLine}} CORNERS</span>
                 <span class="sub-metric-val">${{100 - stats.corPct}}%</span>
               </div>
             </div>

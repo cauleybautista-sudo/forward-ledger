@@ -10,6 +10,7 @@ Applies quantitative validation principles to international football:
 """
 
 import math
+import re
 import statistics
 from typing import List, Dict, Any, Optional, Tuple
 
@@ -258,15 +259,21 @@ def sanity_gate(pending_matches: List[Dict[str, Any]], strict_teams: bool = Fals
                 hg, ag = map(int, str(pred_score).split("-", 1))
                 tot_g = hg + ag
                 sc_res = "Home Win" if hg > ag else ("Away Win" if ag > hg else "Draw")
-                sc_gt = "Over 2.5" if tot_g >= 3 else "Under 2.5"
                 sc_btts = "BTTS Yes" if (hg > 0 and ag > 0) else "BTTS No"
 
                 if not res_pick.get("is_pass") and res_pick.get("selection") in ("Home Win", "Draw", "Away Win"):
                     if res_pick["selection"] != sc_res:
                         reasons.append(f"{m.get('fixture')}: pred_score {pred_score} contradicts {res_pick['selection']}")
-                if not gt_pick.get("is_pass") and gt_pick.get("selection") in ("Over 2.5", "Under 2.5"):
-                    if gt_pick["selection"] != sc_gt:
-                        reasons.append(f"{m.get('fixture')}: pred_score {pred_score} contradicts {gt_pick['selection']}")
+                if not gt_pick.get("is_pass") and gt_pick.get("selection"):
+                    gt_sel = str(gt_pick.get("selection") or "")
+                    gt_line = gt_pick.get("line")
+                    if gt_line is None:
+                        m_line = re.search(r"(\d+(?:\.\d+)?)", gt_sel)
+                        gt_line = float(m_line.group(1)) if m_line else 2.5
+                    if gt_sel.startswith("Over") and tot_g <= gt_line:
+                        reasons.append(f"{m.get('fixture')}: pred_score {pred_score} contradicts {gt_sel}")
+                    elif gt_sel.startswith("Under") and tot_g >= gt_line:
+                        reasons.append(f"{m.get('fixture')}: pred_score {pred_score} contradicts {gt_sel}")
                 if not btts_pick.get("is_pass") and btts_pick.get("selection") in ("BTTS Yes", "BTTS No"):
                     if btts_pick["selection"] != sc_btts:
                         reasons.append(f"{m.get('fixture')}: pred_score {pred_score} contradicts {btts_pick['selection']}")
@@ -276,13 +283,27 @@ def sanity_gate(pending_matches: List[Dict[str, Any]], strict_teams: bool = Fals
         # Verify expected mean sits on the same side of the line as active O/U picks
         xg_tot = (m.get("real_goal_stats") or {}).get("expectedXg")
         if xg_tot is not None and not gt_pick.get("is_pass") and gt_pick.get("selection"):
-            if (gt_pick["selection"] == "Over 2.5" and xg_tot < 2.5) or (gt_pick["selection"] == "Under 2.5" and xg_tot > 2.5):
-                reasons.append(f"{m.get('fixture')}: expectedXg {xg_tot} contradicts {gt_pick['selection']}")
+            gt_sel = str(gt_pick.get("selection") or "")
+            gt_line = gt_pick.get("line")
+            if gt_line is None:
+                m_line = re.search(r"(\d+(?:\.\d+)?)", gt_sel)
+                gt_line = float(m_line.group(1)) if m_line else 2.5
+            if gt_sel.startswith("Over") and xg_tot < gt_line:
+                reasons.append(f"{m.get('fixture')}: expectedXg {xg_tot} contradicts {gt_sel}")
+            elif gt_sel.startswith("Under") and xg_tot > gt_line:
+                reasons.append(f"{m.get('fixture')}: expectedXg {xg_tot} contradicts {gt_sel}")
 
         exp_cor = (m.get("real_corner_stats") or {}).get("expectedCorners")
         if exp_cor is not None and not cor_pick.get("is_pass") and cor_pick.get("selection"):
-            if (cor_pick["selection"] == "Corners Over 9.5" and exp_cor < 9.5) or (cor_pick["selection"] == "Corners Under 9.5" and exp_cor > 9.5):
-                reasons.append(f"{m.get('fixture')}: expectedCorners {exp_cor} contradicts {cor_pick['selection']}")
+            cor_sel = str(cor_pick.get("selection") or "")
+            cor_line = cor_pick.get("line")
+            if cor_line is None:
+                m_line = re.search(r"(\d+(?:\.\d+)?)", cor_sel)
+                cor_line = float(m_line.group(1)) if m_line else 9.5
+            if "Over" in cor_sel and exp_cor < cor_line:
+                reasons.append(f"{m.get('fixture')}: expectedCorners {exp_cor} contradicts {cor_sel}")
+            elif "Under" in cor_sel and exp_cor > cor_line:
+                reasons.append(f"{m.get('fixture')}: expectedCorners {exp_cor} contradicts {cor_sel}")
 
     for label, ps in by_market.items():
         if len(ps) >= 3:

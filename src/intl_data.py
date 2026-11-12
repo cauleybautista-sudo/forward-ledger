@@ -727,12 +727,13 @@ def fetch_apifootball_odds_and_lineups(
     provider: str = "direct",
     include_lineups: bool = False,
 ) -> Dict[str, Any]:
-    """Fetches real quoted BTTS & Corners O/U 9.5 bookmaker odds plus T-60m lineups/injuries."""
+    """Fetches real quoted BTTS & Corners O/U bookmaker odds plus T-60m lineups/injuries."""
     out: Dict[str, Any] = {
         "btts_yes_odds": [],
         "btts_no_odds": [],
         "corners_over95_odds": [],
         "corners_under95_odds": [],
+        "corners_by_line": {},
         "starters_announced": False,
         "home_starters": [],
         "away_starters": [],
@@ -762,11 +763,32 @@ def fetch_apifootball_odds_and_lineups(
                         out["btts_yes_odds"].append(vy)
                         out["btts_no_odds"].append(vn)
                 elif bname == "Corners Over Under":
-                    ov95 = next((float(v["odd"]) for v in vals if str(v.get("value")) == "Over 9.5"), None)
-                    un95 = next((float(v["odd"]) for v in vals if str(v.get("value")) == "Under 9.5"), None)
-                    if ov95 and un95 and min(ov95, un95) > 1.01 and 0.98 <= (1.0 / ov95 + 1.0 / un95) <= 1.15:
-                        out["corners_over95_odds"].append(ov95)
-                        out["corners_under95_odds"].append(un95)
+                    # Collect and group all Over/Under corner lines for this bookmaker
+                    by_pt: Dict[float, Dict[str, float]] = {}
+                    for v in vals:
+                        val_str = str(v.get("value") or "").strip()
+                        odd_raw = v.get("odd")
+                        if not odd_raw or ("Over" not in val_str and "Under" not in val_str):
+                            continue
+                        try:
+                            parts = val_str.split(None, 1)
+                            if len(parts) == 2 and parts[0] in ("Over", "Under"):
+                                pt_val = float(parts[1])
+                                odd_val = float(odd_raw)
+                                if odd_val > 1.01:
+                                    by_pt.setdefault(pt_val, {})[parts[0]] = odd_val
+                        except (ValueError, IndexError):
+                            continue
+
+                    for pt_val, pair in by_pt.items():
+                        ov, un = pair.get("Over"), pair.get("Under")
+                        if ov and un and min(ov, un) > 1.01 and 0.98 <= (1.0 / ov + 1.0 / un) <= 1.15:
+                            c_bucket = out["corners_by_line"].setdefault(pt_val, {"Over": [], "Under": []})
+                            c_bucket["Over"].append(ov)
+                            c_bucket["Under"].append(un)
+                            if abs(pt_val - 9.5) < 1e-4:
+                                out["corners_over95_odds"].append(ov)
+                                out["corners_under95_odds"].append(un)
 
     if include_lineups:
         lu_payload = _af_get(

@@ -9,6 +9,7 @@ Implements strict forward verification across all 4 football markets:
 
 import json
 import os
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -241,10 +242,27 @@ def grade_finished_v2_matches() -> int:
         res_pick = rec.get("result_pick") or {}
         res_sel = str(res_pick.get("selection") or "")
         g_res = _grade_pick(res_pick, res_sel == actual_res, "result")
-        g_gt = _grade_pick(rec.get("goal_total_pick"), (hg + ag) >= 3, "goals")
+
+        gt_pick = rec.get("goal_total_pick")
+        gt_line = 2.5
+        if gt_pick:
+            gt_line = gt_pick.get("line")
+            if gt_line is None:
+                m_gl = re.search(r"(\d+(?:\.\d+)?)", str(gt_pick.get("selection") or ""))
+                gt_line = float(m_gl.group(1)) if m_gl else 2.5
+        g_gt = _grade_pick(gt_pick, (hg + ag) > gt_line, "goals")
+
         g_btts = _grade_pick(rec.get("btts_pick"), (hg > 0 and ag > 0), "btts")
+
         if total_corners is not None:
-            g_cor = _grade_pick(rec.get("corner_pick"), total_corners >= 10, "corners")
+            cor_pick = rec.get("corner_pick")
+            cor_line = 9.5
+            if cor_pick:
+                cor_line = cor_pick.get("line")
+                if cor_line is None:
+                    m_cl = re.search(r"(\d+(?:\.\d+)?)", str(cor_pick.get("selection") or ""))
+                    cor_line = float(m_cl.group(1)) if m_cl else 9.5
+            g_cor = _grade_pick(cor_pick, total_corners > cor_line, "corners")
         else:
             g_cor = dict(rec.get("corner_pick") or {})
             g_cor["status"] = "PENDING"
