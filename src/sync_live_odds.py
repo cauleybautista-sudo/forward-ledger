@@ -73,27 +73,66 @@ def dixon_coles_tau(x: int, y: int, lam: float, mu: float, rho: float = -0.08) -
     return 1.0
 
 
+def apply_game_state_lead_decay(
+    scores: Dict[Tuple[int, int], float],
+    lam: float,
+    mu: float,
+) -> Dict[Tuple[int, int], float]:
+    """Models tournament game-state lead decay.
+
+    When a team establishes a significant expected lead (differential > 0.75 xG),
+    late in the match the leading side drops pressing intensity and conserves stamina,
+    while the trailing side pushes recklessly for a late consolation goal.
+    This shifts probability mass from clean sheets (x, 0) to consolation scorelines (x, 1) for x >= 2
+    (and symmetrically for away leads).
+    Critically, 1X2 probabilities remain invariant since for x >= 2, both (x, 0) and (x, 1) are Home Wins.
+    """
+    adjusted = dict(scores)
+    diff = lam - mu
+    if diff > 0.75:
+        shift_rate = min(0.18, 0.05 * (diff - 0.75))
+        for x in range(2, 8):
+            if (x, 0) in adjusted and (x, 1) in adjusted:
+                leak = adjusted[(x, 0)] * shift_rate
+                adjusted[(x, 0)] -= leak
+                adjusted[(x, 1)] += leak
+    elif diff < -0.75:
+        shift_rate = min(0.18, 0.05 * (-diff - 0.75))
+        for y in range(2, 8):
+            if (0, y) in adjusted and (1, y) in adjusted:
+                leak = adjusted[(0, y)] * shift_rate
+                adjusted[(0, y)] -= leak
+                adjusted[(1, y)] += leak
+
+    tot = sum(adjusted.values())
+    return {k: v / tot for k, v in adjusted.items()} if tot > 0 else adjusted
+
+
 def evaluate_dixon_coles_grid(lam: float, mu: float, rho: float = -0.08) -> Dict[str, Any]:
     """Computes normalized joint probabilities across 1X2, O/U 2.5, BTTS, and Exact Score."""
-    scores: Dict[Tuple[int, int], float] = {}
-    p_h = p_d = p_a = p_ov = p_btts = 0.0
+    raw_scores: Dict[Tuple[int, int], float] = {}
 
     for x in range(8):
         px = poisson_pmf(x, lam)
         for y in range(8):
             py = poisson_pmf(y, mu)
             prob = dixon_coles_tau(x, y, lam, mu, rho) * px * py
-            scores[(x, y)] = prob
-            if x > y:
-                p_h += prob
-            elif x == y:
-                p_d += prob
-            else:
-                p_a += prob
-            if x + y >= 3:
-                p_ov += prob
-            if x > 0 and y > 0:
-                p_btts += prob
+            raw_scores[(x, y)] = prob
+
+    scores = apply_game_state_lead_decay(raw_scores, lam, mu)
+
+    p_h = p_d = p_a = p_ov = p_btts = 0.0
+    for (x, y), prob in scores.items():
+        if x > y:
+            p_h += prob
+        elif x == y:
+            p_d += prob
+        else:
+            p_a += prob
+        if x + y >= 3:
+            p_ov += prob
+        if x > 0 and y > 0:
+            p_btts += prob
 
     total_mass = max(1e-9, p_h + p_d + p_a)
     p_h /= total_mass
@@ -848,6 +887,15 @@ def sync_live_odds(force_odds: bool = False, window_check: bool = False):
         btts_is_pass = (0.48 <= p_btts_yes <= 0.52)
         btts_prob = p_btts_yes if p_btts_yes >= 0.50 else p_btts_no
         btts_sel = "BTTS Yes" if p_btts_yes >= 0.50 else "BTTS No"
+        btts_pass_reason = "Binary Coin-Flip Parity (48%-52%)" if btts_is_pass else None
+
+        # Game-State Lead Decay Risk Gate for BTTS No:
+        # When spread is wide (|Spread| >= 1.05), a heavy favorite often leads 2-0+ and concedes late consolation goals.
+        # Pass BTTS No unless confidence P(No) is at least 60%.
+        spread_abs = abs(lam_final - mu_final)
+        if btts_sel == "BTTS No" and spread_abs >= 1.05 and btts_prob < 0.60:
+            btts_is_pass = True
+            btts_pass_reason = "Game-State Lead Decay Risk (|Spread| >= 1.05 & P(No) < 60%)"
 
         if has_real_btts:
             btts_odds = max(btts_yes_list) if p_btts_yes >= 0.50 else max(btts_no_list)
@@ -872,7 +920,7 @@ def sync_live_odds(force_odds: bool = False, window_check: bool = False):
             "composite_score": 0.0 if btts_is_pass else btts_comp,
             "is_pass": btts_is_pass,
             "quoted_market": has_real_btts,
-            "reason": "Binary Coin-Flip Parity (48%-52%)" if btts_is_pass else None,
+            "reason": btts_pass_reason if btts_is_pass else None,
             "status": "PENDING",
         }
 
@@ -890,7 +938,13 @@ def sync_live_odds(force_odds: bool = False, window_check: bool = False):
 
         exp_h_corners = 0.5 * (avg_cw_h + avg_cc_a) * (0.90 + 0.075 * lam_final)
         exp_a_corners = 0.5 * (avg_cw_a + avg_cc_h) * (0.90 + 0.075 * mu_final)
-        mu_stat_corners = max(6.0, min(14.5, exp_h_corners + exp_a_corners))
+
+        # Possession-Skewed Corner Deflection Modeling:
+        # High territorial imbalance causes low-block pin-ins and frequent deflections over the endline
+        tot_lam = max(0.5, lam_final + mu_final)
+        poss_skew = abs(lam_final - mu_final) / tot_lam
+        deflection_mult = 1.0 + 0.12 * max(0.0, poss_skew - 0.30)
+        mu_stat_corners = max(6.0, min(15.5, (exp_h_corners + exp_a_corners) * deflection_mult))
 
         cor_by_line: Dict[float, Dict[str, List[float]]] = dict(af_data.get("corners_by_line") or {})
         cor_ov_list = af_data.get("corners_over95_odds") or []
@@ -925,7 +979,9 @@ def sync_live_odds(force_odds: bool = False, window_check: bool = False):
             exp_total_corners = round(mu_stat_corners, 2)
 
         def _evaluate_cor_candidate(target_line: float) -> Dict[str, Any]:
-            p_cor_over_raw = neg_binom_over_prob(exp_total_corners, variance=2.0 * exp_total_corners, line=target_line)
+            cor_var_mult = 2.0 + 0.80 * max(0.0, poss_skew - 0.30)
+            cor_variance = cor_var_mult * exp_total_corners
+            p_cor_over_raw = neg_binom_over_prob(exp_total_corners, variance=cor_variance, line=target_line)
             p_cor_over = round(apply_shrinkage(p_cor_over_raw, prior_mean=0.50, weight=0.92), 3)
             p_cor_under = round(1.0 - p_cor_over, 3)
 
@@ -949,8 +1005,19 @@ def sync_live_odds(force_odds: bool = False, window_check: bool = False):
                 s_cand == f"Corners Under {target_line}" and exp_cor_disp > target_line
             )
             coin_flip = (0.48 <= p_cor_over <= 0.52)
-            is_pass = coin_flip or mean_conflict
-            pass_reason = "NegBin Mean/Line Skew Parity" if mean_conflict else "Handicap Center Line (48%-52%)"
+
+            # Territorial Block Deflection Risk Gate:
+            # Under high possession skew (>= 38%), pinned underdogs generate repeated deflection corners.
+            # Avoid picking Corners Under unless confidence is at least 62%.
+            skew_under_risk = (s_cand.startswith("Corners Under") and poss_skew >= 0.38 and p_cand < 0.62)
+
+            is_pass = coin_flip or mean_conflict or skew_under_risk
+            if skew_under_risk:
+                pass_reason = f"Territorial Block Deflection Risk (Possession Skew {round(poss_skew * 100)}% >= 38%)"
+            elif mean_conflict:
+                pass_reason = "NegBin Mean/Line Skew Parity"
+            else:
+                pass_reason = "Handicap Center Line (48%-52%)"
 
             if not has_q or o_cand is None:
                 o_cand = round(1.0 / max(0.05, p_cand), 2)
@@ -1037,23 +1104,36 @@ def sync_live_odds(force_odds: bool = False, window_check: bool = False):
         # --- Best Pick Alpha Selection ---
         # Evaluates all quoted markets clearing confidence >= 48% & genuine +EV >= +1.5%
         # OR high-conviction >= 62% with EV >= -1.0%.
+        # Safeguards: Disqualify BTTS No under wide spreads (|Spread| >= 1.05) unless confidence >= 64%.
+        # Disqualify Corners Under under high possession skew (poss_skew >= 0.35) unless confidence >= 64%.
         quoted_candidates = [result_candidate, gt_candidate, btts_candidate, cor_candidate]
-        qualifying = [
-            c for c in quoted_candidates
-            if not c.get("is_pass")
-            and c.get("quoted_market")
-            and (
-                (c["prob"] >= 0.48 and c["edge_val"] >= 1.5)
-                or (c["prob"] >= 0.62 and c["edge_val"] >= -1.0)
-            )
-        ]
+        qualifying = []
+        for c in quoted_candidates:
+            if c.get("is_pass") or not c.get("quoted_market"):
+                continue
+            sel_str = str(c.get("selection", ""))
+            if sel_str == "BTTS No" and spread_abs >= 1.05 and c["prob"] < 0.64:
+                continue
+            if sel_str.startswith("Corners Under") and poss_skew >= 0.35 and c["prob"] < 0.64:
+                continue
+            if (c["prob"] >= 0.48 and c["edge_val"] >= 1.5) or (c["prob"] >= 0.62 and c["edge_val"] >= -1.0):
+                qualifying.append(c)
         qualifying.sort(key=lambda x: (x["edge_val"], x["prob"]), reverse=True)
 
         if qualifying:
             best_pick_choice = qualifying[0]
             is_best = True
         else:
-            all_active = [c for c in quoted_candidates if not c.get("is_pass")]
+            all_active = []
+            for c in quoted_candidates:
+                if c.get("is_pass"):
+                    continue
+                sel_str = str(c.get("selection", ""))
+                if sel_str == "BTTS No" and spread_abs >= 1.05 and c["prob"] < 0.64:
+                    continue
+                if sel_str.startswith("Corners Under") and poss_skew >= 0.35 and c["prob"] < 0.64:
+                    continue
+                all_active.append(c)
             all_active.sort(key=lambda x: x["prob"], reverse=True)
             if all_active and all_active[0]["prob"] >= 0.58:
                 best_pick_choice = all_active[0]

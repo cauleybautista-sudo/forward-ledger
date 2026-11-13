@@ -13,6 +13,7 @@ from src.calibration import (
 from src.intl_data import american_to_decimal, load_historical_intel, normalize_team_name
 from src.ml_engine import extract_match_features, predict_match_lambdas_ml, train_ml_model
 from src.sync_live_odds import (
+    apply_game_state_lead_decay,
     evaluate_dixon_coles_grid,
     invert_corners_mu,
     invert_market_lambdas,
@@ -282,6 +283,56 @@ class TestInternationalModel(unittest.TestCase):
         ]
         issues = sanity_gate(valid_dynamic_slate)
         self.assertEqual(issues, [])
+
+    def test_game_state_lead_decay_invariance_and_leakage(self):
+        dc = evaluate_dixon_coles_grid(2.30, 0.50)
+        self.assertAlmostEqual(dc["p_h"] + dc["p_d"] + dc["p_a"], 1.0, places=4)
+
+        test_scores = {
+            (2, 0): 0.20,
+            (2, 1): 0.05,
+            (3, 0): 0.15,
+            (3, 1): 0.05,
+            (0, 0): 0.10,
+            (1, 1): 0.10,
+            (0, 1): 0.05,
+            (1, 0): 0.30,
+        }
+        decayed = apply_game_state_lead_decay(test_scores, 2.0, 0.5)
+        self.assertLess(decayed[(2, 0)], test_scores[(2, 0)])
+        self.assertGreater(decayed[(2, 1)], test_scores[(2, 1)])
+        orig_home_win = test_scores[(2, 0)] + test_scores[(2, 1)] + test_scores[(3, 0)] + test_scores[(3, 1)] + test_scores[(1, 0)]
+        decayed_home_win = decayed[(2, 0)] + decayed[(2, 1)] + decayed[(3, 0)] + decayed[(3, 1)] + decayed[(1, 0)]
+        self.assertAlmostEqual(orig_home_win, decayed_home_win, places=5)
+
+        away_scores = {
+            (0, 2): 0.20,
+            (1, 2): 0.05,
+            (0, 0): 0.10,
+            (1, 1): 0.10,
+            (0, 1): 0.55,
+        }
+        decayed_away = apply_game_state_lead_decay(away_scores, 0.5, 2.0)
+        self.assertLess(decayed_away[(0, 2)], away_scores[(0, 2)])
+        self.assertGreater(decayed_away[(1, 2)], away_scores[(1, 2)])
+        orig_away_win = away_scores[(0, 2)] + away_scores[(1, 2)] + away_scores[(0, 1)]
+        decayed_away_win = decayed_away[(0, 2)] + decayed_away[(1, 2)] + decayed_away[(0, 1)]
+        self.assertAlmostEqual(orig_away_win, decayed_away_win, places=5)
+
+    def test_possession_skew_corner_deflection_and_variance(self):
+        tot_lam = 2.4 + 0.4
+        poss_skew = abs(2.4 - 0.4) / tot_lam
+        self.assertGreater(poss_skew, 0.38)
+
+        deflection_mult = 1.0 + 0.12 * max(0.0, poss_skew - 0.30)
+        self.assertGreater(deflection_mult, 1.04)
+
+        cor_var_mult = 2.0 + 0.80 * max(0.0, poss_skew - 0.30)
+        self.assertGreater(cor_var_mult, 2.30)
+
+        p_std = neg_binom_over_prob(9.5, variance=2.0 * 9.5, line=9.5)
+        p_skewed = neg_binom_over_prob(9.5, variance=cor_var_mult * 9.5, line=9.5)
+        self.assertNotEqual(p_std, p_skewed)
 
 
 if __name__ == "__main__":
