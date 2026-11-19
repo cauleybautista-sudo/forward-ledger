@@ -835,7 +835,7 @@
           "ml_active": true,
           "base_lam": 1.34,
           "base_mu": 0.75,
-          "delta_h": 0.005,
+          "delta_h": 0.002,
           "delta_a": -0.156,
           "mse_reduction_pct": 14.6,
           "dev_reduction_pct": 13.0
@@ -867,30 +867,30 @@
       "competition": "UEFA Nations League",
       "fixture": "San Marino vs Belarus",
       "selection": "Away Win",
-      "model_prob": 0.855,
+      "model_prob": 0.858,
       "closing_odds": 1.17,
       "implied_prob": 0.855,
       "edge": "+0.0%",
       "status": "PENDING",
       "home_team": "San Marino",
       "away_team": "Belarus",
-      "p_h": 0.02,
-      "p_d": 0.125,
-      "p_a": 0.855,
-      "pred_score": "0-2",
-      "pred_score_prob": 0.196,
-      "pred_score_pct": 19.6,
-      "sec_score": "0-1",
-      "sec_score_prob": 0.174,
-      "sec_score_pct": 17.4,
-      "thi_score": "0-3",
-      "thi_score_prob": 0.156,
-      "thi_score_pct": 15.6,
+      "p_h": 0.022,
+      "p_d": 0.12,
+      "p_a": 0.858,
+      "pred_score": "0-3",
+      "pred_score_prob": 0.153,
+      "pred_score_pct": 15.3,
+      "sec_score": "0-4",
+      "sec_score_prob": 0.095,
+      "sec_score_pct": 9.5,
+      "thi_score": "0-5",
+      "thi_score_prob": 0.047,
+      "thi_score_pct": 4.7,
       "result_pick": {
         "market": "Match Result",
         "pick": "Away Win",
         "selection": "Away Win",
-        "prob": 0.855,
+        "prob": 0.858,
         "odds": 1.17,
         "edge": "+0.0%",
         "edge_val": 0.0,
@@ -902,17 +902,17 @@
       "goal_total_pick": {
         "market": "Goal Total",
         "line": 2.5,
-        "pick": "NO PICK (PASS)",
-        "selection": "NO PICK (PASS)",
-        "target_selection": "Under 2.5",
-        "prob": 0.505,
-        "odds": 1.98,
-        "edge": "0.0%",
+        "pick": "Over 2.5",
+        "selection": "Over 2.5",
+        "target_selection": null,
+        "prob": 0.529,
+        "odds": 1.89,
+        "edge": "Fair Price",
         "edge_val": 0.0,
         "composite_score": 0.0,
-        "is_pass": true,
+        "is_pass": false,
         "quoted_market": false,
-        "reason": "Poisson Mean/Line Skew Parity",
+        "reason": null,
         "status": "PENDING"
       },
       "btts_pick": {
@@ -920,8 +920,8 @@
         "pick": "BTTS No",
         "selection": "BTTS No",
         "target_selection": null,
-        "prob": 0.757,
-        "odds": 1.32,
+        "prob": 0.727,
+        "odds": 1.38,
         "edge": "Fair Price",
         "edge_val": 0.0,
         "composite_score": 0.0,
@@ -936,14 +936,14 @@
         "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "Corners Under 9.5",
-        "prob": 0.538,
-        "odds": 1.86,
+        "prob": 0.535,
+        "odds": 1.87,
         "edge": "0.0%",
         "edge_val": 0.0,
         "composite_score": 0.0,
         "is_pass": true,
         "quoted_market": false,
-        "reason": "Territorial Block Deflection Risk (Possession Skew 83% >= 38%)",
+        "reason": "Territorial Block Deflection Risk (Possession Skew 81% >= 38%)",
         "status": "PENDING"
       },
       "is_best": true,
@@ -951,7 +951,7 @@
         "market": "Match Result",
         "pick": "Away Win",
         "selection": "Away Win",
-        "prob": 0.855,
+        "prob": 0.858,
         "odds": 1.17,
         "edge": "+0.0%",
         "edge_val": 0.0,
@@ -1090,18 +1090,18 @@
         }
       ],
       "real_goal_stats": {
-        "avgScoredH": 2.33,
+        "avgScoredH": 2.35,
         "avgConcededH": 0.75,
-        "avgScoredA": 2.02,
+        "avgScoredA": 2.06,
         "avgConcededA": 0.75,
-        "expectedXg": 2.6
+        "expectedXg": 2.75
       },
       "real_corner_stats": {
         "avgCornersH": 3.6,
         "avgCornersConcededH": 5.6,
         "avgCornersA": 3.8,
         "avgCornersConcededA": 5.1,
-        "expectedCorners": 9.6,
+        "expectedCorners": 9.7,
         "sampleH": 4,
         "sampleA": 4,
         "quotedCorners": false
@@ -1111,19 +1111,19 @@
         "af_fixture_id": null,
         "ml_engine": {
           "ml_active": true,
-          "base_lam": 0.65,
-          "base_mu": 2.05,
+          "base_lam": 0.69,
+          "base_mu": 2.18,
           "delta_h": -0.428,
-          "delta_a": 0.33,
+          "delta_a": 0.315,
           "mse_reduction_pct": 14.6,
           "dev_reduction_pct": 13.0
         },
-        "lam_stat": 0.22,
-        "mu_stat": 2.38,
-        "lam_mkt": 0.22,
-        "mu_mkt": 2.38,
-        "lam_final": 0.22,
-        "mu_final": 2.38,
+        "lam_stat": 0.26,
+        "mu_stat": 2.49,
+        "lam_mkt": 0.26,
+        "mu_mkt": 2.49,
+        "lam_final": 0.26,
+        "mu_final": 2.49,
         "mkt_p_h": null,
         "mkt_p_d": null,
         "mkt_p_a": null,
@@ -1131,12 +1131,7 @@
         "close_odds_h": null,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Serravalle",
-          "temp_c": 20.9,
-          "precip_mm": 0.0,
-          "wind_kmh": 36.7
-        }
+        "weather": {}
       }
     },
     {
@@ -1145,15 +1140,15 @@
       "competition": "UEFA Nations League",
       "fixture": "England vs Croatia",
       "selection": "Home Win",
-      "model_prob": 0.798,
+      "model_prob": 0.799,
       "closing_odds": 1.26,
       "implied_prob": 0.735,
-      "edge": "+0.2%",
+      "edge": "+0.4%",
       "status": "PENDING",
       "home_team": "England",
       "away_team": "Croatia",
-      "p_h": 0.798,
-      "p_d": 0.14,
+      "p_h": 0.799,
+      "p_d": 0.139,
       "p_a": 0.062,
       "pred_score": "3-0",
       "pred_score_prob": 0.106,
@@ -1168,10 +1163,10 @@
         "market": "Match Result",
         "pick": "Home Win",
         "selection": "Home Win",
-        "prob": 0.798,
+        "prob": 0.799,
         "odds": 1.26,
-        "edge": "+0.2%",
-        "edge_val": 0.2,
+        "edge": "+0.4%",
+        "edge_val": 0.4,
         "composite_score": 0.4,
         "is_pass": false,
         "quoted_market": true,
@@ -1183,7 +1178,7 @@
         "pick": "Over 2.5",
         "selection": "Over 2.5",
         "target_selection": null,
-        "prob": 0.653,
+        "prob": 0.654,
         "odds": 1.53,
         "edge": "Fair Price",
         "edge_val": 0.0,
@@ -1214,7 +1209,7 @@
         "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "Corners Under 9.5",
-        "prob": 0.539,
+        "prob": 0.538,
         "odds": 1.86,
         "edge": "0.0%",
         "edge_val": 0.0,
@@ -1229,10 +1224,10 @@
         "market": "Match Result",
         "pick": "Home Win",
         "selection": "Home Win",
-        "prob": 0.798,
+        "prob": 0.799,
         "odds": 1.26,
-        "edge": "+0.2%",
-        "edge_val": 0.2,
+        "edge": "+0.4%",
+        "edge_val": 0.4,
         "composite_score": 0.4,
         "is_pass": false,
         "quoted_market": true,
@@ -1388,7 +1383,7 @@
         "avgConcededH": 1.25,
         "avgScoredA": 2.28,
         "avgConcededA": 1.0,
-        "expectedXg": 3.4
+        "expectedXg": 3.41
       },
       "real_corner_stats": {
         "avgCornersH": 5.2,
@@ -1407,12 +1402,12 @@
           "ml_active": true,
           "base_lam": 2.72,
           "base_mu": 0.81,
-          "delta_h": 0.119,
+          "delta_h": 0.123,
           "delta_a": -0.392,
           "mse_reduction_pct": 14.6,
           "dev_reduction_pct": 13.0
         },
-        "lam_stat": 2.84,
+        "lam_stat": 2.85,
         "mu_stat": 0.41,
         "lam_mkt": 2.64,
         "mu_mkt": 0.89,
@@ -1425,12 +1420,7 @@
         "close_odds_h": 1.256,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "London",
-          "temp_c": 5.8,
-          "precip_mm": 0.0,
-          "wind_kmh": 12.6
-        }
+        "weather": {}
       }
     },
     {
@@ -1719,12 +1709,7 @@
         "close_odds_h": 12.0,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Prague",
-          "temp_c": 6.2,
-          "precip_mm": 0.1,
-          "wind_kmh": 9.4
-        }
+        "weather": {}
       }
     },
     {
@@ -1733,34 +1718,34 @@
       "competition": "UEFA Nations League",
       "fixture": "Italy vs France",
       "selection": "NO PICK (PASS)",
-      "model_prob": 0.437,
-      "closing_odds": 2.29,
+      "model_prob": 0.439,
+      "closing_odds": 2.28,
       "implied_prob": 0.235,
       "edge": "0.0%",
       "status": "PENDING",
       "home_team": "Italy",
       "away_team": "France",
-      "p_h": 0.287,
-      "p_d": 0.276,
-      "p_a": 0.437,
+      "p_h": 0.289,
+      "p_d": 0.272,
+      "p_a": 0.439,
       "pred_score": "1-1",
-      "pred_score_prob": 0.132,
-      "pred_score_pct": 13.2,
+      "pred_score_prob": 0.129,
+      "pred_score_pct": 12.9,
       "sec_score": "1-2",
-      "sec_score_prob": 0.091,
-      "sec_score_pct": 9.1,
+      "sec_score_prob": 0.092,
+      "sec_score_pct": 9.2,
       "thi_score": "2-1",
-      "thi_score_prob": 0.071,
-      "thi_score_pct": 7.1,
+      "thi_score_prob": 0.072,
+      "thi_score_pct": 7.2,
       "result_pick": {
         "market": "Match Result",
         "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "Away Win",
-        "prob": 0.437,
+        "prob": 0.439,
         "odds": 1.833,
-        "edge": "-19.9%",
-        "edge_val": -19.9,
+        "edge": "-19.5%",
+        "edge_val": -19.5,
         "composite_score": 0.0,
         "is_pass": true,
         "quoted_market": true,
@@ -1772,15 +1757,15 @@
         "line": 2.5,
         "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
-        "target_selection": "Under 2.5",
-        "prob": 0.505,
-        "odds": 2.15,
-        "edge": "+8.6%",
-        "edge_val": 8.6,
+        "target_selection": "Over 2.5",
+        "prob": 0.513,
+        "odds": 1.69,
+        "edge": "-13.3%",
+        "edge_val": -13.3,
         "composite_score": 0.0,
         "is_pass": true,
         "quoted_market": true,
-        "reason": "Poisson Mean/Line Skew Parity",
+        "reason": "Spread Coin-Flip (48%-52%)",
         "status": "PENDING"
       },
       "btts_pick": {
@@ -1788,8 +1773,8 @@
         "pick": "BTTS Yes",
         "selection": "BTTS Yes",
         "target_selection": null,
-        "prob": 0.539,
-        "odds": 1.86,
+        "prob": 0.552,
+        "odds": 1.81,
         "edge": "Fair Price",
         "edge_val": 0.0,
         "composite_score": 0.0,
@@ -1804,7 +1789,7 @@
         "pick": "Corners Under 9.5",
         "selection": "Corners Under 9.5",
         "target_selection": null,
-        "prob": 0.56,
+        "prob": 0.558,
         "odds": 1.79,
         "edge": "Fair Price",
         "edge_val": 0.0,
@@ -1973,11 +1958,11 @@
         }
       ],
       "real_goal_stats": {
-        "avgScoredH": 1.81,
+        "avgScoredH": 1.84,
         "avgConcededH": 0.88,
-        "avgScoredA": 2.05,
+        "avgScoredA": 2.09,
         "avgConcededA": 1.25,
-        "expectedXg": 2.65
+        "expectedXg": 2.73
       },
       "real_corner_stats": {
         "avgCornersH": 3.9,
@@ -1994,19 +1979,19 @@
         "af_fixture_id": null,
         "ml_engine": {
           "ml_active": true,
-          "base_lam": 1.36,
-          "base_mu": 1.35,
-          "delta_h": -0.194,
+          "base_lam": 1.45,
+          "base_mu": 1.44,
+          "delta_h": -0.195,
           "delta_a": -0.211,
           "mse_reduction_pct": 14.6,
           "dev_reduction_pct": 13.0
         },
-        "lam_stat": 1.17,
-        "mu_stat": 1.14,
+        "lam_stat": 1.25,
+        "mu_stat": 1.23,
         "lam_mkt": 1.16,
         "mu_mkt": 1.77,
-        "lam_final": 1.16,
-        "mu_final": 1.49,
+        "lam_final": 1.2,
+        "mu_final": 1.53,
         "mkt_p_h": 0.235,
         "mkt_p_d": 0.258,
         "mkt_p_a": 0.507,
@@ -2014,12 +1999,7 @@
         "close_odds_h": 3.95,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Milano",
-          "temp_c": 14.8,
-          "precip_mm": 1.8,
-          "wind_kmh": 32.1
-        }
+        "weather": {}
       }
     },
     {
@@ -2028,15 +2008,15 @@
       "competition": "UEFA Nations League",
       "fixture": "Montenegro vs Latvia",
       "selection": "Home Win",
-      "model_prob": 0.733,
+      "model_prob": 0.734,
       "closing_odds": 1.25,
       "implied_prob": 0.743,
-      "edge": "-8.4%",
+      "edge": "-8.3%",
       "status": "PENDING",
       "home_team": "Montenegro",
       "away_team": "Latvia",
-      "p_h": 0.733,
-      "p_d": 0.192,
+      "p_h": 0.734,
+      "p_d": 0.191,
       "p_a": 0.075,
       "pred_score": "2-0",
       "pred_score_prob": 0.153,
@@ -2051,10 +2031,10 @@
         "market": "Match Result",
         "pick": "Home Win",
         "selection": "Home Win",
-        "prob": 0.733,
+        "prob": 0.734,
         "odds": 1.25,
-        "edge": "-8.4%",
-        "edge_val": -8.4,
+        "edge": "-8.3%",
+        "edge_val": -8.3,
         "composite_score": 0.37,
         "is_pass": false,
         "quoted_market": true,
@@ -2066,10 +2046,10 @@
         "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "Under 2.5",
-        "prob": 0.508,
+        "prob": 0.507,
         "odds": 2.05,
-        "edge": "+4.1%",
-        "edge_val": 4.1,
+        "edge": "+3.9%",
+        "edge_val": 3.9,
         "composite_score": 0.0,
         "is_pass": true,
         "quoted_market": true,
@@ -2112,10 +2092,10 @@
         "market": "Match Result",
         "pick": "Home Win",
         "selection": "Home Win",
-        "prob": 0.733,
+        "prob": 0.734,
         "odds": 1.25,
-        "edge": "-8.4%",
-        "edge_val": -8.4,
+        "edge": "-8.3%",
+        "edge_val": -8.3,
         "composite_score": 0.37,
         "is_pass": false,
         "quoted_market": true,
@@ -2290,12 +2270,12 @@
           "ml_active": true,
           "base_lam": 1.88,
           "base_mu": 0.62,
-          "delta_h": 0.003,
+          "delta_h": 0.008,
           "delta_a": -0.185,
           "mse_reduction_pct": 14.6,
           "dev_reduction_pct": 13.0
         },
-        "lam_stat": 1.88,
+        "lam_stat": 1.89,
         "mu_stat": 0.44,
         "lam_mkt": 2.26,
         "mu_mkt": 0.6,
@@ -2308,12 +2288,7 @@
         "close_odds_h": 1.25,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Podgorica",
-          "temp_c": 17.1,
-          "precip_mm": 1.7,
-          "wind_kmh": 8.1
-        }
+        "weather": {}
       }
     },
     {
@@ -2583,7 +2558,7 @@
           "ml_active": true,
           "base_lam": 1.35,
           "base_mu": 1.26,
-          "delta_h": 0.237,
+          "delta_h": 0.242,
           "delta_a": -0.364,
           "mse_reduction_pct": 14.6,
           "dev_reduction_pct": 13.0
@@ -2601,12 +2576,7 @@
         "close_odds_h": 2.4,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Chisinau",
-          "temp_c": 13.7,
-          "precip_mm": 0.1,
-          "wind_kmh": 24.2
-        }
+        "weather": {}
       }
     },
     {
@@ -2615,19 +2585,19 @@
       "competition": "UEFA Nations League",
       "fixture": "Andorra vs Gibraltar",
       "selection": "Under 2.5",
-      "model_prob": 0.735,
+      "model_prob": 0.734,
       "closing_odds": 1.36,
       "implied_prob": 0.557,
       "edge": "Fair Price",
       "status": "PENDING",
       "home_team": "Andorra",
       "away_team": "Gibraltar",
-      "p_h": 0.507,
+      "p_h": 0.506,
       "p_d": 0.333,
-      "p_a": 0.16,
+      "p_a": 0.161,
       "pred_score": "1-0",
-      "pred_score_prob": 0.203,
-      "pred_score_pct": 20.3,
+      "pred_score_prob": 0.202,
+      "pred_score_pct": 20.2,
       "sec_score": "2-0",
       "sec_score_prob": 0.124,
       "sec_score_pct": 12.4,
@@ -2638,10 +2608,10 @@
         "market": "Match Result",
         "pick": "Home Win",
         "selection": "Home Win",
-        "prob": 0.507,
+        "prob": 0.506,
         "odds": 1.67,
-        "edge": "-15.5%",
-        "edge_val": -15.5,
+        "edge": "-15.6%",
+        "edge_val": -15.6,
         "composite_score": 0.25,
         "is_pass": false,
         "quoted_market": true,
@@ -2653,7 +2623,7 @@
         "pick": "Under 2.5",
         "selection": "Under 2.5",
         "target_selection": null,
-        "prob": 0.735,
+        "prob": 0.734,
         "odds": 1.36,
         "edge": "Fair Price",
         "edge_val": 0.0,
@@ -2668,8 +2638,8 @@
         "pick": "BTTS No",
         "selection": "BTTS No",
         "target_selection": null,
-        "prob": 0.688,
-        "odds": 1.45,
+        "prob": 0.687,
+        "odds": 1.46,
         "edge": "Fair Price",
         "edge_val": 0.0,
         "composite_score": 0.0,
@@ -2684,8 +2654,8 @@
         "pick": "Corners Under 9.5",
         "selection": "Corners Under 9.5",
         "target_selection": null,
-        "prob": 0.604,
-        "odds": 1.66,
+        "prob": 0.605,
+        "odds": 1.65,
         "edge": "Fair Price",
         "edge_val": 0.0,
         "composite_score": 0.0,
@@ -2701,7 +2671,7 @@
         "pick": "Under 2.5",
         "selection": "Under 2.5",
         "target_selection": null,
-        "prob": 0.735,
+        "prob": 0.734,
         "odds": 1.36,
         "edge": "Fair Price",
         "edge_val": 0.0,
@@ -2867,7 +2837,7 @@
       "real_goal_stats": {
         "avgScoredH": 1.51,
         "avgConcededH": 0.63,
-        "avgScoredA": 1.09,
+        "avgScoredA": 1.1,
         "avgConcededA": 0.75,
         "expectedXg": 1.71
       },
@@ -2888,13 +2858,13 @@
           "ml_active": true,
           "base_lam": 1.16,
           "base_mu": 0.6,
-          "delta_h": -0.127,
-          "delta_a": -0.025,
+          "delta_h": -0.126,
+          "delta_a": -0.019,
           "mse_reduction_pct": 14.6,
           "dev_reduction_pct": 13.0
         },
         "lam_stat": 1.03,
-        "mu_stat": 0.58,
+        "mu_stat": 0.59,
         "lam_mkt": 1.28,
         "mu_mkt": 0.5,
         "lam_final": 1.17,
@@ -2906,12 +2876,7 @@
         "close_odds_h": 1.667,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Encamp",
-          "temp_c": 5.8,
-          "precip_mm": 0.0,
-          "wind_kmh": 1.8
-        }
+        "weather": {}
       }
     },
     {
@@ -3170,7 +3135,7 @@
           "base_lam": 0.57,
           "base_mu": 1.33,
           "delta_h": -0.439,
-          "delta_a": 0.338,
+          "delta_a": 0.343,
           "mse_reduction_pct": 14.6,
           "dev_reduction_pct": 13.0
         },
@@ -3187,12 +3152,7 @@
         "close_odds_h": 16.0,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Vaduz",
-          "temp_c": 2.2,
-          "precip_mm": 0.0,
-          "wind_kmh": 1.3
-        }
+        "weather": {}
       }
     },
     {
@@ -3465,12 +3425,7 @@
         "close_odds_h": 4.9,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Plovdiv",
-          "temp_c": 15.3,
-          "precip_mm": 0.0,
-          "wind_kmh": 8.1
-        }
+        "weather": {}
       }
     },
     {
@@ -4305,12 +4260,7 @@
         "close_odds_h": 10.5,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Belgrade",
-          "temp_c": 7.6,
-          "precip_mm": 0.3,
-          "wind_kmh": 14.8
-        }
+        "weather": {}
       }
     },
     {
@@ -4327,8 +4277,8 @@
       "home_team": "Netherlands",
       "away_team": "Greece",
       "p_h": 0.699,
-      "p_d": 0.193,
-      "p_a": 0.108,
+      "p_d": 0.192,
+      "p_a": 0.109,
       "pred_score": "2-1",
       "pred_score_prob": 0.1,
       "pred_score_pct": 10.0,
@@ -4562,7 +4512,7 @@
         "avgConcededH": 1.25,
         "avgScoredA": 0.93,
         "avgConcededA": 0.88,
-        "expectedXg": 3.03
+        "expectedXg": 3.04
       },
       "real_corner_stats": {
         "avgCornersH": 6.0,
@@ -4581,12 +4531,12 @@
           "ml_active": true,
           "base_lam": 2.38,
           "base_mu": 0.87,
-          "delta_h": -0.117,
+          "delta_h": -0.112,
           "delta_a": -0.399,
           "mse_reduction_pct": 14.6,
           "dev_reduction_pct": 13.0
         },
-        "lam_stat": 2.26,
+        "lam_stat": 2.27,
         "mu_stat": 0.47,
         "lam_mkt": 2.24,
         "mu_mkt": 1.04,
@@ -4599,12 +4549,7 @@
         "close_odds_h": 1.455,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Amsterdam",
-          "temp_c": 6.6,
-          "precip_mm": 0.0,
-          "wind_kmh": 6.5
-        }
+        "weather": {}
       }
     },
     {
@@ -4651,10 +4596,10 @@
         "pick": "Over 2.5",
         "selection": "Over 2.5",
         "target_selection": null,
-        "prob": 0.585,
+        "prob": 0.586,
         "odds": 1.57,
-        "edge": "-8.1%",
-        "edge_val": -8.1,
+        "edge": "-7.9%",
+        "edge_val": -7.9,
         "composite_score": 0.0,
         "is_pass": false,
         "quoted_market": true,
@@ -4859,12 +4804,12 @@
           "ml_active": true,
           "base_lam": 2.07,
           "base_mu": 0.65,
-          "delta_h": 0.374,
+          "delta_h": 0.38,
           "delta_a": -0.219,
           "mse_reduction_pct": 14.6,
           "dev_reduction_pct": 13.0
         },
-        "lam_stat": 2.44,
+        "lam_stat": 2.45,
         "mu_stat": 0.43,
         "lam_mkt": 2.56,
         "mu_mkt": 0.61,
@@ -4877,12 +4822,7 @@
         "close_odds_h": 1.182,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Glasgow",
-          "temp_c": 6.0,
-          "precip_mm": 0.0,
-          "wind_kmh": 11.9
-        }
+        "weather": {}
       }
     },
     {
@@ -5749,12 +5689,7 @@
         "close_odds_h": 3.4,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Tbilisi",
-          "temp_c": 14.5,
-          "precip_mm": 0.0,
-          "wind_kmh": 11.0
-        }
+        "weather": {}
       }
     },
     {
@@ -5771,8 +5706,8 @@
       "home_team": "Norway",
       "away_team": "Wales",
       "p_h": 0.711,
-      "p_d": 0.179,
-      "p_a": 0.11,
+      "p_d": 0.178,
+      "p_a": 0.111,
       "pred_score": "2-1",
       "pred_score_prob": 0.099,
       "pred_score_pct": 9.9,
@@ -5986,11 +5921,11 @@
         }
       ],
       "real_goal_stats": {
-        "avgScoredH": 2.22,
+        "avgScoredH": 2.23,
         "avgConcededH": 1.25,
         "avgScoredA": 1.33,
         "avgConcededA": 0.75,
-        "expectedXg": 3.35
+        "expectedXg": 3.36
       },
       "real_corner_stats": {
         "avgCornersH": 4.9,
@@ -6009,16 +5944,16 @@
           "ml_active": true,
           "base_lam": 2.65,
           "base_mu": 0.85,
-          "delta_h": -0.392,
+          "delta_h": -0.386,
           "delta_a": 0.03,
           "mse_reduction_pct": 14.6,
           "dev_reduction_pct": 13.0
         },
-        "lam_stat": 2.26,
+        "lam_stat": 2.27,
         "mu_stat": 0.88,
         "lam_mkt": 2.62,
         "mu_mkt": 0.9,
-        "lam_final": 2.46,
+        "lam_final": 2.47,
         "mu_final": 0.89,
         "mkt_p_h": 0.731,
         "mkt_p_d": 0.161,
@@ -6027,12 +5962,7 @@
         "close_odds_h": 1.263,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Oslo",
-          "temp_c": 2.1,
-          "precip_mm": 0.0,
-          "wind_kmh": 7.2
-        }
+        "weather": {}
       }
     },
     {
@@ -6537,7 +6467,7 @@
           "ml_active": true,
           "base_lam": 1.69,
           "base_mu": 0.8,
-          "delta_h": -0.161,
+          "delta_h": -0.162,
           "delta_a": -0.156,
           "mse_reduction_pct": 14.6,
           "dev_reduction_pct": 13.0
@@ -6555,12 +6485,7 @@
         "close_odds_h": 1.69,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Linz",
-          "temp_c": 4.9,
-          "precip_mm": 0.0,
-          "wind_kmh": 5.5
-        }
+        "weather": {}
       }
     },
     {
@@ -6576,8 +6501,8 @@
       "status": "PENDING",
       "home_team": "Sweden",
       "away_team": "Bosnia and Herzegovina",
-      "p_h": 0.647,
-      "p_d": 0.216,
+      "p_h": 0.646,
+      "p_d": 0.217,
       "p_a": 0.137,
       "pred_score": "2-1",
       "pred_score_prob": 0.101,
@@ -6592,10 +6517,10 @@
         "market": "Match Result",
         "pick": "Home Win",
         "selection": "Home Win",
-        "prob": 0.647,
+        "prob": 0.646,
         "odds": 1.44,
-        "edge": "-6.6%",
-        "edge_val": -6.6,
+        "edge": "-6.7%",
+        "edge_val": -6.7,
         "composite_score": 0.32,
         "is_pass": false,
         "quoted_market": true,
@@ -6607,10 +6532,10 @@
         "pick": "Over 2.5",
         "selection": "Over 2.5",
         "target_selection": null,
-        "prob": 0.553,
+        "prob": 0.552,
         "odds": 1.56,
-        "edge": "-14.0%",
-        "edge_val": -14.0,
+        "edge": "-14.1%",
+        "edge_val": -14.1,
         "composite_score": 0.0,
         "is_pass": false,
         "quoted_market": true,
@@ -6799,7 +6724,7 @@
         "avgConcededH": 0.88,
         "avgScoredA": 1.26,
         "avgConcededA": 0.88,
-        "expectedXg": 2.91
+        "expectedXg": 2.9
       },
       "real_corner_stats": {
         "avgCornersH": 3.4,
@@ -6818,12 +6743,12 @@
           "ml_active": true,
           "base_lam": 2.21,
           "base_mu": 1.01,
-          "delta_h": -0.296,
+          "delta_h": -0.297,
           "delta_a": -0.313,
           "mse_reduction_pct": 14.6,
           "dev_reduction_pct": 13.0
         },
-        "lam_stat": 1.92,
+        "lam_stat": 1.91,
         "mu_stat": 0.69,
         "lam_mkt": 2.17,
         "mu_mkt": 0.97,
@@ -6836,12 +6761,7 @@
         "close_odds_h": 1.444,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Stockholm",
-          "temp_c": 4.2,
-          "precip_mm": 0.0,
-          "wind_kmh": 15.8
-        }
+        "weather": {}
       }
     },
     {
@@ -6850,16 +6770,16 @@
       "competition": "UEFA Nations League",
       "fixture": "Portugal vs Denmark",
       "selection": "Home Win",
-      "model_prob": 0.594,
+      "model_prob": 0.593,
       "closing_odds": 1.67,
       "implied_prob": 0.554,
-      "edge": "-1.0%",
+      "edge": "-1.1%",
       "status": "PENDING",
       "home_team": "Portugal",
       "away_team": "Denmark",
-      "p_h": 0.594,
+      "p_h": 0.593,
       "p_d": 0.227,
-      "p_a": 0.179,
+      "p_a": 0.18,
       "pred_score": "2-1",
       "pred_score_prob": 0.101,
       "pred_score_pct": 10.1,
@@ -6873,10 +6793,10 @@
         "market": "Match Result",
         "pick": "Home Win",
         "selection": "Home Win",
-        "prob": 0.594,
+        "prob": 0.593,
         "odds": 1.67,
-        "edge": "-1.0%",
-        "edge_val": -1.0,
+        "edge": "-1.1%",
+        "edge_val": -1.1,
         "composite_score": 0.3,
         "is_pass": false,
         "quoted_market": true,
@@ -6888,7 +6808,7 @@
         "pick": "Over 2.5",
         "selection": "Over 2.5",
         "target_selection": null,
-        "prob": 0.581,
+        "prob": 0.58,
         "odds": 1.72,
         "edge": "Fair Price",
         "edge_val": 0.0,
@@ -6903,7 +6823,7 @@
         "pick": "BTTS Yes",
         "selection": "BTTS Yes",
         "target_selection": null,
-        "prob": 0.562,
+        "prob": 0.561,
         "odds": 1.78,
         "edge": "Fair Price",
         "edge_val": 0.0,
@@ -6934,10 +6854,10 @@
         "market": "Match Result",
         "pick": "Home Win",
         "selection": "Home Win",
-        "prob": 0.594,
+        "prob": 0.593,
         "odds": 1.67,
-        "edge": "-1.0%",
-        "edge_val": -1.0,
+        "edge": "-1.1%",
+        "edge_val": -1.1,
         "composite_score": 0.3,
         "is_pass": false,
         "quoted_market": true,
@@ -7089,11 +7009,11 @@
         }
       ],
       "real_goal_stats": {
-        "avgScoredH": 2.0,
+        "avgScoredH": 1.99,
         "avgConcededH": 1.0,
         "avgScoredA": 1.8,
         "avgConcededA": 1.13,
-        "expectedXg": 3.05
+        "expectedXg": 3.04
       },
       "real_corner_stats": {
         "avgCornersH": 5.2,
@@ -7112,16 +7032,16 @@
           "ml_active": true,
           "base_lam": 2.23,
           "base_mu": 0.97,
-          "delta_h": -0.245,
+          "delta_h": -0.246,
           "delta_a": -0.162,
           "mse_reduction_pct": 14.6,
           "dev_reduction_pct": 13.0
         },
-        "lam_stat": 1.99,
+        "lam_stat": 1.98,
         "mu_stat": 0.8,
         "lam_mkt": 2.04,
         "mu_mkt": 1.22,
-        "lam_final": 2.02,
+        "lam_final": 2.01,
         "mu_final": 1.03,
         "mkt_p_h": 0.554,
         "mkt_p_d": 0.237,
@@ -7401,7 +7321,7 @@
           "ml_active": true,
           "base_lam": 1.14,
           "base_mu": 0.77,
-          "delta_h": 0.254,
+          "delta_h": 0.259,
           "delta_a": -0.131,
           "mse_reduction_pct": 14.6,
           "dev_reduction_pct": 13.0
@@ -7680,7 +7600,7 @@
           "ml_active": true,
           "base_lam": 1.45,
           "base_mu": 1.23,
-          "delta_h": 0.202,
+          "delta_h": 0.2,
           "delta_a": -0.29,
           "mse_reduction_pct": 14.6,
           "dev_reduction_pct": 13.0
@@ -8283,7 +8203,7 @@
           "ml_active": true,
           "base_lam": 2.16,
           "base_mu": 0.93,
-          "delta_h": -0.125,
+          "delta_h": -0.119,
           "delta_a": 0.038,
           "mse_reduction_pct": 14.6,
           "dev_reduction_pct": 13.0
@@ -8569,7 +8489,7 @@
           "ml_active": true,
           "base_lam": 1.86,
           "base_mu": 0.93,
-          "delta_h": -0.098,
+          "delta_h": -0.102,
           "delta_a": -0.389,
           "mse_reduction_pct": 14.6,
           "dev_reduction_pct": 13.0
@@ -8601,15 +8521,15 @@
       "competition": "UEFA Nations League",
       "fixture": "France vs Turkey",
       "selection": "Home Win",
-      "model_prob": 0.841,
+      "model_prob": 0.842,
       "closing_odds": 1.15,
       "implied_prob": 0.8,
-      "edge": "-2.9%",
+      "edge": "-2.8%",
       "status": "PENDING",
       "home_team": "France",
       "away_team": "Turkey",
-      "p_h": 0.841,
-      "p_d": 0.111,
+      "p_h": 0.842,
+      "p_d": 0.11,
       "p_a": 0.048,
       "pred_score": "3-0",
       "pred_score_prob": 0.103,
@@ -8624,10 +8544,10 @@
         "market": "Match Result",
         "pick": "Home Win",
         "selection": "Home Win",
-        "prob": 0.841,
+        "prob": 0.842,
         "odds": 1.15,
-        "edge": "-2.9%",
-        "edge_val": -2.9,
+        "edge": "-2.8%",
+        "edge_val": -2.8,
         "composite_score": 0.42,
         "is_pass": false,
         "quoted_market": true,
@@ -8685,10 +8605,10 @@
         "market": "Match Result",
         "pick": "Home Win",
         "selection": "Home Win",
-        "prob": 0.841,
+        "prob": 0.842,
         "odds": 1.15,
-        "edge": "-2.9%",
-        "edge_val": -2.9,
+        "edge": "-2.8%",
+        "edge_val": -2.8,
         "composite_score": 0.42,
         "is_pass": false,
         "quoted_market": true,
@@ -8824,11 +8744,11 @@
         }
       ],
       "real_goal_stats": {
-        "avgScoredH": 2.39,
+        "avgScoredH": 2.4,
         "avgConcededH": 0.88,
         "avgScoredA": 1.77,
         "avgConcededA": 0.88,
-        "expectedXg": 3.84
+        "expectedXg": 3.85
       },
       "real_corner_stats": {
         "avgCornersH": 5.1,
@@ -8847,12 +8767,12 @@
           "ml_active": true,
           "base_lam": 2.79,
           "base_mu": 0.77,
-          "delta_h": 0.268,
+          "delta_h": 0.275,
           "delta_a": -0.376,
           "mse_reduction_pct": 14.6,
           "dev_reduction_pct": 13.0
         },
-        "lam_stat": 3.05,
+        "lam_stat": 3.06,
         "mu_stat": 0.4,
         "lam_mkt": 3.23,
         "mu_mkt": 0.94,
@@ -8865,12 +8785,7 @@
         "close_odds_h": 1.154,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Bordeaux",
-          "temp_c": 13.8,
-          "precip_mm": 0.0,
-          "wind_kmh": 14.0
-        }
+        "weather": {}
       }
     },
     {
@@ -9152,7 +9067,7 @@
           "ml_active": true,
           "base_lam": 2.26,
           "base_mu": 1.24,
-          "delta_h": -0.255,
+          "delta_h": -0.258,
           "delta_a": -0.182,
           "mse_reduction_pct": 14.6,
           "dev_reduction_pct": 13.0
@@ -9170,12 +9085,7 @@
         "close_odds_h": 1.87,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Berlin",
-          "temp_c": 8.9,
-          "precip_mm": 0.0,
-          "wind_kmh": 17.0
-        }
+        "weather": {}
       }
     },
     {
@@ -9184,16 +9094,16 @@
       "competition": "UEFA Nations League",
       "fixture": "Greece vs Serbia",
       "selection": "Home Win",
-      "model_prob": 0.676,
+      "model_prob": 0.677,
       "closing_odds": 1.46,
       "implied_prob": 0.633,
-      "edge": "-1.6%",
+      "edge": "-1.5%",
       "status": "PENDING",
       "home_team": "Greece",
       "away_team": "Serbia",
-      "p_h": 0.676,
+      "p_h": 0.677,
       "p_d": 0.212,
-      "p_a": 0.112,
+      "p_a": 0.111,
       "pred_score": "2-0",
       "pred_score_prob": 0.13,
       "pred_score_pct": 13.0,
@@ -9207,10 +9117,10 @@
         "market": "Match Result",
         "pick": "Home Win",
         "selection": "Home Win",
-        "prob": 0.676,
+        "prob": 0.677,
         "odds": 1.46,
-        "edge": "-1.6%",
-        "edge_val": -1.6,
+        "edge": "-1.5%",
+        "edge_val": -1.5,
         "composite_score": 0.34,
         "is_pass": false,
         "quoted_market": true,
@@ -9222,10 +9132,10 @@
         "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "Over 2.5",
-        "prob": 0.516,
+        "prob": 0.517,
         "odds": 1.67,
-        "edge": "-14.0%",
-        "edge_val": -14.0,
+        "edge": "-13.8%",
+        "edge_val": -13.8,
         "composite_score": 0.0,
         "is_pass": true,
         "quoted_market": true,
@@ -9268,10 +9178,10 @@
         "market": "Match Result",
         "pick": "Home Win",
         "selection": "Home Win",
-        "prob": 0.676,
+        "prob": 0.677,
         "odds": 1.46,
-        "edge": "-1.6%",
-        "edge_val": -1.6,
+        "edge": "-1.5%",
+        "edge_val": -1.5,
         "composite_score": 0.34,
         "is_pass": false,
         "quoted_market": true,
@@ -9411,7 +9321,7 @@
         "avgConcededH": 0.88,
         "avgScoredA": 1.54,
         "avgConcededA": 1.0,
-        "expectedXg": 2.73
+        "expectedXg": 2.74
       },
       "real_corner_stats": {
         "avgCornersH": 4.3,
@@ -9430,12 +9340,12 @@
           "ml_active": true,
           "base_lam": 1.59,
           "base_mu": 0.76,
-          "delta_h": 0.378,
+          "delta_h": 0.384,
           "delta_a": -0.303,
           "mse_reduction_pct": 14.6,
           "dev_reduction_pct": 13.0
         },
-        "lam_stat": 1.97,
+        "lam_stat": 1.98,
         "mu_stat": 0.45,
         "lam_mkt": 2.08,
         "mu_mkt": 0.92,
@@ -9448,12 +9358,7 @@
         "close_odds_h": 1.455,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Volos",
-          "temp_c": 16.7,
-          "precip_mm": 0.0,
-          "wind_kmh": 7.4
-        }
+        "weather": {}
       }
     },
     {
@@ -9739,12 +9644,7 @@
         "close_odds_h": 2.4,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Copenhagen",
-          "temp_c": 5.4,
-          "precip_mm": 0.0,
-          "wind_kmh": 15.5
-        }
+        "weather": {}
       }
     },
     {
@@ -10020,12 +9920,7 @@
         "close_odds_h": 7.5,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Cardiff",
-          "temp_c": 10.7,
-          "precip_mm": 0.0,
-          "wind_kmh": 14.8
-        }
+        "weather": {}
       }
     }
   ],
