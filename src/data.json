@@ -853,7 +853,12 @@
         "close_odds_h": 2.05,
         "starters_announced": true,
         "injuries": [],
-        "weather": {}
+        "weather": {
+          "city": "Tirana",
+          "temp_c": 20.9,
+          "precip_mm": 0.0,
+          "wind_kmh": 23.2
+        }
       }
     },
     {
@@ -2281,12 +2286,7 @@
         "close_odds_h": 1.25,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Podgorica",
-          "temp_c": 17.1,
-          "precip_mm": 1.7,
-          "wind_kmh": 8.1
-        }
+        "weather": {}
       }
     },
     {
@@ -2576,12 +2576,7 @@
         "close_odds_h": 2.4,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Chisinau",
-          "temp_c": 13.7,
-          "precip_mm": 0.1,
-          "wind_kmh": 24.2
-        }
+        "weather": {}
       }
     },
     {
@@ -3139,7 +3134,7 @@
           "ml_active": true,
           "base_lam": 0.58,
           "base_mu": 1.33,
-          "delta_h": -0.45,
+          "delta_h": -0.451,
           "delta_a": 0.296,
           "mse_reduction_pct": 14.6,
           "dev_reduction_pct": 13.0
@@ -3430,7 +3425,12 @@
         "close_odds_h": 4.9,
         "starters_announced": true,
         "injuries": [],
-        "weather": {}
+        "weather": {
+          "city": "Plovdiv",
+          "temp_c": 15.3,
+          "precip_mm": 0.0,
+          "wind_kmh": 8.1
+        }
       }
     },
     {
@@ -4265,12 +4265,7 @@
         "close_odds_h": 10.5,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Belgrade",
-          "temp_c": 7.6,
-          "precip_mm": 0.3,
-          "wind_kmh": 14.8
-        }
+        "weather": {}
       }
     },
     {
@@ -4559,12 +4554,7 @@
         "close_odds_h": 1.455,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Amsterdam",
-          "temp_c": 6.6,
-          "precip_mm": 0.0,
-          "wind_kmh": 6.5
-        }
+        "weather": {}
       }
     },
     {
@@ -5403,7 +5393,7 @@
           "ml_active": true,
           "base_lam": 1.57,
           "base_mu": 0.94,
-          "delta_h": -0.012,
+          "delta_h": -0.013,
           "delta_a": 0.178,
           "mse_reduction_pct": 14.6,
           "dev_reduction_pct": 13.0
@@ -6771,12 +6761,7 @@
         "close_odds_h": 1.444,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Stockholm",
-          "temp_c": 4.2,
-          "precip_mm": 0.0,
-          "wind_kmh": 15.8
-        }
+        "weather": {}
       }
     },
     {
@@ -7065,7 +7050,12 @@
         "close_odds_h": 1.667,
         "starters_announced": true,
         "injuries": [],
-        "weather": {}
+        "weather": {
+          "city": "Braga",
+          "temp_c": 14.5,
+          "precip_mm": 1.4,
+          "wind_kmh": 7.7
+        }
       }
     },
     {
@@ -7349,7 +7339,12 @@
         "close_odds_h": 2.55,
         "starters_announced": true,
         "injuries": [],
-        "weather": {}
+        "weather": {
+          "city": "Belfast",
+          "temp_c": 10.0,
+          "precip_mm": 0.0,
+          "wind_kmh": 17.3
+        }
       }
     },
     {
@@ -7623,7 +7618,12 @@
         "close_odds_h": 5.25,
         "starters_announced": true,
         "injuries": [],
-        "weather": {}
+        "weather": {
+          "city": "Bucuresti",
+          "temp_c": 3.6,
+          "precip_mm": 0.0,
+          "wind_kmh": 4.7
+        }
       }
     },
     {
@@ -7919,7 +7919,12 @@
         "close_odds_h": 1.952,
         "starters_announced": true,
         "injuries": [],
-        "weather": {}
+        "weather": {
+          "city": "Brussels",
+          "temp_c": 11.2,
+          "precip_mm": 0.0,
+          "wind_kmh": 16.2
+        }
       }
     },
     {
@@ -8497,12 +8502,7 @@
         "close_odds_h": 2.1,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Madrid",
-          "temp_c": 12.3,
-          "precip_mm": 0.0,
-          "wind_kmh": 8.1
-        }
+        "weather": {}
       }
     },
     {
@@ -8775,12 +8775,7 @@
         "close_odds_h": 1.154,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Bordeaux",
-          "temp_c": 13.8,
-          "precip_mm": 0.0,
-          "wind_kmh": 14.0
-        }
+        "weather": {}
       }
     },
     {
@@ -9080,12 +9075,7 @@
         "close_odds_h": 1.87,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Berlin",
-          "temp_c": 8.9,
-          "precip_mm": 0.0,
-          "wind_kmh": 17.0
-        }
+        "weather": {}
       }
     },
     {
@@ -9358,12 +9348,7 @@
         "close_odds_h": 1.455,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Volos",
-          "temp_c": 16.7,
-          "precip_mm": 0.0,
-          "wind_kmh": 7.4
-        }
+        "weather": {}
       }
     },
     {
@@ -9649,12 +9634,7 @@
         "close_odds_h": 2.4,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Copenhagen",
-          "temp_c": 5.4,
-          "precip_mm": 0.0,
-          "wind_kmh": 15.5
-        }
+        "weather": {}
       }
     },
     {
