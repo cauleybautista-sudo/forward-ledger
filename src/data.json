@@ -58,10 +58,10 @@
         "pick": "Under 2.5",
         "selection": "Under 2.5",
         "target_selection": null,
-        "prob": 0.543,
+        "prob": 0.542,
         "odds": 1.71,
-        "edge": "-6.9%",
-        "edge_val": -6.9,
+        "edge": "-7.1%",
+        "edge_val": -7.1,
         "composite_score": 0.0,
         "is_pass": false,
         "quoted_market": true,
@@ -274,12 +274,12 @@
           "base_lam": 1.52,
           "base_mu": 1.1,
           "delta_h": -0.512,
-          "delta_a": 0.417,
+          "delta_a": 0.418,
           "mse_reduction_pct": 15.0,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 1.01,
-        "mu_stat": 1.51,
+        "mu_stat": 1.52,
         "lam_mkt": 1.12,
         "mu_mkt": 1.34,
         "lam_final": 1.07,
@@ -553,7 +553,7 @@
         "ml_engine": {
           "ml_active": true,
           "base_lam": 1.31,
-          "base_mu": 1.67,
+          "base_mu": 1.66,
           "delta_h": -0.446,
           "delta_a": 0.238,
           "mse_reduction_pct": 15.0,
@@ -867,31 +867,31 @@
       "competition": "UEFA Nations League",
       "fixture": "San Marino vs Belarus",
       "selection": "Away Win",
-      "model_prob": 0.851,
-      "closing_odds": 1.18,
-      "implied_prob": 0.847,
+      "model_prob": 0.858,
+      "closing_odds": 1.17,
+      "implied_prob": 0.855,
       "edge": "+0.0%",
       "status": "PENDING",
       "home_team": "San Marino",
       "away_team": "Belarus",
-      "p_h": 0.022,
-      "p_d": 0.127,
-      "p_a": 0.851,
-      "pred_score": "0-2",
-      "pred_score_prob": 0.192,
-      "pred_score_pct": 19.2,
-      "sec_score": "0-1",
-      "sec_score_prob": 0.17,
-      "sec_score_pct": 17.0,
-      "thi_score": "0-3",
-      "thi_score_prob": 0.153,
-      "thi_score_pct": 15.3,
+      "p_h": 0.024,
+      "p_d": 0.118,
+      "p_a": 0.858,
+      "pred_score": "0-3",
+      "pred_score_prob": 0.151,
+      "pred_score_pct": 15.1,
+      "sec_score": "0-4",
+      "sec_score_prob": 0.096,
+      "sec_score_pct": 9.6,
+      "thi_score": "0-5",
+      "thi_score_prob": 0.048,
+      "thi_score_pct": 4.8,
       "result_pick": {
         "market": "Match Result",
         "pick": "Away Win",
         "selection": "Away Win",
-        "prob": 0.851,
-        "odds": 1.18,
+        "prob": 0.858,
+        "odds": 1.17,
         "edge": "+0.0%",
         "edge_val": 0.0,
         "composite_score": 0.43,
@@ -902,17 +902,17 @@
       "goal_total_pick": {
         "market": "Goal Total",
         "line": 2.5,
-        "pick": "NO PICK (PASS)",
-        "selection": "NO PICK (PASS)",
-        "target_selection": "Over 2.5",
-        "prob": 0.502,
-        "odds": 1.99,
-        "edge": "0.0%",
+        "pick": "Over 2.5",
+        "selection": "Over 2.5",
+        "target_selection": null,
+        "prob": 0.542,
+        "odds": 1.85,
+        "edge": "Fair Price",
         "edge_val": 0.0,
         "composite_score": 0.0,
-        "is_pass": true,
+        "is_pass": false,
         "quoted_market": false,
-        "reason": "Spread Coin-Flip (48%-52%)",
+        "reason": null,
         "status": "PENDING"
       },
       "btts_pick": {
@@ -920,8 +920,8 @@
         "pick": "BTTS No",
         "selection": "BTTS No",
         "target_selection": null,
-        "prob": 0.744,
-        "odds": 1.34,
+        "prob": 0.713,
+        "odds": 1.4,
         "edge": "Fair Price",
         "edge_val": 0.0,
         "composite_score": 0.0,
@@ -936,14 +936,14 @@
         "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "Corners Under 9.5",
-        "prob": 0.538,
-        "odds": 1.86,
+        "prob": 0.534,
+        "odds": 1.87,
         "edge": "0.0%",
         "edge_val": 0.0,
         "composite_score": 0.0,
         "is_pass": true,
         "quoted_market": false,
-        "reason": "Territorial Block Deflection Risk (Possession Skew 82% >= 38%)",
+        "reason": "Territorial Block Deflection Risk (Possession Skew 80% >= 38%)",
         "status": "PENDING"
       },
       "is_best": true,
@@ -951,8 +951,8 @@
         "market": "Match Result",
         "pick": "Away Win",
         "selection": "Away Win",
-        "prob": 0.851,
-        "odds": 1.18,
+        "prob": 0.858,
+        "odds": 1.17,
         "edge": "+0.0%",
         "edge_val": 0.0,
         "composite_score": 0.43,
@@ -1090,18 +1090,18 @@
         }
       ],
       "real_goal_stats": {
-        "avgScoredH": 2.34,
+        "avgScoredH": 2.35,
         "avgConcededH": 0.75,
-        "avgScoredA": 2.02,
+        "avgScoredA": 2.07,
         "avgConcededA": 0.75,
-        "expectedXg": 2.63
+        "expectedXg": 2.81
       },
       "real_corner_stats": {
         "avgCornersH": 3.6,
         "avgCornersConcededH": 5.6,
         "avgCornersA": 3.8,
         "avgCornersConcededA": 5.1,
-        "expectedCorners": 9.6,
+        "expectedCorners": 9.7,
         "sampleH": 4,
         "sampleA": 4,
         "quotedCorners": false
@@ -1111,19 +1111,19 @@
         "af_fixture_id": null,
         "ml_engine": {
           "ml_active": true,
-          "base_lam": 0.65,
-          "base_mu": 2.05,
+          "base_lam": 0.69,
+          "base_mu": 2.18,
           "delta_h": -0.413,
           "delta_a": 0.345,
           "mse_reduction_pct": 15.0,
           "dev_reduction_pct": 13.2
         },
-        "lam_stat": 0.24,
-        "mu_stat": 2.39,
-        "lam_mkt": 0.24,
-        "mu_mkt": 2.39,
-        "lam_final": 0.24,
-        "mu_final": 2.39,
+        "lam_stat": 0.28,
+        "mu_stat": 2.53,
+        "lam_mkt": 0.28,
+        "mu_mkt": 2.53,
+        "lam_final": 0.28,
+        "mu_final": 2.53,
         "mkt_p_h": null,
         "mkt_p_d": null,
         "mkt_p_a": null,
@@ -1131,12 +1131,7 @@
         "close_odds_h": null,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Serravalle",
-          "temp_c": 20.9,
-          "precip_mm": 0.0,
-          "wind_kmh": 36.7
-        }
+        "weather": {}
       }
     },
     {
@@ -1700,7 +1695,7 @@
         "ml_engine": {
           "ml_active": true,
           "base_lam": 0.79,
-          "base_mu": 1.97,
+          "base_mu": 1.96,
           "delta_h": -0.279,
           "delta_a": 0.165,
           "mse_reduction_pct": 15.0,
@@ -2617,33 +2612,33 @@
       "competition": "UEFA Nations League",
       "fixture": "Andorra vs Gibraltar",
       "selection": "Under 2.5",
-      "model_prob": 0.754,
-      "closing_odds": 1.33,
+      "model_prob": 0.749,
+      "closing_odds": 1.34,
       "implied_prob": 0.557,
       "edge": "Fair Price",
       "status": "PENDING",
       "home_team": "Andorra",
       "away_team": "Gibraltar",
-      "p_h": 0.499,
-      "p_d": 0.343,
-      "p_a": 0.158,
+      "p_h": 0.505,
+      "p_d": 0.339,
+      "p_a": 0.156,
       "pred_score": "1-0",
-      "pred_score_prob": 0.211,
-      "pred_score_pct": 21.1,
+      "pred_score_prob": 0.21,
+      "pred_score_pct": 21.0,
       "sec_score": "2-0",
-      "sec_score_prob": 0.123,
-      "sec_score_pct": 12.3,
+      "sec_score_prob": 0.125,
+      "sec_score_pct": 12.5,
       "thi_score": "2-0",
-      "thi_score_prob": 0.123,
-      "thi_score_pct": 12.3,
+      "thi_score_prob": 0.125,
+      "thi_score_pct": 12.5,
       "result_pick": {
         "market": "Match Result",
         "pick": "Home Win",
         "selection": "Home Win",
-        "prob": 0.499,
+        "prob": 0.505,
         "odds": 1.67,
-        "edge": "-16.8%",
-        "edge_val": -16.8,
+        "edge": "-15.8%",
+        "edge_val": -15.8,
         "composite_score": 0.25,
         "is_pass": false,
         "quoted_market": true,
@@ -2655,8 +2650,8 @@
         "pick": "Under 2.5",
         "selection": "Under 2.5",
         "target_selection": null,
-        "prob": 0.754,
-        "odds": 1.33,
+        "prob": 0.749,
+        "odds": 1.34,
         "edge": "Fair Price",
         "edge_val": 0.0,
         "composite_score": 0.0,
@@ -2670,7 +2665,7 @@
         "pick": "BTTS No",
         "selection": "BTTS No",
         "target_selection": null,
-        "prob": 0.704,
+        "prob": 0.702,
         "odds": 1.42,
         "edge": "Fair Price",
         "edge_val": 0.0,
@@ -2683,17 +2678,17 @@
       "corner_pick": {
         "market": "Corners",
         "line": 9.5,
-        "pick": "Corners Under 9.5",
-        "selection": "Corners Under 9.5",
-        "target_selection": null,
-        "prob": 0.607,
+        "pick": "NO PICK (PASS)",
+        "selection": "NO PICK (PASS)",
+        "target_selection": "Corners Under 9.5",
+        "prob": 0.605,
         "odds": 1.65,
-        "edge": "Fair Price",
+        "edge": "0.0%",
         "edge_val": 0.0,
         "composite_score": 0.0,
-        "is_pass": false,
+        "is_pass": true,
         "quoted_market": false,
-        "reason": null,
+        "reason": "Territorial Block Deflection Risk (Possession Skew 38% >= 38%)",
         "status": "PENDING"
       },
       "is_best": true,
@@ -2703,8 +2698,8 @@
         "pick": "Under 2.5",
         "selection": "Under 2.5",
         "target_selection": null,
-        "prob": 0.754,
-        "odds": 1.33,
+        "prob": 0.749,
+        "odds": 1.34,
         "edge": "Fair Price",
         "edge_val": 0.0,
         "composite_score": 0.0,
@@ -2867,11 +2862,11 @@
         }
       ],
       "real_goal_stats": {
-        "avgScoredH": 1.47,
+        "avgScoredH": 1.48,
         "avgConcededH": 0.63,
         "avgScoredA": 1.07,
         "avgConcededA": 0.75,
-        "expectedXg": 1.63
+        "expectedXg": 1.65
       },
       "real_corner_stats": {
         "avgCornersH": 4.4,
@@ -2890,16 +2885,16 @@
           "ml_active": true,
           "base_lam": 1.16,
           "base_mu": 0.61,
-          "delta_h": -0.245,
+          "delta_h": -0.201,
           "delta_a": -0.092,
           "mse_reduction_pct": 15.0,
           "dev_reduction_pct": 13.2
         },
-        "lam_stat": 0.92,
+        "lam_stat": 0.96,
         "mu_stat": 0.52,
         "lam_mkt": 1.28,
         "mu_mkt": 0.5,
-        "lam_final": 1.12,
+        "lam_final": 1.14,
         "mu_final": 0.51,
         "mkt_p_h": 0.557,
         "mkt_p_d": 0.3,
@@ -3172,7 +3167,7 @@
           "base_lam": 0.58,
           "base_mu": 1.33,
           "delta_h": -0.464,
-          "delta_a": 0.298,
+          "delta_a": 0.299,
           "mse_reduction_pct": 15.0,
           "dev_reduction_pct": 13.2
         },
@@ -4879,12 +4874,7 @@
         "close_odds_h": 1.182,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Glasgow",
-          "temp_c": 6.0,
-          "precip_mm": 0.0,
-          "wind_kmh": 11.9
-        }
+        "weather": {}
       }
     },
     {
@@ -5176,12 +5166,7 @@
         "close_odds_h": 4.9,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Maribor",
-          "temp_c": 6.1,
-          "precip_mm": 0.0,
-          "wind_kmh": 2.2
-        }
+        "weather": {}
       }
     },
     {
@@ -8589,12 +8574,7 @@
         "close_odds_h": 2.1,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Madrid",
-          "temp_c": 12.3,
-          "precip_mm": 0.0,
-          "wind_kmh": 8.1
-        }
+        "weather": {}
       }
     },
     {
@@ -8849,7 +8829,7 @@
           "ml_active": true,
           "base_lam": 2.78,
           "base_mu": 0.78,
-          "delta_h": 0.234,
+          "delta_h": 0.235,
           "delta_a": -0.415,
           "mse_reduction_pct": 15.0,
           "dev_reduction_pct": 13.2
@@ -8867,12 +8847,7 @@
         "close_odds_h": 1.154,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Bordeaux",
-          "temp_c": 13.8,
-          "precip_mm": 0.0,
-          "wind_kmh": 14.0
-        }
+        "weather": {}
       }
     },
     {
@@ -9172,12 +9147,7 @@
         "close_odds_h": 1.87,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Berlin",
-          "temp_c": 8.9,
-          "precip_mm": 0.0,
-          "wind_kmh": 17.0
-        }
+        "weather": {}
       }
     },
     {
@@ -9450,12 +9420,7 @@
         "close_odds_h": 1.455,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Volos",
-          "temp_c": 16.7,
-          "precip_mm": 0.0,
-          "wind_kmh": 7.4
-        }
+        "weather": {}
       }
     },
     {
