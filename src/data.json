@@ -275,7 +275,7 @@
           "base_mu": 1.1,
           "delta_h": -0.513,
           "delta_a": 0.387,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 1.01,
@@ -556,7 +556,7 @@
           "base_mu": 1.66,
           "delta_h": -0.447,
           "delta_a": 0.241,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 0.86,
@@ -572,7 +572,12 @@
         "close_odds_h": 3.6,
         "starters_announced": true,
         "injuries": [],
-        "weather": {}
+        "weather": {
+          "city": "Izmir",
+          "temp_c": 18.9,
+          "precip_mm": 0.0,
+          "wind_kmh": 14.1
+        }
       }
     },
     {
@@ -832,7 +837,7 @@
           "base_mu": 0.76,
           "delta_h": 0.012,
           "delta_a": -0.121,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 1.35,
@@ -862,30 +867,30 @@
       "competition": "UEFA Nations League",
       "fixture": "San Marino vs Belarus",
       "selection": "Away Win",
-      "model_prob": 0.852,
+      "model_prob": 0.858,
       "closing_odds": 1.17,
       "implied_prob": 0.855,
       "edge": "+0.0%",
       "status": "PENDING",
       "home_team": "San Marino",
       "away_team": "Belarus",
-      "p_h": 0.022,
-      "p_d": 0.126,
-      "p_a": 0.852,
-      "pred_score": "0-2",
-      "pred_score_prob": 0.192,
-      "pred_score_pct": 19.2,
-      "sec_score": "0-1",
-      "sec_score_prob": 0.169,
-      "sec_score_pct": 16.9,
-      "thi_score": "0-3",
-      "thi_score_prob": 0.153,
-      "thi_score_pct": 15.3,
+      "p_h": 0.024,
+      "p_d": 0.118,
+      "p_a": 0.858,
+      "pred_score": "0-3",
+      "pred_score_prob": 0.151,
+      "pred_score_pct": 15.1,
+      "sec_score": "0-4",
+      "sec_score_prob": 0.096,
+      "sec_score_pct": 9.6,
+      "thi_score": "0-5",
+      "thi_score_prob": 0.048,
+      "thi_score_pct": 4.8,
       "result_pick": {
         "market": "Match Result",
         "pick": "Away Win",
         "selection": "Away Win",
-        "prob": 0.852,
+        "prob": 0.858,
         "odds": 1.17,
         "edge": "+0.0%",
         "edge_val": 0.0,
@@ -897,17 +902,17 @@
       "goal_total_pick": {
         "market": "Goal Total",
         "line": 2.5,
-        "pick": "NO PICK (PASS)",
-        "selection": "NO PICK (PASS)",
-        "target_selection": "Over 2.5",
-        "prob": 0.504,
-        "odds": 1.98,
-        "edge": "0.0%",
+        "pick": "Over 2.5",
+        "selection": "Over 2.5",
+        "target_selection": null,
+        "prob": 0.542,
+        "odds": 1.85,
+        "edge": "Fair Price",
         "edge_val": 0.0,
         "composite_score": 0.0,
-        "is_pass": true,
+        "is_pass": false,
         "quoted_market": false,
-        "reason": "Spread Coin-Flip (48%-52%)",
+        "reason": null,
         "status": "PENDING"
       },
       "btts_pick": {
@@ -915,8 +920,8 @@
         "pick": "BTTS No",
         "selection": "BTTS No",
         "target_selection": null,
-        "prob": 0.743,
-        "odds": 1.35,
+        "prob": 0.713,
+        "odds": 1.4,
         "edge": "Fair Price",
         "edge_val": 0.0,
         "composite_score": 0.0,
@@ -931,14 +936,14 @@
         "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "Corners Under 9.5",
-        "prob": 0.538,
-        "odds": 1.86,
+        "prob": 0.534,
+        "odds": 1.87,
         "edge": "0.0%",
         "edge_val": 0.0,
         "composite_score": 0.0,
         "is_pass": true,
         "quoted_market": false,
-        "reason": "Territorial Block Deflection Risk (Possession Skew 82% >= 38%)",
+        "reason": "Territorial Block Deflection Risk (Possession Skew 80% >= 38%)",
         "status": "PENDING"
       },
       "is_best": true,
@@ -946,7 +951,7 @@
         "market": "Match Result",
         "pick": "Away Win",
         "selection": "Away Win",
-        "prob": 0.852,
+        "prob": 0.858,
         "odds": 1.17,
         "edge": "+0.0%",
         "edge_val": 0.0,
@@ -1085,18 +1090,18 @@
         }
       ],
       "real_goal_stats": {
-        "avgScoredH": 2.34,
+        "avgScoredH": 2.35,
         "avgConcededH": 0.75,
-        "avgScoredA": 2.02,
+        "avgScoredA": 2.07,
         "avgConcededA": 0.75,
-        "expectedXg": 2.64
+        "expectedXg": 2.81
       },
       "real_corner_stats": {
         "avgCornersH": 3.6,
         "avgCornersConcededH": 5.6,
         "avgCornersA": 3.8,
         "avgCornersConcededA": 5.1,
-        "expectedCorners": 9.6,
+        "expectedCorners": 9.7,
         "sampleH": 4,
         "sampleA": 4,
         "quotedCorners": false
@@ -1106,19 +1111,19 @@
         "af_fixture_id": null,
         "ml_engine": {
           "ml_active": true,
-          "base_lam": 0.65,
-          "base_mu": 2.05,
+          "base_lam": 0.69,
+          "base_mu": 2.18,
           "delta_h": -0.409,
           "delta_a": 0.35,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
-        "lam_stat": 0.24,
-        "mu_stat": 2.4,
-        "lam_mkt": 0.24,
-        "mu_mkt": 2.4,
-        "lam_final": 0.24,
-        "mu_final": 2.4,
+        "lam_stat": 0.28,
+        "mu_stat": 2.53,
+        "lam_mkt": 0.28,
+        "mu_mkt": 2.53,
+        "lam_final": 0.28,
+        "mu_final": 2.53,
         "mkt_p_h": null,
         "mkt_p_d": null,
         "mkt_p_a": null,
@@ -1126,12 +1131,7 @@
         "close_odds_h": null,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Serravalle",
-          "temp_c": 20.9,
-          "precip_mm": 0.0,
-          "wind_kmh": 36.7
-        }
+        "weather": {}
       }
     },
     {
@@ -1209,7 +1209,7 @@
         "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "Corners Under 9.5",
-        "prob": 0.542,
+        "prob": 0.54,
         "odds": 1.85,
         "edge": "0.0%",
         "edge_val": 0.0,
@@ -1386,12 +1386,12 @@
         "expectedXg": 3.36
       },
       "real_corner_stats": {
-        "avgCornersH": 5.1,
-        "avgCornersConcededH": 3.4,
+        "avgCornersH": 5.2,
+        "avgCornersConcededH": 3.3,
         "avgCornersA": 4.0,
         "avgCornersConcededA": 5.2,
         "expectedCorners": 9.6,
-        "sampleH": 4,
+        "sampleH": 5,
         "sampleA": 5,
         "quotedCorners": false
       },
@@ -1404,7 +1404,7 @@
           "base_mu": 0.81,
           "delta_h": 0.06,
           "delta_a": -0.435,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 2.78,
@@ -1420,12 +1420,7 @@
         "close_odds_h": 1.256,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "London",
-          "temp_c": 5.8,
-          "precip_mm": 0.0,
-          "wind_kmh": 12.6
-        }
+        "weather": {}
       }
     },
     {
@@ -1697,8 +1692,8 @@
           "base_lam": 0.79,
           "base_mu": 1.97,
           "delta_h": -0.287,
-          "delta_a": 0.165,
-          "mse_reduction_pct": 15.0,
+          "delta_a": 0.164,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 0.5,
@@ -1723,36 +1718,38 @@
       "competition": "UEFA Nations League",
       "fixture": "Italy vs France",
       "selection": "NO PICK (PASS)",
-      "model_prob": 0.441,
-      "closing_odds": 2.27,
+      "model_prob": 0.439,
+      "closing_odds": 2.28,
       "implied_prob": 0.235,
       "edge": "0.0%",
       "status": "PENDING",
       "home_team": "Italy",
       "away_team": "France",
-      "p_h": 0.289,
-      "p_d": 0.27,
-      "p_a": 0.441,
-      "pred_score": "1-2",
-      "pred_score_prob": 0.092,
-      "pred_score_pct": 9.2,
-      "sec_score": "1-3",
-      "sec_score_prob": 0.047,
-      "sec_score_pct": 4.7,
-      "thi_score": "2-3",
-      "thi_score_prob": 0.029,
-      "thi_score_pct": 2.9,
+      "p_h": 0.286,
+      "p_d": 0.275,
+      "p_a": 0.439,
+      "pred_score": "1-1",
+      "pred_score_prob": 0.131,
+      "pred_score_pct": 13.1,
+      "sec_score": "1-2",
+      "sec_score_prob": 0.091,
+      "sec_score_pct": 9.1,
+      "thi_score": "2-1",
+      "thi_score_prob": 0.071,
+      "thi_score_pct": 7.1,
       "result_pick": {
         "market": "Match Result",
-        "pick": "Away Win",
-        "selection": "Away Win",
-        "prob": 0.441,
-        "odds": 1.83,
-        "edge": "-19.2%",
-        "edge_val": -19.2,
-        "composite_score": 0.22,
-        "is_pass": false,
+        "pick": "NO PICK (PASS)",
+        "selection": "NO PICK (PASS)",
+        "target_selection": "Away Win",
+        "prob": 0.439,
+        "odds": 1.833,
+        "edge": "-19.5%",
+        "edge_val": -19.5,
+        "composite_score": 0.0,
+        "is_pass": true,
         "quoted_market": true,
+        "reason": "High Entropy / Dead-Heat Toss-up",
         "status": "PENDING"
       },
       "goal_total_pick": {
@@ -1761,10 +1758,10 @@
         "pick": "NO PICK (PASS)",
         "selection": "NO PICK (PASS)",
         "target_selection": "Over 2.5",
-        "prob": 0.52,
+        "prob": 0.501,
         "odds": 1.69,
-        "edge": "-12.1%",
-        "edge_val": -12.1,
+        "edge": "-15.3%",
+        "edge_val": -15.3,
         "composite_score": 0.0,
         "is_pass": true,
         "quoted_market": true,
@@ -1776,8 +1773,8 @@
         "pick": "BTTS Yes",
         "selection": "BTTS Yes",
         "target_selection": null,
-        "prob": 0.558,
-        "odds": 1.79,
+        "prob": 0.544,
+        "odds": 1.84,
         "edge": "Fair Price",
         "edge_val": 0.0,
         "composite_score": 0.0,
@@ -1792,8 +1789,8 @@
         "pick": "Corners Under 9.5",
         "selection": "Corners Under 9.5",
         "target_selection": null,
-        "prob": 0.557,
-        "odds": 1.8,
+        "prob": 0.559,
+        "odds": 1.79,
         "edge": "Fair Price",
         "edge_val": 0.0,
         "composite_score": 0.0,
@@ -1961,11 +1958,11 @@
         }
       ],
       "real_goal_stats": {
-        "avgScoredH": 1.85,
+        "avgScoredH": 1.82,
         "avgConcededH": 0.88,
-        "avgScoredA": 2.1,
+        "avgScoredA": 2.07,
         "avgConcededA": 1.25,
-        "expectedXg": 2.76
+        "expectedXg": 2.68
       },
       "real_corner_stats": {
         "avgCornersH": 3.9,
@@ -1982,19 +1979,19 @@
         "af_fixture_id": null,
         "ml_engine": {
           "ml_active": true,
-          "base_lam": 1.44,
-          "base_mu": 1.44,
+          "base_lam": 1.36,
+          "base_mu": 1.36,
           "delta_h": -0.169,
           "delta_a": -0.175,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
-        "lam_stat": 1.28,
-        "mu_stat": 1.27,
+        "lam_stat": 1.19,
+        "mu_stat": 1.18,
         "lam_mkt": 1.16,
         "mu_mkt": 1.77,
-        "lam_final": 1.21,
-        "mu_final": 1.55,
+        "lam_final": 1.17,
+        "mu_final": 1.51,
         "mkt_p_h": 0.235,
         "mkt_p_d": 0.258,
         "mkt_p_a": 0.507,
@@ -2002,7 +1999,12 @@
         "close_odds_h": 3.95,
         "starters_announced": true,
         "injuries": [],
-        "weather": {}
+        "weather": {
+          "city": "Milano",
+          "temp_c": 14.8,
+          "precip_mm": 1.8,
+          "wind_kmh": 32.1
+        }
       }
     },
     {
@@ -2275,7 +2277,7 @@
           "base_mu": 0.63,
           "delta_h": -0.036,
           "delta_a": -0.23,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 1.84,
@@ -2291,7 +2293,12 @@
         "close_odds_h": 1.25,
         "starters_announced": true,
         "injuries": [],
-        "weather": {}
+        "weather": {
+          "city": "Podgorica",
+          "temp_c": 17.1,
+          "precip_mm": 1.7,
+          "wind_kmh": 8.1
+        }
       }
     },
     {
@@ -2565,7 +2572,7 @@
           "base_mu": 1.26,
           "delta_h": 0.132,
           "delta_a": -0.129,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 1.48,
@@ -2870,7 +2877,7 @@
           "base_mu": 0.61,
           "delta_h": -0.241,
           "delta_a": -0.099,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 0.92,
@@ -2886,12 +2893,7 @@
         "close_odds_h": 1.667,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Encamp",
-          "temp_c": 5.8,
-          "precip_mm": 0.0,
-          "wind_kmh": 1.8
-        }
+        "weather": {}
       }
     },
     {
@@ -3151,7 +3153,7 @@
           "base_mu": 1.33,
           "delta_h": -0.459,
           "delta_a": 0.303,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 0.2,
@@ -3167,12 +3169,7 @@
         "close_odds_h": 16.0,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Vaduz",
-          "temp_c": 2.2,
-          "precip_mm": 0.0,
-          "wind_kmh": 1.3
-        }
+        "weather": {}
       }
     },
     {
@@ -3429,7 +3426,7 @@
           "base_mu": 1.76,
           "delta_h": -0.438,
           "delta_a": 0.243,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 0.83,
@@ -3707,7 +3704,7 @@
           "base_mu": 0.78,
           "delta_h": -0.409,
           "delta_a": 0.358,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 0.48,
@@ -3983,7 +3980,7 @@
           "base_mu": 0.67,
           "delta_h": -0.731,
           "delta_a": 0.3,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 1.06,
@@ -3999,7 +3996,12 @@
         "close_odds_h": 1.37,
         "starters_announced": true,
         "injuries": [],
-        "weather": {}
+        "weather": {
+          "city": "Kosice",
+          "temp_c": 4.1,
+          "precip_mm": 0.0,
+          "wind_kmh": 4.3
+        }
       }
     },
     {
@@ -4259,7 +4261,7 @@
           "base_mu": 1.64,
           "delta_h": -0.274,
           "delta_a": 0.154,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 0.73,
@@ -4551,9 +4553,9 @@
           "ml_active": true,
           "base_lam": 2.38,
           "base_mu": 0.87,
-          "delta_h": -0.097,
+          "delta_h": -0.096,
           "delta_a": -0.321,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 2.28,
@@ -4831,7 +4833,7 @@
           "base_mu": 0.65,
           "delta_h": 0.328,
           "delta_a": -0.206,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 2.39,
@@ -4847,12 +4849,7 @@
         "close_odds_h": 1.182,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Glasgow",
-          "temp_c": 6.0,
-          "precip_mm": 0.0,
-          "wind_kmh": 11.9
-        }
+        "weather": {}
       }
     },
     {
@@ -5128,7 +5125,7 @@
           "base_mu": 1.07,
           "delta_h": -0.426,
           "delta_a": 0.181,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 0.46,
@@ -5144,12 +5141,7 @@
         "close_odds_h": 4.9,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Maribor",
-          "temp_c": 6.1,
-          "precip_mm": 0.0,
-          "wind_kmh": 2.2
-        }
+        "weather": {}
       }
     },
     {
@@ -5425,7 +5417,7 @@
           "base_mu": 0.98,
           "delta_h": -0.022,
           "delta_a": 0.157,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 1.55,
@@ -5703,7 +5695,7 @@
           "base_mu": 0.96,
           "delta_h": -0.431,
           "delta_a": 0.198,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 0.78,
@@ -5976,7 +5968,7 @@
           "base_mu": 0.85,
           "delta_h": -0.342,
           "delta_a": 0.017,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 2.31,
@@ -5992,7 +5984,12 @@
         "close_odds_h": 1.263,
         "starters_announced": true,
         "injuries": [],
-        "weather": {}
+        "weather": {
+          "city": "Oslo",
+          "temp_c": 2.1,
+          "precip_mm": 0.0,
+          "wind_kmh": 7.2
+        }
       }
     },
     {
@@ -6223,7 +6220,7 @@
           "base_mu": 0.98,
           "delta_h": -0.737,
           "delta_a": 0.236,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 1.47,
@@ -6499,7 +6496,7 @@
           "base_mu": 0.8,
           "delta_h": -0.174,
           "delta_a": -0.126,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 1.52,
@@ -6515,7 +6512,12 @@
         "close_odds_h": 1.69,
         "starters_announced": true,
         "injuries": [],
-        "weather": {}
+        "weather": {
+          "city": "Linz",
+          "temp_c": 4.9,
+          "precip_mm": 0.0,
+          "wind_kmh": 5.5
+        }
       }
     },
     {
@@ -6775,7 +6777,7 @@
           "base_mu": 1.01,
           "delta_h": -0.233,
           "delta_a": -0.223,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 1.97,
@@ -7069,7 +7071,7 @@
           "base_mu": 0.97,
           "delta_h": -0.226,
           "delta_a": -0.161,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 2.0,
@@ -7358,7 +7360,7 @@
           "base_mu": 0.77,
           "delta_h": 0.266,
           "delta_a": -0.167,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 1.41,
@@ -7374,12 +7376,7 @@
         "close_odds_h": 2.55,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Belfast",
-          "temp_c": 10.0,
-          "precip_mm": 0.0,
-          "wind_kmh": 17.3
-        }
+        "weather": {}
       }
     },
     {
@@ -7637,7 +7634,7 @@
           "base_mu": 1.24,
           "delta_h": 0.192,
           "delta_a": -0.216,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 1.69,
@@ -7653,12 +7650,7 @@
         "close_odds_h": 5.25,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Bucuresti",
-          "temp_c": 3.6,
-          "precip_mm": 0.0,
-          "wind_kmh": 4.7
-        }
+        "weather": {}
       }
     },
     {
@@ -7938,7 +7930,7 @@
           "base_mu": 0.97,
           "delta_h": -0.592,
           "delta_a": -0.09,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 1.59,
@@ -7954,12 +7946,7 @@
         "close_odds_h": 1.952,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Brussels",
-          "temp_c": 11.2,
-          "precip_mm": 0.0,
-          "wind_kmh": 16.2
-        }
+        "weather": {}
       }
     },
     {
@@ -8240,7 +8227,7 @@
           "base_mu": 0.92,
           "delta_h": -0.102,
           "delta_a": 0.071,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 2.06,
@@ -8256,12 +8243,7 @@
         "close_odds_h": 1.333,
         "starters_announced": true,
         "injuries": [],
-        "weather": {
-          "city": "Osijek",
-          "temp_c": 7.4,
-          "precip_mm": 0.0,
-          "wind_kmh": 3.6
-        }
+        "weather": {}
       }
     },
     {
@@ -8526,7 +8508,7 @@
           "base_mu": 0.93,
           "delta_h": -0.113,
           "delta_a": -0.41,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 1.75,
@@ -8542,7 +8524,12 @@
         "close_odds_h": 2.1,
         "starters_announced": true,
         "injuries": [],
-        "weather": {}
+        "weather": {
+          "city": "Madrid",
+          "temp_c": 12.3,
+          "precip_mm": 0.0,
+          "wind_kmh": 8.1
+        }
       }
     },
     {
@@ -8799,7 +8786,7 @@
           "base_mu": 0.78,
           "delta_h": 0.234,
           "delta_a": -0.414,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 3.02,
@@ -8815,7 +8802,12 @@
         "close_odds_h": 1.154,
         "starters_announced": true,
         "injuries": [],
-        "weather": {}
+        "weather": {
+          "city": "Bordeaux",
+          "temp_c": 13.8,
+          "precip_mm": 0.0,
+          "wind_kmh": 14.0
+        }
       }
     },
     {
@@ -9099,7 +9091,7 @@
           "base_mu": 1.25,
           "delta_h": -0.283,
           "delta_a": -0.149,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 1.97,
@@ -9115,7 +9107,12 @@
         "close_odds_h": 1.87,
         "starters_announced": true,
         "injuries": [],
-        "weather": {}
+        "weather": {
+          "city": "Berlin",
+          "temp_c": 8.9,
+          "precip_mm": 0.0,
+          "wind_kmh": 17.0
+        }
       }
     },
     {
@@ -9372,7 +9369,7 @@
           "base_mu": 0.76,
           "delta_h": 0.329,
           "delta_a": -0.303,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 1.92,
@@ -9388,7 +9385,12 @@
         "close_odds_h": 1.455,
         "starters_announced": true,
         "injuries": [],
-        "weather": {}
+        "weather": {
+          "city": "Volos",
+          "temp_c": 16.7,
+          "precip_mm": 0.0,
+          "wind_kmh": 7.4
+        }
       }
     },
     {
@@ -9658,7 +9660,7 @@
           "base_mu": 1.46,
           "delta_h": -0.646,
           "delta_a": -0.156,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 1.37,
@@ -9674,7 +9676,12 @@
         "close_odds_h": 2.4,
         "starters_announced": true,
         "injuries": [],
-        "weather": {}
+        "weather": {
+          "city": "Copenhagen",
+          "temp_c": 5.4,
+          "precip_mm": 0.0,
+          "wind_kmh": 15.5
+        }
       }
     },
     {
@@ -9934,7 +9941,7 @@
           "base_mu": 1.61,
           "delta_h": -0.509,
           "delta_a": 0.154,
-          "mse_reduction_pct": 15.0,
+          "mse_reduction_pct": 14.9,
           "dev_reduction_pct": 13.2
         },
         "lam_stat": 0.52,
@@ -9950,7 +9957,12 @@
         "close_odds_h": 7.5,
         "starters_announced": true,
         "injuries": [],
-        "weather": {}
+        "weather": {
+          "city": "Cardiff",
+          "temp_c": 10.7,
+          "precip_mm": 0.0,
+          "wind_kmh": 14.8
+        }
       }
     }
   ],
